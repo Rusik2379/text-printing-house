@@ -36,6 +36,7 @@
   function hydrateIcons(root = document) { $$('[data-icon]', root).forEach(el => el.replaceWith(Object.assign(document.createElement('span'), {innerHTML:icon(el.dataset.icon)}).firstChild)); }
   const catalog = window.TEXT_CATALOG;
   window.TEXT_CONTACTS={telegram:'https://t.me/tekkkstos',max:'https://max.ru/u/f9LHodD0cOII3pfsxMqRJ6CzaCIs8OuOO5zmsR3qDGblmxnJwlsxM4WiGoY'};
+  $$('[data-social]').forEach(link=>{link.href=window.TEXT_CONTACTS[link.dataset.social];});
   const categories = [
     {name:'Копицентр',short:'Копицентр',filter:'Документы',image:'direction-copy',icon:'printer',description:'Документы, фотографии, переплёт'},
     {name:'Проектная документация',short:'Проектная печать',filter:'Проектная печать',image:'direction-project',icon:'document',description:'Чертежи, проекты, готовые альбомы'},
@@ -84,9 +85,11 @@
   $('#dialog-close').addEventListener('click',closeDialog);
   dialog.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)closeDialog();}});
 
-  function closeMenu() {activeMenu=null;$('#mega-menu').hidden=true;$('#header').append($('#mega-menu'));$$('.nav-item').forEach(b=>b.setAttribute('aria-expanded','false'));}
-  function toggleMenu(name) {
-    if(activeMenu===name){closeMenu();return;}
+  let menuCloseTimer;
+  function closeMenu() {clearTimeout(menuCloseTimer);activeMenu=null;$('#mega-menu').hidden=true;$('#header').append($('#mega-menu'));$$('.nav-item').forEach(b=>b.setAttribute('aria-expanded','false'));}
+  function openMenu(name) {
+    clearTimeout(menuCloseTimer);
+    if(activeMenu===name)return;
     activeMenu=name;
     $$('.nav-item').forEach(b=>b.setAttribute('aria-expanded',String(b.dataset.menu===name)));
     const company=name==='Компания';
@@ -98,10 +101,19 @@
     if(matchMedia('(max-width:700px)').matches){$$('.nav-item').find(b=>b.dataset.menu===name).insertAdjacentElement('afterend',$('#mega-menu'));}
     else{$('#header').append($('#mega-menu'));}
   }
+  function toggleMenu(name) {if(activeMenu===name)closeMenu();else openMenu(name);}
   $('#navigation').innerHTML=['Компания',...categories.map(c=>c.name)].map(name=>`<button class="nav-item" data-menu="${escape(name)}" aria-expanded="false" aria-controls="mega-menu">${escape(name)} ${icon('chevron')}</button>`).join('');
+  $$('.nav-item').forEach(button=>{
+    button.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse'&&matchMedia('(min-width:701px)').matches&&!dialog.open)openMenu(button.dataset.menu);});
+    button.addEventListener('keydown',event=>{if(event.key==='ArrowDown'){event.preventDefault();openMenu(button.dataset.menu);$('.mega-links button,.mega-links a',$('#mega-menu'))?.focus();}});
+  });
+  $('#header').addEventListener('pointerenter',()=>clearTimeout(menuCloseTimer));
+  $('#header').addEventListener('pointerleave',event=>{if(event.pointerType==='mouse'&&matchMedia('(min-width:701px)').matches)menuCloseTimer=setTimeout(()=>{if(!$('#mega-menu').contains(document.activeElement))closeMenu();},220);});
+  $('#header').addEventListener('focusin',()=>clearTimeout(menuCloseTimer));
+  $('#header').addEventListener('focusout',event=>{if(!$('#header').contains(event.relatedTarget))menuCloseTimer=setTimeout(closeMenu,220);});
   $('#footer-services').innerHTML=categories.map(c=>`<button data-action="catalog" data-category="${escape(c.name)}">${escape(c.name)}</button>`).join('');
   function renderPopular() {
-    $('#popular-grid').innerHTML=popular.filter(p=>p.record).map(p=>`<button class="featured-card" data-service="${p.id}" aria-label="${escape(p.name)} — выбрать"><span class="featured-copy"><span class="featured-name">${escape(p.name)}</span><span class="featured-select">Выбрать ${icon('arrow')}</span></span><span class="featured-art"><img src="${imageFor(p.record)}" alt="${escape(p.name)} — иллюстрация студии ТЕКСТ" width="720" height="720" loading="lazy"></span></button>`).join('');
+    $('#popular-grid').innerHTML=popular.filter(p=>p.record).map(p=>`<button class="featured-card" data-service="${p.id}" aria-label="${escape(p.name)}"><span class="featured-copy"><span class="featured-name">${escape(p.name)}</span></span><span class="featured-art"><img src="${imageFor(p.record)}" alt="${escape(p.name)} — иллюстрация студии ТЕКСТ" width="720" height="720" loading="lazy"></span></button>`).join('');
   }
   function renderCatalogList(query='',category='') {
     const normalized=query.toLowerCase().replaceAll('ё','е').trim();
@@ -197,7 +209,7 @@
   function selectDelivery(name){$$('[data-delivery]').forEach(b=>{b.setAttribute('aria-selected',String(b.dataset.delivery===name));b.tabIndex=b.dataset.delivery===name?0:-1;});$('#delivery-details').innerHTML=deliveryContent[name];$('#delivery-details').setAttribute('aria-labelledby','tab-'+name);}
   document.addEventListener('click',event=>{
     const calculatorLink=event.target.closest('[data-action="calculators"]');if(calculatorLink){openCalculators();return;}
-    const menu=event.target.closest('[data-menu]');if(menu){toggleMenu(menu.dataset.menu);return;}
+    const menu=event.target.closest('[data-menu]');if(menu){if(event.detail>0&&matchMedia('(min-width:701px) and (hover:hover)').matches)openMenu(menu.dataset.menu);else toggleMenu(menu.dataset.menu);return;}
     const close=event.target.closest('[data-close-menu]');if(close){closeMenu();$('#navigation').classList.remove('mobile-open');$('#mobile-menu-button').setAttribute('aria-expanded','false');}
     const service=event.target.closest('[data-service]');if(service){openService(service.dataset.service);return;}
     const add=event.target.closest('[data-add-request]');if(add){addRequest(add.dataset.addRequest);return;}
@@ -207,7 +219,7 @@
     if(!event.target.closest('.site-header'))closeMenu();
   });
   $('#mobile-menu-button').addEventListener('click',()=>{closeMenu();const expanded=$('#navigation').classList.toggle('mobile-open');$('#mobile-menu-button').setAttribute('aria-expanded',String(expanded));});
-  document.addEventListener('keydown',event=>{if(event.key==='Escape'){closeMenu();$('#navigation').classList.remove('mobile-open');$('#mobile-menu-button').setAttribute('aria-expanded','false');}if(event.key==='/'&&!dialog.open&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){event.preventDefault();openCatalog('',true);}});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'){const menuTrigger=$$('.nav-item').find(button=>button.dataset.menu===activeMenu);closeMenu();menuTrigger?.focus();$('#navigation').classList.remove('mobile-open');$('#mobile-menu-button').setAttribute('aria-expanded','false');}if(event.key==='/'&&!dialog.open&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){event.preventDefault();openCatalog('',true);}});
   $('.delivery-tabs')?.addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const tabs=$$('[data-delivery]');const index=tabs.findIndex(b=>b.getAttribute('aria-selected')==='true');const next=event.key==='Home'?0:event.key==='End'?tabs.length-1:(index+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;selectDelivery(tabs[next].dataset.delivery);tabs[next].focus();});
   $('#home-search').addEventListener('submit',event=>{event.preventDefault();openCatalog('',true,$('#home-search-input').value.trim());});
   const clientStrip=$('#client-logos');
