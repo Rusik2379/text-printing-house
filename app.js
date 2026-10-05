@@ -113,7 +113,7 @@
   $('#header').addEventListener('focusout',event=>{if(!$('#header').contains(event.relatedTarget))menuCloseTimer=setTimeout(closeMenu,220);});
   $('#footer-services').innerHTML=categories.map(c=>`<button data-action="catalog" data-category="${escape(c.name)}">${escape(c.name)}</button>`).join('');
   function renderPopular() {
-    $('#popular-grid').innerHTML=popular.filter(p=>p.record).map(p=>`<button class="featured-card" data-service="${p.id}" aria-label="${escape(p.name)}"><span class="featured-copy"><span class="featured-name">${escape(p.name)}</span></span><span class="featured-art"><img src="${imageFor(p.record)}" alt="${escape(p.name)} — иллюстрация студии ТЕКСТ" width="720" height="720" loading="lazy"></span></button>`).join('');
+    $('#popular-grid').innerHTML=popular.filter(p=>p.record).map(p=>`<button class="featured-card" data-service="${p.id}" aria-label="${escape(p.name)}"><span class="featured-copy"><span class="featured-name">${p.name.split(/\s+/).map(word=>`<span class="featured-word">${escape(word)}</span>`).join(' ')}</span></span><span class="featured-art"><img src="${imageFor(p.record)}" alt="${escape(p.name)} — иллюстрация студии ТЕКСТ" width="720" height="720" loading="lazy"></span></button>`).join('');
   }
   function renderCatalogList(query='',category='') {
     const normalized=query.toLowerCase().replaceAll('ё','е').trim();
