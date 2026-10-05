@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import {existsSync,readFileSync} from 'node:fs';
+import vm from 'node:vm';
+const context={window:{},URL,URLSearchParams};vm.createContext(context);
+for(const file of ['stickerpack-pricing.js','stickerpack-calculator.js','stickerpack-sharing.js']){
+  const path=new URL('../'+file,import.meta.url);if(existsSync(path))vm.runInContext(readFileSync(path,'utf8'),context);
+}
+const sharing=context.window.TEXT_STICKERPACK_SHARING;
+assert.equal(typeof sharing?.text,'function','Копирование расчёта должно быть реализовано');
+const c={print:'uv',material:'white',width:40,height:40,quantity:780};
+const link=sharing.url(c,'https://text-print.ru');
+const url=new URL(link);
+assert.equal(url.pathname,'/nakleyki-i-stikery/stikerpaki/');assert.equal(url.hash,'#calculator');
+assert.equal(url.searchParams.get('quantity'),'780');assert.equal(url.searchParams.get('width'),'40');
+const recovered=sharing.read(url.searchParams);
+assert.deepEqual(JSON.parse(JSON.stringify(recovered)),c);
+const text=sharing.text(c,'https://text-print.ru');
+assert.match(text,/Материал: Белая плёнка\nРазмер: 4 x 4 см\nПечать: УФ-печать\nКоличество:/);
+assert.match(text,/50 шт - 979,2 ₽/);assert.match(text,/200 шт - 1[\s\u00a0]638,52 ₽/);
+assert.match(text,/780 шт - 5[\s\u00a0]634,1 ₽/);assert.match(text,/5[\s\u00a0]000 шт - 27[\s\u00a0]989 ₽/);
+assert.equal(text.split('\n').filter(s=>/ шт - /.test(s)).length,7);
+assert.ok(text.endsWith(link));assert.ok(!link.includes('edit='));
+const transparent={...c,material:'transparent',quantity:5000};
+assert.ok(sharing.text(transparent,'https://text-print.ru').includes('Материал: Прозрачная плёнка'));
+assert.equal(sharing.text(transparent,'https://text-print.ru').split('\n').filter(s=>/ шт - /.test(s)).length,6);
+assert.equal(sharing.read(new URLSearchParams('print=vinyl&material=transparent&quantity=-10&width=0&height=Infinity')).material,'white');
+assert.equal(sharing.read(new URLSearchParams('quantity=1.5')).quantity,50);
+assert.equal(sharing.text({...c,width:0},'https://text-print.ru'),null);
+assert.match(sharing.text({...c,width:40.25,height:64.75},'https://text-print.ru'),/Размер: 4,025 x 6,475 см/);
+console.log('Copy format, Excel prices, custom quantity, selected options, URL round trip and invalid-link fallback verified.');

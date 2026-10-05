@@ -274,3 +274,7 @@ footer{background:linear-gradient(120deg,#242829,#1c2021);color:#fff;padding:24p
   .calculator-copy h2{font-size:20px}
   .calculator-actions .button{font-size:10px;padding:9px;gap:5px}
 }
+
+/* Shared cart attachments and calculated stickerpack editing. */
+.skip-link{opacity:0;pointer-events:none}.skip-link:focus{opacity:1;pointer-events:auto}
+.cart-file-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}.cart-file-actions button,.cart-file-actions label{color:var(--red);font-size:11px;cursor:pointer}.cart-file-actions label input{position:absolute;width:1px;height:1px;opacity:0}.cart-file-actions label:focus-within{outline:2px solid var(--red)}.cart-minimum-note{color:#9a622a;font-size:12px;margin-top:15px}.cart-edit-link{color:var(--red);font-size:11px;display:inline-block;margin-top:8px}
