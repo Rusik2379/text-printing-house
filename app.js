@@ -5,6 +5,7 @@
   const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const currency = value => new Intl.NumberFormat('ru-RU', {maximumFractionDigits:2}).format(value) + ' ₽';
   const icons = {
+    copy:'<rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V3H3v13h5"/>',
     star:'<path d="m12 2 3 6.5 7 1-5 5 1 7-6-3.5L6 21l1-6.5-5-5 7-1L12 2Z"/>',
     user:'<circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3"/>',
     zap:'<path d="m13 2-9 12h7l-1 8 10-13h-8l1-7Z"/>',
@@ -60,9 +61,9 @@
   ].map(p => ({...p, record:catalog.find(r => r.id === p.id)}));
   const getCategory = record => categories.find(c => c.name === record.category);
   const imageFor = record => {
-    if(record.id==='1.5')return 'assets/service-binding.webp';
+    if(record.id==='1.5')return '/assets/service-binding.webp';
     const item=popular.find(p=>p.id===record.id);
-    return item ? `assets/popular-art-${encodeURI(item.asset)}.webp` : `assets/${getCategory(record)?.image || 'direction-company'}.webp`;
+    return item ? `/assets/popular-art-${encodeURI(item.asset)}.webp` : `/assets/${getCategory(record)?.image || 'direction-company'}.webp`;
   };
   const examplesFor = record => record.examples.split('•').map(s => s.trim()).filter(Boolean);
   const priceFor = record => { const match=record.examples.match(/—\s*([\d\s\u00a0,]+)\s*₽/);return match ? Number(match[1].replace(/\s/g,'').replace(',','.')) : null; };
@@ -71,7 +72,10 @@
   let selectedFile = null;
   let calcSelection = null;
   let cart = [];
-  try { const stored=JSON.parse(localStorage.getItem('text-print-cart-v1') || '[]'); cart=Array.isArray(stored) ? stored.filter(x => x && typeof x.key==='string' && catalog.some(r => r.id===x.id) && typeof x.description==='string' && (x.price===null || Number.isFinite(x.price) && x.price>=0)) : []; } catch { cart=[]; }
+  function readCart(){
+    try { const stored=JSON.parse(localStorage.getItem('text-print-cart-v1') || '[]'); return Array.isArray(stored) ? stored.filter(x => x && typeof x.key==='string' && catalog.some(r => r.id===x.id) && typeof x.description==='string' && (x.price===null || Number.isFinite(x.price) && x.price>=0)) : []; } catch { return []; }
+  }
+  cart=readCart();
   const dialog = $('#dialog');
   const dialogContent = $('#dialog-content');
   function saveCart() { try {localStorage.setItem('text-print-cart-v1',JSON.stringify(cart));}catch {}updateCartCount(); }
@@ -92,8 +96,8 @@
     const company=name==='Компания';
     const category=categories.find(c=>c.name===name);
     const records=catalog.filter(r=>r.category===name);
-    const links=company ? `<a href="#about" data-close-menu>О нас</a><a href="#contacts" data-close-menu>Контакты</a><a href="#delivery" data-close-menu>Доставка и оплата</a><button data-action="requirements">Технические требования</button><a href="#reviews" data-close-menu>Отзывы</a><a href="#faq" data-close-menu>Вопросы и ответы</a><a href="https://text-print.ru/company/article/" target="_blank" rel="noopener">Статьи</a>` : records.map(r=>`<button data-service="${r.id}">${escape(r.name)}</button>`).join('');
-    $('#mega-menu').innerHTML=`<div class="mega-layout"><div><div class="mega-title"><h3>${escape(name)}</h3><button class="icon-button" data-action="close-menu" aria-label="Закрыть меню">${icon('close')}</button></div><div class="mega-links">${links}</div></div><div class="mega-feature"><img src="assets/${company?'direction-company':category.image}.webp" alt="${escape(name)}"><h3>${company?'Ваши идеи — в хороших руках':escape(category.short)}</h3><p>${company?'Студия печати на проспекте Строителей, 11.':escape(category.description)}</p><button class="button button-primary" data-action="${company?'request':'catalog'}" ${company?'':`data-category="${escape(name)}"`}>${company?'Обсудить заказ':'Выбрать услугу'} ${icon('arrow')}</button></div></div>`;
+    const links=company ? `<a href="/#about" data-close-menu>О нас</a><a href="/#contacts" data-close-menu>Контакты</a><a href="/#delivery" data-close-menu>Доставка и оплата</a><button data-action="requirements">Технические требования</button><a href="/#reviews" data-close-menu>Отзывы</a><a href="/#faq" data-close-menu>Вопросы и ответы</a><a href="https://text-print.ru/company/article/" target="_blank" rel="noopener">Статьи</a>` : records.map(r=>`<button data-service="${r.id}">${escape(r.name)}</button>`).join('');
+    $('#mega-menu').innerHTML=`<div class="mega-layout"><div><div class="mega-title"><h3>${escape(name)}</h3><button class="icon-button" data-action="close-menu" aria-label="Закрыть меню">${icon('close')}</button></div><div class="mega-links">${links}</div></div><div class="mega-feature"><img src="/assets/${company?'direction-company':category.image}.webp" alt="${escape(name)}"><h3>${company?'Ваши идеи — в хороших руках':escape(category.short)}</h3><p>${company?'Студия печати на проспекте Строителей, 11.':escape(category.description)}</p><button class="button button-primary" data-action="${company?'request':'catalog'}" ${company?'':`data-category="${escape(name)}"`}>${company?'Обсудить заказ':'Выбрать услугу'} ${icon('arrow')}</button></div></div>`;
     $('#mega-menu').hidden=false;
     if(matchMedia('(max-width:700px)').matches){$$('.nav-item').find(b=>b.dataset.menu===name).insertAdjacentElement('afterend',$('#mega-menu'));}
     else{$('#header').append($('#mega-menu'));}
@@ -101,7 +105,8 @@
   $('#navigation').innerHTML=['Компания',...categories.map(c=>c.name)].map(name=>`<button class="nav-item" data-menu="${escape(name)}" aria-expanded="false" aria-controls="mega-menu">${escape(name)} ${icon('chevron')}</button>`).join('');
   $('#footer-services').innerHTML=categories.map(c=>`<button data-action="catalog" data-category="${escape(c.name)}">${escape(c.name)}</button>`).join('');
   function renderPopular() {
-    $('#popular-grid').innerHTML=popular.filter(p=>p.record).map(p=>`<button class="featured-card" data-service="${p.id}" aria-label="${escape(p.name)} — выбрать"><span class="featured-copy"><span class="featured-name">${escape(p.name)}</span><span class="featured-select">Выбрать ${icon('arrow')}</span></span><span class="featured-art"><img src="${imageFor(p.record)}" alt="${escape(p.name)} — иллюстрация студии ТЕКСТ" width="720" height="720" loading="lazy"></span></button>`).join('');
+    if(!$('#popular-grid'))return;
+    $('#popular-grid').innerHTML=popular.filter(p=>p.record).map(p=>`<${p.id==='4.4'?'a href="/nakleyki-i-stikery/stikerpaki/"':'button'} class="featured-card" ${p.id==='4.4'?'':`data-service="${p.id}"`} aria-label="${escape(p.name)} — выбрать"><span class="featured-copy"><span class="featured-name">${escape(p.name)}</span><span class="featured-select">Выбрать ${icon('arrow')}</span></span><span class="featured-art"><img src="${imageFor(p.record)}" alt="${escape(p.name)} — иллюстрация студии ТЕКСТ" width="720" height="720" loading="lazy"></span></${p.id==='4.4'?'a':'button'}>`).join('');
   }
   function renderCatalogList(query='',category='') {
     const normalized=query.toLowerCase().replaceAll('ё','е').trim();
@@ -117,6 +122,7 @@
     if(search)$('#catalog-search').focus();
   }
   function openService(id) {
+    if(id==='4.4'){location.href='/nakleyki-i-stikery/stikerpaki/';return;}
     const record=catalog.find(r=>r.id===id);if(!record)return;
     currentRecord=record;
     if(id==='3.1'){openCalculator();return;}
@@ -126,7 +132,7 @@
   }
   const calculateCards=window.TEXT_CALCULATE_CARDS;
   function openCalculators() {
-    openDialog(`<div class="dialog-body"><div class="eyebrow muted">РАСЧЁТ СТОИМОСТИ</div><h2>Онлайн-калькуляторы</h2><div class="calculator-picker"><div><h3>Визитки</h3><p>Бумага, тираж, печать с одной или двух сторон, ламинация и скругление углов. Стоимость и срок — сразу.</p><button class="button button-primary" data-service="3.1">Рассчитать визитки ${icon('arrow')}</button></div><img src="assets/calculator-original.webp" alt="Робот ТЕКСТ с калькулятором"></div><p class="calculator-other">Нужен расчёт документов, наклеек, широкоформатной печати или другой услуги? Выберите её в каталоге и подготовьте запрос в студию.</p><button class="button button-outline" data-action="catalog">Все услуги ${icon('arrow')}</button></div>`);
+    openDialog(`<div class="dialog-body"><div class="eyebrow muted">РАСЧЁТ СТОИМОСТИ</div><h2>Онлайн-калькуляторы</h2><div class="calculator-picker"><div><h3>Визитки</h3><p>Бумага, тираж, печать с одной или двух сторон, ламинация и скругление углов. Стоимость и срок — сразу.</p><button class="button button-primary" data-service="3.1">Рассчитать визитки ${icon('arrow')}</button></div><img src="/assets/calculator-original.webp" alt="Робот ТЕКСТ с калькулятором"></div><div class="calculator-other"><h3>Стикерпаки</h3><p>Материал, размер набора, тираж, стоимость и срок.</p><a class="button button-primary" href="/nakleyki-i-stikery/stikerpaki/#calculator">Рассчитать стикерпаки</a></div><p class="calculator-other">Нужен расчёт документов, наклеек, широкоформатной печати или другой услуги? Выберите её в каталоге и подготовьте запрос в студию.</p><button class="button button-outline" data-action="catalog">Все услуги ${icon('arrow')}</button></div>`);
   }
   function openCalculator() {
     const rules=window.TEXT_PRICING.cards;
@@ -146,7 +152,7 @@
       $('#calc-deadline').textContent=`Срок: от ${result.days} ${word} после полного согласования макета. Получение и доставку согласуем при подтверждении заказа.`;
     }
     form.addEventListener('change',update);update();
-    $('#add-cards').addEventListener('click',()=>{cart.push({key:crypto.randomUUID(),id:'3.1',description:calcSelection.description,price:calcSelection.total});saveCart();toast('Визитки добавлены в корзину');});
+    $('#add-cards').addEventListener('click',()=>{cart=readCart();cart.push({key:crypto.randomUUID(),id:'3.1',description:calcSelection.description,price:calcSelection.total});saveCart();toast('Визитки добавлены в корзину');});
     $('#download-cards').addEventListener('click',()=>{
       const content=['СТУДИЯ ПЕЧАТИ ТЕКСТ','Расчёт визиток',`Дата: ${new Date().toLocaleDateString('ru-RU')}`,'',calcSelection.description,`За штуку: ${currency(calcSelection.unit)}`,`Стоимость тиража: ${currency(calcSelection.total)}`,$('#calc-deadline').textContent,'','Барнаул, проспект Строителей, 11','+7 (923) 654-78-96','tekkkst@yandex.ru'].join('\n');
       const url=URL.createObjectURL(new Blob(['\ufeff',content],{type:'text/plain;charset=utf-8'}));
@@ -156,18 +162,26 @@
   }
   function addRequest(id) {
     const record=catalog.find(r=>r.id===id);if(!record)return;
+    cart=readCart();
     cart.push({key:crypto.randomUUID(),id,description:'Параметры и тираж — уточнить при расчёте',price:null});saveCart();toast('Услуга добавлена в ваш запрос');
   }
   function openCart() {
+    cart=readCart();updateCartCount();
     if(!cart.length){openDialog(`<div class="dialog-body"><h2>Ваша корзина</h2><div class="empty-state">${icon('bag')}<h3>С чего начнём?</h3><p>Рассчитайте визитки или добавьте другие услуги в запрос.<br>Поможем собрать всё в один заказ.</p><button class="button button-primary" data-action="catalog">Выбрать услугу ${icon('arrow')}</button></div></div>`);return;}
-    const priced=cart.filter(r=>r.price!==null),total=priced.reduce((sum,r)=>sum+r.price,0);
-    openDialog(`<div class="dialog-body"><div class="eyebrow muted">ВАШ ЗАКАЗ</div><h2>Корзина <small>· ${cart.length}</small></h2><p class="dialog-intro">Параметры сохранены в этом браузере. Отправьте запрос в студию, чтобы согласовать макеты и получение.</p><div>${cart.map(r=>`<div class="cart-row"><div><h3>${escape(catalog.find(c=>c.id===r.id).name)}</h3><p>${escape(r.description)}</p></div><div class="cart-row-right"><span class="cart-row-price">${r.price===null?'Уточним':currency(r.price)}</span><button class="icon-button" data-remove="${escape(r.key)}" aria-label="Удалить ${escape(catalog.find(c=>c.id===r.id).name)}">${icon('trash')}</button></div></div>`).join('')}</div>${priced.length?`<div class="cart-summary"><span>${priced.length===cart.length?'Итого за продукцию':'Рассчитанная часть заказа'}</span><strong>${currency(total)}</strong></div>`:''}${priced.length!==cart.length?'<p class="service-sla">Стоимость остальных позиций уточняется после выбора параметров. Доставка рассчитывается отдельно.</p>':'<p class="service-sla">Доставка рассчитывается отдельно.</p>'}<div class="form-actions"><button class="button button-primary" data-action="request" data-cart="true">Подготовить запрос ${icon('arrow')}</button><button class="button button-outline" data-action="catalog">Добавить услугу</button></div></div>`);
+    const priced=cart.filter(r=>r.price!==null),cartTotals=window.TEXT_STICKER_CART_TOTAL(cart),total=cartTotals.total;
+    openDialog(`<div class="dialog-body"><div class="eyebrow muted">ВАШ ЗАКАЗ</div><h2>Корзина <small>· ${cart.length}</small></h2><p class="dialog-intro">Параметры сохранены в этом браузере. Отправьте запрос в студию, чтобы согласовать макеты и получение.</p><div>${cart.map(r=>`<div class="cart-row"><div><h3>${escape(catalog.find(c=>c.id===r.id).name)}</h3><p>${escape(r.description)}</p>${r.id==='4.4'&&r.configuration?`<a class="cart-edit-link" href="/nakleyki-i-stikery/stikerpaki/?edit=${encodeURIComponent(r.key)}">Изменить параметры</a>`:''}<div class="cart-file-actions">${r.fileName?`<button data-download-cart-file="${escape(r.key)}">Макет: ${escape(r.fileName)} ↓</button>`:''}<label>${r.fileName?'Заменить макет':'Прикрепить макет'}<input type="file" data-cart-file="${escape(r.key)}" accept=".pdf,.jpg,.jpeg,.png,.tif,.tiff,.svg,.ai,.eps,.cdr,.psd,.zip"></label></div></div><div class="cart-row-right"><span class="cart-row-price">${r.price===null?'Уточним':currency(r.price)}</span><button class="icon-button" data-remove="${escape(r.key)}" aria-label="Удалить ${escape(catalog.find(c=>c.id===r.id).name)}">${icon('trash')}</button></div></div>`).join('')}</div>${cartTotals.surcharge?`<p class="cart-minimum-note">Доплата до минимального чека наклеек и стикерпаков: ${currency(cartTotals.surcharge)}. Применяется один раз к заказу.</p>`:''}${priced.length?`<div class="cart-summary"><span>${priced.length===cart.length?'Итого за продукцию':'Рассчитанная часть заказа'}</span><strong>${currency(total)}</strong></div>`:''}${priced.length!==cart.length?'<p class="service-sla">Стоимость остальных позиций уточняется после выбора параметров. Доставка рассчитывается отдельно.</p>':'<p class="service-sla">Доставка рассчитывается отдельно.</p>'}<div class="form-actions"><button class="button button-primary" data-action="request" data-cart="true">Подготовить запрос ${icon('arrow')}</button><button class="button button-outline" data-action="catalog">Добавить услугу</button></div></div>`);
   }
   function requestText(form,record,includeCart) {
     const data=new FormData(form);
     let lines=['Здравствуйте! Хочу заказать печать в студии ТЕКСТ.',`Имя: ${data.get('name')}`,`Телефон: ${data.get('phone')}`];
     if(record)lines.push(`Услуга: ${record.name}`);
     if(includeCart)cart.forEach((r,i)=>lines.push(`\n${i+1}. ${catalog.find(c=>c.id===r.id).name}\n${r.description}\n${r.price===null?'Стоимость: требуется расчёт':`Стоимость: ${currency(r.price)}`}`));
+    if(includeCart){
+      const totals=window.TEXT_STICKER_CART_TOTAL(cart);
+      cart.filter(r=>r.fileName).forEach(r=>lines.push(`Макет для ${catalog.find(c=>c.id===r.id).name}: ${r.fileName} (прикреплю к письму)`));
+      if(totals.surcharge)lines.push(`Доплата до минимального чека наклеек и стикерпаков: ${currency(totals.surcharge)}`);
+      lines.push(`Итого за рассчитанные позиции: ${currency(totals.total)}`);
+    }
     const comment=String(data.get('comment')||'').trim();if(comment)lines.push(`\nЗадача: ${comment}`);
     if(selectedFile)lines.push(`\nМакет: ${selectedFile.name} (прикреплю к письму)`);
     return lines.join('\n');
@@ -201,7 +215,7 @@
     const close=event.target.closest('[data-close-menu]');if(close){closeMenu();$('#navigation').classList.remove('mobile-open');$('#mobile-menu-button').setAttribute('aria-expanded','false');}
     const service=event.target.closest('[data-service]');if(service){openService(service.dataset.service);return;}
     const add=event.target.closest('[data-add-request]');if(add){addRequest(add.dataset.addRequest);return;}
-    const remove=event.target.closest('[data-remove]');if(remove){cart=cart.filter(r=>r.key!==remove.dataset.remove);saveCart();openCart();return;}
+    const remove=event.target.closest('[data-remove]');if(remove){window.TEXT_FILES.remove(remove.dataset.remove).catch(()=>{});cart=readCart().filter(r=>r.key!==remove.dataset.remove);saveCart();openCart();return;}
     const delivery=event.target.closest('[data-delivery]');if(delivery){selectDelivery(delivery.dataset.delivery);return;}
     const action=event.target.closest('[data-action]');if(action){switch(action.dataset.action){case 'catalog':openCatalog(action.dataset.category||'');break;case 'search':openCatalog('',true);break;case 'request':openRequest(action.dataset.record?catalog.find(r=>r.id===action.dataset.record):null,action.dataset.cart==='true');break;case 'upload':selectedFile=null;openRequest(null,false,true);break;case 'cart':openCart();break;case 'contacts':openContacts();break;case 'requirements':openRequirements();break;case 'close-menu':closeMenu();break;}return;}
     if(!event.target.closest('.site-header'))closeMenu();
@@ -211,6 +225,7 @@
   $('.delivery-tabs')?.addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const tabs=$$('[data-delivery]');const index=tabs.findIndex(b=>b.getAttribute('aria-selected')==='true');const next=event.key==='Home'?0:event.key==='End'?tabs.length-1:(index+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;selectDelivery(tabs[next].dataset.delivery);tabs[next].focus();});
   $('#home-search').addEventListener('submit',event=>{event.preventDefault();openCatalog('',true,$('#home-search-input').value.trim());});
   const clientStrip=$('#client-logos');
+  if(clientStrip){
   const clientControls=$$('[data-clients-scroll]');
   const clientToggle=$('#clients-autoplay');
   const clientSection=clientStrip.closest('.clients-section');
@@ -286,6 +301,7 @@
   new ResizeObserver(()=>{measureClients();scheduleClients();}).observe(clientStrip);
   new IntersectionObserver(entries=>{clientVisible=entries[0].isIntersecting&&entries[0].intersectionRatio>=.1;scheduleClients();},{threshold:.1}).observe(clientStrip);
   measureClients();updateClientToggle();
+  }
   const onScroll=()=>$('#header').classList.toggle('is-scrolled',window.scrollY>80);
   window.addEventListener('scroll',onScroll,{passive:true});
   window.addEventListener('resize',()=>{if(activeMenu)closeMenu();},{passive:true});
@@ -297,5 +313,23 @@
     ]
   };
   const schemaScript=document.createElement('script');schemaScript.type='application/ld+json';schemaScript.textContent=JSON.stringify(seoSchema);document.head.append(schemaScript);
+  window.TEXT_APP={
+    notify:toast,openCart,
+    getCart:()=>readCart().map(item=>({...item})),
+    upsertCalculatedItem(item){cart=readCart();const index=cart.findIndex(r=>r.key===item.key);if(index<0)cart.push(item);else cart[index]=item;saveCart();}
+  };
+  document.addEventListener('click',async event=>{
+    const button=event.target.closest('[data-download-cart-file]');if(!button)return;
+    const item=cart.find(r=>r.key===button.dataset.downloadCartFile);if(!item)return;
+    try{await window.TEXT_FILES.download(item.key,item.fileName);}catch(error){toast(error.message);}
+  });
+  document.addEventListener('change',async event=>{
+    const input=event.target.closest('[data-cart-file]');if(!input||!input.files[0])return;
+    const item=cart.find(r=>r.key===input.dataset.cartFile);if(!item)return;
+    const file=input.files[0],error=window.TEXT_FILES.validate(file);if(error){toast(error);input.value='';return;}
+    try{await window.TEXT_FILES.save(item.key,file);cart=readCart();const current=cart.find(r=>r.key===item.key);if(!current){await window.TEXT_FILES.remove(item.key);return;}current.fileName=file.name;current.fileSize=file.size;saveCart();openCart();toast('Макет сохранён в этом браузере. Прикрепите его к письму при отправке запроса.');}catch{toast('Не удалось сохранить макет. Попробуйте ещё раз.');}
+  });
+  window.addEventListener('storage',event=>{if(event.key==='text-print-cart-v1'||event.key===null){cart=readCart();updateCartCount();}});
+  window.addEventListener('pageshow',()=>{cart=readCart();updateCartCount();});
   renderPopular();updateCartCount();hydrateIcons();onScroll();
 })();

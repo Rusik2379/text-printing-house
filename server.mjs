@@ -9,8 +9,13 @@ const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8'
 http.createServer(async(req,res)=>{
   try{
     const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
-    const file=path.resolve(root,'.'+(pathname==='/'?'/index.html':pathname));
-    if(!file.startsWith(root)||!(await stat(file)).isFile()){res.writeHead(404);res.end('Not found');return;}
+    let file=path.resolve(root,'.'+(pathname==='/'?'/index.html':pathname));
+    if(!file.startsWith(root)){res.writeHead(404);res.end('Not found');return;}
+    if((await stat(file)).isDirectory()){
+      if(!pathname.endsWith('/')){res.writeHead(308,{Location:pathname+'/'+new URL(req.url,'http://localhost').search});res.end();return;}
+      file=path.join(file,'index.html');
+    }
+    if(!(await stat(file)).isFile()){res.writeHead(404);res.end('Not found');return;}
     res.writeHead(200,{'Content-Type':types[path.extname(file)]||'application/octet-stream','Cache-Control':'no-cache'});
     res.end(await readFile(file));
   }catch{res.writeHead(404);res.end('Not found');}
