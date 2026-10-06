@@ -19,7 +19,7 @@
     return c;
   }
   function url(c,origin){
-    const link=new URL('/nakleyki-i-stikery/stikerpaki/',origin);
+    const link=new URL('nakleyki-i-stikery/stikerpaki/',origin);
     link.search=new URLSearchParams({print:c.print,material:c.material,width:String(c.width),height:String(c.height),quantity:String(c.quantity)}).toString();
     link.hash='calculator';
     return link.href;

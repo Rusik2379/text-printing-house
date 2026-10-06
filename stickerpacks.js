@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+  const siteRoot = new URL('.', document.currentScript.src).href;
   const $=selector=>document.querySelector(selector);
   const $$=selector=>[...document.querySelectorAll(selector)];
   const money=value=>new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2}).format(value)+' ₽';
@@ -128,7 +129,7 @@
   });
   let copying=false;
   $('#sp-copy').addEventListener('click',async ()=>{
-    const text=sharing.text(configuration(),location.origin);if(!text||copying)return;
+    const text=sharing.text(configuration(),siteRoot);if(!text||copying)return;
     copying=true;
     try{
       try{
