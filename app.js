@@ -32,6 +32,7 @@
     wide:'<path d="M3 5h18v14H3zM7 2v20M17 2v20M10 9h4M10 13h4"/>',
     scissors:'<circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="m8 8 12 12M8 16 20 4M12 12l3 3"/>',
     clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',calculator:'<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8M8 10h2M14 10h2M8 14h2M14 14h2M8 18h2M14 18h2"/>',
+    target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 11v1l2 1"/>',
     phone:'<path d="M4 3h4l2 5-3 2c2 4 4 6 8 7l2-3 5 2v4c0 2-3 3-6 2C8 20 4 16 2 8 1 5 2 3 4 3Z"/>',mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
     trash:'<path d="M3 6h18M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7M14 10v7"/>',download:'<path d="M12 3v13m-5-5 5 5 5-5M4 17v4h16v-4"/>'
   };
@@ -39,6 +40,7 @@
   function hydrateIcons(root = document) { $$('[data-icon]', root).forEach(el => el.replaceWith(Object.assign(document.createElement('span'), {innerHTML:icon(el.dataset.icon)}).firstChild)); }
   const catalog = window.TEXT_CATALOG;
   window.TEXT_CONTACTS={telegram:'https://t.me/tekkkstos',max:'https://max.ru/u/f9LHodD0cOII3pfsxMqRJ6CzaCIs8OuOO5zmsR3qDGblmxnJwlsxM4WiGoY'};
+  $$('[data-social]').forEach(link=>{link.href=window.TEXT_CONTACTS[link.dataset.social];});
   const categories = [
     {name:'Копицентр',short:'Копицентр',filter:'Документы',image:'direction-copy',icon:'printer',description:'Документы, фотографии, переплёт'},
     {name:'Проектная документация',short:'Проектная печать',filter:'Проектная печать',image:'direction-project',icon:'document',description:'Чертежи, проекты, готовые альбомы'},
@@ -90,25 +92,37 @@
   $('#dialog-close').addEventListener('click',closeDialog);
   dialog.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)closeDialog();}});
 
-  function closeMenu() {activeMenu=null;$('#mega-menu').hidden=true;$('#header').append($('#mega-menu'));$$('.nav-item').forEach(b=>b.setAttribute('aria-expanded','false'));}
-  function toggleMenu(name) {
-    if(activeMenu===name){closeMenu();return;}
+  let menuCloseTimer;
+  function closeMenu() {clearTimeout(menuCloseTimer);activeMenu=null;$('#mega-menu').hidden=true;$('#header').append($('#mega-menu'));$$('.nav-item').forEach(b=>b.setAttribute('aria-expanded','false'));}
+  function openMenu(name) {
+    clearTimeout(menuCloseTimer);
+    if(activeMenu===name)return;
     activeMenu=name;
     $$('.nav-item').forEach(b=>b.setAttribute('aria-expanded',String(b.dataset.menu===name)));
     const company=name==='Компания';
-    const category=categories.find(c=>c.name===name);
     const records=catalog.filter(r=>r.category===name);
     const links=company ? `<a href="${siteRoot}#about" data-close-menu>О нас</a><a href="${siteRoot}#contacts" data-close-menu>Контакты</a><a href="${siteRoot}#delivery" data-close-menu>Доставка и оплата</a><button data-action="requirements">Технические требования</button><a href="${siteRoot}#reviews" data-close-menu>Отзывы</a><a href="${siteRoot}#faq" data-close-menu>Вопросы и ответы</a><a href="https://text-print.ru/company/article/" target="_blank" rel="noopener">Статьи</a>` : records.map(r=>`<button data-service="${r.id}">${escape(r.name)}</button>`).join('');
-    $('#mega-menu').innerHTML=`<div class="mega-layout"><div><div class="mega-title"><h3>${escape(name)}</h3><button class="icon-button" data-action="close-menu" aria-label="Закрыть меню">${icon('close')}</button></div><div class="mega-links">${links}</div></div><div class="mega-feature"><img src="${siteRoot}assets/${company?'direction-company':category.image}.webp" alt="${escape(name)}"><h3>${company?'Ваши идеи — в хороших руках':escape(category.short)}</h3><p>${company?'Студия печати на проспекте Строителей, 11.':escape(category.description)}</p><button class="button button-primary" data-action="${company?'request':'catalog'}" ${company?'':`data-category="${escape(name)}"`}>${company?'Обсудить заказ':'Выбрать услугу'} ${icon('arrow')}</button></div></div>`;
+    $('#mega-menu').innerHTML=`<div class="mega-layout"><div><div class="mega-title"><h3>${escape(name)}</h3></div><div class="mega-links">${links}</div></div></div>`;
+    const menuLinks=$('.mega-links',$('#mega-menu'));
+    menuLinks.style.setProperty('--menu-rows',Math.ceil(menuLinks.children.length/2));
     $('#mega-menu').hidden=false;
     if(matchMedia('(max-width:700px)').matches){$$('.nav-item').find(b=>b.dataset.menu===name).insertAdjacentElement('afterend',$('#mega-menu'));}
     else{$('#header').append($('#mega-menu'));}
   }
+  function toggleMenu(name) {if(activeMenu===name)closeMenu();else openMenu(name);}
   $('#navigation').innerHTML=['Компания',...categories.map(c=>c.name)].map(name=>`<button class="nav-item" data-menu="${escape(name)}" aria-expanded="false" aria-controls="mega-menu">${escape(name)} ${icon('chevron')}</button>`).join('');
+  $$('.nav-item').forEach(button=>{
+    button.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse'&&matchMedia('(min-width:701px)').matches&&!dialog.open)openMenu(button.dataset.menu);});
+    button.addEventListener('keydown',event=>{if(event.key==='ArrowDown'){event.preventDefault();openMenu(button.dataset.menu);$('.mega-links button,.mega-links a',$('#mega-menu'))?.focus();}});
+  });
+  $('#header').addEventListener('pointerenter',()=>clearTimeout(menuCloseTimer));
+  $('#header').addEventListener('pointerleave',event=>{if(event.pointerType==='mouse'&&matchMedia('(min-width:701px)').matches)menuCloseTimer=setTimeout(()=>{if(!$('#mega-menu').contains(document.activeElement))closeMenu();},220);});
+  $('#header').addEventListener('focusin',()=>clearTimeout(menuCloseTimer));
+  $('#header').addEventListener('focusout',event=>{if(!$('#header').contains(event.relatedTarget))menuCloseTimer=setTimeout(closeMenu,220);});
   $('#footer-services').innerHTML=categories.map(c=>`<button data-action="catalog" data-category="${escape(c.name)}">${escape(c.name)}</button>`).join('');
   function renderPopular() {
     if(!$('#popular-grid'))return;
-    $('#popular-grid').innerHTML=popular.filter(p=>p.record).map(p=>`<${p.id==='4.4'?`a href="${siteRoot}nakleyki-i-stikery/stikerpaki/"`:'button'} class="featured-card" ${p.id==='4.4'?'':`data-service="${p.id}"`} aria-label="${escape(p.name)} — выбрать"><span class="featured-copy"><span class="featured-name">${escape(p.name)}</span><span class="featured-select">Выбрать ${icon('arrow')}</span></span><span class="featured-art"><img src="${imageFor(p.record)}" alt="${escape(p.name)} — иллюстрация студии ТЕКСТ" width="720" height="720" loading="lazy"></span></${p.id==='4.4'?'a':'button'}>`).join('');
+    $('#popular-grid').innerHTML=popular.filter(p=>p.record).map(p=>`<${p.id==='4.4'?`a href="${siteRoot}nakleyki-i-stikery/stikerpaki/"`:'button'} class="featured-card" ${p.id==='4.4'?'':`data-service="${p.id}"`} aria-label="${escape(p.name)}"><span class="featured-copy"><span class="featured-name">${p.name.split(/\s+/).map(word=>`<span class="featured-word">${escape(word)}</span>`).join(' ')}</span></span><span class="featured-art"><img src="${imageFor(p.record)}" alt="${escape(p.name)} — иллюстрация студии ТЕКСТ" width="720" height="720" loading="lazy"></span></${p.id==='4.4'?'a':'button'}>`).join('');
   }
   function renderCatalogList(query='',category='') {
     const normalized=query.toLowerCase().replaceAll('ё','е').trim();
@@ -213,23 +227,21 @@
   function selectDelivery(name){$$('[data-delivery]').forEach(b=>{b.setAttribute('aria-selected',String(b.dataset.delivery===name));b.tabIndex=b.dataset.delivery===name?0:-1;});$('#delivery-details').innerHTML=deliveryContent[name];$('#delivery-details').setAttribute('aria-labelledby','tab-'+name);}
   document.addEventListener('click',event=>{
     const calculatorLink=event.target.closest('[data-action="calculators"]');if(calculatorLink){openCalculators();return;}
-    const menu=event.target.closest('[data-menu]');if(menu){toggleMenu(menu.dataset.menu);return;}
+    const menu=event.target.closest('[data-menu]');if(menu){if(event.detail>0&&matchMedia('(min-width:701px) and (hover:hover)').matches)openMenu(menu.dataset.menu);else toggleMenu(menu.dataset.menu);return;}
     const close=event.target.closest('[data-close-menu]');if(close){closeMenu();$('#navigation').classList.remove('mobile-open');$('#mobile-menu-button').setAttribute('aria-expanded','false');}
     const service=event.target.closest('[data-service]');if(service){openService(service.dataset.service);return;}
     const add=event.target.closest('[data-add-request]');if(add){addRequest(add.dataset.addRequest);return;}
     const remove=event.target.closest('[data-remove]');if(remove){window.TEXT_FILES.remove(remove.dataset.remove).catch(()=>{});cart=readCart().filter(r=>r.key!==remove.dataset.remove);saveCart();openCart();return;}
     const delivery=event.target.closest('[data-delivery]');if(delivery){selectDelivery(delivery.dataset.delivery);return;}
-    const action=event.target.closest('[data-action]');if(action){switch(action.dataset.action){case 'catalog':openCatalog(action.dataset.category||'');break;case 'search':openCatalog('',true);break;case 'request':openRequest(action.dataset.record?catalog.find(r=>r.id===action.dataset.record):null,action.dataset.cart==='true');break;case 'upload':selectedFile=null;openRequest(null,false,true);break;case 'cart':openCart();break;case 'contacts':openContacts();break;case 'requirements':openRequirements();break;case 'close-menu':closeMenu();break;}return;}
+    const action=event.target.closest('[data-action]');if(action){switch(action.dataset.action){case 'catalog':openCatalog(action.dataset.category||'');break;case 'search':openCatalog('',true);break;case 'request':openRequest(action.dataset.record?catalog.find(r=>r.id===action.dataset.record):null,action.dataset.cart==='true');break;case 'upload':selectedFile=null;openRequest(null,false,true);break;case 'cart':openCart();break;case 'contacts':openContacts();break;case 'requirements':openRequirements();break;}return;}
     if(!event.target.closest('.site-header'))closeMenu();
   });
   $('#mobile-menu-button').addEventListener('click',()=>{closeMenu();const expanded=$('#navigation').classList.toggle('mobile-open');$('#mobile-menu-button').setAttribute('aria-expanded',String(expanded));});
-  document.addEventListener('keydown',event=>{if(event.key==='Escape'){closeMenu();$('#navigation').classList.remove('mobile-open');$('#mobile-menu-button').setAttribute('aria-expanded','false');}if(event.key==='/'&&!dialog.open&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){event.preventDefault();openCatalog('',true);}});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'){const menuTrigger=$$('.nav-item').find(button=>button.dataset.menu===activeMenu);closeMenu();menuTrigger?.focus();$('#navigation').classList.remove('mobile-open');$('#mobile-menu-button').setAttribute('aria-expanded','false');}if(event.key==='/'&&!dialog.open&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){event.preventDefault();openCatalog('',true);}});
   $('.delivery-tabs')?.addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const tabs=$$('[data-delivery]');const index=tabs.findIndex(b=>b.getAttribute('aria-selected')==='true');const next=event.key==='Home'?0:event.key==='End'?tabs.length-1:(index+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;selectDelivery(tabs[next].dataset.delivery);tabs[next].focus();});
   $('#home-search').addEventListener('submit',event=>{event.preventDefault();openCatalog('',true,$('#home-search-input').value.trim());});
   const clientStrip=$('#client-logos');
   if(clientStrip){
-  const clientControls=$$('[data-clients-scroll]');
-  const clientToggle=$('#clients-autoplay');
   const clientSection=clientStrip.closest('.clients-section');
   const clientMotion=matchMedia('(prefers-reduced-motion:reduce)');
   const clientItems=[...clientStrip.children];
@@ -240,72 +252,51 @@
   clientStrip.append(...cloneClients());
   clientStrip.classList.add('is-carousel');
   let clientCycleWidth=0,clientFrame=0,clientLastTime=0,clientRemainder=0;
-  let clientPaused=false,clientHovered=false,clientFocused=false,clientDragging=false,clientVisible=false;
-  let clientResumeAt=0,clientResumeTimer=0,clientMove=null;
+  let clientHovered=false,clientFocused=false,clientDragging=false,clientVisible=false;
+  let clientResumeAt=0,clientResumeTimer=0;
   const positionClients=position=>{if(clientCycleWidth)clientStrip.scrollLeft=clientCycleWidth+((position-clientCycleWidth)%clientCycleWidth+clientCycleWidth)%clientCycleWidth;};
   const measureClients=()=>{
     const phase=clientCycleWidth?(clientStrip.scrollLeft-clientCycleWidth)/clientCycleWidth:0;
     clientCycleWidth=clientItems[0].getBoundingClientRect().left-clientPrefix[0].getBoundingClientRect().left;
-    clientMove=null;
     positionClients(clientCycleWidth*(1+phase));
   };
-  const canAutoScrollClients=time=>clientVisible&&!document.hidden&&!clientPaused&&!clientMotion.matches&&!clientHovered&&!clientFocused&&!clientDragging&&time>=clientResumeAt;
+  const canAutoScrollClients=time=>clientVisible&&!document.hidden&&!clientMotion.matches&&!clientHovered&&!clientFocused&&!clientDragging&&time>=clientResumeAt;
   const scheduleClients=()=>{if(!clientFrame){clientLastTime=0;clientFrame=requestAnimationFrame(animateClients);}};
   function animateClients(time){
     clientFrame=0;
     const elapsed=clientLastTime?Math.min(time-clientLastTime,64):0;
     clientLastTime=time;
-    if(clientMove){
-      const progress=Math.min((time-clientMove.started)/650,1);
-      positionClients(clientMove.from+clientMove.distance*(1-Math.pow(1-progress,3)));
-      if(progress===1)clientMove=null;
-    }else if(canAutoScrollClients(time)){
+    if(canAutoScrollClients(time)){
       // Keep fractional pixels between frames so slow motion also works on screens that round scrollLeft.
       clientRemainder+=elapsed*24/1000;
       const pixels=Math.floor(clientRemainder);
       clientRemainder-=pixels;
       if(pixels)positionClients(clientStrip.scrollLeft+pixels);
     }
-    if(clientMove||canAutoScrollClients(time))clientFrame=requestAnimationFrame(animateClients);
+    if(canAutoScrollClients(time))clientFrame=requestAnimationFrame(animateClients);
   }
   const holdClientAutoplay=()=>{
     clientResumeAt=performance.now()+4000;
     clearTimeout(clientResumeTimer);
     clientResumeTimer=setTimeout(scheduleClients,4050);
   };
-  const updateClientToggle=()=>{
-    clientToggle.disabled=clientMotion.matches;
-    const label=clientMotion.matches?'Автолистание отключено: уменьшение движения':clientPaused?'Включить автолистание':'Приостановить автолистание';
-    clientToggle.setAttribute('aria-label',label);
-    clientToggle.title=label;
-    clientToggle.innerHTML=icon(clientPaused||clientMotion.matches?'play':'pause');
-  };
-  clientControls.forEach(button=>button.addEventListener('click',()=>{
-    holdClientAutoplay();
-    const distance=(clientItems[1].getBoundingClientRect().left-clientItems[0].getBoundingClientRect().left)*Number(button.dataset.clientsScroll);
-    if(clientMotion.matches)positionClients(clientStrip.scrollLeft+distance);
-    else{clientMove={from:clientStrip.scrollLeft,distance,started:performance.now()};scheduleClients();}
-  }));
-  clientToggle.addEventListener('click',()=>{clientPaused=!clientPaused;updateClientToggle();scheduleClients();});
   clientSection.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse')clientHovered=true;});
   clientSection.addEventListener('pointerleave',()=>{clientHovered=false;scheduleClients();});
-  clientSection.addEventListener('focusin',event=>{clientFocused=event.target!==clientToggle;});
-  clientSection.addEventListener('focusout',event=>{clientFocused=clientSection.contains(event.relatedTarget)&&event.relatedTarget!==clientToggle;scheduleClients();});
-  clientStrip.addEventListener('pointerdown',()=>{clientDragging=true;clientMove=null;holdClientAutoplay();},{passive:true});
+  clientSection.addEventListener('focusin',()=>{clientFocused=true;});
+  clientSection.addEventListener('focusout',event=>{clientFocused=clientSection.contains(event.relatedTarget);scheduleClients();});
+  clientStrip.addEventListener('pointerdown',()=>{clientDragging=true;holdClientAutoplay();},{passive:true});
   window.addEventListener('pointerup',()=>{if(clientDragging){clientDragging=false;holdClientAutoplay();scheduleClients();}},{passive:true});
   window.addEventListener('pointercancel',()=>{clientDragging=false;scheduleClients();},{passive:true});
-  const handleClientGesture=()=>{clientMove=null;holdClientAutoplay();};
+  const handleClientGesture=()=>{holdClientAutoplay();};
   clientStrip.addEventListener('wheel',handleClientGesture,{passive:true});
   clientStrip.addEventListener('keydown',handleClientGesture);
   clientStrip.addEventListener('scroll',()=>{if(clientStrip.scrollLeft<clientCycleWidth||clientStrip.scrollLeft>=clientCycleWidth*2)positionClients(clientStrip.scrollLeft);},{passive:true});
   document.addEventListener('visibilitychange',scheduleClients);
-  clientMotion.addEventListener('change',()=>{clientMove=null;updateClientToggle();scheduleClients();});
+  clientMotion.addEventListener('change',scheduleClients);
   new ResizeObserver(()=>{measureClients();scheduleClients();}).observe(clientStrip);
   new IntersectionObserver(entries=>{clientVisible=entries[0].isIntersecting&&entries[0].intersectionRatio>=.1;scheduleClients();},{threshold:.1}).observe(clientStrip);
-  measureClients();updateClientToggle();
+  measureClients();
   }
-  const onScroll=()=>$('#header').classList.toggle('is-scrolled',window.scrollY>80);
-  window.addEventListener('scroll',onScroll,{passive:true});
   window.addEventListener('resize',()=>{if(activeMenu)closeMenu();},{passive:true});
   const seoSchema={
     '@context':'https://schema.org',
@@ -333,5 +324,5 @@
   });
   window.addEventListener('storage',event=>{if(event.key==='text-print-cart-v1'||event.key===null){cart=readCart();updateCartCount();}});
   window.addEventListener('pageshow',()=>{cart=readCart();updateCartCount();});
-  renderPopular();updateCartCount();hydrateIcons();onScroll();
+  renderPopular();updateCartCount();hydrateIcons();
 })();
