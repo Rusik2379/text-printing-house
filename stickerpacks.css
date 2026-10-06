@@ -17,10 +17,10 @@
 @media(max-width:600px){.sp-display{font-size:clamp(46px,14.5vw,58px)}.sp-handwriting{right:12px;top:8px}}
 
 /* Calculator polish and shared homepage components. */
-.stickerpacks-page{--sp-accent:#c52830}
-.stickerpacks-page .button-primary{background:var(--sp-accent);border-color:var(--sp-accent);box-shadow:none}
-.stickerpacks-page .button-primary:hover{background:#ac2028;border-color:#ac2028;box-shadow:0 3px 10px #9f202214}
-.stickerpacks-page .button,.stickerpacks-page .button:hover{transform:none;transition:background-color .18s,border-color .18s,box-shadow .18s}
+.stickerpacks-page{--sp-accent:var(--red)}
+
+
+
 .sp-calculator-section .sp-section-title h2{font-size:32px;letter-spacing:-.8px;line-height:1.2}
 .sp-calculator-section .sp-section-title p{font-size:14px;margin-top:10px;color:#777}
 .sp-calculator{gap:18px;grid-template-columns:minmax(0,1fr) 302px}
@@ -123,3 +123,24 @@
   .sp-lower .home-faq-stage{min-height:0}
   .sp-lower{padding-bottom:38px}
 }
+
+/* Service pages share the homepage header, buttons, cards and FAQ. */
+.service-page .sp-hero-actions .button,.service-page .sp-add-button,.service-page .sp-requirements .button{min-height:48px;font-size:15px;font-weight:600;padding:12px 20px;border-radius:11px;gap:12px;transform:none}
+.service-page .sp-hero-actions .button:hover,.service-page .sp-add-button:hover{transform:none}
+.service-page .sp-hero-actions{flex-wrap:wrap}
+.service-page .sp-hero-actions .button-primary{flex:0 1 auto}
+.service-page .sp-add-button{width:100%}
+.service-page .sp-hero-art{margin:0;align-items:center;overflow:visible}
+.service-page .sp-hero-art img{width:100%;height:auto;margin:0;max-width:100%}
+.sp-display-service{font-size:clamp(40px,4.8vw,68px);letter-spacing:-2.5px;line-height:1.04;position:relative}
+.sp-display-tail{display:block}
+.sp-3d-mark{display:inline-block;font-size:.52em;vertical-align:top;margin:5px 0 0 10px;padding:5px 8px;background:#ffebed;border-radius:9px}
+.sp-custom-fields label[hidden]{display:none}
+.sp-seo-related a{color:var(--red);text-decoration:underline;text-underline-offset:2px}
+.service-page .sp-seo-card{padding-inline:0;border:0;background:transparent;border-radius:0}
+.service-page .sp-related .featured-card{border-radius:16px}
+@media(max-width:1150px){.service-page .sp-hero-actions .button,.service-page .sp-add-button,.service-page .sp-requirements .button{font-size:13px;min-height:44px;padding:11px 15px}.sp-display-service{font-size:clamp(35px,4.7vw,58px)}}
+@media(max-width:850px){.service-page .sp-hero{grid-template-columns:56% 44%}.sp-display-service{font-size:clamp(30px,4.7vw,45px);letter-spacing:-1.5px}.service-page .sp-hero-actions{flex-direction:column;align-items:stretch}.service-page .sp-hero-actions .button-primary{flex:none}.service-page .sp-hero-actions .button{width:100%}}
+@media(max-width:700px){.service-page .sp-hero-actions .button,.service-page .sp-add-button,.service-page .sp-requirements .button{min-height:43px;font-size:12px;padding:11px 12px;gap:8px}.service-page .sp-hero-actions .icon{width:16px;height:16px}.service-page .sp-hero-actions{flex-direction:row}.service-page .sp-hero-actions .button{width:auto;flex:1}.service-page .sp-hero-actions .button-outline{flex:0 1 auto}.sp-display-service{font-size:clamp(28px,4.6vw,40px)}}
+@media(max-width:600px){.sp-display-service{font-size:clamp(30px,8.2vw,48px);letter-spacing:-1.5px}.service-page .sp-hero-art{margin-top:16px;aspect-ratio:1;height:auto}.service-page .sp-hero-art img{width:100%;height:100%;object-fit:contain}.service-page .sp-hero-actions{gap:9px}.service-page .sp-hero-actions .button{font-size:11px;padding:11px 10px}.service-page .sp-seo-card{padding-block:10px}.service-page .sp-seo-body p{font-size:13px}.service-page .sp-badge{font-size:13px}.service-page .sp-related .featured-card{border-radius:12px}}
+@media(max-width:360px){.service-page .sp-hero-actions{flex-direction:column}.service-page .sp-hero-actions .button{width:100%;flex:none}}

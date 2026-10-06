@@ -2,6 +2,8 @@
   'use strict';
   // Resolve from app.js so both domain roots and GitHub Pages subdirectories work.
   const siteRoot = new URL('.', document.currentScript.src).href;
+  const servicePages=window.TEXT_STICKER_SERVICES||{};
+  const serviceUrl=id=>servicePages[id]?siteRoot+servicePages[id].path:null;
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
   const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
@@ -83,7 +85,7 @@
   const dialog = $('#dialog');
   const dialogContent = $('#dialog-content');
   function saveCart() { try {localStorage.setItem('text-print-cart-v1',JSON.stringify(cart));}catch {}updateCartCount(); }
-  function updateCartCount() { $('#cart-count').textContent=cart.length;$('#mobile-cart-count').textContent=cart.length;$('#cart-count').classList.toggle('has-items',cart.length>0); }
+  function updateCartCount() { for(const id of ['#cart-count','#mobile-cart-count']){const badge=$(id);if(badge){badge.textContent=cart.length;badge.classList.toggle('has-items',cart.length>0);}} }
   let toastTimer;
   function toast(message) {const el=$('#toast');el.textContent=message;el.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('visible'),3000);}
   function openDialog(html) {closeMenu();$('#navigation').classList.remove('mobile-open');$('#mobile-menu-button').setAttribute('aria-expanded','false');dialogContent.innerHTML=html;document.body.classList.add('modal-open');if(!dialog.open)dialog.showModal();dialog.scrollTop=0;hydrateIcons(dialog);}
@@ -101,7 +103,7 @@
     $$('.nav-item').forEach(b=>b.setAttribute('aria-expanded',String(b.dataset.menu===name)));
     const company=name==='Компания';
     const records=catalog.filter(r=>r.category===name);
-    const links=company ? `<a href="${siteRoot}#about" data-close-menu>О нас</a><a href="${siteRoot}#contacts" data-close-menu>Контакты</a><a href="${siteRoot}#delivery" data-close-menu>Доставка и оплата</a><button data-action="requirements">Технические требования</button><a href="${siteRoot}#reviews" data-close-menu>Отзывы</a><a href="${siteRoot}#faq" data-close-menu>Вопросы и ответы</a><a href="https://text-print.ru/company/article/" target="_blank" rel="noopener">Статьи</a>` : records.map(r=>`<button data-service="${r.id}">${escape(r.name)}</button>`).join('');
+    const links=company ? `<a href="${siteRoot}#about" data-close-menu>О нас</a><a href="${siteRoot}#contacts" data-close-menu>Контакты</a><a href="${siteRoot}#delivery" data-close-menu>Доставка и оплата</a><button data-action="requirements">Технические требования</button><a href="${siteRoot}#reviews" data-close-menu>Отзывы</a><a href="${siteRoot}#faq" data-close-menu>Вопросы и ответы</a><a href="https://text-print.ru/company/article/" target="_blank" rel="noopener">Статьи</a>` : records.map(r=>serviceUrl(r.id)?`<a href="${serviceUrl(r.id)}">${escape(r.name)}</a>`:`<button data-service="${r.id}">${escape(r.name)}</button>`).join('');
     $('#mega-menu').innerHTML=`<div class="mega-layout"><div><div class="mega-title"><h3>${escape(name)}</h3></div><div class="mega-links">${links}</div></div></div>`;
     const menuLinks=$('.mega-links',$('#mega-menu'));
     menuLinks.style.setProperty('--menu-rows',Math.ceil(menuLinks.children.length/2));
@@ -122,12 +124,12 @@
   $('#footer-services').innerHTML=categories.map(c=>`<button data-action="catalog" data-category="${escape(c.name)}">${escape(c.name)}</button>`).join('');
   function renderPopular() {
     if(!$('#popular-grid'))return;
-    $('#popular-grid').innerHTML=popular.filter(p=>p.record).map(p=>`<${p.id==='4.4'?`a href="${siteRoot}nakleyki-i-stikery/stikerpaki/"`:'button'} class="featured-card" ${p.id==='4.4'?'':`data-service="${p.id}"`} aria-label="${escape(p.name)}"><span class="featured-copy"><span class="featured-name">${p.name.split(/\s+/).map(word=>`<span class="featured-word">${escape(word)}</span>`).join(' ')}</span></span><span class="featured-art"><img src="${imageFor(p.record)}" alt="${escape(p.name)} — иллюстрация студии ТЕКСТ" width="720" height="720" loading="lazy"></span></${p.id==='4.4'?'a':'button'}>`).join('');
+    $('#popular-grid').innerHTML=popular.filter(p=>p.record).map(p=>`<${serviceUrl(p.id)?`a href="${serviceUrl(p.id)}"`:'button'} class="featured-card" ${serviceUrl(p.id)?'':`data-service="${p.id}"`} aria-label="${escape(p.name)}"><span class="featured-copy"><span class="featured-name">${p.name.split(/\s+/).map(word=>`<span class="featured-word">${escape(word)}</span>`).join(' ')}</span></span><span class="featured-art"><img src="${imageFor(p.record)}" alt="${escape(p.name)} — иллюстрация студии ТЕКСТ" width="720" height="720" loading="lazy"></span></${serviceUrl(p.id)?'a':'button'}>`).join('');
   }
   function renderCatalogList(query='',category='') {
     const normalized=query.toLowerCase().replaceAll('ё','е').trim();
     const found=catalog.filter(r=>(!category||r.category===category)&&`${r.name} ${r.category} ${r.materials}`.toLowerCase().replaceAll('ё','е').includes(normalized));
-    $('#catalog-results').innerHTML=found.length ? categories.filter(c=>found.some(r=>r.category===c.name)).map(c=>`<section class="catalog-group"><h3>${escape(c.name)} <small>· ${found.filter(r=>r.category===c.name).length}</small></h3><div class="catalog-group-list">${found.filter(r=>r.category===c.name).map(r=>`<button class="catalog-service" data-service="${r.id}"><span>${escape(r.name)}</span>${icon('arrow')}</button>`).join('')}</div></section>`).join('') : `<div class="empty-state">${icon('search')}<h3>Пока не нашли такую услугу</h3><p>Попробуйте другое название или расскажите нам о своей задаче.</p><button class="button button-primary" data-action="request">Обсудить заказ</button></div>`;
+    $('#catalog-results').innerHTML=found.length ? categories.filter(c=>found.some(r=>r.category===c.name)).map(c=>`<section class="catalog-group"><h3>${escape(c.name)} <small>· ${found.filter(r=>r.category===c.name).length}</small></h3><div class="catalog-group-list">${found.filter(r=>r.category===c.name).map(r=>`<${serviceUrl(r.id)?`a href="${serviceUrl(r.id)}"`:`button data-service="${r.id}"`} class="catalog-service"><span>${escape(r.name)}</span>${icon('arrow')}</${serviceUrl(r.id)?'a':'button'}>`).join('')}</div></section>`).join('') : `<div class="empty-state">${icon('search')}<h3>Пока не нашли такую услугу</h3><p>Попробуйте другое название или расскажите нам о своей задаче.</p><button class="button button-primary" data-action="request">Обсудить заказ</button></div>`;
     $('#search-count').textContent=found.length;
   }
   function openCatalog(category='',search=false,query='') {
@@ -138,7 +140,7 @@
     if(search)$('#catalog-search').focus();
   }
   function openService(id) {
-    if(id==='4.4'){location.href=siteRoot+'nakleyki-i-stikery/stikerpaki/';return;}
+    if(serviceUrl(id)){location.href=serviceUrl(id);return;}
     const record=catalog.find(r=>r.id===id);if(!record)return;
     currentRecord=record;
     if(id==='3.1'){openCalculator();return;}
@@ -184,8 +186,8 @@
   function openCart() {
     cart=readCart();updateCartCount();
     if(!cart.length){openDialog(`<div class="dialog-body"><h2>Ваша корзина</h2><div class="empty-state">${icon('bag')}<h3>С чего начнём?</h3><p>Рассчитайте визитки или добавьте другие услуги в запрос.<br>Поможем собрать всё в один заказ.</p><button class="button button-primary" data-action="catalog">Выбрать услугу ${icon('arrow')}</button></div></div>`);return;}
-    const priced=cart.filter(r=>r.price!==null),cartTotals=window.TEXT_STICKER_CART_TOTAL(cart),total=cartTotals.total;
-    openDialog(`<div class="dialog-body"><div class="eyebrow muted">ВАШ ЗАКАЗ</div><h2>Корзина <small>· ${cart.length}</small></h2><p class="dialog-intro">Параметры сохранены в этом браузере. Отправьте запрос в студию, чтобы согласовать макеты и получение.</p><div>${cart.map(r=>`<div class="cart-row"><div><h3>${escape(catalog.find(c=>c.id===r.id).name)}</h3><p>${escape(r.description)}</p>${r.id==='4.4'&&r.configuration?`<a class="cart-edit-link" href="${siteRoot}nakleyki-i-stikery/stikerpaki/?edit=${encodeURIComponent(r.key)}">Изменить параметры</a>`:''}<div class="cart-file-actions">${r.fileName?`<button data-download-cart-file="${escape(r.key)}">Макет: ${escape(r.fileName)} ↓</button>`:''}<label>${r.fileName?'Заменить макет':'Прикрепить макет'}<input type="file" data-cart-file="${escape(r.key)}" accept=".pdf,.jpg,.jpeg,.png,.tif,.tiff,.svg,.ai,.eps,.cdr,.psd,.zip"></label></div></div><div class="cart-row-right"><span class="cart-row-price">${r.price===null?'Уточним':currency(r.price)}</span><button class="icon-button" data-remove="${escape(r.key)}" aria-label="Удалить ${escape(catalog.find(c=>c.id===r.id).name)}">${icon('trash')}</button></div></div>`).join('')}</div>${cartTotals.surcharge?`<p class="cart-minimum-note">Доплата до минимального чека наклеек и стикерпаков: ${currency(cartTotals.surcharge)}. Применяется один раз к заказу.</p>`:''}${priced.length?`<div class="cart-summary"><span>${priced.length===cart.length?'Итого за продукцию':'Рассчитанная часть заказа'}</span><strong>${currency(total)}</strong></div>`:''}${priced.length!==cart.length?'<p class="service-sla">Стоимость остальных позиций уточняется после выбора параметров. Доставка рассчитывается отдельно.</p>':'<p class="service-sla">Доставка рассчитывается отдельно.</p>'}<div class="form-actions"><button class="button button-primary" data-action="request" data-cart="true">Подготовить запрос ${icon('arrow')}</button><button class="button button-outline" data-action="catalog">Добавить услугу</button></div></div>`);
+    const priced=cart.filter(r=>r.price!==null),cartTotals=window.TEXT_STICKER_CART_BREAKDOWN(cart),total=cartTotals.total;
+    openDialog(`<div class="dialog-body"><div class="eyebrow muted">ВАШ ЗАКАЗ</div><h2>Корзина <small>· ${cart.length}</small></h2><p class="dialog-intro">Параметры сохранены в этом браузере. Отправьте запрос в студию, чтобы согласовать макеты и получение.</p><div>${cart.map(r=>`<div class="cart-row"><div><h3>${escape(catalog.find(c=>c.id===r.id).name)}</h3><p>${escape(r.description)}</p>${serviceUrl(r.id)&&r.configuration?`<a class="cart-edit-link" href="${serviceUrl(r.id)}?edit=${encodeURIComponent(r.key)}">Изменить параметры</a>`:''}<div class="cart-file-actions">${r.fileName?`<button data-download-cart-file="${escape(r.key)}">Макет: ${escape(r.fileName)} ↓</button>`:''}<label>${r.fileName?'Заменить макет':'Прикрепить макет'}<input type="file" data-cart-file="${escape(r.key)}" accept=".pdf,.jpg,.jpeg,.png,.tif,.tiff,.svg,.ai,.eps,.cdr,.psd,.zip"></label></div></div><div class="cart-row-right"><span class="cart-row-price">${r.price===null?'Уточним':currency(r.price)}</span><button class="icon-button" data-remove="${escape(r.key)}" aria-label="Удалить ${escape(catalog.find(c=>c.id===r.id).name)}">${icon('trash')}</button></div></div>`).join('')}</div>${cartTotals.surcharge?`<p class="cart-minimum-note">${Object.entries(cartTotals.surcharges).filter(([,amount])=>amount>0).map(([group,amount])=>`Доплата до минимального чека ${group==='stickers3d'?'3D-стикеров (1 000 ₽)':'наклеек и стикерпаков (600 ₽)'}: ${currency(amount)}.`).join(' ')}</p>`:''}${priced.length?`<div class="cart-summary"><span>${priced.length===cart.length?'Итого за продукцию':'Рассчитанная часть заказа'}</span><strong>${currency(total)}</strong></div>`:''}${priced.length!==cart.length?'<p class="service-sla">Стоимость остальных позиций уточняется после выбора параметров. Доставка рассчитывается отдельно.</p>':'<p class="service-sla">Доставка рассчитывается отдельно.</p>'}<div class="form-actions"><button class="button button-primary" data-action="request" data-cart="true">Подготовить запрос ${icon('arrow')}</button><button class="button button-outline" data-action="catalog">Добавить услугу</button></div></div>`);
   }
   function requestText(form,record,includeCart) {
     const data=new FormData(form);
@@ -193,9 +195,9 @@
     if(record)lines.push(`Услуга: ${record.name}`);
     if(includeCart)cart.forEach((r,i)=>lines.push(`\n${i+1}. ${catalog.find(c=>c.id===r.id).name}\n${r.description}\n${r.price===null?'Стоимость: требуется расчёт':`Стоимость: ${currency(r.price)}`}`));
     if(includeCart){
-      const totals=window.TEXT_STICKER_CART_TOTAL(cart);
+      const totals=window.TEXT_STICKER_CART_BREAKDOWN(cart);
       cart.filter(r=>r.fileName).forEach(r=>lines.push(`Макет для ${catalog.find(c=>c.id===r.id).name}: ${r.fileName} (прикреплю к письму)`));
-      if(totals.surcharge)lines.push(`Доплата до минимального чека наклеек и стикерпаков: ${currency(totals.surcharge)}`);
+      for(const [group,amount] of Object.entries(totals.surcharges))if(amount>0)lines.push(`Доплата до минимального чека ${group==='stickers3d'?'3D-стикеров (1 000 ₽)':'наклеек и стикерпаков (600 ₽)'}: ${currency(amount)}`);
       lines.push(`Итого за рассчитанные позиции: ${currency(totals.total)}`);
     }
     const comment=String(data.get('comment')||'').trim();if(comment)lines.push(`\nЗадача: ${comment}`);
