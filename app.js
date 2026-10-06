@@ -49,6 +49,14 @@
     {name:'Широкий формат',short:'Широкий формат',filter:'Широкий формат',image:'direction-wide',icon:'wide',description:'Баннеры, постеры, печать на плёнке'},
     {name:'UV-печать и резка',short:'UV-печать и резка',filter:'UV и резка',image:'direction-uv',icon:'scissors',description:'Таблички, изделия, лазерная резка'}
   ];
+  const companyPages=[
+    ['О нас','company/about/'],['Контакты','contacts/'],['Доставка','dostavka-i-oplata/'],
+    ['Оплата','company/payment/'],['Технические требования','requirements/'],
+    ['Примеры работ','company/photo/'],['Акции','company/action/'],['Отзывы','company/request/'],
+    ['Вопросы и ответы','company/vopros-otvet/'],['Статьи','company/article/'],['Как заказать','kak-oformit-zakaz/']
+  ];
+  const companyLinks=()=>companyPages.map(([label,path])=>`<a href="${siteRoot}${path}" data-close-menu${new URL(path,siteRoot).pathname===location.pathname.replace(/index\.html$/,'')?' aria-current="page"':''}>${label}</a>`).join('');
+  $$('[data-company-links]').forEach(element=>{element.innerHTML=companyLinks();});
   const popular = [
     {id:'2.1',name:'Инженерная печать',asset:'инженерная печать',description:'Чертежи и схемы. От А4 до А0.',unit:'10 листов А2 + фальцовка',badge:'Для проектировщиков'},
     {id:'1.1',name:'Печать документов',asset:'печать документов',description:'Чёрно-белая и цветная. А4 и А3.',unit:'10 страниц А4, ч/б'},
@@ -101,7 +109,7 @@
     $$('.nav-item').forEach(b=>b.setAttribute('aria-expanded',String(b.dataset.menu===name)));
     const company=name==='Компания';
     const records=catalog.filter(r=>r.category===name);
-    const links=company ? `<a href="${siteRoot}#about" data-close-menu>О нас</a><a href="${siteRoot}#contacts" data-close-menu>Контакты</a><a href="${siteRoot}#delivery" data-close-menu>Доставка и оплата</a><button data-action="requirements">Технические требования</button><a href="${siteRoot}#reviews" data-close-menu>Отзывы</a><a href="${siteRoot}#faq" data-close-menu>Вопросы и ответы</a><a href="https://text-print.ru/company/article/" target="_blank" rel="noopener">Статьи</a>` : records.map(r=>`<button data-service="${r.id}">${escape(r.name)}</button>`).join('');
+    const links=company ? companyLinks() : records.map(r=>`<button data-service="${r.id}">${escape(r.name)}</button>`).join('');
     $('#mega-menu').innerHTML=`<div class="mega-layout"><div><div class="mega-title"><h3>${escape(name)}</h3></div><div class="mega-links">${links}</div></div></div>`;
     const menuLinks=$('.mega-links',$('#mega-menu'));
     menuLinks.style.setProperty('--menu-rows',Math.ceil(menuLinks.children.length/2));
@@ -302,7 +310,7 @@
     '@context':'https://schema.org',
     '@graph':[
       {'@type':'LocalBusiness',name:'Студия печати ТЕКСТ',url:'https://text-print.ru/',telephone:'+79236547896',email:'tekkkst@yandex.ru',address:{'@type':'PostalAddress',streetAddress:'проспект Строителей, 11',addressLocality:'Барнаул',addressCountry:'RU'},openingHoursSpecification:[{'@type':'OpeningHoursSpecification',dayOfWeek:['Monday','Tuesday','Wednesday','Thursday','Friday'],opens:'09:00',closes:'18:00'}]},
-      {'@type':'FAQPage',mainEntity:$$('.faq-list details').map(d=>({'@type':'Question',name:$('summary',d).textContent.trim(),acceptedAnswer:{'@type':'Answer',text:$('p',d).textContent.trim()}}))}
+      ...($$('.faq-list details').length?[{'@type':'FAQPage',mainEntity:$$('.faq-list details').map(d=>({'@type':'Question',name:$('summary',d).textContent.trim(),acceptedAnswer:{'@type':'Answer',text:$('p',d).textContent.trim()}}))}]:[])
     ]
   };
   const schemaScript=document.createElement('script');schemaScript.type='application/ld+json';schemaScript.textContent=JSON.stringify(seoSchema);document.head.append(schemaScript);
@@ -325,4 +333,9 @@
   window.addEventListener('storage',event=>{if(event.key==='text-print-cart-v1'||event.key===null){cart=readCart();updateCartCount();}});
   window.addEventListener('pageshow',()=>{cart=readCart();updateCartCount();});
   renderPopular();updateCartCount();hydrateIcons();
+  const requestedCategory=new URLSearchParams(location.search).get('category');
+  const requestedService=new URLSearchParams(location.search).get('service');
+  if(requestedService&&catalog.some(record=>record.id===requestedService))openService(requestedService);
+  else if(requestedCategory&&categories.some(category=>category.name===requestedCategory))openCatalog(requestedCategory);
+  else if(new URLSearchParams(location.search).get('catalog')==='1')openCatalog();
 })();
