@@ -1819,7 +1819,39 @@
           "url": "https://nrg-tk.pro/client/calculator/"
         }
       ],
-      "table_rows": []
+      "table_rows": [],
+      "production_capacity": [
+        {
+          "name": "Копицентр",
+          "route": "/kopitsentr/",
+          "amount": 10000
+        },
+        {
+          "name": "Проектная документация",
+          "route": "/proektnaya-dokumentatsiya/",
+          "amount": 25000
+        },
+        {
+          "name": "Листовая полиграфия",
+          "route": "/listovaya-poligrafiya/",
+          "amount": 15000
+        },
+        {
+          "name": "Наклейки и стикеры",
+          "route": "/nakleyki-i-stikery/",
+          "amount": 10000
+        },
+        {
+          "name": "Широкий формат",
+          "route": "/shirokiy-format/",
+          "amount": 7000
+        },
+        {
+          "name": "UV-печать и резка",
+          "route": "/uv-pechat-i-rezka/",
+          "amount": 7000
+        }
+      ]
     },
     "company/index.html": {
       "title": "О компании",

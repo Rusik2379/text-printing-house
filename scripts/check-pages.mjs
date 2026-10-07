@@ -62,7 +62,9 @@ assert.equal(source.source.seo_requirement_rows_verified,55,'Requirements differ
 assert.equal(source.requirements.length,55,'Expected requirements for every service');
 assert.ok(source.source.preserved_article_paths.every(url=>articles.some(a=>a.path===url)),'An existing article URL changed');
 const requirements=contents.get(path.join(root,'requirements/index.html'));
-assert.equal([...requirements.matchAll(/<details\b/g)].length,55,'Missing service requirements');
+const requirementIds=[...requirements.matchAll(/<details\b[^>]*data-service-requirement="([^"]+)"/g)].map(match=>match[1]);
+assert.equal(requirementIds.length,55,'Missing service requirements');
+assert.deepEqual(requirementIds.toSorted(),source.requirements.map(item=>item.id).toSorted(),'Service requirement coverage changed');
 for(const article of source.articles){
   const html=contents.get(path.join(root,article.path,'index.html'));
   const body=html.slice(html.indexOf('<article class="company-reading">'),html.indexOf('</article>',html.indexOf('<article class="company-reading">')));

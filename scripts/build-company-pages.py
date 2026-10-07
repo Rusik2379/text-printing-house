@@ -23,9 +23,9 @@ PAGES = [
     ('Как заказать','kak-oformit-zakaz/','Порядок оформления, отправки файлов и подтверждения'),
 ]
 CATEGORIES = [
-    ('Копицентр','direction-copy',8),('Проектная документация','direction-project',17),
-    ('Листовая полиграфия','direction-print',26),('Наклейки и стикеры','direction-stickers',37),
-    ('Широкий формат','direction-wide',44),('UV-печать и резка','direction-uv',50),
+    ('Копицентр','popular-art-печать документов',8),('Проектная документация','popular-art-инженерная печать',17),
+    ('Листовая полиграфия','popular-art-визитки',26),('Наклейки и стикеры','popular-art-стикерпаки',37),
+    ('Широкий формат','popular-art-накатка на пвх',44),('UV-печать и резка','popular-art-прямая уф печать',50),
 ]
 home = (ROOT/'index.html').read_text(encoding='utf-8')
 
@@ -75,6 +75,7 @@ def empty():return '<p class="company-empty" data-empty-results hidden>Попр�
 
 def build(path,title,intro,art,body,actions=None,schema_type='WebPage',seo=None):
     prefix='../'*len(Path(path).parts)
+    page_body=body(prefix)
     page_head=root_paths(head,prefix)
     seo=seo or {}
     page_head=re.sub(r'<title>.*?</title>',lambda _:f'<title>{escape(seo.get("title",plain(title)+" | ТЕКСТ"))}</title>',page_head)
@@ -88,6 +89,9 @@ def build(path,title,intro,art,body,actions=None,schema_type='WebPage',seo=None)
     if article:
         entity.update({'headline':plain(title),'author':{'@type':'Organization','name':'Студия печати ТЕКСТ'},'datePublished':seo['published'],'dateModified':seo['updated'],'inLanguage':'ru'})
     schema={'@context':'https://schema.org','@graph':[entity,{'@type':'BreadcrumbList','itemListElement':crumbs}]}
+    if path in ('contacts/','dostavka-i-oplata/','company/payment/','requirements/','company/photo/'):
+        questions=re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>',page_body,re.S)
+        schema['@graph'].append({'@type':'FAQPage','mainEntity':[{'@type':'Question','name':plain(q),'acceptedAnswer':{'@type':'Answer','text':plain(answer)}} for q,answer in questions]})
     page_head+=f'  <link rel="canonical" href="{url}">\n  <link rel="stylesheet" href="{prefix}company-pages.css">\n  <script src="{prefix}company-pages.js" defer></script>\n  <script type="application/ld+json">{json.dumps(schema,ensure_ascii=False).replace("</","<\\/")}</script>\n'
     page_header=root_paths(header,prefix).replace('class="brand" href="#main"',f'class="brand" href="{prefix}"')
     page_footer=root_paths(footer,prefix).replace('class="brand" href="#main"',f'class="brand" href="{prefix}"')
@@ -95,8 +99,8 @@ def build(path,title,intro,art,body,actions=None,schema_type='WebPage',seo=None)
     if article:breadcrumb=breadcrumb.replace('<span aria-current="page">Статья</span>',f'<a href="../">Статьи</a><span aria-hidden="true">/</span><span aria-current="page">Статья</span>')
     actions=actions or '<button class="button button-primary" data-action="contacts">Обсудить заказ '+icon('arrow')+'</button><button class="button button-white" data-action="catalog">Наши услуги</button>'
     hero=f'<section class="company-hero" aria-labelledby="company-title"><div><h1 id="company-title">{title}</h1><p>{intro}</p><div class="company-actions">{actions}</div></div><div class="company-art"><img src="{prefix}assets/{art}" alt="Робот студии ТЕКСТ — {escape(plain(title))}" width="900" height="900" fetchpriority="high"></div></section>'
-    page_class='company-page company-article-page' if article else 'company-page company-about-page' if path=='company/about/' else 'company-page'
-    output=f'<!doctype html>\n<html lang="ru"><head>{page_head}</head><body class="{page_class}">\n{page_header}<main id="main"><div class="container">{breadcrumb}{hero}{body(prefix)}</div></main>\n{page_footer}</body></html>\n'
+    page_class='company-page'+(' company-article-page' if article else {'company/about/':' company-about-page','contacts/':' company-contacts-page','dostavka-i-oplata/':' company-delivery-page','company/payment/':' company-payment-page','requirements/':' company-requirements-page','company/photo/':' company-photo-page'}.get(path,''))
+    output=f'<!doctype html>\n<html lang="ru"><head>{page_head}</head><body class="{page_class}">\n{page_header}<main id="main"><div class="container">{breadcrumb}{hero}{page_body}</div></main>\n{page_footer}</body></html>\n'
     target=ROOT/path/'index.html';target.parent.mkdir(parents=True,exist_ok=True);target.write_text(output,encoding='utf-8')
 
 # Content and routes are imported once; rebuilding does not need the customer files.
@@ -191,33 +195,80 @@ def about(prefix):
 
 MAPS=[('Яндекс Карты','https://yandex.ru/maps/-/CXEUYTi7'),('2ГИС','https://2gis.ru/barnaul/firm/70000001043200458'),('Google Карты','https://maps.app.goo.gl/ZmEnRcK45HJikqRp7')]
 def contacts(prefix):
-    rows=[('pin','Мы находимся','Барнаул, проспект Строителей, 11','Приходите в студию или оформите заказ удалённо.'),('clock','График работы','Пн–пт 09:00–18:00','Сб–вс — выходные.'),
-          ('phone','Позвонить','<a href="tel:+79236547896">+7 (923) 654-78-96</a>','Уточните параметры, стоимость и готовность заказа.'),
-          ('mail','Отправить макет','<a href="mailto:tekkkst@yandex.ru">tekkkst@yandex.ru</a>','Укажите размер, материал и тираж.')]
-    listing='<div class="company-contact-list">'+''.join(f'<div class="company-contact-row">{icon(i)}<div><small>{label}</small><strong>{value}</strong><p>{text}</p></div></div>' for i,label,value,text in rows)+'</div>'
-    mapbox='<div class="company-map"><iframe title="Студия ТЕКСТ на Яндекс Картах — проспект Строителей, 11" src="https://yandex.ru/map-widget/v1/?ol=biz&amp;oid=230216768273&amp;z=17" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="company-map-caption"><span>Барнаул, Строителей, 11</span><a href="https://2gis.ru/barnaul/firm/70000001043200458" target="_blank" rel="noopener">Построить маршрут →</a></div></div>'
-    social='<div class="company-messengers">'+''.join(f'<a data-social="{key}" href="{url}" target="_blank" rel="noopener"><img src="{prefix}assets/{key}.svg" alt="" width="23" height="23">{label}</a>' for key,label,url in [('telegram','Telegram','https://t.me/tekkkstos'),('max','MAX','https://max.ru/u/f9LHodD0cOII3pfsxMqRJ6CzaCIs8OuOO5zmsR3qDGblmxnJwlsxM4WiGoY')])+'</div>'
-    maps='<div class="company-grid">'+''.join(f'<a class="company-card" href="{url}" target="_blank" rel="noopener">{icon("pin")}<h3>{label}</h3><p>Посмотреть адрес и построить маршрут →</p></a>' for label,url in MAPS)+'</div>'
-    return '<div class="company-info-layout">'+listing+mapbox+'</div>'+section('Напишите удобным способом',social,'Пришлите макет и напишите размер, материал и тираж.')+section('Открыть нас на карте',maps)+cta(prefix)
+    visit=f'''<div class="contacts-visit-card">
+      <div class="contacts-address-heading"><span class="contacts-address-icon">{icon('pin')}</span><div><p>Студия печати ТЕКСТ</p><h3>Барнаул,<br>проспект Строителей, 11</h3></div></div>
+      <div class="contacts-copy-row"><button class="contacts-copy-address" type="button" data-copy-contacts-address="Барнаул, проспект Строителей, 11">{icon('copy')}<span>Скопировать адрес</span></button><span class="contacts-copy-status" data-contact-copy-status role="status" aria-live="polite"></span></div>
+      <div class="contacts-hours"><h4>{icon('clock')}График работы</h4><div><span>Понедельник — пятница</span><strong>09:00–18:00</strong></div><div><span>Суббота и воскресенье</span><strong>Выходные</strong></div></div>
+      <div class="contacts-pickup-note">{icon('bag')}<div><h4>За готовым заказом</h4><p>Перед поездкой уточните готовность заказа — поможем выбрать время получения.</p></div></div>
+      <a class="button button-primary contacts-visit-call" href="tel:+79236547896">{icon('phone')}+7 (923) 654-78-96</a>
+    </div>'''
+    routes=''.join(f'<a class="contacts-map-link" href="{url}" target="_blank" rel="noopener">{label}{icon("arrow")}</a>' for label,url in MAPS)
+    mapbox='<div class="company-map contacts-map"><iframe title="Студия ТЕКСТ на Яндекс Картах — проспект Строителей, 11" src="https://yandex.ru/map-widget/v1/?ol=biz&amp;oid=230216768273&amp;z=17" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="contacts-map-footer"><h3>Как добраться?</h3><p>Откройте удобные карты и постройте маршрут до студии.</p><nav class="contacts-map-links" aria-label="Построить маршрут до студии">'+routes+'</nav></div></div>'
+    location=section('Заглядывайте в студию','<div class="company-info-layout contacts-location-layout">'+visit+mapbox+'</div>',extra='id="contacts-location"')
+    channels=[('telegram','Telegram','Отправьте макет, задайте вопрос или обсудите идею.','Открыть чат','https://t.me/tekkkstos'),
+              ('max','MAX','Обсудите детали заказа в привычном мессенджере.','Открыть чат','https://max.ru/u/f9LHodD0cOII3pfsxMqRJ6CzaCIs8OuOO5zmsR3qDGblmxnJwlsxM4WiGoY'),
+              ('mail','Электронная почта','Приложите файлы и опишите, что нужно напечатать.','tekkkst@yandex.ru','mailto:tekkkst@yandex.ru'),
+              ('phone','Позвоните нам','Уточните параметры, стоимость или готовность заказа.','+7 (923) 654-78-96','tel:+79236547896')]
+    cards=[]
+    for key,label,desc,action,url in channels:
+        social=f' data-social="{key}" target="_blank" rel="noopener"' if key in ('telegram','max') else ''
+        mark=f'<img src="{prefix}assets/{key}.svg" alt="" width="64" height="64">' if social else icon(key)
+        cards.append(f'<a class="contacts-channel contacts-channel-{key}" href="{url}"{social}><span class="contacts-channel-icon">{mark}</span><div class="contacts-channel-copy"><h3>{label}</h3><p>{desc}</p><span class="contacts-channel-action">{action}{icon("arrow")}</span></div></a>')
+    ways=section('Напишите нам удобным способом','<div class="contacts-channel-grid">'+''.join(cards)+'</div>','Для расчёта укажите услугу, размер, материал и тираж. Макет можно отправить в мессенджер или на почту.',extra='id="contacts-channels"')
+    items=[('','Нужно ли приезжать, чтобы оформить заказ?','Нет. Пришлите макет и параметры на почту, в Telegram или MAX. Согласуем детали, стоимость и получение заказа удалённо.'),
+           ('','Куда отправить макет?','Напишите на <a href="mailto:tekkkst@yandex.ru">tekkkst@yandex.ru</a> или отправьте файл в Telegram или MAX. Если открываете письмо через сайт, приложите файлы к письму вручную.'),
+           ('','Что указать в сообщении?','Название услуги, размер, материал и тираж. Если есть готовый макет, приложите его. Требования к файлам собраны <a href="'+prefix+'requirements/">на отдельной странице</a>.'),
+           ('','Когда можно забрать готовый заказ?','В студии по адресу: Барнаул, проспект Строителей, 11, с понедельника по пятницу с 09:00 до 18:00. Перед поездкой уточните готовность по телефону <a href="tel:+79236547896">+7 (923) 654-78-96</a>.'),
+           ('','Работаете ли вы по выходным?','Суббота и воскресенье — выходные. Обычный график студии: понедельник — пятница, 09:00–18:00.'),
+           ('','Можно ли получить заказ с доставкой?','Да. Адрес, перевозчика и стоимость доставки согласуем отдельно. Посмотрите <a href="'+prefix+'dostavka-i-oplata/">варианты получения заказа</a>.')]
+    questions='<section class="company-section company-contacts-faq lower-home home-faq-section" aria-labelledby="contacts-faq-title"><h2 id="contacts-faq-title">Частые вопросы</h2><div class="home-faq-stage"><div class="home-faq-content">'+faq(items).replace('company-faq faq-list','faq-list')+f'</div><img class="faq-mascot" src="{prefix}assets/faq-peeking-robot.webp" alt="Робот ТЕКСТ держится за край карточек с вопросами" width="1166" height="1349" loading="lazy"></div></section>'
+    return location+ways+questions+cta(prefix,'Остались вопросы?','Позвоните или напишите — поможем разобраться с вашим заказом.')
 
 def delivery(prefix):
-    ways='<div class="company-grid two">'+card('Забрать в студии','Барнаул, проспект Строителей, 11.<br>Пн–пт 09:00–18:00. Сб–вс — выходные.','pin')+card('Передадим перевозчику','Место отправления: Барнаул, проспект Строителей, 11. Выберите забор груза курьером от нашего адреса.','truck')+'</div>'
-    carriers='<div class="company-grid four">'+''.join(f'<a class="company-card company-carrier" href="{escape(link["url"].split("?utm_referrer")[0],quote=True)}" target="_blank" rel="noopener">{icon("truck")}<h3>{name}</h3><p>Откуда: Барнаул<br>Забор: Строителей, 11</p><span>Рассчитать доставку ↗</span></a>' for name,link in zip(['ПЭК','СДЭК','Деловые Линии','Энергия'],source_page('delivery')['links']))+'</div>'
-    daily=[10000,25000,15000,10000,7000,7000]
-    table='<div class="company-table-wrap"><table class="company-table"><caption class="sr-only">Объём изготовления за один рабочий день по разделам</caption><thead><tr><th scope="col">Направление</th><th scope="col">За один рабочий день</th></tr></thead><tbody>'+''.join(f'<tr><th scope="row">{category}</th><td>До <strong>{str(amount//1000)} 000 ₽</strong></td></tr>' for (category,_,_),amount in zip(CATEGORIES,daily))+'</tbody></table></div>'
-    questions=faq([('','Доставка входит в стоимость печати?','Нет. Стоимость доставки, адрес и перевозчика согласуем отдельно.'),
-                   ('','Какие габариты указать перевозчику?','Размер и вес упаковки зависят от заказа. После производства подтвердим фактические параметры груза.'),
-                   ('','Когда начинается производственный срок?','После полного согласования макета. Срок считается в рабочих днях; пн–пт 09:00–18:00, сб–вс — выходные.')])
-    return ways+note('Доставка не входит в стоимость печати. Условия и получение согласуем при подтверждении заказа.')+section('Сравните стоимость у перевозчиков',carriers,'Ссылки ведут на официальные калькуляторы. Для расчёта выбирайте забор груза от студии.')+note('Размер и вес упаковки зависят от конкретного заказа. После производства подтвердим фактические параметры груза.')+section('Когда заказ будет готов?',table,'Срок считается в рабочих днях после полного согласования макета. Для большей суммы делим стоимость на дневной объём направления и округляем вверх.')+section('Частые вопросы',questions)+cta(prefix,'Подберём удобное получение','Укажите адрес и состав заказа — обсудим самовывоз или отправку.')
+    page=source_page('delivery')
+    ways=f'''<div class="company-grid two delivery-ways">
+      <article class="company-card delivery-way"><span class="delivery-way-icon">{icon('pin')}</span><span class="delivery-eyebrow">Самовывоз</span><h3>Забрать в студии</h3><p class="delivery-address">Барнаул, проспект Строителей, 11</p><p>Понедельник — пятница: <strong>09:00–18:00</strong><br>Суббота и воскресенье — выходные.</p><a class="delivery-text-link" href="{prefix}contacts/">Карта и контакты {icon('arrow')}</a></article>
+      <article class="company-card delivery-way"><span class="delivery-way-icon"><img src="{prefix}assets/delivery-truck-icon.png" alt="" width="1254" height="1254" loading="lazy"></span><span class="delivery-eyebrow">Отправка по России</span><h3>Передадим перевозчику</h3><p>Место отправления: <strong>Барнаул, проспект Строителей, 11</strong>. В калькуляторе перевозчика выберите <strong>забор груза курьером от нашего адреса</strong>.</p><button class="delivery-text-link" type="button" data-action="contacts">Согласовать доставку {icon('arrow')}</button></article>
+    </div>'''
+    names=[s['text'] for s in page['sections'] if s['tag']=='h3'][2:]
+    assert len(names)==len(page['links'])==4
+    logos={'ПЭК':('pek','svg',130,33),'СДЭК':('cdek','svg',99,27),'Деловые Линии':('delovye-linii','png',512,249),'Энергия':('energia','svg',1064,335)}
+    assert set(names)==set(logos)
+    carriers='<div class="company-grid four delivery-carriers">'+''.join(
+        f'<a class="company-card company-carrier" href="{escape(link["url"].split("?utm_referrer")[0],quote=True)}" target="_blank" rel="noopener"><div class="carrier-logo carrier-logo-{logos[name][0]}"><img src="{prefix}assets/carrier-{logos[name][0]}.{logos[name][1]}" alt="" width="{logos[name][2]}" height="{logos[name][3]}" loading="lazy"></div><h3>{escape(name)}</h3><span>Рассчитать доставку {icon("arrow")}</span></a>'
+        for name,link in zip(names,page['links']))+'</div>'
+    table='<div class="company-table-wrap delivery-capacity"><table class="company-table"><caption class="sr-only">Объём изготовления за один рабочий день после полного согласования макета</caption><thead><tr><th scope="col">Направление</th><th scope="col">За один рабочий день</th></tr></thead><tbody>'+''.join(
+        f'<tr><th scope="row">{escape(item["name"])}</th><td>До <strong>{format(item["amount"],",").replace(","," ")} ₽</strong></td></tr>'
+        for item in page['production_capacity'])+'</tbody></table></div>'
+    timing='<div class="company-grid two delivery-timing">'+card('Если заказ больше дневного объёма','Делим сумму заказа на дневной объём раздела и округляем вверх. Например, 12 000 ₽ в копицентре ÷ 10 000 ₽ = 1,2 → <strong>2 рабочих дня</strong>.','calculator')+card('Если услуг несколько','Считаем срок по сумме внутри каждого направления. Для всего заказа берём <strong>самый длительный</strong> из этих сроков.','layers')+'</div>'
+    items=[('','Где и когда можно забрать заказ?',f'Барнаул, проспект Строителей, 11. Понедельник — пятница, 09:00–18:00. Суббота и воскресенье — выходные. <a href="{prefix}contacts/">Посмотреть карту и контакты</a>.'),
+           ('','Доставка входит в стоимость печати?','Нет. Способ, срок, адрес получения и стоимость доставки согласуем отдельно, до запуска заказа.'),
+           ('','Какими компаниями можно отправить заказ?','ПЭК, СДЭК, Деловые Линии и Энергия. Ссылки на их официальные калькуляторы находятся выше.'),
+           ('','Какое место отправления указать?', 'Барнаул, проспект Строителей, 11. В калькуляторе перевозчика выбирайте забор груза курьером от этого адреса.'),
+           ('','Какие вес и размеры указать перевозчику?','Они зависят от конкретного заказа. После производства подтвердим фактический вес и размеры упаковки, если они нужны перевозчику.'),
+           ('','С какого момента считать срок изготовления?','После полного согласования макета. Время его подготовки и согласования в производственный срок не входит. Считаем только рабочие дни: понедельник — пятница, 09:00–18:00. Срок доставки согласуем отдельно.')]
+    questions='<section class="company-section company-delivery-faq lower-home home-faq-section" aria-labelledby="delivery-faq-title"><h2 id="delivery-faq-title">Вопросы о получении заказа</h2><div class="home-faq-stage"><div class="home-faq-content">'+faq(items).replace('company-faq faq-list','faq-list')+f'</div><img class="faq-mascot" src="{prefix}assets/faq-peeking-robot.webp" alt="Робот ТЕКСТ держится за край карточек с вопросами" width="1166" height="1349" loading="lazy"></div></section>'
+    return section('Как получить заказ',ways,extra='id="delivery-options"')+note('Доставка не входит в стоимость печати. Способ, срок и стоимость отправки согласуем до запуска заказа.')+section('Сравните стоимость у перевозчиков',carriers,'Четыре варианта отправки по России. Ссылки ведут на официальные калькуляторы перевозчиков.',extra='id="delivery-carriers"')+note('Размер и вес упаковки зависят от заказа. После производства подтвердим фактические параметры груза, если они нужны перевозчику.')+section('Когда заказ будет готов?',table+timing,'Срок изготовления считаем после полного согласования макета, в рабочих днях. Работаем пн–пт, 09:00–18:00. Сб–вс — выходные.',extra='id="delivery-production"')+note('В таблице указан объём изготовления. Срок доставки до вашего города рассчитывается отдельно.')+questions+cta(prefix,'Подберём удобное получение','Укажите состав заказа, город и адрес — обсудим самовывоз или отправку.')
 
 def payment(prefix):
-    text=paragraphs('payment')
-    text[1]='Способ оплаты и необходимые реквизиты сообщим при подтверждении заказа. Скачанный расчёт или запрос не является платёжным документом или подтверждением оплаты.'
-    body='<div class="company-grid">'+''.join(card(title,escape(p),ico) for title,p,ico in zip(['Сначала согласование','Как оплатить','Что указать для документов'],text,['check','bag','document']))+'</div>'
-    questions=faq([('','Можно ли оплатить заказ прямо на сайте?','Условия и способ оплаты сообщит студия при подтверждении заказа.'),
-                   ('','Что нужно сообщить организации?','Наименование и реквизиты организации. Передайте их вместе с параметрами заказа.'),
-                   ('','Скачивание расчёта отправляет заказ?','Нет. Отправьте письмо с параметрами и макетом на tekkkst@yandex.ru и дождитесь подтверждения студии.')])
-    return body+note('Дополнительные работы и доставку согласуем после проверки макетов, до подтверждения заказа.')+section('Частые вопросы об оплате',questions)+cta(prefix,'Уточним оплату вашего заказа','Позвоните или напишите — сообщим порядок оплаты и необходимые документы.')
+    steps=[('Ваши файлы','Параметры заказа','Пришлите макет и параметры: услугу, размер, материал и тираж. Онлайн-расчёт, если он доступен, можно приложить к запросу.'),
+           ('Проверка и расчёт','Итоговая сумма','Проверим макет и согласуем окончательный состав заказа. Дополнительные работы и доставку обсудим отдельно.'),
+           ('Подтверждение','Как оплатить','При подтверждении заказа сообщим способ оплаты и необходимые реквизиты. Если остались вопросы — поможем разобраться.')]
+    cards='<ol class="payment-steps">'+''.join(f'<li class="payment-step"><div class="payment-step-top"><span class="payment-step-number" aria-label="Шаг {n}">0{n}</span><span class="payment-step-label">{label}</span>'+('<span class="payment-step-arrow" aria-hidden="true">'+icon('arrow')+'</span>' if n<3 else '')+f'</div><h3>{title}</h3><p>{text}</p></li>' for n,(label,title,text) in enumerate(steps,1))+'</ol>'
+    flow=section('Как проходит оплата',cards,extra='id="payment-process"')
+    details=f'''<div class="payment-info-grid">
+      <article class="payment-info-card payment-info-business"><div class="payment-business-copy"><span class="payment-eyebrow">Для бизнеса</span><h3>Заказ от организации</h3><p>Сообщите наименование и реквизиты организации при согласовании заказа. Обсудим необходимые документы и порядок оплаты.</p><button class="payment-text-link" type="button" data-action="contacts">Обсудить документы {icon('arrow')}</button></div><div class="payment-paper"><span class="payment-paper-icon" aria-hidden="true">{icon('document')}</span><p class="payment-paper-title">Подготовьте<br>для заказа</p><ul><li>{icon('check')}<span>Наименование<br>организации</span></li><li>{icon('check')}<span>Реквизиты</span></li></ul><span class="payment-paper-rule" aria-hidden="true"></span></div></article>
+      <article class="payment-info-card payment-info-reminder"><span class="payment-eyebrow">Важный момент</span><h3>Расчёт <span class="payment-not-equal">≠</span> оплата</h3><p>Скачанный расчёт или запрос не является платёжным документом и не подтверждает оплату. Для оформления заказа отправьте параметры и макет в студию.</p><button class="payment-text-link" type="button" data-action="order-guide" aria-haspopup="dialog">Как оформить заказ {icon('arrow')}</button></article>
+    </div>'''
+    before=section('Перед оплатой',details,extra='id="payment-details"')+note(f'Стоимость доставки согласуем отдельно. <a href="{prefix}dostavka-i-oplata/">Посмотрите варианты получения заказа</a>.')
+    items=[('','Как узнать итоговую стоимость?','Для услуг с онлайн-калькулятором можно сохранить предварительный расчёт. Окончательный состав заказа, дополнительные работы и доставку согласуем после проверки макета. Для остальных услуг стоимость уточнит студия.'),
+           ('','Какие способы оплаты доступны?','Способ оплаты и необходимые реквизиты сообщим при подтверждении заказа. Чтобы уточнить условия, позвоните или напишите нам.'),
+           ('','Какие данные нужны для заказа от организации?','Сообщите наименование и реквизиты организации вместе с параметрами заказа при согласовании.'),
+           ('','Расчёт из корзины подтверждает оплату?','Нет. Скачанный расчёт или запрос помогает согласовать параметры и стоимость. Он не является платёжным документом или подтверждением оплаты.'),
+           ('','Скачал расчёт — заказ уже отправлен?',f'Нет. Отправьте параметры и макет на <a href="mailto:tekkkst@yandex.ru">tekkkst@yandex.ru</a> и дождитесь подтверждения студии. Файлы нужно приложить к письму вручную. <a href="{prefix}kak-oformit-zakaz/">Порядок оформления заказа</a>.'),
+           ('','Доставка включена в стоимость печати?',f'Нет. Способ, срок и стоимость доставки согласуем отдельно. Подробности — на <a href="{prefix}dostavka-i-oplata/">странице доставки</a>.')]
+    questions='<section class="company-section company-payment-faq lower-home home-faq-section" aria-labelledby="payment-faq-title"><h2 id="payment-faq-title">Вопросы об оплате</h2><div class="home-faq-stage"><div class="home-faq-content">'+faq(items).replace('company-faq faq-list','faq-list')+f'</div><img class="faq-mascot" src="{prefix}assets/faq-peeking-robot.webp" alt="Робот ТЕКСТ держится за край карточек с вопросами" width="1166" height="1349" loading="lazy"></div></section>'
+    return flow+before+questions+cta(prefix,'Уточним оплату вашего заказа','Позвоните или напишите — сообщим порядок оплаты и необходимые документы.')
 
 REQUIREMENT_ADAPTATIONS={
     'Для проектной документации используется отдельная страница и коэффициент.':'Для проектной документации действуют отдельные условия.',
@@ -230,22 +281,81 @@ REQUIREMENT_ADAPTATIONS={
     'Печать на металлическом изделии заказчика на этой странице не обещаем.':'Печать на металлическом изделии заказчика требует отдельного согласования.',
 }
 def requirements(prefix):
-    checks='<ul class="company-req-checks">'+''.join(f'<li>{icon(i)}{text}</li>' for i,text in [('document','Проверьте файл'),('layers','Укажите размер'),('scissors','Учтите резку'),('check','Согласуйте макет')])+'</ul>'
-    items=[]
-    for item in SOURCE['requirements']:
-        text=item['text']
-        for before,after in REQUIREMENT_ADAPTATIONS.items():text=text.replace(before,after)
-        service=next(s for s in CATALOG if s['id']==item['id'])
-        answer=escape(text)+f'</p><p><a href="{service_url(service,prefix)}">{ "Открыть калькулятор" if item["id"] in ["3.1","4.4"] else "Посмотреть услугу" } →</a>'
-        items.append((item['category'],escape(item['name']),answer))
-    return checks+section('Требования к вашей услуге',filters(TOPICS[:6],requirements=True)+faq(items,True)+empty(),'Выберите направление или найдите услугу по названию. Здесь собраны требования для всех 55 услуг.',extra='id="requirements-content"')+cta(prefix,'Нужна помощь с макетом?','Пришлите файл и расскажите о задаче — проверим подготовку перед печатью.')
+    def count_label(count):
+        return f'{count} '+('услуга' if count%10==1 and count%100!=11 else 'услуги' if count%10 in (2,3,4) and count%100 not in (12,13,14) else 'услуг')
+    category_icons=['printer','document','layers','sticker','wide','scissors']
+    category_buttons=[]
+    groups=[]
+    for category,ico in zip(TOPICS[:6],category_icons):
+        category_items=[item for item in SOURCE['requirements'] if item['category']==category]
+        category_buttons.append(f'<button class="requirements-category" type="button" data-company-filter="{escape(category)}" aria-pressed="false"><span class="requirements-category-icon">{icon(ico)}</span><span><strong>{escape(category)}</strong><small>{count_label(len(category_items))}</small></span>{icon("arrow")}</button>')
+        cards=[]
+        for item in category_items:
+            text=item['text']
+            for before,after in REQUIREMENT_ADAPTATIONS.items():text=text.replace(before,after)
+            sentences=re.split(r'(?<=[.!?])\s+(?=[А-ЯЁA-Z])',text)
+            points='<ul class="requirements-points" data-requirement-text>'+''.join(f'<li>{escape(sentence)}</li>' for sentence in sentences)+'</ul>'
+            action='Открыть калькулятор' if item['id'] in ('3.1','4.4') else 'Посмотреть услугу'
+            cards.append(f'<details class="requirements-service" id="requirement-{item["id"].replace(".","-")}" data-filter-item data-category="{escape(category)}" data-service-requirement="{item["id"]}"><summary><span>{escape(item["name"])}</span>{icon("plus")}</summary><div class="requirements-service-body">{points}<button class="requirements-service-link" type="button" data-service="{item["id"]}">{action} {icon("arrow")}</button></div></details>')
+        groups.append(f'<section class="requirements-group" data-filter-group><div class="requirements-group-heading"><span>{icon(ico)}</span><h3>{escape(category)}</h3><small data-filter-group-count>{count_label(len(category_items))}</small></div><div class="requirements-service-grid">'+''.join(cards)+'</div></section>')
+    tools='<div class="requirements-tools"><div class="requirements-search-row"><label class="company-search requirements-search">'+icon('search')+'<span class="sr-only">Поиск по требованиям</span><input type="search" data-company-search placeholder="Например: визитки, чертежи или наклейки" autocomplete="off"></label><button class="requirements-search-clear" type="button" data-company-search-clear aria-label="Очистить поиск" hidden>'+icon('close')+'</button></div><div class="requirements-filter-heading"><p>Выберите направление или найдите услугу</p><button class="requirements-all" type="button" data-company-filter="all" aria-pressed="true">Все направления</button></div><div class="requirements-category-grid" role="group" aria-label="Направления услуг">'+''.join(category_buttons)+'</div></div>'
+    directory=tools+'<p class="sr-only" data-results-status role="status" aria-live="polite"></p><div class="requirements-groups" data-filter-list data-requirements-list>'+''.join(groups)+'</div><div class="requirements-empty" data-empty-results hidden>'+icon('search')+'<h3>Не нашли такую услугу</h3><p>Попробуйте другое название или вернитесь ко всем направлениям.</p><button class="button button-white" type="button" data-company-reset>Сбросить поиск и фильтр</button></div>'
+    prep=[('document','Файл и страницы','Для документов удобнее PDF. Проверьте порядок, ориентацию и цветные страницы.'),
+          ('wide','Размер и масштаб','Укажите конечный размер изделия. Для чертежей и выкроек проверьте масштаб.'),
+          ('scissors','Поля и контуры','Для полиграфии учтите вылеты и безопасные поля. Для фигурной резки нужен отдельный контур.'),
+          ('check','Согласование','Материалы, дополнительную обработку и правки обсудим до запуска заказа.')]
+    checks='<div class="requirements-preflight">'+''.join(f'<article><span class="requirements-preflight-icon">{icon(ico)}</span><h3>{title}</h3><p>{text}</p></article>' for ico,title,text in prep)+'</div>'
+    items=[('','В каком формате отправить документы?','Для стабильной печати лучше присылать PDF. Проверьте порядок страниц, ориентацию, поля и цветные страницы. Если файл требует правок, сначала согласуем макет.'),
+           ('','Как проверить масштаб чертежей и выкроек?','В PDF проверьте формат листов, ориентацию и масштаб. Для лекал и выкроек нужен натуральный масштаб и контрольный размер или квадрат для его проверки.'),
+           ('','Нужен ли отдельный контур для наклеек?','Для фигурных наклеек контур резки готовится отдельно. В стикерпаке он нужен для каждого элемента. Учтите безопасные поля и технологические расстояния.'),
+           ('','Что учесть для прозрачной плёнки?','Заранее согласуйте белые элементы и белую подложку. Для фигурных наклеек на голографической плёнке работа белого цвета также согласуется до запуска.'),
+           ('','Какие оригиналы подходят для сканирования?','Оригиналы должны быть читаемыми и пригодными для сканирования. Для чертежей максимальный формат — А3. Если важен порядок страниц, согласуйте его заранее.'),
+           ('','Куда отправить макет на проверку?',f'Пришлите файл и параметры заказа на <a href="mailto:tekkkst@yandex.ru">tekkkst@yandex.ru</a>. Вложения добавьте к письму вручную. Укажите услугу, размер, материал и тираж; дождитесь согласования студии.')]
+    questions='<section class="company-section requirements-faq lower-home home-faq-section" aria-labelledby="requirements-faq-title"><h2 id="requirements-faq-title">Вопросы о макетах</h2><div class="home-faq-stage"><div class="home-faq-content">'+faq(items).replace('company-faq faq-list','faq-list')+f'</div><img class="faq-mascot" src="{prefix}assets/faq-peeking-robot.webp" alt="Робот ТЕКСТ держится за край карточек с вопросами" width="1166" height="1349" loading="lazy"></div></section>'
+    return section('Проверьте перед отправкой',checks)+section('Требования к вашей услуге',directory,extra='id="requirements-content"')+questions+cta(prefix,'Нужна помощь с макетом?','Пришлите файл и расскажите о задаче — проверим подготовку перед печатью.')
 
 def photo(prefix):
-    info='<div class="company-story"><div><h3>Образец под вашу задачу</h3><p>Чтобы увидеть подходящие примеры печати, напишите на <a href="mailto:tekkkst@yandex.ru">tekkkst@yandex.ru</a>.</p></div><div><h3>Что указать в сообщении</h3><p>Услугу, материал и предполагаемый тираж. Если есть референс или макет, приложите его — так проще подобрать подходящий образец.</p></div></div>'
-    return info+section('С чего начнём?',direction_cards(prefix),'Выберите направление, для которого нужны примеры.')+note('Иллюстрации роботов на страницах — маскоты студии. Это не фотографии выполненных заказов.')+cta(prefix,'Подберём подходящий пример','Расскажите о продукции, материале и тираже.')
+    # These are service illustrations, never photographs of completed orders.
+    topics=[
+        ('1.1','popular-art-печать документов','Для учёбы, работы и важных документов.','Формат · цветность · количество'),
+        ('2.1','popular-art-инженерная печать','Чертежи и схемы, в которых важна каждая линия.','Формат · масштаб · комплект'),
+        ('3.1','popular-art-визитки','Первое знакомство с вашим делом — в небольшой карточке.','Бумага · стороны · тираж'),
+        ('4.4','popular-art-стикерпаки','Несколько идей, собранных в один набор.','Материал · контуры · тираж'),
+        ('5.8','popular-art-накатка на пвх','Изображение на жёсткой основе для оформления пространства.','Размер · толщина · количество'),
+        ('6.5','popular-art-таблички','Навигация и информация, которую легко заметить.','Материал · размер · крепление'),
+        ('1.6','popular-art-твердый переплет дипломов','Когда документу нужна аккуратная и прочная обложка.','Обложка · страницы · экземпляры'),
+        ('2.6','popular-art-печать дизайн проектов','Планы и визуализации, собранные в проект.','Формат · страницы · оформление'),
+        ('3.2','popular-art-листовки','Расскажите о событии, предложении или новой услуге.','Бумага · размер · тираж'),
+        ('4.1','popular-art-фигурные стикеры','Для бренда, подарков и ваших собственных рисунков.','Плёнка · форма · контур'),
+        ('4.9','popular-art-круглые 3д стикеры','Объёмный акцент с прозрачным покрытием.','Диаметр · покрытие · тираж'),
+        ('6.1','popular-art-прямая уф печать','Ваше изображение на выбранном материале.','Материал · размер · белый слой'),
+    ]
+    by_id={service['id']:service for service in SERVICES.values()}
+    gallery=[]
+    for sid,asset,description,parameters in topics:
+        service=by_id[sid]
+        title=escape(service['name']);category=escape(service['category'],quote=True)
+        gallery.append(f'<article class="samples-card" data-filter-item data-category="{category}"><div class="samples-card-art"><span class="samples-art-label">Иллюстрация</span><img src="{prefix}assets/{asset}.webp" alt="{title} — иллюстрация услуги, не фотография заказа" width="900" height="900" loading="lazy"></div><div class="samples-card-copy"><span class="samples-card-category">{category}</span><h3>{title}</h3><p>{description}</p><span class="samples-card-parameters">{parameters}</span><div class="samples-card-actions"><button type="button" class="samples-request" data-action="samples" data-record="{sid}" aria-haspopup="dialog" aria-label="Подобрать примеры: {title}">Подобрать примеры {icon("arrow")}</button><button type="button" class="samples-service" data-service="{sid}" aria-label="Об услуге: {title}">Об услуге</button></div></div></article>')
+    labels=['Документы','Проекты','Полиграфия','Наклейки','Широкий формат','UV и резка']
+    controls='<div class="samples-filters" role="group" aria-label="Направления печати"><button type="button" data-company-filter="all" aria-pressed="true">Все направления</button>'+''.join(f'<button type="button" data-company-filter="{escape(name,quote=True)}" aria-pressed="false">{label}</button>' for (name,_,_),label in zip(CATEGORIES,labels))+'</div><p class="samples-results sr-only" data-results-status role="status" aria-live="polite"></p>'
+    directory=controls+'<div class="samples-gallery" data-filter-list>'+''.join(gallery)+'</div>'
+    gallery_intro='Выберите продукцию — подберём подходящие примеры по запросу. На карточках показаны иллюстрации услуг, а не фотографии выполненных заказов.'
+    facts='<div class="samples-facts"><div>'+icon('layers')+'<span><strong>6 направлений</strong>От документов до UV-печати</span></div><div>'+icon('printer')+'<span><strong>55 услуг</strong>Для разных задач и материалов</span></div><div>'+icon('message')+'<span><strong>Личный подбор</strong>Под вашу продукцию и тираж</span></div></div>'
+    brief='<section class="company-section samples-brief" aria-labelledby="samples-brief-title"><div class="samples-brief-copy"><span class="samples-eyebrow">ОТ ИДЕИ К ДЕТАЛЯМ</span><h2 id="samples-brief-title">Нужен пример,<br>похожий на вашу идею?</h2><p>Не обязательно знать точное название услуги. Расскажите, что хотите получить, или приложите референс.</p><button type="button" class="button button-primary" data-action="samples" aria-haspopup="dialog">Запросить примеры '+icon('arrow')+'</button><a class="samples-email" href="mailto:tekkkst@yandex.ru">tekkkst@yandex.ru</a></div><ol class="samples-brief-steps">'+''.join(f'<li><span class="samples-step-number">0{n}</span><div><h3>{title}</h3><p>{text}</p></div></li>' for n,(title,text) in enumerate([
+        ('Что будем печатать','Услуга или задача: визитки, наклейки, чертежи, оформление.'),
+        ('На чём и сколько','Материал, предполагаемый размер и тираж. Не уверены — так и напишите.'),
+        ('Какой результат нравится','Прикрепите референс или макет к письму — это поможет подобрать образец.')],1))+'</ol></section>'
+    questions=[('','Это фотографии выполненных заказов?','На карточках показаны иллюстрации услуг и маскоты студии. Чтобы увидеть подходящие примеры печати, отправьте запрос: укажите услугу, материал и предполагаемый тираж.'),
+               ('','Можно прислать свой референс?','Да. Приложите изображение или макет к письму и расскажите, какой результат хотите получить. По вашему запросу подберём подходящий образец и обсудим параметры.'),
+               ('','А если я пока не знаю материал и тираж?','Опишите задачу и предполагаемое применение продукции. Неизвестные параметры можно указать в запросе — обсудим их со студией.'),
+               ('','Где посмотреть требования к макету?',f'В разделе <a href="{prefix}requirements/">«Технические требования»</a> собраны памятки для всех 55 услуг. Выберите продукцию и проверьте подготовку файла.'),
+               ('','Запрос примеров сразу оформляет заказ?','Запрос нужен для обсуждения вашей задачи. Перед производством согласуем параметры, проверим макет и подтвердим стоимость.'),
+               ('','Куда отправить запрос и изображения?','На <a href="mailto:tekkkst@yandex.ru">tekkkst@yandex.ru</a>. Форма подготовит текст письма; референс или макет приложите вручную перед отправкой.')]
+    answers='<section class="company-section samples-faq lower-home home-faq-section" aria-labelledby="samples-faq-title"><h2 id="samples-faq-title">Вопросы о примерах</h2><div class="home-faq-stage"><div class="home-faq-content">'+faq(questions).replace('company-faq faq-list','faq-list')+f'</div><img class="faq-mascot" src="{prefix}assets/faq-peeking-robot.webp" alt="Робот ТЕКСТ держится за край карточек с вопросами" width="1166" height="1349" loading="lazy"></div></section>'
+    return facts+section('Какую печать хотите увидеть?',directory,gallery_intro,'id="samples-content"')+brief+answers
 
 def actions_page(prefix):
-    promo='<div class="company-promo"><div><span class="company-promo-number">−20%</span><h2>На пакетное ламинирование<br>от 20 штук</h2><p>Скидка действует при количестве от 20 штук.<br>Минимальная стоимость заказа — 60 ₽.</p><a class="button button-primary" href="'+prefix+'?service=1.4">Посмотреть услугу '+icon('arrow')+'</a></div><img src="'+prefix+'assets/direction-copy.webp" alt="" width="400" height="300" loading="lazy"></div>'
+    promo='<div class="company-promo"><div><span class="company-promo-number">−20%</span><h2>На пакетное ламинирование<br>от 20 штук</h2><p>Скидка действует при количестве от 20 штук.<br>Минимальная стоимость заказа — 60 ₽.</p><a class="button button-primary" href="'+prefix+'?service=1.4">Посмотреть услугу '+icon('arrow')+'</a></div><img src="'+prefix+'assets/popular-art-печать документов.webp" alt="" width="400" height="300" loading="lazy"></div>'
     return promo+section('Тиражные тарифы','<div class="company-grid">'+card('Количество','В ряде услуг цена за единицу зависит от тиража. Укажите нужное количество при расчёте или согласовании.','layers')+card('Общая площадь','Для печати по площади важны конечные размеры и число изделий. Сравнивайте одинаковые параметры.','wide')+card('Условия услуги','Тарифы и скидки одной услуги не переносятся автоматически на другую. Уточните условия вашего заказа.','check')+'</div>')+cta(prefix,'Рассчитаем ваш тираж','Назовите услугу, размер и количество — подберём подходящие условия.')
 
 def reviews(prefix):
@@ -293,10 +403,10 @@ def related_link_label(link):
 build('company/about/','ТЕКСТ — <em>больше,</em><br>чем печать',paragraphs('')[0],'company-about.webp',about,schema_type='AboutPage',seo=page_seo(''))
 build('contacts/','Хорошие идеи<br>начинаются <em>с общения</em>','Приезжайте в студию на Строителей, 11 или напишите нам. Обсудим вашу задачу и поможем с заказом.','company-contacts.webp',contacts,schema_type='ContactPage',seo=page_seo('contacts'),actions='<a class="button button-primary" href="tel:+79236547896">'+icon('phone')+' Позвонить</a><button class="button button-white" data-action="contacts">Написать нам</button>')
 build('dostavka-i-oplata/','Ваши идеи<br>уже <em>в пути</em>','Самовывоз из студии и отправка по России. Условия, стоимость и способ получения согласуем при подтверждении заказа.','company-delivery.webp',delivery,seo=page_seo('delivery'))
-build('company/payment/','Сначала детали.<br>Потом <em>оплата</em>','Проверим макеты, согласуем состав заказа и итоговую стоимость. После подтверждения сообщим способ оплаты и реквизиты.','company-contacts.webp',payment,seo=page_seo('payment'))
-build('requirements/','Хорошая печать<br>начинается <em>с макета</em>','Требования к файлам для всех 55 услуг: документы, чертежи, полиграфия, наклейки и изделия с резкой. Найдите памятку для своей задачи.','company-requirements.webp',requirements,seo=page_seo('requirements'),actions='<a class="button button-primary" href="#requirements-content">Посмотреть требования '+icon('arrow')+'</a><button class="button button-white" data-action="contacts">Помощь с макетом</button>')
-build('company/photo/','Печать, которую<br>можно <em>увидеть</em>','Подберём подходящие примеры под вашу задачу. Напишите, что нужно изготовить, на каком материале и каким тиражом.','company-about.webp',photo,seo=page_seo('photo','Примеры печати студии ТЕКСТ в Барнауле. Напишите на tekkkst@yandex.ru, укажите услугу, материал и тираж — подберём подходящие образцы.'))
-build('company/action/','Больше тираж —<br><em>выгоднее печать</em>','Скидка на пакетное ламинирование и тиражные тарифы. Подберём условия для вашего количества и выбранной продукции.','direction-copy.webp',actions_page,seo=page_seo('action'))
+build('company/payment/','Сначала детали.<br>Потом <em>оплата</em>','Проверим макеты, согласуем состав заказа и итоговую стоимость. После подтверждения сообщим способ оплаты и реквизиты.','company-payment.webp',payment,seo=page_seo('payment','Оплата заказа в студии ТЕКСТ: согласование макета и итоговой стоимости. Способ оплаты и реквизиты сообщаем при подтверждении заказа.'),actions='<button class="button button-primary" data-action="contacts">Уточнить оплату '+icon('arrow')+'</button><button class="button button-white" type="button" data-action="order-guide" aria-haspopup="dialog">Как оформить заказ</button>')
+build('requirements/','Технические<br><em>требования</em>','Для документов, чертежей, полиграфии и изделий с резкой. Найдите свою услугу и проверьте файл перед отправкой.','company-requirements.webp',requirements,seo=page_seo('requirements'),actions='<a class="button button-primary" href="#requirements-content">Найти требования '+icon('arrow')+'</a><button class="button button-white" data-action="contacts">Помощь с макетом</button>')
+build('company/photo/','Примеры под<br><em>вашу задачу</em>','От визитки до оформления пространства. Расскажите о своей идее — подберём подходящие примеры печати и обсудим детали.','company-about.webp',photo,seo=page_seo('photo','Примеры печати студии ТЕКСТ в Барнауле. Выберите направление и запросите подходящие образцы: документы, полиграфия, наклейки, широкий формат и UV-печать.'),schema_type='CollectionPage',actions='<a class="button button-primary" href="#samples-content">Выбрать направление '+icon('arrow')+'</a><button class="button button-white" type="button" data-action="samples" aria-haspopup="dialog">Запросить примеры</button>')
+build('company/action/','Больше тираж —<br><em>выгоднее печать</em>','Скидка на пакетное ламинирование и тиражные тарифы. Подберём условия для вашего количества и выбранной продукции.','popular-art-печать документов.webp',actions_page,seo=page_seo('action'))
 build('company/request/','Спасибо<br>за ваше <em>доверие</em>','Отзывы клиентов и обратная связь со студией. Читайте впечатления на картах или расскажите нам о своём заказе.','company-about.webp',reviews,seo=page_seo('request','Отзывы о студии печати ТЕКСТ в Барнауле. Читайте на картах или отправьте обратную связь на tekkkst@yandex.ru, указав услугу и дату заказа.'))
 build('company/vopros-otvet/','Всё, что вы хотели<br><em>спросить о печати</em>','Ответы о расчёте, отправке файлов, сроках и получении заказа. Выберите тему или найдите свой вопрос.','company-contacts.webp',questions,seo=page_seo('vopros-otvet','Ответы студии ТЕКСТ на вопросы о корзине, макетах, производственных сроках и получении заказа. Барнаул, Строителей, 11.'),actions='<a class="button button-primary" href="#questions-content">Найти ответ '+icon('search')+'</a><button class="button button-white" data-action="contacts">Задать вопрос</button>')
 build('company/article/','Полезно знать<br><em>перед печатью</em>','150 практических материалов: выбираем бумагу и материалы, готовим документы и макеты, разбираемся в технологиях.','company-requirements.webp',articles,seo=page_seo('articles'),schema_type='CollectionPage',actions='<a class="button button-primary" href="#articles-content">Выбрать статью '+icon('arrow')+'</a><a class="button button-white" href="../../requirements/">Требования к файлам</a>')

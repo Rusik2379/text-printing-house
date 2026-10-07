@@ -49,6 +49,14 @@ for p in sorted((source/'company').rglob('index.html')):
         'links':[{'label':text(a),'url':a.get('href')} for a in main.xpath('.//a[starts-with(@href,"https://")]')],
         'table_rows':[[text(c) for c in row.xpath('./th|./td')] for row in main.xpath('.//tr')]
     }
+    if p.relative_to(source).as_posix()=='company/delivery/index.html':
+        capacity=[]
+        for link in main.xpath('.//div[contains(@class,"service-index")]/a'):
+            match=re.fullmatch(r'(.+): до ([\d\s]+) ₽ за рабочий день',text(link))
+            assert match,'Unrecognized delivery production capacity: '+text(link)
+            capacity.append({'name':match[1],'route':link.get('data-route'),'amount':int(re.sub(r'\s','',match[2]))})
+        assert len(capacity)==6
+        pages['company/delivery/index.html']['production_capacity']=capacity
 requirements=[]
 for d in load('company/requirements/index.html').xpath('//main//details'):
     route=d.xpath('.//a[@data-route]')[0].get('data-route')
