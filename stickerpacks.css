@@ -134,6 +134,10 @@
 .service-page .sp-hero-art img{width:100%;height:auto;margin:0;max-width:100%}
 .sp-display-service{font-size:clamp(40px,4.8vw,68px);letter-spacing:-2.5px;line-height:1.04;position:relative}
 .sp-display-tail{display:block}
+.sp-calculator fieldset.sp-inner-elements{margin-top:24px}
+.sp-result-heading{gap:10px;align-items:flex-start}
+.sp-result-heading>span{flex-shrink:0}
+.sp-result>p#sp-layout-result:empty{display:none}
 .sp-3d-mark{display:inline-block;font-size:.52em;vertical-align:top;margin:5px 0 0 10px;padding:5px 8px;background:#ffebed;border-radius:9px}
 .sp-custom-fields label[hidden]{display:none}
 .sp-seo-related a{color:var(--red);text-decoration:underline;text-underline-offset:2px}
