@@ -113,7 +113,7 @@
     const links=company ? companyLinks() : records.map(r=>serviceUrl(r.id)?`<a href="${serviceUrl(r.id)}">${escape(r.name)}</a>`:`<button data-service="${r.id}">${escape(r.name)}</button>`).join('');
     $('#mega-menu').innerHTML=`<div class="mega-layout"><div><div class="mega-title"><h3>${escape(name)}</h3></div><div class="mega-links">${links}</div></div></div>`;
     const menuLinks=$('.mega-links',$('#mega-menu'));
-    menuLinks.style.setProperty('--menu-rows',Math.ceil(menuLinks.children.length/2));
+    menuLinks.style.setProperty('--menu-rows',Math.ceil(menuLinks.children.length/3));
     $('#mega-menu').hidden=false;
     if(matchMedia('(max-width:700px)').matches){$$('.nav-item').find(b=>b.dataset.menu===name).insertAdjacentElement('afterend',$('#mega-menu'));}
     else{$('#header').append($('#mega-menu'));}
