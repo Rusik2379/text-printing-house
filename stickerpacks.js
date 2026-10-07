@@ -6,10 +6,11 @@
   const money=value=>new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2}).format(value)+' ₽';
   const sharing=window.TEXT_STICKERPACK_SHARING;
   const service=window.TEXT_STICKER_SERVICES[document.body.dataset.stickerService||'4.4'];
-  const isPack=service.kind==='pack',isRound=service.shape==='round',is3D=service.kind==='3d';
+  const isPack=['pack','3d-pack'].includes(service.kind),is3D=['3d','3d-pack'].includes(service.kind),isPaper=service.kind==='paper',is3DPack=service.kind==='3d-pack';
+  let isRound=service.shape==='round';
   const unitName=isPack?'набор':'штуку';
-  const calculate=c=>window.TEXT_CALCULATE_STICKERS({...c,kind:service.kind,shape:service.shape});
-  const printLabels=is3D?{uv:'Печать с 3D-покрытием'}:sharing.labels.print;
+  const calculate=c=>window.TEXT_QUOTE_STICKER_SERVICE(service.id,c);
+  const printLabels=service.prints||(is3D?{uv:'Печать с 3D-покрытием'}:{vinyl:sharing.labels.print.vinyl,uv:sharing.labels.print.uv});
   const materialLabels=sharing.labels.material;
   const presets=service.sizes;
   const quantities=service.quantities;
@@ -17,22 +18,31 @@
   const editingKey=query.get('edit');
   const previous=window.TEXT_APP.getCart().find(item=>item.key===editingKey&&item.id===service.id);
   const state={...sharing.read(query,service.id),...previous?.configuration};
-  let customSize=!presets.some(([w,h])=>w===state.width&&h===state.height);
+  if(service.variableShape)isRound=state.shape==='round';
+  const sizePresets=()=>presets.map(([w,h])=>[w,isRound?w:h]).filter(([w,h],i,a)=>a.findIndex(([x,y])=>w===x&&h===y)===i);
+  let customSize=!sizePresets().some(([w,h])=>w===state.width&&h===state.height);
   let customQuantity=!quantities.includes(state.quantity);
   let selectedFile=null,result=null,busy=Boolean(previous?.fileName),fileChanged=false;
   $('#sp-comment').value=previous?.comment||'';
   $('#sp-width').value=state.width;$('#sp-height').value=state.height;$('#sp-quantity').value=state.quantity;
+  for(const [id,key] of [['sp-sticker-width','stickerWidth'],['sp-sticker-height','stickerHeight'],['sp-per-pack','perPack']])if($('#'+id))$('#'+id).value=state[key];
   const choice=(group,value,label)=>`<button type="button" class="sp-option${value==='custom'?' sp-custom-option':''}" data-sp-group="${group}" data-sp-value="${value}" aria-pressed="false">${label}</button>`;
   $('#sp-print-options').innerHTML=Object.entries(printLabels).map(([key,label])=>choice('print',key,label)).join('');
   $('#sp-material-options').innerHTML=Object.entries(materialLabels).filter(([key])=>service.materials.includes(key)).map(([key,label])=>choice('material',key,label)).join('');
   const sizeText=(w,h)=>isRound?`⌀ ${new Intl.NumberFormat('ru-RU').format(w/10)} см`:`${new Intl.NumberFormat('ru-RU').format(w/10)} × ${new Intl.NumberFormat('ru-RU').format(h/10)} см`;
-  $('#sp-size-options').innerHTML=presets.map(([w,h])=>choice('size',`${w},${h}`,sizeText(w,h))).join('')+choice('size','custom','Другой размер');
+  function renderSizes(){ $('#sp-size-options').innerHTML=sizePresets().map(([w,h])=>choice('size',`${w},${h}`,sizeText(w,h))).join('')+choice('size','custom','Другой размер'); }
+  renderSizes();
+  if($('#sp-shape-options'))$('#sp-shape-options').innerHTML=Object.entries(sharing.labels.shape).map(([v,l])=>choice('shape',v,l)).join('');
+  if($('#sp-cut-options'))$('#sp-cut-options').innerHTML=Object.entries(sharing.labels.cut).map(([v,l])=>choice('cut',v,l)).join('');
   $('#sp-quantity-options').innerHTML=quantities.map(q=>`<div class="sp-quantity-row">${choice('quantity',q,new Intl.NumberFormat('ru-RU').format(q)+' шт.')}<span class="sp-quantity-price" data-sp-price="${q}">—</span><span class="sp-discount" data-sp-discount="${q}" hidden></span></div>`).join('')+choice('quantity','custom','Другое количество');
   function configuration(){
     const width=customSize?Number($('#sp-width').value):state.width;
-    return {...state,width,height:isRound?width:customSize?Number($('#sp-height').value):state.height,quantity:customQuantity?Number($('#sp-quantity').value):state.quantity};
+    const c={...state,width,height:isRound?width:customSize?Number($('#sp-height').value):state.height,quantity:customQuantity?Number($('#sp-quantity').value):state.quantity};
+    if(is3DPack){c.stickerWidth=Number($('#sp-sticker-width').value);c.stickerHeight=Number($('#sp-sticker-height').value);c.perPack=Number($('#sp-per-pack').value);}
+    return c;
   }
-  function description(c){return `${printLabels[c.print]} · ${materialLabels[c.material]} · ${isRound?`⌀ ${c.width}`:`${c.width} × ${c.height}`} мм · ${c.quantity} ${isPack?'наборов':'шт.'} · ${is3D?'прозрачное 3D-покрытие':'без ламинации'}`;}
+  function extraDescription(c){return is3DPack?`Стикеры внутри: ${c.stickerWidth} × ${c.stickerHeight} мм · ${c.perPack} в наборе`:isPaper?sharing.labels.cut[c.cut]:service.variableShape?sharing.labels.shape[c.shape]+' форма':'';}
+  function description(c){return `${printLabels[c.print]} · ${materialLabels[c.material]} · ${isRound?`⌀ ${c.width}`:`${c.width} × ${c.height}`} мм · ${c.quantity} ${isPack?'наборов':'шт.'}${extraDescription(c)?' · '+extraDescription(c):''} · ${is3D?'прозрачное 3D-покрытие':isPaper?'SRA3':'без ламинации'}`;}
   function sync(){
     const c=configuration();
     $$('.sp-option').forEach(button=>{
@@ -42,7 +52,8 @@
       if(g==='material')button.disabled=c.print==='vinyl'&&v!=='white';
     });
     $('#sp-custom-size').hidden=!customSize;$('#sp-custom-quantity').hidden=!customQuantity;
-    $('#sp-material-note').textContent=is3D?'Белая или прозрачная плёнка с прозрачным объёмным покрытием.':c.print==='vinyl'?'Для виниловой печати доступна только белая плёнка.':'На прозрачной и голографической плёнке согласуем белую подложку.';
+    $('#sp-material-note').textContent=isPaper?'Самоклеящаяся бумага, печать на листах SRA3.':service.kind==='uv-dtf'?'Трансфер для подходящей твёрдой поверхности. Перед серией рекомендуем пробу.':is3D?'Белая или прозрачная плёнка с прозрачным объёмным покрытием.':c.print==='vinyl'?'Для виниловой печати доступна только белая плёнка.':'На прозрачной и голографической плёнке согласуем белую подложку.';
+    if(service.variableShape){$('#sp-height').parentElement.hidden=isRound;$('#sp-width').parentElement.firstChild.textContent=isRound?'Диаметр, мм':'Ширина, мм';}
     const sizeValid=Number.isFinite(c.width)&&Number.isFinite(c.height)&&c.width>0&&c.height>0;
     const quantityValid=Number.isSafeInteger(c.quantity)&&c.quantity>0;
     $('#sp-size-error').textContent=sizeValid?'':isRound?'Укажите диаметр больше нуля.':'Укажите ширину и высоту больше нуля.';
@@ -50,7 +61,13 @@
     for(const field of ['#sp-width','#sp-height'])$(field).setAttribute('aria-invalid',String(!sizeValid));
     $('#sp-quantity').setAttribute('aria-invalid',String(!quantityValid));
     result=sizeValid&&quantityValid?calculate(c):null;
-    if(sizeValid&&quantityValid&&!result)$('#sp-size-error').textContent='Эти параметры не удалось рассчитать. Проверьте введённые значения.';
+    if(sizeValid&&quantityValid&&!result)$('#sp-size-error').textContent=isPaper?'Наклейка не помещается на рабочее поле листа. Уменьшите размер.':is3DPack?'Проверьте размеры внутренних стикеров и их количество: элементы должны помещаться на подложке.':'Эти параметры не удалось рассчитать. Проверьте введённые значения.';
+    if(is3DPack){
+      const capacity=window.TEXT_3D_PACK_CAPACITY(c);
+      $('#sp-pack-layout').textContent=`На подложке помещается до ${new Intl.NumberFormat('ru-RU').format(capacity)} элементов при расстоянии 10 мм по расчётной модели.`;
+      for(const field of ['sp-sticker-width','sp-sticker-height','sp-per-pack'])$('#'+field).setAttribute('aria-invalid',String(!result));
+    }
+    if($('#sp-layout-result'))$('#sp-layout-result').textContent=result?isPaper?`${result.perSheet} шт. на листе · ${result.sheets} листов SRA3${result.discount?' · скидка '+Math.round(result.discount*100)+'% на лист':''}`:is3DPack?`${c.perPack} стикеров в наборе · ${new Intl.NumberFormat('ru-RU').format(result.innerQuantity)} стикеров во всём тираже`:extraDescription(c):'';
     const baseline=sizeValid?calculate({...c,quantity:quantities[0]}):null;
     for(const q of quantities){
       const estimate=sizeValid?calculate({...c,quantity:q}):null;
@@ -70,11 +87,13 @@
     $('#sp-add').disabled=!result||busy;$('#sp-mobile-total').disabled=!result||busy;$('#sp-download').disabled=!result;
     $('#sp-copy').disabled=!result;
     const notes=[];
-    const lower=is3D?5:50,upper=is3D?5000:10000;
-    if(c.quantity<lower&&quantityValid)notes.push(`Для тиража меньше ${lower} используется цена за ${unitName} по тарифу ${lower} шт.`);
-    if(c.quantity>upper)notes.push(`Для тиража больше ${new Intl.NumberFormat('ru-RU').format(upper)} используется цена за ${unitName} по этому тиражу.`);
-    if(c.width*c.height<400&&sizeValid)notes.push('Для этой площади используется минимальная размерная база 20 × 20 мм.');
-    if(c.width*c.height>22500)notes.push('Размер больше табличной базы: цена рассчитывается по продолжению тарифа 100 × 100 — 150 × 150 мм. Возможность изготовления согласуем по макету.');
+    const lower=is3D?5:50,upper=is3D?5000:10000,tariffCount=is3DPack?c.quantity*c.perPack:c.quantity,area=is3DPack?c.stickerWidth*c.stickerHeight:c.width*c.height;
+    if(!isPaper){
+      if(tariffCount<lower&&quantityValid)notes.push(`Для тиража меньше ${lower} используется тариф ${lower} шт.${is3DPack?' внутренних стикеров':''}.`);
+      if(tariffCount>upper)notes.push(`Для тиража больше ${new Intl.NumberFormat('ru-RU').format(upper)} используется тариф этого количества${is3DPack?' внутренних стикеров':''}.`);
+      if(area<400&&sizeValid)notes.push('Для этой площади используется минимальная размерная база 20 × 20 мм.');
+      if(area>22500)notes.push('Размер больше табличной базы: цена рассчитывается по продолжению тарифа 100 × 100 — 150 × 150 мм. Возможность изготовления согласуем по макету.');
+    }else if(result)notes.push(`Рабочее поле ${result.workingWidth} × ${result.workingHeight} мм, зазор ${result.gap} мм. Выбираем более вместительную раскладку из двух ориентаций.`);
     $('#sp-tariff-note').textContent=notes.join(' ');
     if(previous)$('#sp-add').innerHTML='Сохранить изменения';
   }
@@ -83,12 +102,18 @@
     const g=button.dataset.spGroup,v=button.dataset.spValue;
     if(g==='print'){state.print=v;if(v==='vinyl')state.material='white';}
     if(g==='material')state.material=v;
+    if(g==='cut')state.cut=v;
+    if(g==='shape'){
+      const current=configuration();state.width=current.width;state.height=current.height;state.shape=v;isRound=v==='round';if(isRound)state.height=state.width;
+      $('#sp-width').value=state.width;$('#sp-height').value=state.height;
+      customSize=!sizePresets().some(([w,h])=>w===state.width&&h===state.height);renderSizes();
+    }
     if(g==='size'){customSize=v==='custom';if(!customSize){[state.width,state.height]=v.split(',').map(Number);$('#sp-width').value=state.width;$('#sp-height').value=state.height;}}
     if(g==='quantity'){customQuantity=v==='custom';if(!customQuantity){state.quantity=Number(v);$('#sp-quantity').value=state.quantity;}}
     sync();
     if(v==='custom')$(g==='size'?'#sp-width':'#sp-quantity').focus();
   });
-  for(const field of ['#sp-width','#sp-height','#sp-quantity'])$(field).addEventListener('input',sync);
+  for(const field of ['#sp-width','#sp-height','#sp-quantity','#sp-sticker-width','#sp-sticker-height','#sp-per-pack'])$(field)?.addEventListener('input',sync);
   function showFile(){
     $('#sp-file-label').textContent=selectedFile?selectedFile.name:'Загрузите макет';
     $('#sp-file-status').textContent=selectedFile?`Выбран: ${(selectedFile.size/1024/1024).toFixed(2)} МБ. Сохраним вместе с расчётом в корзине.`:'Можно прикрепить позже в корзине.';

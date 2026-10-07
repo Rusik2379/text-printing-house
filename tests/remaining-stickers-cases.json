@@ -1,0 +1,3101 @@
+[
+  {
+    "kind": "paper",
+    "c": {
+      "width": 50,
+      "height": 40,
+      "quantity": 1,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 320,
+      "subtotal": 320,
+      "total": 320,
+      "perSheet": 45,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 50,
+      "height": 40,
+      "quantity": 48,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 13.333333333333334,
+      "subtotal": 640,
+      "total": 640,
+      "perSheet": 45,
+      "sheets": 2,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 50,
+      "height": 40,
+      "quantity": 100,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 9.6,
+      "subtotal": 960,
+      "total": 960,
+      "perSheet": 45,
+      "sheets": 3,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 50,
+      "height": 40,
+      "quantity": 500,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 6.528,
+      "subtotal": 3264,
+      "total": 3264,
+      "perSheet": 45,
+      "sheets": 12,
+      "discount": 0.15
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 50,
+      "height": 40,
+      "quantity": 1000,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 5.888,
+      "subtotal": 5888,
+      "total": 5888,
+      "perSheet": 45,
+      "sheets": 23,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 50,
+      "height": 40,
+      "quantity": 10001,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 5.708229177082292,
+      "subtotal": 57088,
+      "total": 57088,
+      "perSheet": 45,
+      "sheets": 223,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 152,
+      "height": 108,
+      "quantity": 1,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 320,
+      "subtotal": 320,
+      "total": 320,
+      "perSheet": 4,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 152,
+      "height": 108,
+      "quantity": 48,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 68,
+      "subtotal": 3264,
+      "total": 3264,
+      "perSheet": 4,
+      "sheets": 12,
+      "discount": 0.15
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 152,
+      "height": 108,
+      "quantity": 100,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 64,
+      "subtotal": 6400,
+      "total": 6400,
+      "perSheet": 4,
+      "sheets": 25,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 152,
+      "height": 108,
+      "quantity": 500,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 64,
+      "subtotal": 32000,
+      "total": 32000,
+      "perSheet": 4,
+      "sheets": 125,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 152,
+      "height": 108,
+      "quantity": 1000,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 64,
+      "subtotal": 64000,
+      "total": 64000,
+      "perSheet": 4,
+      "sheets": 250,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 152,
+      "height": 108,
+      "quantity": 10001,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 64.01919808019198,
+      "subtotal": 640256,
+      "total": 640256,
+      "perSheet": 4,
+      "sheets": 2501,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 280,
+      "height": 410,
+      "quantity": 1,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 320,
+      "subtotal": 320,
+      "total": 320,
+      "perSheet": 1,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 280,
+      "height": 410,
+      "quantity": 48,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 256,
+      "subtotal": 12288,
+      "total": 12288,
+      "perSheet": 1,
+      "sheets": 48,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 280,
+      "height": 410,
+      "quantity": 100,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 256,
+      "subtotal": 25600,
+      "total": 25600,
+      "perSheet": 1,
+      "sheets": 100,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 280,
+      "height": 410,
+      "quantity": 500,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 256,
+      "subtotal": 128000,
+      "total": 128000,
+      "perSheet": 1,
+      "sheets": 500,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 280,
+      "height": 410,
+      "quantity": 1000,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 256,
+      "subtotal": 256000,
+      "total": 256000,
+      "perSheet": 1,
+      "sheets": 1000,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 280,
+      "height": 410,
+      "quantity": 10001,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 256,
+      "subtotal": 2560256,
+      "total": 2560256,
+      "perSheet": 1,
+      "sheets": 10001,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 304,
+      "height": 434,
+      "quantity": 1,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 304,
+      "height": 434,
+      "quantity": 48,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 304,
+      "height": 434,
+      "quantity": 100,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 304,
+      "height": 434,
+      "quantity": 500,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 304,
+      "height": 434,
+      "quantity": 1000,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 304,
+      "height": 434,
+      "quantity": 10001,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 200,
+      "height": 300,
+      "quantity": 1,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 320,
+      "subtotal": 320,
+      "total": 320,
+      "perSheet": 1,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 200,
+      "height": 300,
+      "quantity": 48,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 256,
+      "subtotal": 12288,
+      "total": 12288,
+      "perSheet": 1,
+      "sheets": 48,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 200,
+      "height": 300,
+      "quantity": 100,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 256,
+      "subtotal": 25600,
+      "total": 25600,
+      "perSheet": 1,
+      "sheets": 100,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 200,
+      "height": 300,
+      "quantity": 500,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 256,
+      "subtotal": 128000,
+      "total": 128000,
+      "perSheet": 1,
+      "sheets": 500,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 200,
+      "height": 300,
+      "quantity": 1000,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 256,
+      "subtotal": 256000,
+      "total": 256000,
+      "perSheet": 1,
+      "sheets": 1000,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 200,
+      "height": 300,
+      "quantity": 10001,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 256,
+      "subtotal": 2560256,
+      "total": 2560256,
+      "perSheet": 1,
+      "sheets": 10001,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 500,
+      "height": 500,
+      "quantity": 1,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 500,
+      "height": 500,
+      "quantity": 48,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 500,
+      "height": 500,
+      "quantity": 100,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 500,
+      "height": 500,
+      "quantity": 500,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 500,
+      "height": 500,
+      "quantity": 1000,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 500,
+      "height": 500,
+      "quantity": 10001,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 1,
+      "height": 1,
+      "quantity": 1,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 320,
+      "subtotal": 320,
+      "total": 320,
+      "perSheet": 7210,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 1,
+      "height": 1,
+      "quantity": 48,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 6.666666666666667,
+      "subtotal": 320,
+      "total": 320,
+      "perSheet": 7210,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 1,
+      "height": 1,
+      "quantity": 100,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 3.2,
+      "subtotal": 320,
+      "total": 320,
+      "perSheet": 7210,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 1,
+      "height": 1,
+      "quantity": 500,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 0.64,
+      "subtotal": 320,
+      "total": 320,
+      "perSheet": 7210,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 1,
+      "height": 1,
+      "quantity": 1000,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 0.32,
+      "subtotal": 320,
+      "total": 320,
+      "perSheet": 7210,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 1,
+      "height": 1,
+      "quantity": 10001,
+      "cut": "yes",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 0.063993600639936,
+      "subtotal": 640,
+      "total": 640,
+      "perSheet": 7210,
+      "sheets": 2,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 50,
+      "height": 40,
+      "quantity": 1,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 150,
+      "subtotal": 150,
+      "total": 150,
+      "perSheet": 60,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 50,
+      "height": 40,
+      "quantity": 48,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 3.125,
+      "subtotal": 150,
+      "total": 150,
+      "perSheet": 60,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 50,
+      "height": 40,
+      "quantity": 100,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 3,
+      "subtotal": 300,
+      "total": 300,
+      "perSheet": 60,
+      "sheets": 2,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 50,
+      "height": 40,
+      "quantity": 500,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 2.43,
+      "subtotal": 1215,
+      "total": 1215,
+      "perSheet": 60,
+      "sheets": 9,
+      "discount": 0.1
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 50,
+      "height": 40,
+      "quantity": 1000,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 2.1675,
+      "subtotal": 2167.5,
+      "total": 2167.5,
+      "perSheet": 60,
+      "sheets": 17,
+      "discount": 0.15
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 50,
+      "height": 40,
+      "quantity": 10001,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 2.0037996200379964,
+      "subtotal": 20040,
+      "total": 20040,
+      "perSheet": 60,
+      "sheets": 167,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 152,
+      "height": 108,
+      "quantity": 1,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 150,
+      "subtotal": 150,
+      "total": 150,
+      "perSheet": 8,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 152,
+      "height": 108,
+      "quantity": 48,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 17.8125,
+      "subtotal": 855,
+      "total": 855,
+      "perSheet": 8,
+      "sheets": 6,
+      "discount": 0.05
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 152,
+      "height": 108,
+      "quantity": 100,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 16.575,
+      "subtotal": 1657.5,
+      "total": 1657.5,
+      "perSheet": 8,
+      "sheets": 13,
+      "discount": 0.15
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 152,
+      "height": 108,
+      "quantity": 500,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 15.12,
+      "subtotal": 7560,
+      "total": 7560,
+      "perSheet": 8,
+      "sheets": 63,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 152,
+      "height": 108,
+      "quantity": 1000,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 15,
+      "subtotal": 15000,
+      "total": 15000,
+      "perSheet": 8,
+      "sheets": 125,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 152,
+      "height": 108,
+      "quantity": 10001,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 15.01049895010499,
+      "subtotal": 150120,
+      "total": 150120,
+      "perSheet": 8,
+      "sheets": 1251,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 280,
+      "height": 410,
+      "quantity": 1,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 150,
+      "subtotal": 150,
+      "total": 150,
+      "perSheet": 1,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 280,
+      "height": 410,
+      "quantity": 48,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 120,
+      "subtotal": 5760,
+      "total": 5760,
+      "perSheet": 1,
+      "sheets": 48,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 280,
+      "height": 410,
+      "quantity": 100,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 120,
+      "subtotal": 12000,
+      "total": 12000,
+      "perSheet": 1,
+      "sheets": 100,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 280,
+      "height": 410,
+      "quantity": 500,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 120,
+      "subtotal": 60000,
+      "total": 60000,
+      "perSheet": 1,
+      "sheets": 500,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 280,
+      "height": 410,
+      "quantity": 1000,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 120,
+      "subtotal": 120000,
+      "total": 120000,
+      "perSheet": 1,
+      "sheets": 1000,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 280,
+      "height": 410,
+      "quantity": 10001,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 120,
+      "subtotal": 1200120,
+      "total": 1200120,
+      "perSheet": 1,
+      "sheets": 10001,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 304,
+      "height": 434,
+      "quantity": 1,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 150,
+      "subtotal": 150,
+      "total": 150,
+      "perSheet": 1,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 304,
+      "height": 434,
+      "quantity": 48,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 120,
+      "subtotal": 5760,
+      "total": 5760,
+      "perSheet": 1,
+      "sheets": 48,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 304,
+      "height": 434,
+      "quantity": 100,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 120,
+      "subtotal": 12000,
+      "total": 12000,
+      "perSheet": 1,
+      "sheets": 100,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 304,
+      "height": 434,
+      "quantity": 500,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 120,
+      "subtotal": 60000,
+      "total": 60000,
+      "perSheet": 1,
+      "sheets": 500,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 304,
+      "height": 434,
+      "quantity": 1000,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 120,
+      "subtotal": 120000,
+      "total": 120000,
+      "perSheet": 1,
+      "sheets": 1000,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 304,
+      "height": 434,
+      "quantity": 10001,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 120,
+      "subtotal": 1200120,
+      "total": 1200120,
+      "perSheet": 1,
+      "sheets": 10001,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 200,
+      "height": 300,
+      "quantity": 1,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 150,
+      "subtotal": 150,
+      "total": 150,
+      "perSheet": 2,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 200,
+      "height": 300,
+      "quantity": 48,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 60,
+      "subtotal": 2880,
+      "total": 2880,
+      "perSheet": 2,
+      "sheets": 24,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 200,
+      "height": 300,
+      "quantity": 100,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 60,
+      "subtotal": 6000,
+      "total": 6000,
+      "perSheet": 2,
+      "sheets": 50,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 200,
+      "height": 300,
+      "quantity": 500,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 60,
+      "subtotal": 30000,
+      "total": 30000,
+      "perSheet": 2,
+      "sheets": 250,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 200,
+      "height": 300,
+      "quantity": 1000,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 60,
+      "subtotal": 60000,
+      "total": 60000,
+      "perSheet": 2,
+      "sheets": 500,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 200,
+      "height": 300,
+      "quantity": 10001,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 60.00599940005999,
+      "subtotal": 600120,
+      "total": 600120,
+      "perSheet": 2,
+      "sheets": 5001,
+      "discount": 0.2
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 500,
+      "height": 500,
+      "quantity": 1,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 500,
+      "height": 500,
+      "quantity": 48,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 500,
+      "height": 500,
+      "quantity": 100,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 500,
+      "height": 500,
+      "quantity": 500,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 500,
+      "height": 500,
+      "quantity": 1000,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 500,
+      "height": 500,
+      "quantity": 10001,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": null
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 1,
+      "height": 1,
+      "quantity": 1,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 150,
+      "subtotal": 150,
+      "total": 150,
+      "perSheet": 131936,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 1,
+      "height": 1,
+      "quantity": 48,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 3.125,
+      "subtotal": 150,
+      "total": 150,
+      "perSheet": 131936,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 1,
+      "height": 1,
+      "quantity": 100,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 1.5,
+      "subtotal": 150,
+      "total": 150,
+      "perSheet": 131936,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 1,
+      "height": 1,
+      "quantity": 500,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 0.3,
+      "subtotal": 150,
+      "total": 150,
+      "perSheet": 131936,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 1,
+      "height": 1,
+      "quantity": 1000,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 0.15,
+      "subtotal": 150,
+      "total": 150,
+      "perSheet": 131936,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "paper",
+    "c": {
+      "width": 1,
+      "height": 1,
+      "quantity": 10001,
+      "cut": "no",
+      "print": "digital",
+      "material": "paper"
+    },
+    "expected": {
+      "unit": 0.014998500149985002,
+      "subtotal": 150,
+      "total": 150,
+      "perSheet": 131936,
+      "sheets": 1,
+      "discount": 0
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 10,
+      "height": 10,
+      "quantity": 1,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 28.2744,
+      "subtotal": 28.27,
+      "total": 800
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 10,
+      "height": 10,
+      "quantity": 50,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 28.2744,
+      "subtotal": 1413.72,
+      "total": 1413.72
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 10,
+      "height": 10,
+      "quantity": 75,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 21.2058,
+      "subtotal": 1590.44,
+      "total": 1590.44
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 10,
+      "height": 10,
+      "quantity": 100,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 14.1372,
+      "subtotal": 1413.72,
+      "total": 1413.72
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 10,
+      "height": 10,
+      "quantity": 1000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 3.7935,
+      "subtotal": 3793.5,
+      "total": 3793.5
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 10,
+      "height": 10,
+      "quantity": 5000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 3.1573,
+      "subtotal": 15786.5,
+      "total": 15786.5
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 10,
+      "height": 10,
+      "quantity": 10000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 2.9924,
+      "subtotal": 29924,
+      "total": 29924
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 10,
+      "height": 10,
+      "quantity": 11000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 2.9924,
+      "subtotal": 32916.4,
+      "total": 32916.4
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 30,
+      "height": 30,
+      "quantity": 1,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 28.2744,
+      "subtotal": 28.27,
+      "total": 800
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 30,
+      "height": 30,
+      "quantity": 50,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 28.2744,
+      "subtotal": 1413.72,
+      "total": 1413.72
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 30,
+      "height": 30,
+      "quantity": 75,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 21.2058,
+      "subtotal": 1590.44,
+      "total": 1590.44
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 30,
+      "height": 30,
+      "quantity": 100,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 14.1372,
+      "subtotal": 1413.72,
+      "total": 1413.72
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 30,
+      "height": 30,
+      "quantity": 1000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 6.3382,
+      "subtotal": 6338.2,
+      "total": 6338.2
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 30,
+      "height": 30,
+      "quantity": 5000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 5.4193,
+      "subtotal": 27096.5,
+      "total": 27096.5
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 30,
+      "height": 30,
+      "quantity": 10000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 5.113,
+      "subtotal": 51130,
+      "total": 51130
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 30,
+      "height": 30,
+      "quantity": 11000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 5.113,
+      "subtotal": 56243,
+      "total": 56243
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 50,
+      "height": 50,
+      "quantity": 1,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 28.2744,
+      "subtotal": 28.27,
+      "total": 800
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 50,
+      "height": 50,
+      "quantity": 50,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 28.2744,
+      "subtotal": 1413.72,
+      "total": 1413.72
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 50,
+      "height": 50,
+      "quantity": 75,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 22.9023,
+      "subtotal": 1717.67,
+      "total": 1717.67
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 50,
+      "height": 50,
+      "quantity": 100,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 17.5301,
+      "subtotal": 1753.01,
+      "total": 1753.01
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 50,
+      "height": 50,
+      "quantity": 1000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 13.8073,
+      "subtotal": 13807.3,
+      "total": 13807.3
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 50,
+      "height": 50,
+      "quantity": 5000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 11.3098,
+      "subtotal": 56549,
+      "total": 56549
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 50,
+      "height": 50,
+      "quantity": 10000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 10.2259,
+      "subtotal": 102259,
+      "total": 102259
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 50,
+      "height": 50,
+      "quantity": 11000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 10.2259,
+      "subtotal": 112484.9,
+      "total": 112484.9
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 77,
+      "height": 91,
+      "quantity": 1,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 43.4735,
+      "subtotal": 43.47,
+      "total": 800
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 77,
+      "height": 91,
+      "quantity": 50,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 43.4735,
+      "subtotal": 2173.68,
+      "total": 2173.68
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 77,
+      "height": 91,
+      "quantity": 75,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 40.8146,
+      "subtotal": 3061.1,
+      "total": 3061.1
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 77,
+      "height": 91,
+      "quantity": 100,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 38.1556,
+      "subtotal": 3815.56,
+      "total": 3815.56
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 77,
+      "height": 91,
+      "quantity": 1000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 27.9891,
+      "subtotal": 27989.1,
+      "total": 27989.1
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 77,
+      "height": 91,
+      "quantity": 5000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 23.1464,
+      "subtotal": 115732,
+      "total": 115732
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 77,
+      "height": 91,
+      "quantity": 10000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 21.2607,
+      "subtotal": 212607,
+      "total": 212607
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 77,
+      "height": 91,
+      "quantity": 11000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 21.2607,
+      "subtotal": 233867.7,
+      "total": 233867.7
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 150,
+      "height": 150,
+      "quantity": 1,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 109.257,
+      "subtotal": 109.26,
+      "total": 800
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 150,
+      "height": 150,
+      "quantity": 50,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 109.257,
+      "subtotal": 5462.85,
+      "total": 5462.85
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 150,
+      "height": 150,
+      "quantity": 75,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 105.7345,
+      "subtotal": 7930.09,
+      "total": 7930.09
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 150,
+      "height": 150,
+      "quantity": 100,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 102.212,
+      "subtotal": 10221.2,
+      "total": 10221.2
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 150,
+      "height": 150,
+      "quantity": 1000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 70.9923,
+      "subtotal": 70992.3,
+      "total": 70992.3
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 150,
+      "height": 150,
+      "quantity": 5000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 42.388,
+      "subtotal": 211940,
+      "total": 211940
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 150,
+      "height": 150,
+      "quantity": 10000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 41.0686,
+      "subtotal": 410686,
+      "total": 410686
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 150,
+      "height": 150,
+      "quantity": 11000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 41.0686,
+      "subtotal": 451754.6,
+      "total": 451754.6
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "quantity": 1,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 279.4041,
+      "subtotal": 279.4,
+      "total": 800
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "quantity": 50,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 279.4041,
+      "subtotal": 13970.21,
+      "total": 13970.21
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "quantity": 75,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 273.6272,
+      "subtotal": 20522.04,
+      "total": 20522.04
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "quantity": 100,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 267.85,
+      "subtotal": 26785,
+      "total": 26785
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "quantity": 1000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 179.664,
+      "subtotal": 179664,
+      "total": 179664
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "quantity": 5000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 81.3926,
+      "subtotal": 406963,
+      "total": 406963
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "quantity": 10000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 83.0042,
+      "subtotal": 830042,
+      "total": 830042
+    }
+  },
+  {
+    "kind": "uv-dtf",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "quantity": 11000,
+      "print": "uv",
+      "material": "transfer",
+      "shape": "rectangle"
+    },
+    "expected": {
+      "unit": 83.0042,
+      "subtotal": 913046.2,
+      "total": 913046.2
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 110,
+      "height": 110,
+      "stickerWidth": 25,
+      "stickerHeight": 25,
+      "perPack": 9,
+      "quantity": 1,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 567.42,
+      "subtotal": 567.42,
+      "total": 1000,
+      "capacity": 9
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 110,
+      "height": 110,
+      "stickerWidth": 25,
+      "stickerHeight": 25,
+      "perPack": 9,
+      "quantity": 5,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 237.37,
+      "subtotal": 1186.85,
+      "total": 1186.85,
+      "capacity": 9
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 110,
+      "height": 110,
+      "stickerWidth": 25,
+      "stickerHeight": 25,
+      "perPack": 9,
+      "quantity": 17,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 179.66,
+      "subtotal": 3054.22,
+      "total": 3054.22,
+      "capacity": 9
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 110,
+      "height": 110,
+      "stickerWidth": 25,
+      "stickerHeight": 25,
+      "perPack": 9,
+      "quantity": 50,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 161.58,
+      "subtotal": 8079,
+      "total": 8079,
+      "capacity": 9
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 110,
+      "height": 110,
+      "stickerWidth": 25,
+      "stickerHeight": 25,
+      "perPack": 9,
+      "quantity": 100,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 150.76,
+      "subtotal": 15076,
+      "total": 15076,
+      "capacity": 9
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 110,
+      "height": 110,
+      "stickerWidth": 25,
+      "stickerHeight": 25,
+      "perPack": 9,
+      "quantity": 600,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 128.12,
+      "subtotal": 76872,
+      "total": 76872,
+      "capacity": 9
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 110,
+      "height": 110,
+      "stickerWidth": 25,
+      "stickerHeight": 25,
+      "perPack": 9,
+      "quantity": 5000,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 128.12,
+      "subtotal": 640600,
+      "total": 640600,
+      "capacity": 9
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 30,
+      "stickerHeight": 30,
+      "perPack": 15,
+      "quantity": 1,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 852.3,
+      "subtotal": 852.3,
+      "total": 1000,
+      "capacity": 15
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 30,
+      "stickerHeight": 30,
+      "perPack": 15,
+      "quantity": 5,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 468,
+      "subtotal": 2340,
+      "total": 2340,
+      "capacity": 15
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 30,
+      "stickerHeight": 30,
+      "perPack": 15,
+      "quantity": 17,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 398.09,
+      "subtotal": 6767.53,
+      "total": 6767.53,
+      "capacity": 15
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 30,
+      "stickerHeight": 30,
+      "perPack": 15,
+      "quantity": 50,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 337.86,
+      "subtotal": 16893,
+      "total": 16893,
+      "capacity": 15
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 30,
+      "stickerHeight": 30,
+      "perPack": 15,
+      "quantity": 100,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 306.36,
+      "subtotal": 30636,
+      "total": 30636,
+      "capacity": 15
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 30,
+      "stickerHeight": 30,
+      "perPack": 15,
+      "quantity": 600,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 258.48,
+      "subtotal": 155088,
+      "total": 155088,
+      "capacity": 15
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 30,
+      "stickerHeight": 30,
+      "perPack": 15,
+      "quantity": 5000,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 258.48,
+      "subtotal": 1292400,
+      "total": 1292400,
+      "capacity": 15
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 30,
+      "stickerHeight": 30,
+      "perPack": 16,
+      "quantity": 1,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": null
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 30,
+      "stickerHeight": 30,
+      "perPack": 16,
+      "quantity": 5,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": null
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 30,
+      "stickerHeight": 30,
+      "perPack": 16,
+      "quantity": 17,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": null
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 30,
+      "stickerHeight": 30,
+      "perPack": 16,
+      "quantity": 50,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": null
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 30,
+      "stickerHeight": 30,
+      "perPack": 16,
+      "quantity": 100,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": null
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 30,
+      "stickerHeight": 30,
+      "perPack": 16,
+      "quantity": 600,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": null
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 30,
+      "stickerHeight": 30,
+      "perPack": 16,
+      "quantity": 5000,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": null
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 20,
+      "stickerHeight": 40,
+      "perPack": 5,
+      "quantity": 1,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 487.57,
+      "subtotal": 487.57,
+      "total": 1000,
+      "capacity": 20
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 20,
+      "stickerHeight": 40,
+      "perPack": 5,
+      "quantity": 5,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 192.68,
+      "subtotal": 963.4,
+      "total": 1000,
+      "capacity": 20
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 20,
+      "stickerHeight": 40,
+      "perPack": 5,
+      "quantity": 17,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 137.47,
+      "subtotal": 2336.99,
+      "total": 2336.99,
+      "capacity": 20
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 20,
+      "stickerHeight": 40,
+      "perPack": 5,
+      "quantity": 50,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 119.44,
+      "subtotal": 5972,
+      "total": 5972,
+      "capacity": 20
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 20,
+      "stickerHeight": 40,
+      "perPack": 5,
+      "quantity": 100,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 107.78,
+      "subtotal": 10778,
+      "total": 10778,
+      "capacity": 20
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 20,
+      "stickerHeight": 40,
+      "perPack": 5,
+      "quantity": 600,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 86.1,
+      "subtotal": 51660,
+      "total": 51660,
+      "capacity": 20
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 150,
+      "height": 210,
+      "stickerWidth": 20,
+      "stickerHeight": 40,
+      "perPack": 5,
+      "quantity": 5000,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 80.71,
+      "subtotal": 403550,
+      "total": 403550,
+      "capacity": 20
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "stickerWidth": 80,
+      "stickerHeight": 50,
+      "perPack": 4,
+      "quantity": 1,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 1022.09,
+      "subtotal": 1022.09,
+      "total": 1022.09,
+      "capacity": 8
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "stickerWidth": 80,
+      "stickerHeight": 50,
+      "perPack": 4,
+      "quantity": 5,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 641.58,
+      "subtotal": 3207.9,
+      "total": 3207.9,
+      "capacity": 8
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "stickerWidth": 80,
+      "stickerHeight": 50,
+      "perPack": 4,
+      "quantity": 17,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 459.4,
+      "subtotal": 7809.8,
+      "total": 7809.8,
+      "capacity": 8
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "stickerWidth": 80,
+      "stickerHeight": 50,
+      "perPack": 4,
+      "quantity": 50,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 352.46,
+      "subtotal": 17623,
+      "total": 17623,
+      "capacity": 8
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "stickerWidth": 80,
+      "stickerHeight": 50,
+      "perPack": 4,
+      "quantity": 100,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 318.43,
+      "subtotal": 31843,
+      "total": 31843,
+      "capacity": 8
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "stickerWidth": 80,
+      "stickerHeight": 50,
+      "perPack": 4,
+      "quantity": 600,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 241.26,
+      "subtotal": 144756,
+      "total": 144756,
+      "capacity": 8
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "stickerWidth": 80,
+      "stickerHeight": 50,
+      "perPack": 4,
+      "quantity": 5000,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 214.88,
+      "subtotal": 1074400,
+      "total": 1074400,
+      "capacity": 8
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "stickerWidth": 160,
+      "stickerHeight": 160,
+      "perPack": 1,
+      "quantity": 1,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 980.78,
+      "subtotal": 980.78,
+      "total": 1000,
+      "capacity": 1
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "stickerWidth": 160,
+      "stickerHeight": 160,
+      "perPack": 1,
+      "quantity": 5,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 980.78,
+      "subtotal": 4903.9,
+      "total": 4903.9,
+      "capacity": 1
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "stickerWidth": 160,
+      "stickerHeight": 160,
+      "perPack": 1,
+      "quantity": 17,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 671.64,
+      "subtotal": 11417.88,
+      "total": 11417.88,
+      "capacity": 1
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "stickerWidth": 160,
+      "stickerHeight": 160,
+      "perPack": 1,
+      "quantity": 50,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 531.95,
+      "subtotal": 26597.5,
+      "total": 26597.5,
+      "capacity": 1
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "stickerWidth": 160,
+      "stickerHeight": 160,
+      "perPack": 1,
+      "quantity": 100,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 435.9,
+      "subtotal": 43590,
+      "total": 43590,
+      "capacity": 1
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "stickerWidth": 160,
+      "stickerHeight": 160,
+      "perPack": 1,
+      "quantity": 600,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 317.15,
+      "subtotal": 190290,
+      "total": 190290,
+      "capacity": 1
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 210,
+      "height": 297,
+      "stickerWidth": 160,
+      "stickerHeight": 160,
+      "perPack": 1,
+      "quantity": 5000,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": {
+      "unit": 214.56,
+      "subtotal": 1072800,
+      "total": 1072800,
+      "capacity": 1
+    }
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 10,
+      "height": 10,
+      "stickerWidth": 25,
+      "stickerHeight": 25,
+      "perPack": 1,
+      "quantity": 1,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": null
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 10,
+      "height": 10,
+      "stickerWidth": 25,
+      "stickerHeight": 25,
+      "perPack": 1,
+      "quantity": 5,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": null
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 10,
+      "height": 10,
+      "stickerWidth": 25,
+      "stickerHeight": 25,
+      "perPack": 1,
+      "quantity": 17,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": null
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 10,
+      "height": 10,
+      "stickerWidth": 25,
+      "stickerHeight": 25,
+      "perPack": 1,
+      "quantity": 50,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": null
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 10,
+      "height": 10,
+      "stickerWidth": 25,
+      "stickerHeight": 25,
+      "perPack": 1,
+      "quantity": 100,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": null
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 10,
+      "height": 10,
+      "stickerWidth": 25,
+      "stickerHeight": 25,
+      "perPack": 1,
+      "quantity": 600,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": null
+  },
+  {
+    "kind": "3d-pack",
+    "c": {
+      "width": 10,
+      "height": 10,
+      "stickerWidth": 25,
+      "stickerHeight": 25,
+      "perPack": 1,
+      "quantity": 5000,
+      "print": "uv",
+      "material": "white"
+    },
+    "expected": null
+  }
+]
