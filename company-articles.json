@@ -1,0 +1,1116 @@
+{
+  "source": {
+    "archive": "TEKST_HTML_site_FINAL_SEO_GEO_1100.zip",
+    "imported": "2026-10-06",
+    "company_pages": 10,
+    "preserved_article_paths": [
+      "company/article/skolko-stoit-raspechatat-dokument-a4-v-cherno-belom-i-tsvetnom-variante/",
+      "company/article/podgotovka-pdf-k-pechati-bez-obrezki-poley-i-teksta/",
+      "company/article/pechat-ili-kopirovanie-bolshogo-komplekta-dokumentov/",
+      "company/article/kakuyu-fotobumagu-vybrat-dlya-pechati-fotografiy-satinovuyu-ili-matovuyu/",
+      "company/article/kogda-stoit-laminirovat-dokument-i-kakoy-format-vybrat/",
+      "company/article/chem-otlichaetsya-plastikovaya-pruzhina-ot-metallicheskoy-pri-broshyurovke/",
+      "company/article/kak-podgotovit-diplom-k-pechati-i-tverdomu-perepletu/",
+      "company/article/kak-otskanirovat-sshitye-dokumenty-i-poluchit-udobnyy-pdf/",
+      "company/article/podgotovka-chertezhey-k-pechati-s-sohraneniem-masshtaba-i-chitaemosti-liniy/",
+      "company/article/v-kakom-formate-fayla-luchshe-otpravlyat-chertezhi-na-pechat/",
+      "company/article/vybor-tsvetnoy-i-cherno-beloy-pechati-dlya-chertezhey/",
+      "company/article/kak-rasschitat-stoimost-pechati-komplekta-proektnoy-dokumentatsii-raznyh-formatov/",
+      "company/article/kak-skladyvayut-chertezhi-do-a4-dlya-podshivki-v-proekt/",
+      "company/article/kak-vybrat-pruzhinu-dlya-komplekta-proektnoy-dokumentatsii/",
+      "company/article/kak-sdelat-kopiyu-bumazhnogo-chertezha-i-sohranit-ishodnyy-masshtab/",
+      "company/article/kak-otskanirovat-chertezh-formata-do-a3-v-pdf/",
+      "company/article/kak-raspechatat-vykroyku-ili-lekalo-v-masshtabe-1-k-1/",
+      "company/article/kakie-dannye-dolzhny-byt-na-vizitke-i-kak-podgotovit-ee-k-pechati/",
+      "company/article/kakuyu-plotnost-bumagi-vybrat-dlya-vizitok/",
+      "company/article/kak-vybrat-format-listovki-a6-a5-a4-ili-a3/",
+      "company/article/vybor-odnostoronney-i-dvustoronney-pechati-listovok/",
+      "company/article/chem-buklet-otlichaetsya-ot-listovki-i-kakoy-variant-vybrat-dlya-reklamy/",
+      "company/article/chem-broshyura-otlichaetsya-ot-kataloga-produktsii/",
+      "company/article/podgotovka-kataloga-k-pechati-s-chetkimi-fotografiyami-i-tekstom/",
+      "company/article/kak-vybrat-format-i-bumagu-dlya-afishi-meropriyatiya/",
+      "company/article/poleznaya-informatsiya-na-birke-tovara/",
+      "company/article/kakie-nakleyki-vybrat-dlya-upakovki-bumazhnye-stikery-ili-plenochnye-etiketki/",
+      "company/article/chem-vinilovye-nakleyki-otlichayutsya-ot-uf-nakleek/",
+      "company/article/vybor-razmera-figurnogo-stikera-s-sohraneniem-detaley-izobrazheniya/",
+      "company/article/kak-podgotovit-kontur-rezki-dlya-figurnyh-nakleek/",
+      "company/article/kak-rasschitat-kolichestvo-nakleek-na-liste-sra3/",
+      "company/article/v-chem-raznitsa-mezhdu-stikerpakom-i-otdelnymi-nakleykami/",
+      "company/article/kak-podobrat-razmer-plenochnoy-etiketki-dlya-banki-butylki-ili-korobki/",
+      "company/article/vybor-prozrachnoy-i-beloy-plenki-dlya-nakleek/",
+      "company/article/chto-takoe-uv-dtf-nakleyki-i-dlya-kakih-poverhnostey-ih-vybirayut/",
+      "company/article/kak-podgotovit-maket-3d-stikerov-s-obemnym-pokrytiem/",
+      "company/article/kak-sobrat-3d-stikerpak-i-rasschitat-ego-tirazh/",
+      "company/article/kakoy-material-vybrat-dlya-bannera-i-kak-podgotovit-maket-k-pechati/",
+      "company/article/chem-poster-otlichaetsya-ot-plakata-i-kakoy-format-vybrat/",
+      "company/article/kak-podgotovit-izobrazhenie-dlya-bolshogo-postera-bez-zametnoy-poteri-kachestva/",
+      "company/article/vybor-interernoy-uf-pechati-i-samokleyascheysya-plenki/",
+      "company/article/kak-podobrat-samokleyaschuyusya-plenku-dlya-oformleniya-vitriny/",
+      "company/article/chto-vybrat-dlya-fotografii-poster-pechat-na-holste-ili-nakatku-na-penokarton/",
+      "company/article/chem-nakatka-na-pvh-otlichaetsya-ot-nakatki-na-penokarton/",
+      "company/article/na-kakom-materiale-zakazat-tablichku-na-pvh-orgstekle-ili-kompozitnoy-paneli/",
+      "company/article/kak-podgotovit-maket-dlya-pryamoy-uf-pechati-na-zhestkom-materiale/",
+      "company/article/chem-plotternaya-rezka-plenki-otlichaetsya-ot-pechati-nakleyki/",
+      "company/article/kakuyu-plenku-vybrat-dlya-nakleyki-na-avtomobil-ili-steklo/",
+      "company/article/kak-podgotovit-fayl-dlya-lazernoy-rezki-akrila-ili-fanery/",
+      "company/article/kak-opredelit-protsent-zapolneniya-maketa-dlya-rascheta-lazernoy-gravirovki/"
+    ],
+    "sha256": "8b1b0301aa6f1763628c6ab855678cedfcb927d4a0f0c55e23ac737bca3d10c6",
+    "seo_workbook": "SEO_ТЕКСТ_FINAL_COMPACT_GEO_1100.xlsx",
+    "seo_sha256": "85e159b88caceaecd7b7a26064170429bc7ad82dda3f50076aec319154071880",
+    "seo_article_rows_verified": 150,
+    "seo_requirement_rows_verified": 55
+  },
+  "articles": [
+    {
+      "id": 1,
+      "title": "Сколько стоит распечатать документ А4 в чёрно-белом и цветном варианте",
+      "category": "Копицентр",
+      "path": "company/article/skolko-stoit-raspechatat-dokument-a4-v-cherno-belom-i-tsvetnom-variante/",
+      "source_route": "/articles/stoimost-pechati-a4/"
+    },
+    {
+      "id": 2,
+      "title": "Подготовка PDF к печати без обрезки полей и текста",
+      "category": "Копицентр",
+      "path": "company/article/podgotovka-pdf-k-pechati-bez-obrezki-poley-i-teksta/",
+      "source_route": "/articles/podgotovka-pdf/"
+    },
+    {
+      "id": 3,
+      "title": "Печать или копирование большого комплекта документов",
+      "category": "Копицентр",
+      "path": "company/article/pechat-ili-kopirovanie-bolshogo-komplekta-dokumentov/",
+      "source_route": "/articles/pechat-ili-kopirovanie/"
+    },
+    {
+      "id": 4,
+      "title": "Какую фотобумагу выбрать для печати фотографий сатиновую или матовую",
+      "category": "Копицентр",
+      "path": "company/article/kakuyu-fotobumagu-vybrat-dlya-pechati-fotografiy-satinovuyu-ili-matovuyu/",
+      "source_route": "/articles/fotobumaga-satin-matovaya/"
+    },
+    {
+      "id": 5,
+      "title": "Когда стоит ламинировать документ и какой формат выбрать",
+      "category": "Копицентр",
+      "path": "company/article/kogda-stoit-laminirovat-dokument-i-kakoy-format-vybrat/",
+      "source_route": "/articles/laminirovanie-dokumentov/"
+    },
+    {
+      "id": 6,
+      "title": "Чем отличается пластиковая пружина от металлической при брошюровке",
+      "category": "Копицентр",
+      "path": "company/article/chem-otlichaetsya-plastikovaya-pruzhina-ot-metallicheskoy-pri-broshyurovke/",
+      "source_route": "/articles/plastikovaya-metallicheskaya-pruzhina/"
+    },
+    {
+      "id": 7,
+      "title": "Как подготовить диплом к печати и твёрдому переплёту",
+      "category": "Копицентр",
+      "path": "company/article/kak-podgotovit-diplom-k-pechati-i-tverdomu-perepletu/",
+      "source_route": "/articles/podgotovka-diploma/"
+    },
+    {
+      "id": 8,
+      "title": "Как отсканировать сшитые документы и получить удобный PDF",
+      "category": "Копицентр",
+      "path": "company/article/kak-otskanirovat-sshitye-dokumenty-i-poluchit-udobnyy-pdf/",
+      "source_route": "/articles/skanirovanie-sshityh-dokumentov/"
+    },
+    {
+      "id": 9,
+      "title": "Подготовка чертежей к печати с сохранением масштаба и читаемости линий",
+      "category": "Проектная документация",
+      "path": "company/article/podgotovka-chertezhey-k-pechati-s-sohraneniem-masshtaba-i-chitaemosti-liniy/",
+      "source_route": "/articles/masshtab-chertezhey/"
+    },
+    {
+      "id": 10,
+      "title": "В каком формате файла лучше отправлять чертежи на печать",
+      "category": "Проектная документация",
+      "path": "company/article/v-kakom-formate-fayla-luchshe-otpravlyat-chertezhi-na-pechat/",
+      "source_route": "/articles/format-fayla-chertezha/"
+    },
+    {
+      "id": 11,
+      "title": "Выбор цветной и чёрно-белой печати для чертежей",
+      "category": "Проектная документация",
+      "path": "company/article/vybor-tsvetnoy-i-cherno-beloy-pechati-dlya-chertezhey/",
+      "source_route": "/articles/tsvet-chertezhey/"
+    },
+    {
+      "id": 12,
+      "title": "Как рассчитать стоимость печати комплекта проектной документации разных форматов",
+      "category": "Проектная документация",
+      "path": "company/article/kak-rasschitat-stoimost-pechati-komplekta-proektnoy-dokumentatsii-raznyh-formatov/",
+      "source_route": "/articles/raschet-komplekta-proekta/"
+    },
+    {
+      "id": 13,
+      "title": "Как складывают чертежи до А4 для подшивки в проект",
+      "category": "Проектная документация",
+      "path": "company/article/kak-skladyvayut-chertezhi-do-a4-dlya-podshivki-v-proekt/",
+      "source_route": "/articles/faltsovka-do-a4/"
+    },
+    {
+      "id": 14,
+      "title": "Как выбрать пружину для комплекта проектной документации",
+      "category": "Проектная документация",
+      "path": "company/article/kak-vybrat-pruzhinu-dlya-komplekta-proektnoy-dokumentatsii/",
+      "source_route": "/articles/pruzhina-dlya-proekta/"
+    },
+    {
+      "id": 15,
+      "title": "Как сделать копию бумажного чертежа и сохранить исходный масштаб",
+      "category": "Проектная документация",
+      "path": "company/article/kak-sdelat-kopiyu-bumazhnogo-chertezha-i-sohranit-ishodnyy-masshtab/",
+      "source_route": "/articles/kopiya-chertezha/"
+    },
+    {
+      "id": 16,
+      "title": "Как отсканировать чертёж формата до А3 в PDF",
+      "category": "Проектная документация",
+      "path": "company/article/kak-otskanirovat-chertezh-formata-do-a3-v-pdf/",
+      "source_route": "/articles/skanirovanie-chertezha-a3/"
+    },
+    {
+      "id": 17,
+      "title": "Как распечатать выкройку или лекало в масштабе 1 к 1",
+      "category": "Проектная документация",
+      "path": "company/article/kak-raspechatat-vykroyku-ili-lekalo-v-masshtabe-1-k-1/",
+      "source_route": "/articles/vykroyka-masshtab-1-k-1/"
+    },
+    {
+      "id": 18,
+      "title": "Какие данные должны быть на визитке и как подготовить её к печати",
+      "category": "Листовая полиграфия",
+      "path": "company/article/kakie-dannye-dolzhny-byt-na-vizitke-i-kak-podgotovit-ee-k-pechati/",
+      "source_route": "/articles/maket-vizitki/"
+    },
+    {
+      "id": 19,
+      "title": "Какую плотность бумаги выбрать для визиток",
+      "category": "Листовая полиграфия",
+      "path": "company/article/kakuyu-plotnost-bumagi-vybrat-dlya-vizitok/",
+      "source_route": "/articles/bumaga-vizitki/"
+    },
+    {
+      "id": 20,
+      "title": "Как выбрать формат листовки А6 А5 А4 или А3",
+      "category": "Листовая полиграфия",
+      "path": "company/article/kak-vybrat-format-listovki-a6-a5-a4-ili-a3/",
+      "source_route": "/articles/format-listovki/"
+    },
+    {
+      "id": 21,
+      "title": "Выбор односторонней и двусторонней печати листовок",
+      "category": "Листовая полиграфия",
+      "path": "company/article/vybor-odnostoronney-i-dvustoronney-pechati-listovok/",
+      "source_route": "/articles/storony-listovki/"
+    },
+    {
+      "id": 22,
+      "title": "Чем буклет отличается от листовки и какой вариант выбрать для рекламы",
+      "category": "Листовая полиграфия",
+      "path": "company/article/chem-buklet-otlichaetsya-ot-listovki-i-kakoy-variant-vybrat-dlya-reklamy/",
+      "source_route": "/articles/buklet-ili-listovka/"
+    },
+    {
+      "id": 23,
+      "title": "Чем брошюра отличается от каталога продукции",
+      "category": "Листовая полиграфия",
+      "path": "company/article/chem-broshyura-otlichaetsya-ot-kataloga-produktsii/",
+      "source_route": "/articles/broshyura-ili-katalog/"
+    },
+    {
+      "id": 24,
+      "title": "Подготовка каталога к печати с чёткими фотографиями и текстом",
+      "category": "Листовая полиграфия",
+      "path": "company/article/podgotovka-kataloga-k-pechati-s-chetkimi-fotografiyami-i-tekstom/",
+      "source_route": "/articles/podgotovka-kataloga/"
+    },
+    {
+      "id": 25,
+      "title": "Как выбрать формат и бумагу для афиши мероприятия",
+      "category": "Листовая полиграфия",
+      "path": "company/article/kak-vybrat-format-i-bumagu-dlya-afishi-meropriyatiya/",
+      "source_route": "/articles/bumaga-afishi/"
+    },
+    {
+      "id": 26,
+      "title": "Полезная информация на бирке товара",
+      "category": "Листовая полиграфия",
+      "path": "company/article/poleznaya-informatsiya-na-birke-tovara/",
+      "source_route": "/articles/informatsiya-na-birke/"
+    },
+    {
+      "id": 27,
+      "title": "Какие наклейки выбрать для упаковки бумажные стикеры или плёночные этикетки",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/kakie-nakleyki-vybrat-dlya-upakovki-bumazhnye-stikery-ili-plenochnye-etiketki/",
+      "source_route": "/articles/bumazhnye-ili-plenochnye-nakleyki/"
+    },
+    {
+      "id": 28,
+      "title": "Чем виниловые наклейки отличаются от УФ-наклеек",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/chem-vinilovye-nakleyki-otlichayutsya-ot-uf-nakleek/",
+      "source_route": "/articles/vinil-ili-uv/"
+    },
+    {
+      "id": 29,
+      "title": "Выбор размера фигурного стикера с сохранением деталей изображения",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/vybor-razmera-figurnogo-stikera-s-sohraneniem-detaley-izobrazheniya/",
+      "source_route": "/articles/razmer-figurnogo-stikera/"
+    },
+    {
+      "id": 30,
+      "title": "Как подготовить контур резки для фигурных наклеек",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/kak-podgotovit-kontur-rezki-dlya-figurnyh-nakleek/",
+      "source_route": "/articles/kontur-rezki/"
+    },
+    {
+      "id": 31,
+      "title": "Как рассчитать количество наклеек на листе SRA3",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/kak-rasschitat-kolichestvo-nakleek-na-liste-sra3/",
+      "source_route": "/articles/raskladka-stikerov-sra3/"
+    },
+    {
+      "id": 32,
+      "title": "В чём разница между стикерпаком и отдельными наклейками",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/v-chem-raznitsa-mezhdu-stikerpakom-i-otdelnymi-nakleykami/",
+      "source_route": "/articles/stikerpak-ili-nakleyki/"
+    },
+    {
+      "id": 33,
+      "title": "Как подобрать размер плёночной этикетки для банки бутылки или коробки",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/kak-podobrat-razmer-plenochnoy-etiketki-dlya-banki-butylki-ili-korobki/",
+      "source_route": "/articles/razmer-etiketki/"
+    },
+    {
+      "id": 34,
+      "title": "Выбор прозрачной и белой плёнки для наклеек",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/vybor-prozrachnoy-i-beloy-plenki-dlya-nakleek/",
+      "source_route": "/articles/prozrachnaya-ili-belaya-plenka/"
+    },
+    {
+      "id": 35,
+      "title": "Что такое UV DTF-наклейки и для каких поверхностей их выбирают",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/chto-takoe-uv-dtf-nakleyki-i-dlya-kakih-poverhnostey-ih-vybirayut/",
+      "source_route": "/articles/uv-dtf-poverhnosti/"
+    },
+    {
+      "id": 36,
+      "title": "Как подготовить макет 3D-стикеров с объёмным покрытием",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/kak-podgotovit-maket-3d-stikerov-s-obemnym-pokrytiem/",
+      "source_route": "/articles/maket-3d-stikerov/"
+    },
+    {
+      "id": 37,
+      "title": "Как собрать 3D-стикерпак и рассчитать его тираж",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/kak-sobrat-3d-stikerpak-i-rasschitat-ego-tirazh/",
+      "source_route": "/articles/raschet-3d-stikerpaka/"
+    },
+    {
+      "id": 38,
+      "title": "Какой материал выбрать для баннера и как подготовить макет к печати",
+      "category": "Широкий формат",
+      "path": "company/article/kakoy-material-vybrat-dlya-bannera-i-kak-podgotovit-maket-k-pechati/",
+      "source_route": "/articles/material-bannera/"
+    },
+    {
+      "id": 39,
+      "title": "Чем постер отличается от плаката и какой формат выбрать",
+      "category": "Широкий формат",
+      "path": "company/article/chem-poster-otlichaetsya-ot-plakata-i-kakoy-format-vybrat/",
+      "source_route": "/articles/poster-ili-plakat/"
+    },
+    {
+      "id": 40,
+      "title": "Как подготовить изображение для большого постера без заметной потери качества",
+      "category": "Широкий формат",
+      "path": "company/article/kak-podgotovit-izobrazhenie-dlya-bolshogo-postera-bez-zametnoy-poteri-kachestva/",
+      "source_route": "/articles/kachestvo-bolshogo-postera/"
+    },
+    {
+      "id": 41,
+      "title": "Выбор интерьерной УФ-печати и самоклеящейся плёнки",
+      "category": "Широкий формат",
+      "path": "company/article/vybor-interernoy-uf-pechati-i-samokleyascheysya-plenki/",
+      "source_route": "/articles/interernaya-pechat-i-plenka/"
+    },
+    {
+      "id": 42,
+      "title": "Как подобрать самоклеящуюся плёнку для оформления витрины",
+      "category": "Широкий формат",
+      "path": "company/article/kak-podobrat-samokleyaschuyusya-plenku-dlya-oformleniya-vitriny/",
+      "source_route": "/articles/plenka-dlya-vitriny/"
+    },
+    {
+      "id": 43,
+      "title": "Что выбрать для фотографии постер, печать на холсте или накатку на пенокартон",
+      "category": "Широкий формат",
+      "path": "company/article/chto-vybrat-dlya-fotografii-poster-pechat-na-holste-ili-nakatku-na-penokarton/",
+      "source_route": "/articles/foto-poster-holst-penokarton/"
+    },
+    {
+      "id": 44,
+      "title": "Чем накатка на ПВХ отличается от накатки на пенокартон",
+      "category": "Широкий формат",
+      "path": "company/article/chem-nakatka-na-pvh-otlichaetsya-ot-nakatki-na-penokarton/",
+      "source_route": "/articles/pvh-ili-penokarton/"
+    },
+    {
+      "id": 45,
+      "title": "На каком материале заказать табличку: на ПВХ, оргстекле или композитной панели",
+      "category": "UV-печать и резка",
+      "path": "company/article/na-kakom-materiale-zakazat-tablichku-na-pvh-orgstekle-ili-kompozitnoy-paneli/",
+      "source_route": "/articles/material-tablichki/"
+    },
+    {
+      "id": 46,
+      "title": "Как подготовить макет для прямой УФ-печати на жёстком материале",
+      "category": "UV-печать и резка",
+      "path": "company/article/kak-podgotovit-maket-dlya-pryamoy-uf-pechati-na-zhestkom-materiale/",
+      "source_route": "/articles/maket-pryamoy-uv-pechati/"
+    },
+    {
+      "id": 47,
+      "title": "Чем плоттерная резка плёнки отличается от печати наклейки",
+      "category": "UV-печать и резка",
+      "path": "company/article/chem-plotternaya-rezka-plenki-otlichaetsya-ot-pechati-nakleyki/",
+      "source_route": "/articles/plotternaya-rezka-ili-pechat/"
+    },
+    {
+      "id": 48,
+      "title": "Какую плёнку выбрать для наклейки на автомобиль или стекло",
+      "category": "Широкий формат",
+      "path": "company/article/kakuyu-plenku-vybrat-dlya-nakleyki-na-avtomobil-ili-steklo/",
+      "source_route": "/articles/plenka-avto-steklo/"
+    },
+    {
+      "id": 49,
+      "title": "Как подготовить файл для лазерной резки акрила или фанеры",
+      "category": "UV-печать и резка",
+      "path": "company/article/kak-podgotovit-fayl-dlya-lazernoy-rezki-akrila-ili-fanery/",
+      "source_route": "/articles/fayl-lazernoy-rezki/"
+    },
+    {
+      "id": 50,
+      "title": "Как определить процент заполнения макета для расчёта лазерной гравировки",
+      "category": "UV-печать и резка",
+      "path": "company/article/kak-opredelit-protsent-zapolneniya-maketa-dlya-rascheta-lazernoy-gravirovki/",
+      "source_route": "/articles/zapolnenie-gravirovki/"
+    },
+    {
+      "id": 51,
+      "title": "Реферат и курсовая на печать: чек-лист студента перед отправкой файла",
+      "category": "Копицентр",
+      "path": "company/article/referat-kursovaya-pechat-chek-list/",
+      "source_route": "/articles/referat-kursovaya-pechat-chek-list/"
+    },
+    {
+      "id": 52,
+      "title": "Двусторонняя печать: переплёт по длинной или короткой стороне",
+      "category": "Копицентр",
+      "path": "company/article/dvustoronnyaya-pechat-dlinnaya-korotkaya-storona/",
+      "source_route": "/articles/dvustoronnyaya-pechat-dlinnaya-korotkaya-storona/"
+    },
+    {
+      "id": 53,
+      "title": "Печать презентации: сколько слайдов размещать на листе",
+      "category": "Копицентр",
+      "path": "company/article/pechat-prezentatsii-slajdy-na-liste/",
+      "source_route": "/articles/pechat-prezentatsii-slajdy-na-liste/"
+    },
+    {
+      "id": 54,
+      "title": "Word или PDF: почему при печати съезжает вёрстка",
+      "category": "Копицентр",
+      "path": "company/article/word-ili-pdf-poehala-verstka/",
+      "source_route": "/articles/word-ili-pdf-poehala-verstka/"
+    },
+    {
+      "id": 55,
+      "title": "Копирование со стекла или с автоподатчика: как выбрать способ",
+      "category": "Копицентр",
+      "path": "company/article/kopirovanie-steklo-ili-avtopodatchik/",
+      "source_route": "/articles/kopirovanie-steklo-ili-avtopodatchik/"
+    },
+    {
+      "id": 56,
+      "title": "Как подготовить стопку оригиналов к копированию",
+      "category": "Копицентр",
+      "path": "company/article/podgotovka-stopki-originalov-k-kopirovaniyu/",
+      "source_route": "/articles/podgotovka-stopki-originalov-k-kopirovaniyu/"
+    },
+    {
+      "id": 57,
+      "title": "Формат фотографии: A6, A5, A4 или A3",
+      "category": "Копицентр",
+      "path": "company/article/foto-10x15-15x21-formaty/",
+      "source_route": "/articles/foto-10x15-15x21-formaty/"
+    },
+    {
+      "id": 58,
+      "title": "Квадрат и полароид: как подготовить кадр",
+      "category": "Копицентр",
+      "path": "company/article/foto-kvadrat-polaroid-podgotovka/",
+      "source_route": "/articles/foto-kvadrat-polaroid-podgotovka/"
+    },
+    {
+      "id": 59,
+      "title": "Фото на стену: форматы A3, A2 и A1",
+      "category": "Копицентр",
+      "path": "company/article/foto-na-stenu-a3-a2-a1/",
+      "source_route": "/articles/foto-na-stenu-a3-a2-a1/"
+    },
+    {
+      "id": 60,
+      "title": "Оцифровка архива: как отсканировать договоры и акты в PDF",
+      "category": "Копицентр",
+      "path": "company/article/oczifrovka-arhiva-dogovorov-aktov/",
+      "source_route": "/articles/oczifrovka-arhiva-dogovorov-aktov/"
+    },
+    {
+      "id": 61,
+      "title": "Сканы в одном PDF: порядок страниц, имена файлов, размер",
+      "category": "Копицентр",
+      "path": "company/article/skany-v-odin-pdf-imena-poryadok/",
+      "source_route": "/articles/skany-v-odin-pdf-imena-poryadok/"
+    },
+    {
+      "id": 62,
+      "title": "Ламинирование меню, ценников и памяток для кафе и магазина",
+      "category": "Копицентр",
+      "path": "company/article/laminirovanie-menyu-cennikov-pamyatok/",
+      "source_route": "/articles/laminirovanie-menyu-cennikov-pamyatok/"
+    },
+    {
+      "id": 63,
+      "title": "Ламинирование грамот, сертификатов и детских рисунков",
+      "category": "Копицентр",
+      "path": "company/article/laminirovanie-gramot-risunkov/",
+      "source_route": "/articles/laminirovanie-gramot-risunkov/"
+    },
+    {
+      "id": 64,
+      "title": "Как выбрать диаметр пружины по количеству листов",
+      "category": "Копицентр",
+      "path": "company/article/diametr-pruzhiny-po-kolichestvu-listov/",
+      "source_route": "/articles/diametr-pruzhiny-po-kolichestvu-listov/"
+    },
+    {
+      "id": 65,
+      "title": "Диплом на печать: что делать цветным, а что чёрно-белым",
+      "category": "Копицентр",
+      "path": "company/article/diplom-cvet-i-chb-ekonomiya/",
+      "source_route": "/articles/diplom-cvet-i-chb-ekonomiya/"
+    },
+    {
+      "id": 66,
+      "title": "Термоэтикетки 58×40: где применяют и как подготовить файл",
+      "category": "Копицентр",
+      "path": "company/article/termoetiketki-58x40-primenenie/",
+      "source_route": "/articles/termoetiketki-58x40-primenenie/"
+    },
+    {
+      "id": 67,
+      "title": "Автореферат: почему число страниц должно делиться на четыре",
+      "category": "Копицентр",
+      "path": "company/article/avtoreferat-kratnost-4-stranic/",
+      "source_route": "/articles/avtoreferat-kratnost-4-stranic/"
+    },
+    {
+      "id": 68,
+      "title": "Инженерная печать: чем она отличается от обычной печати документов",
+      "category": "Проектная документация",
+      "path": "company/article/inzhenernaya-pechat-otlichie-ot-obychnoy/",
+      "source_route": "/articles/inzhenernaya-pechat-otlichie-ot-obychnoy/"
+    },
+    {
+      "id": 69,
+      "title": "Форматы A0, A1, A2, A3: размеры в миллиметрах и как выбрать лист",
+      "category": "Проектная документация",
+      "path": "company/article/formaty-a0-a1-a2-a3-razmery/",
+      "source_route": "/articles/formaty-a0-a1-a2-a3-razmery/"
+    },
+    {
+      "id": 70,
+      "title": "Сколько стоит печать чертежей: что влияет на цену",
+      "category": "Проектная документация",
+      "path": "company/article/stoimost-pechati-chertezhey-chto-vliyaet/",
+      "source_route": "/articles/stoimost-pechati-chertezhey-chto-vliyaet/"
+    },
+    {
+      "id": 71,
+      "title": "Фальцовка чертежей по ГОСТ: что это и зачем она нужна",
+      "category": "Проектная документация",
+      "path": "company/article/falcovka-chertezhey-po-gost-zachem/",
+      "source_route": "/articles/falcovka-chertezhey-po-gost-zachem/"
+    },
+    {
+      "id": 72,
+      "title": "Основная надпись чертежа после фальцовки: как сделать так, чтобы штамп читался",
+      "category": "Проектная документация",
+      "path": "company/article/osnovnaya-nadpis-posle-falcovki/",
+      "source_route": "/articles/osnovnaya-nadpis-posle-falcovki/"
+    },
+    {
+      "id": 73,
+      "title": "Проектный том: порядок печати, фальцовки и брошюровки",
+      "category": "Проектная документация",
+      "path": "company/article/proektnyy-tom-pechat-falcovka-broshyurovka/",
+      "source_route": "/articles/proektnyy-tom-pechat-falcovka-broshyurovka/"
+    },
+    {
+      "id": 74,
+      "title": "Сканирование чертежей: что можно отсканировать и какие бывают ограничения",
+      "category": "Проектная документация",
+      "path": "company/article/skanirovanie-chertezhey-ogranicheniya-a3/",
+      "source_route": "/articles/skanirovanie-chertezhey-ogranicheniya-a3/"
+    },
+    {
+      "id": 75,
+      "title": "Копия ветхого чертежа: что учесть до начала работы",
+      "category": "Проектная документация",
+      "path": "company/article/kopiya-vetkhogo-chertezha/",
+      "source_route": "/articles/kopiya-vetkhogo-chertezha/"
+    },
+    {
+      "id": 76,
+      "title": "Печать дизайн-проекта интерьера: как собрать альбом из листов разных форматов",
+      "category": "Проектная документация",
+      "path": "company/article/album-dizayn-proekta-interera-pechat/",
+      "source_route": "/articles/album-dizayn-proekta-interera-pechat/"
+    },
+    {
+      "id": 77,
+      "title": "Выкройка на рулоне: как обойтись без склеивания листов A4",
+      "category": "Проектная документация",
+      "path": "company/article/vykroyka-na-rulone-bez-skleyki/",
+      "source_route": "/articles/vykroyka-na-rulone-bez-skleyki/"
+    },
+    {
+      "id": 78,
+      "title": "Чертежи для курсового проекта: как распечатать их вовремя и без ошибок",
+      "category": "Проектная документация",
+      "path": "company/article/chertezhi-dlya-studentov-kursovoy-proekt/",
+      "source_route": "/articles/chertezhi-dlya-studentov-kursovoy-proekt/"
+    },
+    {
+      "id": 79,
+      "title": "Срок печати проектной документации: как он рассчитывается",
+      "category": "Проектная документация",
+      "path": "company/article/srok-pechati-proektnoy-dokumentatsii/",
+      "source_route": "/articles/srok-pechati-proektnoy-dokumentatsii/"
+    },
+    {
+      "id": 80,
+      "title": "Размер визитки: где проходит линия реза и как не потерять текст",
+      "category": "Листовая полиграфия",
+      "path": "company/article/vizitka-razmer-bezopasnye-polya/",
+      "source_route": "/articles/vizitka-razmer-bezopasnye-polya/"
+    },
+    {
+      "id": 81,
+      "title": "Визитки с одной или двумя сторонами: когда оборот работает",
+      "category": "Листовая полиграфия",
+      "path": "company/article/vizitka-odna-ili-dve-storony/",
+      "source_route": "/articles/vizitka-odna-ili-dve-storony/"
+    },
+    {
+      "id": 82,
+      "title": "Ламинация и скругление углов: стоит ли улучшать визитку",
+      "category": "Листовая полиграфия",
+      "path": "company/article/laminaciya-i-skruglenie-vizitok/",
+      "source_route": "/articles/laminaciya-i-skruglenie-vizitok/"
+    },
+    {
+      "id": 83,
+      "title": "Визитка с QR-кодом: размер, контраст и проверка перед печатью",
+      "category": "Листовая полиграфия",
+      "path": "company/article/vizitka-s-qr-kodom/",
+      "source_route": "/articles/vizitka-s-qr-kodom/"
+    },
+    {
+      "id": 84,
+      "title": "Листовка или флаер: в чём разница и как выбрать",
+      "category": "Листовая полиграфия",
+      "path": "company/article/listovka-ili-flaer/",
+      "source_route": "/articles/listovka-ili-flaer/"
+    },
+    {
+      "id": 85,
+      "title": "Что написать на листовке: структура текста для малого бизнеса",
+      "category": "Листовая полиграфия",
+      "path": "company/article/tekst-listovki-dlya-malogo-biznesa/",
+      "source_route": "/articles/tekst-listovki-dlya-malogo-biznesa/"
+    },
+    {
+      "id": 86,
+      "title": "Какая плотность бумаги для листовки: 120, 160, 250 или 300 г/м²",
+      "category": "Листовая полиграфия",
+      "path": "company/article/plotnost-bumagi-listovki-120-160-250/",
+      "source_route": "/articles/plotnost-bumagi-listovki-120-160-250/"
+    },
+    {
+      "id": 87,
+      "title": "Буклет с одним и двумя сгибами: как разложить панели и текст",
+      "category": "Листовая полиграфия",
+      "path": "company/article/buklet-odin-i-dva-sgiba/",
+      "source_route": "/articles/buklet-odin-i-dva-sgiba/"
+    },
+    {
+      "id": 88,
+      "title": "Сколько страниц должно быть в брошюре: кратность и вёрстка разворотов",
+      "category": "Листовая полиграфия",
+      "path": "company/article/skolko-stranic-v-broshyure/",
+      "source_route": "/articles/skolko-stranic-v-broshyure/"
+    },
+    {
+      "id": 89,
+      "title": "Обложка и блок: зачем бумага разной плотности в каталоге и брошюре",
+      "category": "Листовая полиграфия",
+      "path": "company/article/oblozhka-i-blok-raznaya-plotnost/",
+      "source_route": "/articles/oblozhka-i-blok-raznaya-plotnost/"
+    },
+    {
+      "id": 90,
+      "title": "Страница товара в каталоге: из чего она состоит и как её оформить",
+      "category": "Листовая полиграфия",
+      "path": "company/article/stranica-tovara-v-kataloge/",
+      "source_route": "/articles/stranica-tovara-v-kataloge/"
+    },
+    {
+      "id": 91,
+      "title": "Печать открыток: размеры A6 и A5 и плотность бумаги 200–350 г/м²",
+      "category": "Листовая полиграфия",
+      "path": "company/article/otkrytki-razmery-i-plotnost/",
+      "source_route": "/articles/otkrytki-razmery-i-plotnost/"
+    },
+    {
+      "id": 92,
+      "title": "Печать грамот и дипломов: как подготовить тираж и не ошибиться в именах",
+      "category": "Листовая полиграфия",
+      "path": "company/article/gramoty-tirazh-imena-proverka/",
+      "source_route": "/articles/gramoty-tirazh-imena-proverka/"
+    },
+    {
+      "id": 93,
+      "title": "Печать сертификатов: номер, номинал, срок действия и реквизиты на макете",
+      "category": "Листовая полиграфия",
+      "path": "company/article/sertifikat-rekvizity-numeraciya/",
+      "source_route": "/articles/sertifikat-rekvizity-numeraciya/"
+    },
+    {
+      "id": 94,
+      "title": "Афиша A3: как сделать, чтобы её прочитали с расстояния трёх метров",
+      "category": "Листовая полиграфия",
+      "path": "company/article/afisha-chitaemost-s-rasstoyaniya/",
+      "source_route": "/articles/afisha-chitaemost-s-rasstoyaniya/"
+    },
+    {
+      "id": 95,
+      "title": "Афиша или плакат: где проходит граница форматов",
+      "category": "Листовая полиграфия",
+      "path": "company/article/afisha-ili-plakat-granica/",
+      "source_route": "/articles/afisha-ili-plakat-granica/"
+    },
+    {
+      "id": 96,
+      "title": "Печать бирок: размер, бумага 200 или 300 г и минимальный заказ",
+      "category": "Листовая полиграфия",
+      "path": "company/article/birki-razmer-otverstie-bumaga/",
+      "source_route": "/articles/birki-razmer-otverstie-bumaga/"
+    },
+    {
+      "id": 97,
+      "title": "Бирки для изделий ручной работы и подарков: что написать и как оформить",
+      "category": "Листовая полиграфия",
+      "path": "company/article/birka-dlya-ruchnoy-raboty-i-podarkov/",
+      "source_route": "/articles/birka-dlya-ruchnoy-raboty-i-podarkov/"
+    },
+    {
+      "id": 98,
+      "title": "Винил или UV: какие стикеры выбрать и сколько это стоит",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/vinil-ili-uv-stikery-chto-vybrat/",
+      "source_route": "/articles/vinil-ili-uv-stikery-chto-vybrat/"
+    },
+    {
+      "id": 99,
+      "title": "Круглые стикеры: как выбрать диаметр, тираж и подготовить макет",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/kruglye-stikery-diametr-tirazh/",
+      "source_route": "/articles/kruglye-stikery-diametr-tirazh/"
+    },
+    {
+      "id": 100,
+      "title": "Фигурные стикеры: как нарисовать контур и какие детали не стоит делать",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/figurnye-stikery-kontur-i-melkie-detali/",
+      "source_route": "/articles/figurnye-stikery-kontur-i-melkie-detali/"
+    },
+    {
+      "id": 101,
+      "title": "Прямоугольные и квадратные наклейки для упаковки, маркировки и бренда",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/pryamougolnye-stikery-markirovka-upakovki/",
+      "source_route": "/articles/pryamougolnye-stikery-markirovka-upakovki/"
+    },
+    {
+      "id": 102,
+      "title": "Этикетка на банку: как выбрать плёнку, форму и размер",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/etiketka-na-banku-vybor-plenki/",
+      "source_route": "/articles/etiketka-na-banku-vybor-plenki/"
+    },
+    {
+      "id": 103,
+      "title": "Прозрачная плёнка и белый слой: как получить яркие цвета на прозрачной наклейке",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/prozrachnaya-plenka-belyj-sloj-stikery/",
+      "source_route": "/articles/prozrachnaya-plenka-belyj-sloj-stikery/"
+    },
+    {
+      "id": 104,
+      "title": "Голографические стикеры: когда плёнка помогает, а когда мешает",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/golograficheskie-stikery-kogda-vybirat/",
+      "source_route": "/articles/golograficheskie-stikery-kogda-vybirat/"
+    },
+    {
+      "id": 105,
+      "title": "Стикерпак для бренда: как собрать набор, который хотят оставить себе",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/stikerpak-dlya-brenda-sostav-nabora/",
+      "source_route": "/articles/stikerpak-dlya-brenda-sostav-nabora/"
+    },
+    {
+      "id": 106,
+      "title": "UV DTF-наклейки: что это, как наносить и на какие поверхности",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/uv-dtf-nakleyki-poverhnosti-i-nanesenie/",
+      "source_route": "/articles/uv-dtf-nakleyki-poverhnosti-i-nanesenie/"
+    },
+    {
+      "id": 107,
+      "title": "UV DTF или прямая UV-печать: что выбрать для вашего изделия",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/uv-dtf-ili-pryamaya-uv-pechat/",
+      "source_route": "/articles/uv-dtf-ili-pryamaya-uv-pechat/"
+    },
+    {
+      "id": 108,
+      "title": "Бумажные стикеры: как наклейки раскладываются на листе SRA3",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/bumazhnye-stikery-raskladka-sra3/",
+      "source_route": "/articles/bumazhnye-stikery-raskladka-sra3/"
+    },
+    {
+      "id": 109,
+      "title": "3D-стикеры: чем отличаются от обычных и когда они оправданы",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/3d-stikery-chem-otlichayutsya/",
+      "source_route": "/articles/3d-stikery-chem-otlichayutsya/"
+    },
+    {
+      "id": 110,
+      "title": "3D-стикерпак: как подобрать размер пака и количество стикеров",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/3d-stikerpak-podarochnyy-nabor/",
+      "source_route": "/articles/3d-stikerpak-podarochnyy-nabor/"
+    },
+    {
+      "id": 111,
+      "title": "Наклейки для малого бизнеса: 10 способов применить",
+      "category": "Наклейки и стикеры",
+      "path": "company/article/stikery-dlya-malogo-biznesa-idei/",
+      "source_route": "/articles/stikery-dlya-malogo-biznesa-idei/"
+    },
+    {
+      "id": 112,
+      "title": "Баннер на заказ: как выбрать размер и сколько это стоит",
+      "category": "Широкий формат",
+      "path": "company/article/banner-razmery-i-material/",
+      "source_route": "/articles/banner-razmery-i-material/"
+    },
+    {
+      "id": 113,
+      "title": "Разрешение изображения для большого постера: как проверить фото до печати",
+      "category": "Широкий формат",
+      "path": "company/article/razreshenie-izobrazheniya-dlya-bolshogo-postera/",
+      "source_route": "/articles/razreshenie-izobrazheniya-dlya-bolshogo-postera/"
+    },
+    {
+      "id": 114,
+      "title": "Постер для интерьера: как выбрать A2, A1 или свой размер",
+      "category": "Широкий формат",
+      "path": "company/article/poster-a2-a1-dlya-interera/",
+      "source_route": "/articles/poster-a2-a1-dlya-interera/"
+    },
+    {
+      "id": 115,
+      "title": "Постер или плакат: в чём различие и как не запутаться в выборе",
+      "category": "Широкий формат",
+      "path": "company/article/poster-ili-plakat-razlichiya/",
+      "source_route": "/articles/poster-ili-plakat-razlichiya/"
+    },
+    {
+      "id": 116,
+      "title": "Печать на холсте: какое фото выбрать и как подготовить файл",
+      "category": "Широкий формат",
+      "path": "company/article/pechat-na-holste-kak-vybrat-foto/",
+      "source_route": "/articles/pechat-na-holste-kak-vybrat-foto/"
+    },
+    {
+      "id": 117,
+      "title": "Печать на самоклеящейся плёнке: на что клеить и как подготовить поверхность",
+      "category": "Широкий формат",
+      "path": "company/article/samokleyushchayasya-plenka-poverhnost-i-montazh/",
+      "source_route": "/articles/samokleyushchayasya-plenka-poverhnost-i-montazh/"
+    },
+    {
+      "id": 118,
+      "title": "Плоттерная резка или печать на плёнке: что выбрать для надписи и логотипа",
+      "category": "Широкий формат",
+      "path": "company/article/plotternaya-rezka-ili-pechat-na-plenke/",
+      "source_route": "/articles/plotternaya-rezka-ili-pechat-na-plenke/"
+    },
+    {
+      "id": 119,
+      "title": "Наклейка на авто из плёнки: как выбрать цвет и подготовить контур",
+      "category": "Широкий формат",
+      "path": "company/article/nakleyka-na-avto-plenka-i-kontur/",
+      "source_route": "/articles/nakleyka-na-avto-plenka-i-kontur/"
+    },
+    {
+      "id": 120,
+      "title": "Наклейки на витрину: график работы, название и логотип из плёнки",
+      "category": "Широкий формат",
+      "path": "company/article/nakleyki-na-vitrinu-chto-uchest/",
+      "source_route": "/articles/nakleyki-na-vitrinu-chto-uchest/"
+    },
+    {
+      "id": 121,
+      "title": "Накатка на ПВХ: как выбрать толщину и размер",
+      "category": "Широкий формат",
+      "path": "company/article/nakatka-na-pvh-tolshchina-i-razmer/",
+      "source_route": "/articles/nakatka-na-pvh-tolshchina-i-razmer/"
+    },
+    {
+      "id": 122,
+      "title": "ПВХ или пенокартон: что выбрать для накатки изображения",
+      "category": "Широкий формат",
+      "path": "company/article/nakatka-pvh-ili-penokarton/",
+      "source_route": "/articles/nakatka-pvh-ili-penokarton/"
+    },
+    {
+      "id": 123,
+      "title": "Прямая UV-печать: какие материалы и толщины доступны",
+      "category": "UV-печать и резка",
+      "path": "company/article/pryamaya-uv-pechat-materialy-i-tolshchiny/",
+      "source_route": "/articles/pryamaya-uv-pechat-materialy-i-tolshchiny/"
+    },
+    {
+      "id": 124,
+      "title": "Белая подложка в UV-печати: когда она нужна и как влияет на результат",
+      "category": "UV-печать и резка",
+      "path": "company/article/belaya-podlozhka-uv-pechat/",
+      "source_route": "/articles/belaya-podlozhka-uv-pechat/"
+    },
+    {
+      "id": 125,
+      "title": "Табличка из ПВХ или оргстекла: что выбрать для офиса и магазина",
+      "category": "UV-печать и резка",
+      "path": "company/article/tablichka-pvh-ili-orgsteklo-kompozit/",
+      "source_route": "/articles/tablichka-pvh-ili-orgsteklo-kompozit/"
+    },
+    {
+      "id": 126,
+      "title": "Макет таблички на дверь: размер шрифта, отступы и цвет",
+      "category": "UV-печать и резка",
+      "path": "company/article/tablichka-dlya-ofisa-maket-i-tekst/",
+      "source_route": "/articles/tablichka-dlya-ofisa-maket-i-tekst/"
+    },
+    {
+      "id": 127,
+      "title": "Плоттерная резка: как подготовить векторный контур без ошибок",
+      "category": "UV-печать и резка",
+      "path": "company/article/plotternaya-rezka-vektornyy-kontur/",
+      "source_route": "/articles/plotternaya-rezka-vektornyy-kontur/"
+    },
+    {
+      "id": 128,
+      "title": "Лазерная резка фанеры и акрила: как подготовить макет",
+      "category": "UV-печать и резка",
+      "path": "company/article/lazernaya-rezka-fanera-akril-maket/",
+      "source_route": "/articles/lazernaya-rezka-fanera-akril-maket/"
+    },
+    {
+      "id": 129,
+      "title": "Лазерная гравировка: как определить процент заполнения макета",
+      "category": "UV-печать и резка",
+      "path": "company/article/gravirovka-shkala-zapolneniya/",
+      "source_route": "/articles/gravirovka-shkala-zapolneniya/"
+    },
+    {
+      "id": 130,
+      "title": "Гравировка или UV-печать: что выбрать для сувенира, брелока и таблички",
+      "category": "UV-печать и резка",
+      "path": "company/article/gravirovka-ili-uv-pechat-chto-vybrat/",
+      "source_route": "/articles/gravirovka-ili-uv-pechat-chto-vybrat/"
+    },
+    {
+      "id": 131,
+      "title": "Брелоки на заказ: как выбрать материал, печать и фурнитуру",
+      "category": "UV-печать и резка",
+      "path": "company/article/breloki-materialy-i-furnitura/",
+      "source_route": "/articles/breloki-materialy-i-furnitura/"
+    },
+    {
+      "id": 132,
+      "title": "Брелоки с логотипом для мероприятия: как рассчитать тираж и срок",
+      "category": "UV-печать и резка",
+      "path": "company/article/breloki-dlya-meropriyatiya-tirazh/",
+      "source_route": "/articles/breloki-dlya-meropriyatiya-tirazh/"
+    },
+    {
+      "id": 133,
+      "title": "Шильды и шильдики: нержавеющая сталь, алюминий или двухслойный пластик",
+      "category": "UV-печать и резка",
+      "path": "company/article/shildy-nerzhaveyka-alyuminiy-vybor/",
+      "source_route": "/articles/shildy-nerzhaveyka-alyuminiy-vybor/"
+    },
+    {
+      "id": 134,
+      "title": "Шильды или таблички: в чём разница и где какой использовать",
+      "category": "UV-печать и резка",
+      "path": "company/article/shildy-ili-tablichki-raznica/",
+      "source_route": "/articles/shildy-ili-tablichki-raznica/"
+    },
+    {
+      "id": 135,
+      "title": "Печать на металле: мы изготавливаем готовую пластину, а не печатаем на вашем изделии",
+      "category": "UV-печать и резка",
+      "path": "company/article/pechat-na-metalle-gotovaya-plastina/",
+      "source_route": "/articles/pechat-na-metalle-gotovaya-plastina/"
+    },
+    {
+      "id": 136,
+      "title": "Гардеробные номерки: как согласовать нумерацию, материал и тираж",
+      "category": "UV-печать и резка",
+      "path": "company/article/garderobnye-nomerki-numeraciya-i-tirazh/",
+      "source_route": "/articles/garderobnye-nomerki-numeraciya-i-tirazh/"
+    },
+    {
+      "id": 137,
+      "title": "Номерки или брелоки: в чём разница и как выбрать",
+      "category": "UV-печать и резка",
+      "path": "company/article/nomerki-ili-breloki-chto-vybrat/",
+      "source_route": "/articles/nomerki-ili-breloki-chto-vybrat/"
+    },
+    {
+      "id": 138,
+      "title": "Лазерная или плоттерная резка: какая технология для какого материала",
+      "category": "UV-печать и резка",
+      "path": "company/article/lazernaya-rezka-ili-plotternaya-rezka/",
+      "source_route": "/articles/lazernaya-rezka-ili-plotternaya-rezka/"
+    },
+    {
+      "id": 139,
+      "title": "Как считается срок заказа: мощность раздела, формула и условие согласованного макета",
+      "category": "Заказ и подготовка макетов",
+      "path": "company/article/kak-schitaetsya-srok-zakaza/",
+      "source_route": "/articles/kak-schitaetsya-srok-zakaza/"
+    },
+    {
+      "id": 140,
+      "title": "Вылеты под обрез и безопасная зона: три линии, которые защищают макет",
+      "category": "Заказ и подготовка макетов",
+      "path": "company/article/vylety-i-bezopasnaya-zona-maket/",
+      "source_route": "/articles/vylety-i-bezopasnaya-zona-maket/"
+    },
+    {
+      "id": 141,
+      "title": "RGB или CMYK: почему цвет на экране и на бумаге различается",
+      "category": "Заказ и подготовка макетов",
+      "path": "company/article/rgb-ili-cmyk-pri-pechati/",
+      "source_route": "/articles/rgb-ili-cmyk-pri-pechati/"
+    },
+    {
+      "id": 142,
+      "title": "Шрифты в кривые и встроенные шрифты: как сделать файл, который не изменится",
+      "category": "Заказ и подготовка макетов",
+      "path": "company/article/shrifty-v-krivye-pdf-dlya-pechati/",
+      "source_route": "/articles/shrifty-v-krivye-pdf-dlya-pechati/"
+    },
+    {
+      "id": 143,
+      "title": "Минимальный чек: почему маленький заказ стоит не меньше определённой суммы",
+      "category": "Заказ и подготовка макетов",
+      "path": "company/article/minimalnyy-chek-chto-eto-takoe/",
+      "source_route": "/articles/minimalnyy-chek-chto-eto-takoe/"
+    },
+    {
+      "id": 144,
+      "title": "Как пользоваться онлайн-калькулятором стоимости печати: шаги и советы",
+      "category": "Заказ и подготовка макетов",
+      "path": "company/article/kak-polzovatsya-kalkulyatorom-stoimosti/",
+      "source_route": "/articles/kak-polzovatsya-kalkulyatorom-stoimosti/"
+    },
+    {
+      "id": 145,
+      "title": "Почему цвет на экране отличается от печати и что с этим делать",
+      "category": "Заказ и подготовка макетов",
+      "path": "company/article/pochemu-cvet-na-ekrane-otlichaetsya-ot-pechati/",
+      "source_route": "/articles/pochemu-cvet-na-ekrane-otlichaetsya-ot-pechati/"
+    },
+    {
+      "id": 146,
+      "title": "Как заказать печать в Барнауле: путь от расчёта до готового заказа",
+      "category": "Заказ и подготовка макетов",
+      "path": "company/article/kak-zakazat-pechat-v-barnaule-poshagovo/",
+      "source_route": "/articles/kak-zakazat-pechat-v-barnaule-poshagovo/"
+    },
+    {
+      "id": 147,
+      "title": "Полиграфия для мероприятия: что заказать и когда начинать",
+      "category": "Заказ и подготовка макетов",
+      "path": "company/article/poligrafiya-dlya-meropriyatiya-chek-list/",
+      "source_route": "/articles/poligrafiya-dlya-meropriyatiya-chek-list/"
+    },
+    {
+      "id": 148,
+      "title": "Как студенту сэкономить на печати курсовой, диплома и чертежей",
+      "category": "Копицентр",
+      "path": "company/article/ekonomiya-na-pechati-dlya-studenta/",
+      "source_route": "/articles/ekonomiya-na-pechati-dlya-studenta/"
+    },
+    {
+      "id": 149,
+      "title": "Оформление офиса: таблички, наклейки на стекло, плакаты и навигация",
+      "category": "UV-печать и резка",
+      "path": "company/article/oformlenie-ofisa-poligrafiya-i-tablichki/",
+      "source_route": "/articles/oformlenie-ofisa-poligrafiya-i-tablichki/"
+    },
+    {
+      "id": 150,
+      "title": "10 ошибок в макете, из-за которых заказ приходится печатать заново",
+      "category": "Заказ и подготовка макетов",
+      "path": "company/article/10-oshibok-v-makete-pered-pechatyu/",
+      "source_route": "/articles/10-oshibok-v-makete-pered-pechatyu/"
+    }
+  ]
+}

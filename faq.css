@@ -1,0 +1,4 @@
+.faq-list{--faq-duration:280ms;--faq-easing:cubic-bezier(.22,1,.36,1)}
+.faq-list .faq-answer{overflow:hidden}
+.faq-list details{transition:background-color var(--faq-duration) var(--faq-easing),border-color var(--faq-duration) var(--faq-easing)}
+@media(prefers-reduced-motion:reduce){.faq-list{--faq-duration:0ms}}

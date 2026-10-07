@@ -12,7 +12,7 @@
 .lower-home .calc-promo-copy h2{font-size:30px;white-space:normal;letter-spacing:-.8px}
 .calc-promo-lead{font-size:15px;line-height:1.4;font-weight:650;color:var(--red);margin-top:4px}
 .calc-promo-description{font-size:14px;line-height:1.45;color:#50555b;max-width:490px;margin-top:12px}
-.calc-promo-copy .button{min-height:42px;font-size:13px;padding:10px 23px;margin-top:16px;gap:10px;border-radius:10px;background:linear-gradient(#ff2630,#e8111b);border-color:#e11520;box-shadow:none}
+.calc-promo-copy .button{min-height:42px;font-size:13px;padding:10px 23px;margin-top:16px;gap:10px;border-radius:10px;background:#e8111b;border-color:#e11520;box-shadow:none}
 .calc-promo-copy .button:hover{background:var(--red-hover)}
 .calc-promo-art{position:relative;min-width:0;height:340px}
 .calc-promo-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
@@ -79,8 +79,8 @@
 .lower-home .faq-list summary{min-height:96px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:16px;line-height:1.45;font-weight:600;padding:18px;list-style:none}
 .lower-home .faq-list summary::-webkit-details-marker{display:none}
 .lower-home .faq-list details[open] summary{color:var(--ink)}
-.lower-home .faq-list summary .icon{width:20px;height:20px;flex-shrink:0;transition:transform .18s}
-.lower-home .faq-list details[open] summary .icon{transform:rotate(45deg)}
+.lower-home .faq-list summary .icon{width:20px;height:20px;flex-shrink:0;transition:transform var(--faq-duration,280ms) var(--faq-easing,ease)}
+.lower-home .faq-list details:is([open]:not([data-faq-expanded]),[data-faq-expanded=true]) summary .icon{transform:rotate(45deg)}
 .lower-home .faq-list details p{font-size:15px;line-height:1.6;padding:0 18px 18px;color:#62666b;margin:0}
 .faq-inline-link,.lower-home .faq-list a{display:inline;padding:0;color:var(--section-red);text-decoration:underline;text-underline-offset:2px;font-size:inherit;text-align:left}
 .faq-mascot{position:absolute;left:calc(100% - var(--faq-rail) - var(--faq-robot-width)*.2);top:-55px;width:var(--faq-robot-width);height:auto;object-fit:contain;pointer-events:none;z-index:2}

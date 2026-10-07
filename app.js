@@ -51,6 +51,14 @@
     {name:'Широкий формат',short:'Широкий формат',filter:'Широкий формат',image:'direction-wide',icon:'wide',description:'Баннеры, постеры, печать на плёнке'},
     {name:'UV-печать и резка',short:'UV-печать и резка',filter:'UV и резка',image:'direction-uv',icon:'scissors',description:'Таблички, изделия, лазерная резка'}
   ];
+  const companyPages=[
+    ['О нас','company/about/'],['Контакты','contacts/'],['Доставка','dostavka-i-oplata/'],
+    ['Оплата','company/payment/'],['Технические требования','requirements/'],
+    ['Примеры работ','company/photo/'],['Акции','company/action/'],['Отзывы','company/request/'],
+    ['Вопросы и ответы','company/vopros-otvet/'],['Статьи','company/article/'],['Как заказать','kak-oformit-zakaz/']
+  ];
+  const companyLinks=()=>companyPages.map(([label,path])=>`<a href="${siteRoot}${path}" data-close-menu${new URL(path,siteRoot).pathname===location.pathname.replace(/index\.html$/,'')?' aria-current="page"':''}>${label}</a>`).join('');
+  $$('[data-company-links]').forEach(element=>{element.innerHTML=companyLinks();});
   const popular = [
     {id:'2.1',name:'Инженерная печать',asset:'инженерная печать',description:'Чертежи и схемы. От А4 до А0.',unit:'10 листов А2 + фальцовка',badge:'Для проектировщиков'},
     {id:'1.1',name:'Печать документов',asset:'печать документов',description:'Чёрно-белая и цветная. А4 и А3.',unit:'10 страниц А4, ч/б'},
@@ -103,7 +111,7 @@
     $$('.nav-item').forEach(b=>b.setAttribute('aria-expanded',String(b.dataset.menu===name)));
     const company=name==='Компания';
     const records=catalog.filter(r=>r.category===name);
-    const links=company ? `<a href="${siteRoot}#about" data-close-menu>О нас</a><a href="${siteRoot}#contacts" data-close-menu>Контакты</a><a href="${siteRoot}#delivery" data-close-menu>Доставка и оплата</a><button data-action="requirements">Технические требования</button><a href="${siteRoot}#reviews" data-close-menu>Отзывы</a><a href="${siteRoot}#faq" data-close-menu>Вопросы и ответы</a><a href="https://text-print.ru/company/article/" target="_blank" rel="noopener">Статьи</a>` : records.map(r=>serviceUrl(r.id)?`<a href="${serviceUrl(r.id)}">${escape(r.name)}</a>`:`<button data-service="${r.id}">${escape(r.name)}</button>`).join('');
+    const links=company ? companyLinks() : records.map(r=>serviceUrl(r.id)?`<a href="${serviceUrl(r.id)}">${escape(r.name)}</a>`:`<button data-service="${r.id}">${escape(r.name)}</button>`).join('');
     $('#mega-menu').innerHTML=`<div class="mega-layout"><div><div class="mega-title"><h3>${escape(name)}</h3></div><div class="mega-links">${links}</div></div></div>`;
     const menuLinks=$('.mega-links',$('#mega-menu'));
     menuLinks.style.setProperty('--menu-rows',Math.ceil(menuLinks.children.length/2));
@@ -126,17 +134,24 @@
     if(!$('#popular-grid'))return;
     $('#popular-grid').innerHTML=popular.filter(p=>p.record).map(p=>`<${serviceUrl(p.id)?`a href="${serviceUrl(p.id)}"`:'button'} class="featured-card" ${serviceUrl(p.id)?'':`data-service="${p.id}"`} aria-label="${escape(p.name)}"><span class="featured-copy"><span class="featured-name">${p.name.split(/\s+/).map(word=>`<span class="featured-word">${escape(word)}</span>`).join(' ')}</span></span><span class="featured-art"><img src="${imageFor(p.record)}" alt="${escape(p.name)} — иллюстрация студии ТЕКСТ" width="720" height="720" loading="lazy"></span></${serviceUrl(p.id)?'a':'button'}>`).join('');
   }
-  function renderCatalogList(query='',category='') {
+  function renderCatalogList(query='',category='',calculators=false) {
     const normalized=query.toLowerCase().replaceAll('ё','е').trim();
     const found=catalog.filter(r=>(!category||r.category===category)&&`${r.name} ${r.category} ${r.materials}`.toLowerCase().replaceAll('ё','е').includes(normalized));
-    $('#catalog-results').innerHTML=found.length ? categories.filter(c=>found.some(r=>r.category===c.name)).map(c=>`<section class="catalog-group"><h3>${escape(c.name)} <small>· ${found.filter(r=>r.category===c.name).length}</small></h3><div class="catalog-group-list">${found.filter(r=>r.category===c.name).map(r=>`<${serviceUrl(r.id)?`a href="${serviceUrl(r.id)}"`:`button data-service="${r.id}"`} class="catalog-service"><span>${escape(r.name)}</span>${icon('arrow')}</${serviceUrl(r.id)?'a':'button'}>`).join('')}</div></section>`).join('') : `<div class="empty-state">${icon('search')}<h3>Пока не нашли такую услугу</h3><p>Попробуйте другое название или расскажите нам о своей задаче.</p><button class="button button-primary" data-action="request">Обсудить заказ</button></div>`;
-    $('#search-count').textContent=found.length;
+    $('#catalog-results').innerHTML=found.length ? categories.filter(c=>found.some(r=>r.category===c.name)).map(c=>{
+      const records=found.filter(r=>r.category===c.name);
+      const items=records.map(r=>{
+        const url=serviceUrl(r.id),tag=url?'a':'button';
+        const attrs=url?`href="${url}${calculators?'#calculator':''}"`:`data-service="${r.id}"`;
+        return `<${tag} ${attrs}><span>${escape(r.name)}</span>${calculators&&(url||r.id==='3.1')?'<span class="catalog-online">Онлайн</span>':''}</${tag}>`;
+      }).join('');
+      return `<section class="catalog-group">${category?'':`<div class="mega-title"><h3>${escape(c.name)}</h3></div>`}<div class="catalog-group-list mega-links" style="--menu-rows:${Math.ceil(records.length/2)}">${items}</div></section>`;
+    }).join('') : `<div class="empty-state">${icon('search')}<h3>Пока не нашли такую услугу</h3><p>Попробуйте другое название или расскажите нам о своей задаче.</p><button class="button button-primary" data-action="request">Обсудить заказ</button></div>`;
   }
-  function openCatalog(category='',search=false,query='') {
-    openDialog(`<div class="dialog-body"><div class="eyebrow muted">КАТАЛОГ СТУДИИ ТЕКСТ</div><h2>${escape(category||'Что будем печатать?')}</h2><p class="dialog-intro">Выберите услугу, чтобы посмотреть параметры, примеры стоимости и требования к макету. Найдено: <span id="search-count"></span>.</p><label class="catalog-search">${icon('search')}<input id="catalog-search" aria-label="Поиск услуги" placeholder="Название услуги, материал или задача…" autocomplete="off"></label><div id="catalog-results"></div>${category?'<button class="text-button" data-action="catalog">← Все услуги</button>':''}</div>`);
+  function openCatalog(category='',search=false,query='',calculators=false) {
+    openDialog(`<div class="dialog-body catalog-dialog"><h2>${escape(category||(calculators?'Калькуляторы и расчёт услуг':'Все услуги'))}</h2>${calculators?'<p class="calculator-directory-intro">Выберите услугу с отметкой «Онлайн» для мгновенного расчёта. По другим услугам подготовим расчёт со студией.</p>':''}<label class="catalog-search">${icon('search')}<input id="catalog-search" aria-label="Поиск услуги" placeholder="Название услуги, материал или задача…" autocomplete="off"></label><div id="catalog-results"></div>${category?'<button class="text-button" data-action="catalog">← Все услуги</button>':''}</div>`);
     $('#catalog-search').value=query;
-    renderCatalogList(query,category);
-    $('#catalog-search').addEventListener('input',event=>renderCatalogList(event.target.value,category));
+    renderCatalogList(query,category,calculators);
+    $('#catalog-search').addEventListener('input',event=>renderCatalogList(event.target.value,category,calculators));
     if(search)$('#catalog-search').focus();
   }
   function openService(id) {
@@ -150,7 +165,7 @@
   }
   const calculateCards=window.TEXT_CALCULATE_CARDS;
   function openCalculators() {
-    openDialog(`<div class="dialog-body"><div class="eyebrow muted">РАСЧЁТ СТОИМОСТИ</div><h2>Онлайн-калькуляторы</h2><div class="calculator-picker"><div><h3>Визитки</h3><p>Бумага, тираж, печать с одной или двух сторон, ламинация и скругление углов. Стоимость и срок — сразу.</p><button class="button button-primary" data-service="3.1">Рассчитать визитки ${icon('arrow')}</button></div><img src="${siteRoot}assets/calculator-original.webp" alt="Робот ТЕКСТ с калькулятором"></div><div class="calculator-other"><h3>Стикерпаки</h3><p>Материал, размер набора, тираж, стоимость и срок.</p><a class="button button-primary" href="${siteRoot}nakleyki-i-stikery/stikerpaki/#calculator">Рассчитать стикерпаки</a></div><p class="calculator-other">Нужен расчёт документов, наклеек, широкоформатной печати или другой услуги? Выберите её в каталоге и подготовьте запрос в студию.</p><button class="button button-outline" data-action="catalog">Все услуги ${icon('arrow')}</button></div>`);
+    openCatalog('',false,'',true);
   }
   function openCalculator() {
     const rules=window.TEXT_PRICING.cards;
@@ -235,7 +250,7 @@
     const add=event.target.closest('[data-add-request]');if(add){addRequest(add.dataset.addRequest);return;}
     const remove=event.target.closest('[data-remove]');if(remove){window.TEXT_FILES.remove(remove.dataset.remove).catch(()=>{});cart=readCart().filter(r=>r.key!==remove.dataset.remove);saveCart();openCart();return;}
     const delivery=event.target.closest('[data-delivery]');if(delivery){selectDelivery(delivery.dataset.delivery);return;}
-    const action=event.target.closest('[data-action]');if(action){switch(action.dataset.action){case 'catalog':openCatalog(action.dataset.category||'');break;case 'search':openCatalog('',true);break;case 'request':openRequest(action.dataset.record?catalog.find(r=>r.id===action.dataset.record):null,action.dataset.cart==='true');break;case 'upload':selectedFile=null;openRequest(null,false,true);break;case 'cart':openCart();break;case 'contacts':openContacts();break;case 'requirements':openRequirements();break;}return;}
+    const action=event.target.closest('[data-action]');if(action){switch(action.dataset.action){case 'catalog':event.preventDefault();openCatalog(action.dataset.category||'');break;case 'search':openCatalog('',true);break;case 'request':openRequest(action.dataset.record?catalog.find(r=>r.id===action.dataset.record):null,action.dataset.cart==='true');break;case 'upload':selectedFile=null;openRequest(null,false,true);break;case 'cart':openCart();break;case 'contacts':openContacts();break;case 'requirements':openRequirements();break;}return;}
     if(!event.target.closest('.site-header'))closeMenu();
   });
   $('#mobile-menu-button').addEventListener('click',()=>{closeMenu();const expanded=$('#navigation').classList.toggle('mobile-open');$('#mobile-menu-button').setAttribute('aria-expanded',String(expanded));});
@@ -304,7 +319,7 @@
     '@context':'https://schema.org',
     '@graph':[
       {'@type':'LocalBusiness',name:'Студия печати ТЕКСТ',url:'https://text-print.ru/',telephone:'+79236547896',email:'tekkkst@yandex.ru',address:{'@type':'PostalAddress',streetAddress:'проспект Строителей, 11',addressLocality:'Барнаул',addressCountry:'RU'},openingHoursSpecification:[{'@type':'OpeningHoursSpecification',dayOfWeek:['Monday','Tuesday','Wednesday','Thursday','Friday'],opens:'09:00',closes:'18:00'}]},
-      {'@type':'FAQPage',mainEntity:$$('.faq-list details').map(d=>({'@type':'Question',name:$('summary',d).textContent.trim(),acceptedAnswer:{'@type':'Answer',text:$('p',d).textContent.trim()}}))}
+      ...($$('.faq-list details').length?[{'@type':'FAQPage',mainEntity:$$('.faq-list details').map(d=>({'@type':'Question',name:$('summary',d).textContent.trim(),acceptedAnswer:{'@type':'Answer',text:$('p',d).textContent.trim()}}))}]:[])
     ]
   };
   const schemaScript=document.createElement('script');schemaScript.type='application/ld+json';schemaScript.textContent=JSON.stringify(seoSchema);document.head.append(schemaScript);
@@ -327,4 +342,9 @@
   window.addEventListener('storage',event=>{if(event.key==='text-print-cart-v1'||event.key===null){cart=readCart();updateCartCount();}});
   window.addEventListener('pageshow',()=>{cart=readCart();updateCartCount();});
   renderPopular();updateCartCount();hydrateIcons();
+  const requestedCategory=new URLSearchParams(location.search).get('category');
+  const requestedService=new URLSearchParams(location.search).get('service');
+  if(requestedService&&catalog.some(record=>record.id===requestedService))openService(requestedService);
+  else if(requestedCategory&&categories.some(category=>category.name===requestedCategory))openCatalog(requestedCategory);
+  else if(new URLSearchParams(location.search).get('catalog')==='1')openCatalog();
 })();
