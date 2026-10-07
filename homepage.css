@@ -366,13 +366,6 @@ footer{padding:44px 0 28px}
 .order-guide-note{font-size:14px;line-height:1.55;color:var(--muted);padding:16px 18px;background:#f6f6f6;border-radius:12px;margin:24px 0 0}
 .order-guide-dialog .form-actions{margin-top:24px}
 .order-guide-dialog .form-actions .button{font-size:15px;white-space:normal;text-align:center}
-.dialog:has(.samples-request-form){width:min(760px,calc(100% - 32px))}
-.samples-request-form{max-width:none}
-.samples-request-form .form-fields{grid-template-columns:minmax(0,1fr)}
-.samples-request-form .form-row,.samples-request-form .field{min-width:0}
-.samples-request-form textarea{min-height:120px}
-.samples-request-form .upload-zone{padding:20px;min-width:0}
-.samples-request-form input[type=file]{width:100%;min-width:0;max-width:100%}
 @media(max-width:700px){
   .dialog:has(.order-guide-dialog){width:calc(100% - 20px)}
   .order-guide-dialog{padding:24px 20px}

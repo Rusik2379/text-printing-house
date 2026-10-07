@@ -74,7 +74,7 @@ for(const article of source.articles){
   const faqQuestions=[...body.matchAll(/<summary\b/g)].length;
   assert.equal([...body.matchAll(/<p\b/g)].length+faqQuestions,expectedParagraphs,`${article.title}: incomplete article paragraphs or FAQ`);
 }
-for(const page of ['company/about','contacts','dostavka-i-oplata','company/payment','requirements','company/photo','company/action','company/request','company/vopros-otvet','company/article','company','kak-oformit-zakaz']){
+for(const page of ['company/about','contacts','dostavka-i-oplata','company/payment','requirements','company/vopros-otvet','company/article','company','kak-oformit-zakaz']){
   assert.ok(contents.has(path.join(root,page,'index.html')),`Missing company page: ${page}`);
 }
 console.log(`Checked ${files.length} pages, ${links} local links/resources and ${articles.length} complete articles under ${base.pathname}.`);
