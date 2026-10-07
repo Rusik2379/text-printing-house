@@ -30,7 +30,7 @@ def links(prefix):
     return ''.join(f'<a href="{prefix}{path}">{label}</a>' for label,path,_ in PAGES)
 
 # Keep the homepage and all product pages connected to the same company section.
-product_pages=[(str(file.relative_to(ROOT)),'../'*len(file.relative_to(ROOT).parent.parts)) for file in sorted((ROOT/'nakleyki-i-stikery').rglob('index.html'))]
+product_pages=[(str(file.relative_to(ROOT)),'../'*len(file.relative_to(ROOT).parent.parts)) for section in ['nakleyki-i-stikery','shirokiy-format'] for file in sorted((ROOT/section).rglob('index.html'))]
 for relative,prefix in [('index.html',''),*product_pages]:
     file=ROOT/relative
     text=file.read_text(encoding='utf-8')

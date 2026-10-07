@@ -32,7 +32,7 @@
   };
   window.TEXT_CALCULATE_STICKERPACKS=c=>window.TEXT_CALCULATE_STICKERS({...c,kind:'pack',shape:'rectangle'});
   window.TEXT_STICKER_CART_BREAKDOWN=items=>{
-    const minimums={stickers:window.TEXT_STICKER_PRICING?.flat.minimum||window.TEXT_STICKERPACK_PRICING.minimum,stickers3d:window.TEXT_STICKER_PRICING?.threeD.minimum||1000,uvdtf:800,paper:150};
+    const minimums={stickers:window.TEXT_STICKER_PRICING?.flat.minimum||window.TEXT_STICKERPACK_PRICING.minimum,stickers3d:window.TEXT_STICKER_PRICING?.threeD.minimum||1000,uvdtf:800,paper:150,...window.TEXT_WIDE_PRICING?.minimums};
     const subtotals=Object.fromEntries(Object.keys(minimums).map(k=>[k,0])),surcharges={...subtotals};let other=0;
     for(const item of items){
       if(!Number.isFinite(item.price)||item.price<0)continue;
