@@ -69,6 +69,23 @@ assert.deepEqual(requirementIds.toSorted(),source.requirements.map(item=>item.id
 for(const block of ['file','checks','critical','mistakes','preflight','example'])assert.equal([...requirements.matchAll(new RegExp(`data-technical-block="${block}"`,'g'))].length,55,`Incomplete technical section: ${block}`);
 assert.equal([...requirements.matchAll(/class="requirements-diagram"/g)].length,55,'Missing technical diagrams');
 assert.ok(!/pomidor/i.test(requirements),'Internal source references leaked into the public page');
+const faqData=JSON.parse(await readFile(path.join(root,'company-faq.json'),'utf8'));
+const faqItems=faqData.groups.flatMap(group=>group.questions);
+const faqPage=contents.get(path.join(root,'company/vopros-otvet/index.html'));
+assert.equal(faqItems.length,80,'Incomplete company FAQ');
+assert.equal(faqData.groups.length,10,'Missing FAQ topics');
+assert.equal(new Set(faqItems.map(item=>item.question)).size,faqItems.length,'Repeated FAQ questions');
+assert.deepEqual(faqItems.filter(item=>item.service).map(item=>item.service).toSorted(),source.requirements.map(item=>item.id).toSorted(),'FAQ must cover every current service');
+const faqCards=[...faqPage.matchAll(/<details\b[^>]*data-question-id="([^"]+)"[^>]*><summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g)];
+assert.deepEqual(faqCards.map(card=>card[1]),faqItems.map(item=>item.id),'Answers must be available without JavaScript');
+const plainHtml=value=>value.replace(/<[^>]+>/g,' ').replace(/&quot;/g,'"').replace(/&#x27;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();
+const faqSchema=[...faqPage.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap(match=>JSON.parse(match[1])['@graph']||[]).filter(entity=>entity['@type']==='FAQPage');
+assert.equal(faqSchema.length,1,'Expected one static FAQPage schema');
+assert.deepEqual(faqSchema[0].mainEntity,faqCards.map(card=>({'@type':'Question',name:plainHtml(card[2]),acceptedAnswer:{'@type':'Answer',text:plainHtml(card[3])}})),'FAQ structured data must match the visible answers');
+faqCards.forEach((card,index)=>{
+  assert.ok(plainHtml(card[3]).startsWith(faqItems[index].answer),`Missing answer: ${faqItems[index].id}`);
+  assert.ok(faqItems[index].sources?.length,`Missing FAQ source: ${faqItems[index].id}`);
+});
 for(const [file,html] of contents){
   assert.equal([...html.matchAll(/id="cookie-banner"/g)].length,1,`${file}: missing or duplicate cookies banner`);
   assert.equal([...html.matchAll(/src="[^"]*consent\.js"/g)].length,1,`${file}: missing cookies script`);

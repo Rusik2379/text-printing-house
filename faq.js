@@ -4,6 +4,7 @@
   if(!questions.length)return;
   const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
   const finishAnimations=new Set();
+  const linkedAnswers=new Map();
   questions.forEach(details=>{
     const summary=details.querySelector('summary');
     if(!summary)return;
@@ -52,7 +53,13 @@
       if(!animation){expanded=details.open;updateState();}
     });
     updateState();
+    if(details.id)linkedAnswers.set(details.id,()=>{expanded=true;finish();});
   });
+  const revealLinkedAnswer=()=>{
+    try{linkedAnswers.get(decodeURIComponent(location.hash.slice(1)))?.();}catch{}
+  };
+  window.addEventListener('hashchange',revealLinkedAnswer);
+  revealLinkedAnswer();
   reducedMotion.addEventListener('change',()=>{
     if(reducedMotion.matches)[...finishAnimations].forEach(finish=>finish());
   });

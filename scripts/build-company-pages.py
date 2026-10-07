@@ -10,6 +10,7 @@ from company_requirements_diagrams import diagram
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE=json.loads((ROOT/'company-content.json').read_text(encoding='utf-8'))
+FAQ_SOURCE=json.loads((ROOT/'company-faq.json').read_text(encoding='utf-8'))
 PAGES = [
     ('О нас','company/about/','О студии, производстве и нашем подходе к работе'),
     ('Контакты','contacts/','Адрес, график работы и удобные способы связи'),
@@ -110,6 +111,9 @@ def build(path,title,intro,art,body,actions=None,schema_type='WebPage',seo=None)
     if article:
         entity.update({'headline':plain(title),'author':{'@type':'Organization','name':'Студия печати ТЕКСТ'},'datePublished':seo['published'],'dateModified':seo['updated'],'inLanguage':'ru'})
     schema={'@context':'https://schema.org','@graph':[entity,{'@type':'BreadcrumbList','itemListElement':crumbs}]}
+    if path=='company/vopros-otvet/':
+        questions=re.findall(r'<details\b[^>]*data-question-id="[^"]+"[^>]*><summary>(.*?)</summary>(.*?)</details>',page_body,re.S)
+        entity['mainEntity']=[{'@type':'Question','name':plain(q),'acceptedAnswer':{'@type':'Answer','text':plain(answer)}} for q,answer in questions]
     if path in ('contacts/','dostavka-i-oplata/','company/payment/','requirements/'):
         questions=re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>',page_body,re.S)
         schema['@graph'].append({'@type':'FAQPage','mainEntity':[{'@type':'Question','name':plain(q),'acceptedAnswer':{'@type':'Answer','text':plain(answer)}} for q,answer in questions]})
@@ -121,7 +125,7 @@ def build(path,title,intro,art,body,actions=None,schema_type='WebPage',seo=None)
     actions=actions or '<button class="button button-primary" data-action="contacts">Обсудить заказ '+icon('arrow')+'</button><button class="button button-white" data-action="catalog">Наши услуги</button>'
     art_html=f'<div class="company-art"><img src="{prefix}assets/{art}" alt="Робот студии ТЕКСТ — {escape(plain(title))}" width="900" height="900" fetchpriority="high"></div>' if art else ''
     hero=f'<section class="company-hero{" company-hero-text" if not art else ""}" aria-labelledby="company-title"><div><h1 id="company-title">{title}</h1><p>{intro}</p><div class="company-actions">{actions}</div></div>{art_html}</section>'
-    page_class='company-page'+(' company-article-page' if article else ' company-legal-page' if not art else {'company/about/':' company-about-page','contacts/':' company-contacts-page','dostavka-i-oplata/':' company-delivery-page','company/payment/':' company-payment-page','requirements/':' company-requirements-page'}.get(path,''))
+    page_class='company-page'+(' company-article-page' if article else ' company-legal-page' if not art else {'company/about/':' company-about-page','contacts/':' company-contacts-page','dostavka-i-oplata/':' company-delivery-page','company/payment/':' company-payment-page','requirements/':' company-requirements-page','company/vopros-otvet/':' company-questions-page'}.get(path,''))
     output=f'<!doctype html>\n<html lang="ru"><head>{page_head}</head><body class="{page_class}">\n{page_header}<main id="main"><div class="container">{breadcrumb}{hero}{page_body}</div></main>\n{page_footer}</body></html>\n'
     target=ROOT/path/'index.html';target.parent.mkdir(parents=True,exist_ok=True);target.write_text(output,encoding='utf-8')
 
@@ -365,15 +369,27 @@ def requirements(prefix):
     return section('Проверьте перед отправкой',checks)+section('Требования к вашей услуге',directory,extra='id="requirements-content"')+common+questions+cta(prefix,'Нужна помощь с макетом?','Пришлите файл и расскажите о задаче — проверим подготовку перед печатью.')
 
 def questions(prefix):
-    groups=['Заказ','Макеты','Сроки','Получение','Макеты']
-    items=[]
-    for item,group in zip(SOURCE['questions'],groups):
-        answer=escape(item['answer'])
-        if group=='Заказ':answer='Да. Добавляйте позиции в корзину: у каждой сохраняются собственные параметры. Для услуг без онлайн-расчёта стоимость уточним при согласовании.'
-        if group=='Макеты' and 'требования' in item['question'].lower():answer=f'Для чертежей, наклеек и полиграфии требования различаются. Все 55 памяток собраны в разделе <a href="{prefix}requirements/">«Технические требования»</a>.'
-        if group=='Макеты' and 'макеты' in item['question'].lower():answer='Файлы остаются на вашем устройстве. При отправке письма на <a href="mailto:tekkkst@yandex.ru">tekkkst@yandex.ru</a> приложите их вручную. Проверьте вложения перед отправкой.'
-        items.append((group,escape(item['question']),answer))
-    return '<div id="questions-content">'+filters(['Заказ','Макеты','Сроки','Получение'])+faq(items,True)+empty()+'</div>'+note(f'Заказываете впервые? <a href="{prefix}kak-oformit-zakaz/">Посмотрите порядок оформления заказа</a>.')+cta(prefix,'Не нашли ответ?','Позвоните нам или напишите — поможем разобраться с вашим заказом.')
+    def count_label(count):
+        return f'{count} '+('вопрос' if count%10==1 and count%100!=11 else 'вопроса' if count%10 in (2,3,4) and count%100 not in (12,13,14) else 'вопросов')
+    groups=[]
+    buttons=['<button type="button" data-company-filter="all" aria-pressed="true">Все темы</button>']
+    for group in FAQ_SOURCE['groups']:
+        buttons.append(f'<button type="button" data-company-filter="{group["id"]}" aria-pressed="false">{escape(group["label"])}</button>')
+        cards=[]
+        for item in group['questions']:
+            related=[f'<a href="{prefix}{link["route"]}">{escape(link["label"])}</a>' for link in item['links']]
+            if item.get('service'):
+                service=next(s for s in CATALOG if s['id']==item['service'])
+                related=[f'<a href="{service_url(service,prefix)}">{escape(service["name"])}</a>',f'<a href="{prefix}requirements/#requirement-{item["service"].replace(".","-")}">Требования к макету</a>']+related
+            related_html='<div class="questions-related">'+''.join(related)+'</div>' if related else ''
+            cards.append(f'<details id="question-{item["id"]}" data-filter-item data-category="{group["id"]}" data-question-id="{item["id"]}" data-search-tags="{escape(item["search_tags"],quote=True)}"><summary><span>{escape(item["question"])}</span>{icon("plus")}</summary><p>{escape(item["answer"])}</p>{related_html}</details>')
+        groups.append(f'<section class="questions-group" data-filter-group aria-labelledby="questions-{group["id"]}"><div class="questions-group-heading"><span class="questions-group-icon">{icon(group["icon"])}</span><h3 id="questions-{group["id"]}">{escape(group["label"])}</h3><small data-filter-group-count>{count_label(len(cards))}</small></div><div class="company-faq faq-list questions-list">'+''.join(cards)+'</div></section>')
+    search='<div class="questions-search-row"><label class="company-search questions-search">'+icon('search')+'<span class="sr-only">Поиск по вопросам и ответам</span><input type="search" data-company-search placeholder="Например: Word, доставка или стикерпаки" autocomplete="off"></label><button class="questions-search-clear" type="button" data-company-search-clear aria-label="Очистить поиск" hidden>'+icon('close')+'</button></div>'
+    mobile_topics='<label class="questions-topic-select"><span>Тема вопросов</span><select data-company-topic><option value="all">Все темы</option>'+''.join(f'<option value="{g["id"]}">{escape(g["label"])}</option>' for g in FAQ_SOURCE['groups'])+'</select></label>'
+    tools='<div class="questions-tools">'+search+'<div class="company-filter questions-filter" role="group" aria-label="Темы вопросов">'+''.join(buttons)+'</div>'+mobile_topics+'<p class="company-results questions-results" data-results-status role="status" aria-live="polite">'+count_label(sum(len(g['questions']) for g in FAQ_SOURCE['groups']))+'</p></div>'
+    empty_results='<div class="questions-empty" data-empty-results hidden>'+icon('search')+'<h3>Такого ответа пока нет</h3><p>Попробуйте другое слово или сбросьте выбранную тему. Если вопрос о вашем заказе, напишите нам.</p><button class="button button-white" type="button" data-company-reset>Сбросить поиск и тему</button></div>'
+    directory=tools+'<div class="questions-groups" data-filter-list data-questions-list>'+''.join(groups)+'</div>'+empty_results
+    return section('Найдите свой ответ',directory,'О заказе и файлах, сроках и получении — и о подготовке каждой услуги.',extra='id="questions-content"')+cta(prefix,'Не нашли ответ?','Позвоните нам или напишите — поможем разобраться с вашим заказом.')
 
 def order_guide(prefix):
     steps=[('Выберите услугу и параметры','Найдите услугу в меню или через поиск. Для визиток, наклеек и стикерпаков используйте онлайн-калькуляторы. Для остальных услуг укажите размер, материал и тираж в запросе.'),
@@ -441,7 +457,7 @@ build('contacts/','Хорошие идеи<br>начинаются <em>с общ
 build('dostavka-i-oplata/','Ваши идеи<br>уже <em>в пути</em>','Самовывоз из студии и отправка по России. Условия, стоимость и способ получения согласуем при подтверждении заказа.','company-delivery.webp',delivery,seo=page_seo('delivery'))
 build('company/payment/','Сначала детали.<br>Потом <em>оплата</em>','Проверим макеты, согласуем состав заказа и итоговую стоимость. После подтверждения сообщим способ оплаты и реквизиты.','company-payment.webp',payment,seo=page_seo('payment','Оплата заказа в студии ТЕКСТ: согласование макета и итоговой стоимости. Способ оплаты и реквизиты сообщаем при подтверждении заказа.'),actions='<button class="button button-primary" data-action="contacts">Уточнить оплату '+icon('arrow')+'</button><button class="button button-white" type="button" data-action="order-guide" aria-haspopup="dialog">Как оформить заказ</button>')
 build('requirements/','Технические<br><em>требования</em>','Для документов, чертежей, полиграфии и изделий с резкой. Найдите свою услугу и проверьте файл перед отправкой.','company-requirements.webp',requirements,seo=page_seo('requirements'),actions='<a class="button button-primary" href="#requirements-content">Найти требования '+icon('arrow')+'</a><button class="button button-white" data-action="contacts">Помощь с макетом</button>')
-build('company/vopros-otvet/','Всё, что вы хотели<br><em>спросить о печати</em>','Ответы о расчёте, отправке файлов, сроках и получении заказа. Выберите тему или найдите свой вопрос.','company-contacts.webp',questions,seo=page_seo('vopros-otvet','Ответы студии ТЕКСТ на вопросы о корзине, макетах, производственных сроках и получении заказа. Барнаул, Строителей, 11.'),actions='<a class="button button-primary" href="#questions-content">Найти ответ '+icon('search')+'</a><button class="button button-white" data-action="contacts">Задать вопрос</button>')
+build('company/vopros-otvet/','Вопросы<br><em>и ответы</em>','Как оформить заказ, подготовить макет и получить тираж. Собрали ответы по всем направлениям печати — выберите тему или найдите свой вопрос.','company-contacts.webp',questions,schema_type='FAQPage',seo=page_seo('vopros-otvet','Ответы студии ТЕКСТ о заказе, макетах, оплате и доставке, печати документов, наклейках, полиграфии и UV-печати. Барнаул, Строителей, 11.'),actions='<a class="button button-primary" href="#questions-content">Найти ответ '+icon('search')+'</a><button class="button button-white" data-action="contacts">Задать вопрос</button>')
 build('company/article/','Полезно знать<br><em>перед печатью</em>','150 практических материалов: выбираем бумагу и материалы, готовим документы и макеты, разбираемся в технологиях.','company-requirements.webp',articles,seo=page_seo('articles'),schema_type='CollectionPage',actions='<a class="button button-primary" href="#articles-content">Выбрать статью '+icon('arrow')+'</a><a class="button button-white" href="../../requirements/">Требования к файлам</a>')
 build('kak-oformit-zakaz/','От идеи<br>до <em>готового заказа</em>','Четыре шага: выбрать услугу, подготовить параметры, отправить файлы и подтвердить заказ со студией.','company-contacts.webp',order_guide,actions='<button class="button button-primary" data-action="catalog">Выбрать услугу '+icon('arrow')+'</button><button class="button button-white" data-action="cart">Открыть корзину</button>')
 build('company/','Знакомьтесь:<br>студия печати <em>ТЕКСТ</em>','О нашей работе, производстве и заботе о ваших заказах. Вся полезная информация о студии — в одном разделе.','company-about.webp',lambda prefix:'<div class="company-grid">'+''.join(f'<a class="company-card" href="{prefix}{path}">{icon(i)}<h3>{label}</h3><p>{intro}</p></a>' for (label,path,intro),i in zip(PAGES,['printer','pin','truck','bag','check','message','document','check']))+'</div>'+section('Документы студии','<div class="company-grid">'+''.join(f'<a class="company-card" href="{prefix}{path}">{icon("document")}<h3>{label}</h3><p>{intro}</p></a>' for label,path,intro in LEGAL_PAGES)+'</div>')+cta(prefix),schema_type='CollectionPage')

@@ -325,11 +325,14 @@
   measureClients();
   }
   window.addEventListener('resize',()=>{if(activeMenu)closeMenu();},{passive:true});
+  const hasStaticFaq=[...document.querySelectorAll('script[type="application/ld+json"]')].some(script=>{
+    try{const schema=JSON.parse(script.textContent);return [schema,...(schema['@graph']||[])].some(entity=>entity['@type']==='FAQPage');}catch{return false;}
+  });
   const seoSchema={
     '@context':'https://schema.org',
     '@graph':[
       {'@type':'LocalBusiness',name:'Студия печати ТЕКСТ',url:'https://text-print.ru/',telephone:'+79236547896',email:'tekkkst@yandex.ru',address:{'@type':'PostalAddress',streetAddress:'проспект Строителей, 11',addressLocality:'Барнаул',addressCountry:'RU'},openingHoursSpecification:[{'@type':'OpeningHoursSpecification',dayOfWeek:['Monday','Tuesday','Wednesday','Thursday','Friday'],opens:'09:00',closes:'18:00'}]},
-      ...($$('.faq-list details').length?[{'@type':'FAQPage',mainEntity:$$('.faq-list details').map(d=>({'@type':'Question',name:$('summary',d).textContent.trim(),acceptedAnswer:{'@type':'Answer',text:$('p',d).textContent.trim()}}))}]:[])
+      ...(!hasStaticFaq&&$$('.faq-list details').length?[{'@type':'FAQPage',mainEntity:$$('.faq-list details').map(d=>({'@type':'Question',name:$('summary',d).textContent.trim(),acceptedAnswer:{'@type':'Answer',text:$('p',d).textContent.trim()}}))}]:[])
     ]
   };
   const schemaScript=document.createElement('script');schemaScript.type='application/ld+json';schemaScript.textContent=JSON.stringify(seoSchema);document.head.append(schemaScript);
