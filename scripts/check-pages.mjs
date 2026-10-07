@@ -88,7 +88,7 @@ faqCards.forEach((card,index)=>{
 });
 for(const [file,html] of contents){
   assert.equal([...html.matchAll(/id="cookie-banner"/g)].length,1,`${file}: missing or duplicate cookies banner`);
-  assert.equal([...html.matchAll(/src="[^"]*consent\.js"/g)].length,1,`${file}: missing cookies script`);
+  assert.equal([...html.matchAll(/src="[^"]*consent\.js(?:\?[^\"]*)?"/g)].length,1,`${file}: missing cookies script`);
   assert.ok(html.includes('data-cookie-settings'),`${file}: cannot change cookies choice`);
   for(const page of ['privacy','personal-data-consent','cookies','font-license'])assert.ok(html.includes(`company/${page}/`),`${file}: missing legal link: ${page}`);
   assert.ok(!html.includes('mc.yandex.ru/metrika/tag.js'),`${file}: analytics loads before consent`);

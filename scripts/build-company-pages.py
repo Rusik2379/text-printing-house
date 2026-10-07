@@ -4,8 +4,8 @@ Python standard library only; original ZIP/XLSX is needed only for a fresh impor
 """
 from pathlib import Path
 from html import escape, unescape
-import json, re, math
-from urllib.parse import quote
+import json, re, math, hashlib
+from urllib.parse import quote, unquote, urlsplit, urlunsplit, parse_qsl, urlencode
 from company_requirements_diagrams import diagram
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -55,7 +55,7 @@ for relative,prefix in [('index.html',''),*product_pages]:
     text=re.sub(r'(<h3>Компания</h3>)<div class="footer-links"[^>]*>.*?</div>',
                 lambda match:match[1]+f'<div class="footer-links" data-company-links>{links(prefix)}</div>',text,count=1,flags=re.S)
     for asset,tag in [('consent.css',f'<link rel="stylesheet" href="{prefix}consent.css">'),('consent.js',f'<script src="{prefix}consent.js" defer></script>')]:
-        if not re.search(r'(?:href|src)="[^"]*'+re.escape(asset)+'"',text):text=text.replace('</head>',tag+'\n</head>',1)
+        if not re.search(r'(?:href|src)="[^"]*'+re.escape(asset)+r'(?:\?[^\"]*)?"',text):text=text.replace('</head>',tag+'\n</head>',1)
     text=re.sub(r'<div class="container footer-legal" data-legal-links>.*?</div>','',text,flags=re.S)
     text=text.replace('<div class="container footer-bottom">',legal_footer(prefix)+'<div class="container footer-bottom">',1)
     text=text.replace('href="https://text-print.ru/pk/"',f'href="{prefix}company/privacy/"')
@@ -495,4 +495,24 @@ for a in ARTICLES:
 
 manifest={'source':SOURCE['source'],'articles':[{k:a[k] for k in ['id','title','category','path','source_route']} for a in ARTICLES]}
 (ROOT/'company-articles.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+# A new resource URL invalidates browser caches only when CSS or JavaScript changes.
+asset_versions={}
+for file in sorted(ROOT.rglob('*.html')):
+    if any(part.startswith('.') or part in ('node_modules','preview') for part in file.relative_to(ROOT).parts):continue
+    newline='\r\n' if b'\r\n' in file.read_bytes() else '\n'
+    text=file.read_text(encoding='utf-8')
+    def version_asset(match):
+        url=urlsplit(unescape(match[2]))
+        if url.scheme or url.netloc or Path(url.path).suffix not in ('.css','.js'):return match[0]
+        asset=(file.parent/unquote(url.path)).resolve()
+        if not asset.is_relative_to(ROOT) or not asset.is_file():return match[0]
+        if asset not in asset_versions:asset_versions[asset]=hashlib.sha256(asset.read_bytes()).hexdigest()[:12]
+        query=[(key,value) for key,value in parse_qsl(url.query,keep_blank_values=True) if key!='v']
+        query.append(('v',asset_versions[asset]))
+        versioned=urlunsplit((url.scheme,url.netloc,url.path,urlencode(query),url.fragment))
+        return match[1]+escape(versioned,quote=True)
+    versioned=re.sub(r'((?:href|src)=")([^\"]+)(?=")',version_asset,text)
+    if versioned!=text:file.write_text(versioned,encoding='utf-8',newline=newline)
+
 print(f'Built {len(PAGES)-1} company pages, overview, order guide, {len(LEGAL_PAGES)} legal pages and {len(ARTICLES)} complete articles with {len(SOURCE["requirements"])} service requirements.')
