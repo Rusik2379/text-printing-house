@@ -6,6 +6,7 @@ from pathlib import Path
 from html import escape, unescape
 import json, re, math
 from urllib.parse import quote
+from company_requirements_diagrams import diagram
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE=json.loads((ROOT/'company-content.json').read_text(encoding='utf-8'))
@@ -19,6 +20,12 @@ PAGES = [
     ('Статьи','company/article/','Практические материалы о печати и макетах'),
     ('Как заказать','kak-oformit-zakaz/','Порядок оформления, отправки файлов и подтверждения'),
 ]
+LEGAL_PAGES = [
+    ('Конфиденциальность','company/privacy/','Как студия использует и защищает данные'),
+    ('Согласие на обработку данных','company/personal-data-consent/','Отдельное согласие для обращения и заказа'),
+    ('Политика cookies','company/cookies/','Необходимые данные и выбор аналитики'),
+    ('Лицензии шрифтов','company/font-license/','Сведения о шрифтах и тексты лицензий'),
+]
 CATEGORIES = [
     ('Копицентр','popular-art-печать документов',8),('Проектная документация','popular-art-инженерная печать',17),
     ('Листовая полиграфия','popular-art-визитки',26),('Наклейки и стикеры','popular-art-стикерпаки',37),
@@ -29,16 +36,33 @@ home = (ROOT/'index.html').read_text(encoding='utf-8')
 def links(prefix):
     return ''.join(f'<a href="{prefix}{path}">{label}</a>' for label,path,_ in PAGES)
 
+def legal_footer(prefix):
+    return '<div class="container footer-legal" data-legal-links>'+''.join(f'<a href="{prefix}{path}">{label}</a>' for label,path,_ in LEGAL_PAGES)+'<button type="button" data-cookie-settings>Настройки cookies</button></div>'
+
+def cookie_banner(prefix):
+    return f'''<aside id="cookie-banner" class="cookie-banner" role="region" aria-labelledby="cookie-title" hidden>
+      <div class="cookie-copy"><h2 id="cookie-title">Ваш выбор cookies</h2><p>Сохраняем корзину и настройки в браузере. Аналитика помогает улучшать сайт и включается только с вашего согласия. <a href="{prefix}company/cookies/">Подробнее о cookies</a></p><p class="cookie-current" data-cookie-current hidden></p></div>
+      <div class="cookie-actions"><button class="button button-white" type="button" data-cookie-choice="necessary">Только необходимые</button><button class="button button-primary" type="button" data-cookie-choice="analytics">Разрешить аналитику</button></div>
+    </aside>'''
+
 # Keep the homepage and all product pages connected to the same company section.
 product_pages=[(str(file.relative_to(ROOT)),'../'*len(file.relative_to(ROOT).parent.parts)) for file in sorted((ROOT/'nakleyki-i-stikery').rglob('index.html'))]
 for relative,prefix in [('index.html',''),*product_pages]:
     file=ROOT/relative
+    newline='\r\n' if b'\r\n' in file.read_bytes() else '\n'
     text=file.read_text(encoding='utf-8')
     text=re.sub(r'(<h3>Компания</h3>)<div class="footer-links"[^>]*>.*?</div>',
                 lambda match:match[1]+f'<div class="footer-links" data-company-links>{links(prefix)}</div>',text,count=1,flags=re.S)
+    for asset,tag in [('consent.css',f'<link rel="stylesheet" href="{prefix}consent.css">'),('consent.js',f'<script src="{prefix}consent.js" defer></script>')]:
+        if not re.search(r'(?:href|src)="[^"]*'+re.escape(asset)+'"',text):text=text.replace('</head>',tag+'\n</head>',1)
+    text=re.sub(r'<div class="container footer-legal" data-legal-links>.*?</div>','',text,flags=re.S)
+    text=text.replace('<div class="container footer-bottom">',legal_footer(prefix)+'<div class="container footer-bottom">',1)
+    text=text.replace('href="https://text-print.ru/pk/"',f'href="{prefix}company/privacy/"')
+    text=re.sub(r'\s*<aside id="cookie-banner".*?</aside>\s*','\n',text,flags=re.S)
+    text=text.replace('</body>',cookie_banner(prefix)+'\n</body>',1)
     credit=f'<div class="footer-credit"><div class="footer-credit-copy"><span>Сделано «Сибирь Софт»</span><span>Поддерживается с 2026 года</span></div><a class="footer-credit-logo" href="https://sibsoft-it.ru/" target="_blank" rel="noopener" aria-label="Сибирь Софт — разработка и поддержка сайта"><img src="{prefix}assets/sibsoft-logo.png" alt="Сибирь Софт" width="848" height="1264" loading="lazy"></a></div>'
     text=re.sub(r'<a class="footer-credit"[^>]*>.*?</a>|<div class="footer-credit">.*?</a></div>|<span>Сделано с <span class="footer-heart">♥</span> в Барнауле</span>',lambda _:credit,text,count=1,flags=re.S)
-    file.write_text(text,encoding='utf-8')
+    file.write_text(text,encoding='utf-8',newline=newline)
 home=(ROOT/'index.html').read_text(encoding='utf-8')
 header=home[home.index('  <a class="skip-link"'):home.index('  <main id="main">')]
 footer=home[home.index('  <footer'):home.index('</body>')]
@@ -95,8 +119,9 @@ def build(path,title,intro,art,body,actions=None,schema_type='WebPage',seo=None)
     breadcrumb=f'<nav class="company-breadcrumbs" aria-label="Хлебные крошки"><a href="{prefix}">Главная</a><span aria-hidden="true">/</span><a href="{prefix}company/">Компания</a>'+(f'<span aria-hidden="true">/</span><span aria-current="page">{next((l for l,p,_ in PAGES if p==path),"Статья" if article else plain(title))}</span>' if path!='company/' else '')+'</nav>'
     if article:breadcrumb=breadcrumb.replace('<span aria-current="page">Статья</span>',f'<a href="../">Статьи</a><span aria-hidden="true">/</span><span aria-current="page">Статья</span>')
     actions=actions or '<button class="button button-primary" data-action="contacts">Обсудить заказ '+icon('arrow')+'</button><button class="button button-white" data-action="catalog">Наши услуги</button>'
-    hero=f'<section class="company-hero" aria-labelledby="company-title"><div><h1 id="company-title">{title}</h1><p>{intro}</p><div class="company-actions">{actions}</div></div><div class="company-art"><img src="{prefix}assets/{art}" alt="Робот студии ТЕКСТ — {escape(plain(title))}" width="900" height="900" fetchpriority="high"></div></section>'
-    page_class='company-page'+(' company-article-page' if article else {'company/about/':' company-about-page','contacts/':' company-contacts-page','dostavka-i-oplata/':' company-delivery-page','company/payment/':' company-payment-page','requirements/':' company-requirements-page'}.get(path,''))
+    art_html=f'<div class="company-art"><img src="{prefix}assets/{art}" alt="Робот студии ТЕКСТ — {escape(plain(title))}" width="900" height="900" fetchpriority="high"></div>' if art else ''
+    hero=f'<section class="company-hero{" company-hero-text" if not art else ""}" aria-labelledby="company-title"><div><h1 id="company-title">{title}</h1><p>{intro}</p><div class="company-actions">{actions}</div></div>{art_html}</section>'
+    page_class='company-page'+(' company-article-page' if article else ' company-legal-page' if not art else {'company/about/':' company-about-page','contacts/':' company-contacts-page','dostavka-i-oplata/':' company-delivery-page','company/payment/':' company-payment-page','requirements/':' company-requirements-page'}.get(path,''))
     output=f'<!doctype html>\n<html lang="ru"><head>{page_head}</head><body class="{page_class}">\n{page_header}<main id="main"><div class="container">{breadcrumb}{hero}{page_body}</div></main>\n{page_footer}</body></html>\n'
     target=ROOT/path/'index.html';target.parent.mkdir(parents=True,exist_ok=True);target.write_text(output,encoding='utf-8')
 
@@ -113,13 +138,16 @@ SOURCE_ROUTES={
     '/company/requirements/':'requirements/','/company/articles/':'company/article/',
     '/company/vopros-otvet/':'company/vopros-otvet/',
     '/kak-oformit-zakaz/':'kak-oformit-zakaz/',
+    **{'/'+path:path for _,path,_ in LEGAL_PAGES},
+    '/fonts/Manrope-OFL.txt':'fonts/Manrope-OFL.txt','/fonts/PlayfairDisplay-OFL.txt':'fonts/PlayfairDisplay-OFL.txt',
     **{a['source_route']:a['path'] for a in ARTICLES},
 }
 CATEGORY_ROUTES=dict(zip(['/kopitsentr/','/proektnaya-dokumentatsiya/','/listovaya-poligrafiya/',
                          '/nakleyki-i-stikery/','/shirokiy-format/','/uv-pechat-i-rezka/'],TOPICS[:6]))
 
 def service_url(service,prefix):
-    return prefix+'nakleyki-i-stikery/stikerpaki/' if service['id']=='4.4' else prefix+'?service='+service['id']
+    route=service['url'].strip('/')+'/'
+    return prefix+route if (ROOT/route/'index.html').is_file() else prefix+'?service='+service['id']
 
 def resolve_route(route,prefix):
     if route in SOURCE_ROUTES:return prefix+SOURCE_ROUTES[route]
@@ -131,9 +159,9 @@ def resolve_route(route,prefix):
 # Adapt only instructions about the source site's UI to the actual shared cart.
 # PDF requirements for printing files remain intact.
 COPY_ADAPTATIONS={
-    'Каждая услуга имеет свой калькулятор.':'Для визиток и стикерпаков доступны онлайн-калькуляторы; параметры остальных услуг согласуем со студией.',
+    'Каждая услуга имеет свой калькулятор.':'Для визиток, наклеек и стикерпаков доступны онлайн-калькуляторы; параметры остальных услуг согласуем со студией.',
     'Это описание текущей версии сайта. Возможности отправки могут расшириться: следите за обновлениями.':'После отправки письма студия проверит файлы и подтвердит заказ.',
-    'Расчёт можно редактировать в корзине.':'Параметры стикерпака можно изменить из корзины. Для остальных позиций при необходимости добавьте новый расчёт.',
+    'Расчёт можно редактировать в корзине.':'Параметры наклеек и стикерпаков можно изменить из корзины. Для остальных позиций при необходимости добавьте новый расчёт.',
     'Скачайте или распечатайте перед отправкой.':'Скачайте расчёт или запрос перед отправкой.',
     'В расчёт попадают их названия.':'В расчёт попадают их названия.',
     'Выбрать услугу [/]':'Выбрать услугу',
@@ -267,6 +295,11 @@ def payment(prefix):
     return flow+before+questions+cta(prefix,'Уточним оплату вашего заказа','Позвоните или напишите — сообщим порядок оплаты и необходимые документы.')
 
 REQUIREMENT_ADAPTATIONS={
+    'Как и у Pomidor, важно не путать буклет с брошюрой:':'Важно не путать буклет с брошюрой:',
+    'По логике Pomidor: вылет':'Вылет',
+    'По логике Pomidor контур':'Контур',
+    'По присланному референсу: для готового лица':'Например, для готовой лицевой части',
+    ' — по текущей модели ТЕКСТ.':'.',
     'Для проектной документации используется отдельная страница и коэффициент.':'Для проектной документации действуют отдельные условия.',
     'Отверстие и дополнительная обработка публикуются только если реально доступны.':'Отверстие и дополнительную обработку согласуйте до изготовления.',
     'Размеры в текущем калькуляторе:':'Доступные размеры:',
@@ -276,6 +309,28 @@ REQUIREMENT_ADAPTATIONS={
     'Толщина и материал выбираются только из доступных в калькуляторе вариантов.':'Доступные материалы и толщины уточните при согласовании заказа.',
     'Печать на металлическом изделии заказчика на этой странице не обещаем.':'Печать на металлическом изделии заказчика требует отдельного согласования.',
 }
+
+def technical_copy(value):
+    for before,after in REQUIREMENT_ADAPTATIONS.items():value=value.replace(before,after)
+    return escape(value)
+
+def technical_body(item):
+    profile=item.get('technical')
+    if not profile:return '<ul class="requirements-points" data-requirement-text>'+''.join(f'<li>{technical_copy(sentence)}</li>' for sentence in re.split(r'(?<=[.!?])\s+(?=[А-ЯЁA-Z])',item['text']))+'</ul>'
+    def points(values):return '<ul class="requirements-points">'+''.join('<li>'+technical_copy(value)+'</li>' for value in values)+'</ul>'
+    def block(key,title,value,extra=''):
+        body=points(value) if isinstance(value,list) else '<p>'+technical_copy(value)+'</p>'
+        return f'<section class="requirements-detail-block {extra}" data-technical-block="{key}"><h4>{title}</h4>{body}</section>'
+    fixed='<div class="requirements-fixed">'+''.join('<span>'+technical_copy(value)+'</span>' for value in profile['fixed'])+'</div>' if profile['fixed'] else ''
+    content='<p class="requirements-send"><strong>Что передать</strong>'+technical_copy(profile['send'])+'</p>'+fixed
+    content+=block('file','Файл и технический минимум',profile['fileSpec'],'requirements-file')
+    content+=diagram(profile['scheme'],item['id'])+block('checks','Проверьте макет',profile['checks'])
+    content+=block('critical','Критично',profile['critical'],'requirements-critical')
+    content+=block('mistakes','Не делайте так',profile['mistakes'])
+    content+=block('preflight','Что проверяем перед запуском',profile['preflight'])
+    content+=block('example','Пример',profile['example'],'requirements-example')
+    if profile['note']:content+='<p class="requirements-detail-note">'+technical_copy(profile['note'])+'</p>'
+    return '<div data-requirement-text>'+content+'</div>'
 def requirements(prefix):
     def count_label(count):
         return f'{count} '+('услуга' if count%10==1 and count%100!=11 else 'услуги' if count%10 in (2,3,4) and count%100 not in (12,13,14) else 'услуг')
@@ -287,13 +342,10 @@ def requirements(prefix):
         category_buttons.append(f'<button class="requirements-category" type="button" data-company-filter="{escape(category)}" aria-pressed="false"><span class="requirements-category-icon">{icon(ico)}</span><span><strong>{escape(category)}</strong><small>{count_label(len(category_items))}</small></span>{icon("arrow")}</button>')
         cards=[]
         for item in category_items:
-            text=item['text']
-            for before,after in REQUIREMENT_ADAPTATIONS.items():text=text.replace(before,after)
-            sentences=re.split(r'(?<=[.!?])\s+(?=[А-ЯЁA-Z])',text)
-            points='<ul class="requirements-points" data-requirement-text>'+''.join(f'<li>{escape(sentence)}</li>' for sentence in sentences)+'</ul>'
-            action='Открыть калькулятор' if item['id'] in ('3.1','4.4') else 'Посмотреть услугу'
+            points=technical_body(item)
+            action='Открыть калькулятор' if item['id']=='3.1' or item['category']=='Наклейки и стикеры' else 'Посмотреть услугу'
             cards.append(f'<details class="requirements-service" id="requirement-{item["id"].replace(".","-")}" data-filter-item data-category="{escape(category)}" data-service-requirement="{item["id"]}"><summary><span>{escape(item["name"])}</span>{icon("plus")}</summary><div class="requirements-service-body">{points}<button class="requirements-service-link" type="button" data-service="{item["id"]}">{action} {icon("arrow")}</button></div></details>')
-        groups.append(f'<section class="requirements-group" data-filter-group><div class="requirements-group-heading"><span>{icon(ico)}</span><h3>{escape(category)}</h3><small data-filter-group-count>{count_label(len(category_items))}</small></div><div class="requirements-service-grid">'+''.join(cards)+'</div></section>')
+        groups.append(f'<section class="requirements-group" data-filter-group><div class="requirements-group-heading"><span>{icon(ico)}</span><h3>{escape(category)}</h3><small data-filter-group-count>{count_label(len(category_items))}</small></div><div class="requirements-service-grid faq-list">'+''.join(cards)+'</div></section>')
     tools='<div class="requirements-tools"><div class="requirements-search-row"><label class="company-search requirements-search">'+icon('search')+'<span class="sr-only">Поиск по требованиям</span><input type="search" data-company-search placeholder="Например: визитки, чертежи или наклейки" autocomplete="off"></label><button class="requirements-search-clear" type="button" data-company-search-clear aria-label="Очистить поиск" hidden>'+icon('close')+'</button></div><div class="requirements-filter-heading"><p>Выберите направление или найдите услугу</p><button class="requirements-all" type="button" data-company-filter="all" aria-pressed="true">Все направления</button></div><div class="requirements-category-grid" role="group" aria-label="Направления услуг">'+''.join(category_buttons)+'</div></div>'
     directory=tools+'<p class="sr-only" data-results-status role="status" aria-live="polite"></p><div class="requirements-groups" data-filter-list data-requirements-list>'+''.join(groups)+'</div><div class="requirements-empty" data-empty-results hidden>'+icon('search')+'<h3>Не нашли такую услугу</h3><p>Попробуйте другое название или вернитесь ко всем направлениям.</p><button class="button button-white" type="button" data-company-reset>Сбросить поиск и фильтр</button></div>'
     prep=[('document','Файл и страницы','Для документов удобнее PDF. Проверьте порядок, ориентацию и цветные страницы.'),
@@ -308,7 +360,9 @@ def requirements(prefix):
            ('','Какие оригиналы подходят для сканирования?','Оригиналы должны быть читаемыми и пригодными для сканирования. Для чертежей максимальный формат — А3. Если важен порядок страниц, согласуйте его заранее.'),
            ('','Куда отправить макет на проверку?',f'Пришлите файл и параметры заказа на <a href="mailto:tekkkst@yandex.ru">tekkkst@yandex.ru</a>. Вложения добавьте к письму вручную. Укажите услугу, размер, материал и тираж; дождитесь согласования студии.')]
     questions='<section class="company-section requirements-faq lower-home home-faq-section" aria-labelledby="requirements-faq-title"><h2 id="requirements-faq-title">Вопросы о макетах</h2><div class="home-faq-stage"><div class="home-faq-content">'+faq(items).replace('company-faq faq-list','faq-list')+f'</div><img class="faq-mascot" src="{prefix}assets/faq-peeking-robot.webp" alt="Робот ТЕКСТ держится за край карточек с вопросами" width="1166" height="1349" loading="lazy"></div></section>'
-    return section('Проверьте перед отправкой',checks)+section('Требования к вашей услуге',directory,extra='id="requirements-content"')+questions+cta(prefix,'Нужна помощь с макетом?','Пришлите файл и расскажите о задаче — проверим подготовку перед печатью.')
+    topic_items=[('',escape(topic['title']),escape(topic['text'])) for topic in SOURCE.get('technical_topics',[])]
+    common=section('Общие правила подготовки',faq(topic_items),extra='id="requirements-basics"') if topic_items else ''
+    return section('Проверьте перед отправкой',checks)+section('Требования к вашей услуге',directory,extra='id="requirements-content"')+common+questions+cta(prefix,'Нужна помощь с макетом?','Пришлите файл и расскажите о задаче — проверим подготовку перед печатью.')
 
 def questions(prefix):
     groups=['Заказ','Макеты','Сроки','Получение','Макеты']
@@ -322,7 +376,7 @@ def questions(prefix):
     return '<div id="questions-content">'+filters(['Заказ','Макеты','Сроки','Получение'])+faq(items,True)+empty()+'</div>'+note(f'Заказываете впервые? <a href="{prefix}kak-oformit-zakaz/">Посмотрите порядок оформления заказа</a>.')+cta(prefix,'Не нашли ответ?','Позвоните нам или напишите — поможем разобраться с вашим заказом.')
 
 def order_guide(prefix):
-    steps=[('Выберите услугу и параметры','Найдите услугу в меню или через поиск. Для визиток и стикерпаков используйте онлайн-калькуляторы. Для остальных услуг укажите размер, материал и тираж в запросе.'),
+    steps=[('Выберите услугу и параметры','Найдите услугу в меню или через поиск. Для визиток, наклеек и стикерпаков используйте онлайн-калькуляторы. Для остальных услуг укажите размер, материал и тираж в запросе.'),
            ('Соберите позиции в корзине','Добавьте нужные изделия. Нажмите «Подготовить запрос», заполните имя, телефон и комментарий. Позиции без расчёта уточним со студией.'),
            ('Отправьте параметры и макеты','Нажмите «Открыть письмо» и вручную приложите файлы к письму на tekkkst@yandex.ru. Если почтовая программа не настроена, нажмите «Скачать запрос» и отправьте его вместе с макетом самостоятельно.'),
            ('Подтвердите заказ','После проверки макета согласуем окончательные параметры, стоимость, оплату и получение. Производственный срок начинается после полного согласования макета.')]
@@ -347,6 +401,41 @@ def related_link_label(link):
     target=SOURCE_ROUTES.get(link['route'])
     return next((name for name,path,_ in PAGES if path==target),'Как оформить заказ' if target=='kak-oformit-zakaz/' else link['label'])
 
+LEGAL_ADAPTATIONS={
+    'Необходимые данные localStorage используются для корзины, выбора мессенджера, настройки анимации и сохранения выбора по cookies.':'Необходимые данные localStorage используются для состава корзины и сохранения выбора cookies. Прикреплённые макеты хранятся в IndexedDB на устройстве пользователя и не отправляются автоматически.',
+    'корзина, выбранный мессенджер, параметры расчёта, настройка анимации, выбор cookies':'корзина, параметры расчёта, выбор cookies',
+    'На сайте используется Яндекс Метрика, счётчик 86530452.':'На основном домене text-print.ru используется Яндекс Метрика, счётчик 86530452.',
+    'для анонимных идентификаторов браузера,':'для идентификаторов браузера,',
+    'Необходимые настройки работают для корзины, анимации и сохранения выбора по cookies.':'Необходимые настройки работают для корзины и сохранения выбора по cookies.',
+    'tekst-cart-v1 — содержимое корзины; tekst-motion — настройка анимации; tekst-cookie-consent — сохранённый выбор пользователя по аналитике. Эти данные хранятся в браузере пользователя.':'text-print-cart-v1 — содержимое корзины; text-print-consent-v1 — выбор пользователя по аналитике и дата его сохранения. Выбор действует 180 дней, после чего сайт предложит выбрать снова. Прикреплённые макеты сохраняются локально в IndexedDB (text-print-order-files) и не отправляются автоматически. Эти данные хранятся в браузере пользователя.',
+    'При выборе «Разрешить аналитику» сайт может загрузить Яндекс Метрику, счётчик 86530452.':'При выборе «Разрешить аналитику» на основном домене text-print.ru сайт может загрузить Яндекс Метрику, счётчик 86530452. На локальном предпросмотре и GitHub Pages аналитика не запускается.',
+    'Перед публичным запуском оператору необходимо сверить документ с фактическими серверными формами, хостингом, подрядчиками и уведомлением Роскомнадзора.':'',
+    'Текст согласия должен оставаться доступным по постоянному URL, указанному рядом с чекбоксом формы.':'',
+}
+
+def legal_document(name,prefix):
+    if name=='font-license':
+        body=section('Шрифты текущей версии','<p>Интерфейс использует системные Arial и Segoe UI, а также стандартный шрифт без засечек. Отдельные файлы веб-шрифтов не загружаются.</p>')
+        body+=section('Гарнитуры из материалов заказчика','<p>В исходном дизайне предусмотрены Manrope и Playfair Display. Они распространяются по SIL Open Font License 1.1. Тексты лицензий сохранены вместе с сайтом.</p>')
+        body+=section('Тексты лицензий',f'<div class="company-actions"><a class="button button-white" href="{prefix}fonts/Manrope-OFL.txt">Manrope — OFL 1.1 {icon("document")}</a><a class="button button-white" href="{prefix}fonts/PlayfairDisplay-OFL.txt">Playfair Display — OFL 1.1 {icon("document")}</a></div>')
+    else:
+        blocks=[]
+        for block in source_page(name)['sections']:
+            value=block['html']
+            for before,after in LEGAL_ADAPTATIONS.items():value=value.replace(before,after)
+            if block['tag']=='h2' and plain(value)==source_page(name)['title']:continue
+            if block['tag']=='h2':
+                value=value.replace('<h2>',f'<h2 id="legal-section-{len([b for b in blocks if "<h2" in b])+1}">',1)
+            blocks.append(render_source(value,prefix))
+        body=''.join(blocks)
+        if name=='cookies':body+='<div class="company-actions"><button class="button button-primary" type="button" data-cookie-settings>Изменить выбор cookies '+icon('gear')+'</button></div>'
+    related='<aside class="company-legal-links"><h2>Документы студии</h2>'+''.join(f'<a href="{prefix}{path}"'+(' aria-current="page"' if path=='company/'+name+'/' else '')+'>'+label+'</a>' for label,path,_ in LEGAL_PAGES)+'</aside>'
+    return '<p class="company-legal-date">Редакция от 7 октября 2026 года</p><div class="company-legal-layout"><article class="company-legal-reading">'+body+'</article>'+related+'</div>'
+
+for label,path,intro in LEGAL_PAGES:
+    name=path.strip('/').split('/')[-1]
+    build(path,escape(source_page(name)['title']),escape(intro),None,lambda prefix,name=name:legal_document(name,prefix),seo=page_seo(name),actions='<a class="button button-white" href="../">'+icon('arrow')+' Раздел «Компания»</a>')
+
 build('company/about/','ТЕКСТ — <em>больше,</em><br>чем печать',paragraphs('')[0],'company-about.webp',about,schema_type='AboutPage',seo=page_seo(''))
 build('contacts/','Хорошие идеи<br>начинаются <em>с общения</em>','Приезжайте в студию на Строителей, 11 или напишите нам. Обсудим вашу задачу и поможем с заказом.','company-contacts.webp',contacts,schema_type='ContactPage',seo=page_seo('contacts'),actions='<a class="button button-primary" href="tel:+79236547896">'+icon('phone')+' Позвонить</a><button class="button button-white" data-action="contacts">Написать нам</button>')
 build('dostavka-i-oplata/','Ваши идеи<br>уже <em>в пути</em>','Самовывоз из студии и отправка по России. Условия, стоимость и способ получения согласуем при подтверждении заказа.','company-delivery.webp',delivery,seo=page_seo('delivery'))
@@ -355,7 +444,7 @@ build('requirements/','Технические<br><em>требования</em>',
 build('company/vopros-otvet/','Всё, что вы хотели<br><em>спросить о печати</em>','Ответы о расчёте, отправке файлов, сроках и получении заказа. Выберите тему или найдите свой вопрос.','company-contacts.webp',questions,seo=page_seo('vopros-otvet','Ответы студии ТЕКСТ на вопросы о корзине, макетах, производственных сроках и получении заказа. Барнаул, Строителей, 11.'),actions='<a class="button button-primary" href="#questions-content">Найти ответ '+icon('search')+'</a><button class="button button-white" data-action="contacts">Задать вопрос</button>')
 build('company/article/','Полезно знать<br><em>перед печатью</em>','150 практических материалов: выбираем бумагу и материалы, готовим документы и макеты, разбираемся в технологиях.','company-requirements.webp',articles,seo=page_seo('articles'),schema_type='CollectionPage',actions='<a class="button button-primary" href="#articles-content">Выбрать статью '+icon('arrow')+'</a><a class="button button-white" href="../../requirements/">Требования к файлам</a>')
 build('kak-oformit-zakaz/','От идеи<br>до <em>готового заказа</em>','Четыре шага: выбрать услугу, подготовить параметры, отправить файлы и подтвердить заказ со студией.','company-contacts.webp',order_guide,actions='<button class="button button-primary" data-action="catalog">Выбрать услугу '+icon('arrow')+'</button><button class="button button-white" data-action="cart">Открыть корзину</button>')
-build('company/','Знакомьтесь:<br>студия печати <em>ТЕКСТ</em>','О нашей работе, производстве и заботе о ваших заказах. Вся полезная информация о студии — в одном разделе.','company-about.webp',lambda prefix:'<div class="company-grid">'+''.join(f'<a class="company-card" href="{prefix}{path}">{icon(i)}<h3>{label}</h3><p>{intro}</p></a>' for (label,path,intro),i in zip(PAGES,['printer','pin','truck','bag','check','message','document','check']))+'</div>'+cta(prefix),schema_type='CollectionPage')
+build('company/','Знакомьтесь:<br>студия печати <em>ТЕКСТ</em>','О нашей работе, производстве и заботе о ваших заказах. Вся полезная информация о студии — в одном разделе.','company-about.webp',lambda prefix:'<div class="company-grid">'+''.join(f'<a class="company-card" href="{prefix}{path}">{icon(i)}<h3>{label}</h3><p>{intro}</p></a>' for (label,path,intro),i in zip(PAGES,['printer','pin','truck','bag','check','message','document','check']))+'</div>'+section('Документы студии','<div class="company-grid">'+''.join(f'<a class="company-card" href="{prefix}{path}">{icon("document")}<h3>{label}</h3><p>{intro}</p></a>' for label,path,intro in LEGAL_PAGES)+'</div>')+cta(prefix),schema_type='CollectionPage')
 
 for a in ARTICLES:
     def reading(prefix,a=a):
@@ -390,4 +479,4 @@ for a in ARTICLES:
 
 manifest={'source':SOURCE['source'],'articles':[{k:a[k] for k in ['id','title','category','path','source_route']} for a in ARTICLES]}
 (ROOT/'company-articles.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-print(f'Built {len(PAGES)-1} company pages, overview, order guide and {len(ARTICLES)} complete articles with {len(SOURCE["requirements"])} service requirements.')
+print(f'Built {len(PAGES)-1} company pages, overview, order guide, {len(LEGAL_PAGES)} legal pages and {len(ARTICLES)} complete articles with {len(SOURCE["requirements"])} service requirements.')

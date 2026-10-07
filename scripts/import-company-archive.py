@@ -1,5 +1,6 @@
 """Import company text from an extracted TEKST_HTML_site archive (requires lxml)."""
 from pathlib import Path
+from datetime import date
 from lxml import html, etree
 from copy import deepcopy
 import argparse, json, re, hashlib
@@ -9,12 +10,15 @@ parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('source',type=Path,help='Extracted TEKST_HTML_site directory')
 parser.add_argument('--archive',type=Path,help='Original ZIP/RAR for the provenance hash')
 parser.add_argument('--seo',type=Path,help='Latest customer SEO workbook (read only)')
+parser.add_argument('--imported',default=date.today().isoformat(),help='Content import date (YYYY-MM-DD)')
 args=parser.parse_args()
 source=args.source.resolve()
 catalog_text=(ROOT/'catalog.js').read_text(encoding='utf-8')
 catalog=json.loads(catalog_text[catalog_text.index('['):catalog_text.rindex(']')+1])
 services={r['url']:r for r in catalog}
 legacy=json.loads((ROOT/'company-articles.json').read_text(encoding='utf-8'))['articles']
+previous=json.loads((ROOT/'company-content.json').read_text(encoding='utf-8'))
+previous_articles={a['source_route']:a for a in previous['articles']}
 def norm(text):return re.sub(r'\W+','',text.lower().replace('ё','е'))
 legacy_paths={norm(a['title']):a['path'] for a in legacy}
 def text(node):return ' '.join(''.join(node.itertext()).split())
@@ -65,6 +69,22 @@ for d in load('company/requirements/index.html').xpath('//main//details'):
                          'text':' '.join(text(p) for p in d.xpath('./p[not(a)]'))})
 assert len(requirements)==len(catalog)==55
 assert {r['id'] for r in requirements}=={s['id'] for s in catalog},'Service requirements coverage changed'
+technical_topics=[]
+technical_file=source/'technical-data.js'
+if technical_file.exists():
+    # Parse the customer's JSON literal as content; never execute archive JavaScript.
+    prefix='window.TEKST_REQUIREMENTS='
+    code=technical_file.read_text(encoding='utf-8')
+    assert code.startswith(prefix),'Unexpected technical data format'
+    technical,_=json.JSONDecoder().raw_decode(code[len(prefix):])
+    assert set(technical['services'])=={s['id'] for s in catalog}
+    keys=['send','checks','example','scheme','fixed','note','fileSpec','critical','mistakes','preflight']
+    for item in requirements:
+        profile=technical['services'][item['id']]
+        assert profile['url']==next(s['url'] for s in catalog if s['id']==item['id'])
+        assert all(profile.get(key) for key in ['send','checks','example','fileSpec','critical','mistakes','preflight'])
+        item['technical']={key:profile[key] for key in keys}
+    technical_topics=[{'id':key,'title':value['title'],'text':value['text']} for key,value in technical['topics'].items()]
 questions=[]
 for h in load('company/vopros-otvet/index.html').xpath('//main//h2'):
     answer=h.getnext()
@@ -91,13 +111,19 @@ for card in load('company/articles/index.html').xpath('//article[@data-article]'
     dates=article.xpath('./p[contains(@class,"article-date")]')
     category=text(card.xpath('./span')[0])
     if category=='Заказ и макеты':category='Заказ и подготовка макетов'
-    articles.append({'id':int(card.get('data-article')),'title':title,'category':category,
+    record={'id':int(card.get('data-article')),'title':title,'category':category,
                      'path':path,'source_route':route,'teaser':text(card.xpath('./p')[0]),
-                     'dates':text(dates[0]) if dates else '', 'blocks':blocks,'services':related_services})
+                     'dates':text(dates[0]) if dates else '', 'blocks':blocks,'services':related_services}
+    if not args.seo:
+        original=previous_articles[route]
+        assert norm(original['title'])==norm(title),'Article title changed; provide its SEO workbook'
+        assert original['dates']==record['dates'],'Article dates changed; provide its SEO workbook'
+        record['seo']=original['seo']
+    articles.append(record)
 assert len(articles)==150 and len({a['path'] for a in articles})==150
 assert all(a['blocks'] for a in articles)
 assert all(a['path'] in {x['path'] for x in articles} for a in legacy)
-provenance={'archive':args.archive.name if args.archive else source.name,'imported':'2026-10-06','company_pages':len(pages),
+provenance={'archive':args.archive.name if args.archive else source.name,'imported':args.imported,'company_pages':len(pages),
             'preserved_article_paths':[a['path'] for a in legacy if a['id']<=50]}
 if args.archive:provenance['sha256']=hashlib.sha256(args.archive.read_bytes()).hexdigest()
 if args.seo:
@@ -119,6 +145,19 @@ if args.seo:
     provenance['seo_article_rows_verified']=len(articles)
     provenance['seo_requirement_rows_verified']=len(requirements)
     workbook.close()
-data={'source':provenance,'pages':pages,'requirements':requirements,'questions':questions,'articles':articles}
+if not args.seo:
+    for key in ['seo_workbook','seo_sha256','seo_article_rows_verified']:
+        if key in previous['source']:provenance[key]=previous['source'][key]
+    provenance['seo_article_metadata_retained']=True
+if technical_topics:
+    provenance['requirements_version']='2026-10-07-tech-deep'
+    provenance['technical_profiles_verified']=len(requirements)
+    provenance['technical_data_sha256']=hashlib.sha256(technical_file.read_bytes()).hexdigest()
+    for name in ['Manrope-OFL.txt','PlayfairDisplay-OFL.txt']:
+        destination=ROOT/'fonts'/name
+        destination.parent.mkdir(exist_ok=True)
+        license_text=(source/'fonts'/name).read_text(encoding='utf-8')
+        destination.write_text('\n'.join(line.rstrip() for line in license_text.splitlines())+'\n',encoding='utf-8',newline='\n')
+data={'source':provenance,'pages':pages,'requirements':requirements,'technical_topics':technical_topics,'questions':questions,'articles':articles}
 (ROOT/'company-content.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 print(f'Imported {len(pages)} company pages, {len(requirements)} service requirements and {len(articles)} full articles; existing article URLs preserved.')

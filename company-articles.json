@@ -1,8 +1,8 @@
 {
   "source": {
-    "archive": "TEKST_HTML_site_FINAL_SEO_GEO_1100.zip",
-    "imported": "2026-10-06",
-    "company_pages": 10,
+    "archive": "TEKST_HTML_chatgpt_TECH_DEEP_2026-10-07.zip",
+    "imported": "2026-10-07",
+    "company_pages": 14,
     "preserved_article_paths": [
       "company/article/skolko-stoit-raspechatat-dokument-a4-v-cherno-belom-i-tsvetnom-variante/",
       "company/article/podgotovka-pdf-k-pechati-bez-obrezki-poley-i-teksta/",
@@ -55,11 +55,14 @@
       "company/article/kak-podgotovit-fayl-dlya-lazernoy-rezki-akrila-ili-fanery/",
       "company/article/kak-opredelit-protsent-zapolneniya-maketa-dlya-rascheta-lazernoy-gravirovki/"
     ],
-    "sha256": "8b1b0301aa6f1763628c6ab855678cedfcb927d4a0f0c55e23ac737bca3d10c6",
+    "sha256": "742afcee6a80b2ec336f51e21652f690b82e40868773b9f91df12aba33b12bda",
     "seo_workbook": "SEO_ТЕКСТ_FINAL_COMPACT_GEO_1100.xlsx",
     "seo_sha256": "85e159b88caceaecd7b7a26064170429bc7ad82dda3f50076aec319154071880",
     "seo_article_rows_verified": 150,
-    "seo_requirement_rows_verified": 55
+    "seo_article_metadata_retained": true,
+    "requirements_version": "2026-10-07-tech-deep",
+    "technical_profiles_verified": 55,
+    "technical_data_sha256": "3a0a359a82cd8fc55de4232c885619eabac3c4f536713fd1b22da7e5d4650bfa"
   },
   "articles": [
     {
