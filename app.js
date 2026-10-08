@@ -102,10 +102,35 @@
   dialog.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)closeDialog();}});
 
   let menuCloseTimer;
-  function closeMenu() {clearTimeout(menuCloseTimer);activeMenu=null;$('#mega-menu').hidden=true;$('#header').append($('#mega-menu'));$$('.nav-item').forEach(b=>b.setAttribute('aria-expanded','false'));}
+  const menuMotion=matchMedia('(prefers-reduced-motion:reduce)');
+  const menu=$('#mega-menu');
+  let menuAnimation=null;
+  function cancelMenuAnimation(){menuAnimation?.cancel();menuAnimation=null;}
+  function closeMenu() {
+    clearTimeout(menuCloseTimer);
+    activeMenu=null;
+    $$('.nav-item').forEach(b=>b.setAttribute('aria-expanded','false'));
+    menu.inert=true;
+    const motionStyle=getComputedStyle(menu);
+    const opacity=Number.parseFloat(motionStyle.opacity);
+    const translate=motionStyle.translate==='none'?'0 0':motionStyle.translate;
+    const height=`${menu.getBoundingClientRect().height}px`;
+    cancelMenuAnimation();
+    const finish=()=>{menu.hidden=true;$('#header').append(menu);};
+    if(menu.hidden||menuMotion.matches||typeof menu.animate!=='function'){finish();return;}
+    const current=menu.animate([{opacity,translate,height},{opacity:0,translate:'0 -6px',height}],{duration:320,easing:'cubic-bezier(.3,0,.2,1)',fill:'forwards'});
+    menuAnimation=current;
+    current.onfinish=()=>{if(menuAnimation!==current)return;finish();cancelMenuAnimation();};
+  }
   function openMenu(name) {
     clearTimeout(menuCloseTimer);
     if(activeMenu===name)return;
+    const wasVisible=!menu.hidden;
+    const fromHeight=wasVisible?menu.getBoundingClientRect().height:0;
+    const fromOpacity=wasVisible?Number.parseFloat(getComputedStyle(menu).opacity):0;
+    const translate=getComputedStyle(menu).translate;
+    const fromTranslate=translate==='none'?'0 0':translate;
+    cancelMenuAnimation();
     activeMenu=name;
     $$('.nav-item').forEach(b=>b.setAttribute('aria-expanded',String(b.dataset.menu===name)));
     const company=name==='Компания';
@@ -115,9 +140,21 @@
     const menuLinks=$('.mega-links',$('#mega-menu'));
     menuLinks.style.setProperty('--menu-rows',Math.ceil(menuLinks.children.length/3));
     $('#mega-menu').hidden=false;
+    menu.inert=false;
     if(matchMedia('(max-width:700px)').matches){$$('.nav-item').find(b=>b.dataset.menu===name).insertAdjacentElement('afterend',$('#mega-menu'));}
     else{$('#header').append($('#mega-menu'));}
+    if(!menuMotion.matches&&typeof menu.animate==='function'){
+      const height=menu.getBoundingClientRect().height;
+      const current=menu.animate([
+        {opacity:fromOpacity,translate:wasVisible?fromTranslate:'0 -10px',height:`${wasVisible?fromHeight:height}px`},
+        {opacity:1,translate:'0 0',height:`${height}px`}
+      ],{duration:440,easing:'cubic-bezier(.3,0,.2,1)',fill:'forwards'});
+      menuAnimation=current;
+      current.onfinish=()=>{if(menuAnimation===current)cancelMenuAnimation();};
+    }
+    clearTimeout(menuCloseTimer);
   }
+  menuMotion.addEventListener('change',()=>{if(menuMotion.matches){cancelMenuAnimation();if(!activeMenu){menu.hidden=true;$('#header').append(menu);}}});
   function toggleMenu(name) {if(activeMenu===name)closeMenu();else openMenu(name);}
   $('#navigation').innerHTML=['Компания',...categories.map(c=>c.name)].map(name=>`<button class="nav-item" data-menu="${escape(name)}" aria-expanded="false" aria-controls="mega-menu">${escape(name)} ${icon('chevron')}</button>`).join('');
   $$('.nav-item').forEach(button=>{
@@ -325,17 +362,18 @@
   measureClients();
   }
   window.addEventListener('resize',()=>{if(activeMenu)closeMenu();},{passive:true});
-  const hasStaticFaq=[...document.querySelectorAll('script[type="application/ld+json"]')].some(script=>{
-    try{const schema=JSON.parse(script.textContent);return [schema,...(schema['@graph']||[])].some(entity=>entity['@type']==='FAQPage');}catch{return false;}
-  });
+  const staticSchemaTypes=new Set([...document.querySelectorAll('script[type="application/ld+json"]')].flatMap(script=>{
+    try{const schema=JSON.parse(script.textContent);return [schema,...(schema['@graph']||[])].map(entity=>entity['@type']);}catch{return [];}
+  }));
+  const hasStaticFaq=staticSchemaTypes.has('FAQPage');
   const seoSchema={
     '@context':'https://schema.org',
     '@graph':[
-      {'@type':'LocalBusiness',name:'Студия печати ТЕКСТ',url:'https://text-print.ru/',telephone:'+79236547896',email:'tekkkst@yandex.ru',address:{'@type':'PostalAddress',streetAddress:'проспект Строителей, 11',addressLocality:'Барнаул',addressCountry:'RU'},openingHoursSpecification:[{'@type':'OpeningHoursSpecification',dayOfWeek:['Monday','Tuesday','Wednesday','Thursday','Friday'],opens:'09:00',closes:'18:00'}]},
+      ...(!staticSchemaTypes.has('LocalBusiness')?[{'@type':'LocalBusiness',name:'Студия печати ТЕКСТ',url:'https://text-print.ru/',telephone:'+79236547896',email:'tekkkst@yandex.ru',address:{'@type':'PostalAddress',streetAddress:'проспект Строителей, 11',addressLocality:'Барнаул',addressCountry:'RU'},openingHoursSpecification:[{'@type':'OpeningHoursSpecification',dayOfWeek:['Monday','Tuesday','Wednesday','Thursday','Friday'],opens:'09:00',closes:'18:00'}]}]:[]),
       ...(!hasStaticFaq&&$$('.faq-list details').length?[{'@type':'FAQPage',mainEntity:$$('.faq-list details').map(d=>({'@type':'Question',name:$('summary',d).textContent.trim(),acceptedAnswer:{'@type':'Answer',text:$('p',d).textContent.trim()}}))}]:[])
     ]
   };
-  const schemaScript=document.createElement('script');schemaScript.type='application/ld+json';schemaScript.textContent=JSON.stringify(seoSchema);document.head.append(schemaScript);
+  if(seoSchema['@graph'].length){const schemaScript=document.createElement('script');schemaScript.type='application/ld+json';schemaScript.textContent=JSON.stringify(seoSchema);document.head.append(schemaScript);}
   window.TEXT_APP={
     notify:toast,openCart,
     getCart:()=>readCart().map(item=>({...item})),

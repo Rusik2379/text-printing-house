@@ -2,5 +2,5 @@
   "name": "text-print-homepage",
   "private": true,
   "type": "module",
-  "scripts": { "dev": "node server.mjs", "start": "node server.mjs", "check:pages": "node scripts/check-pages.mjs" }
+  "scripts": { "dev": "node server.mjs", "start": "node server.mjs", "check:pages": "node scripts/check-pages.mjs", "check:seo": "node scripts/check-seo.mjs" }
 }

@@ -28,7 +28,7 @@ for(const [file,html] of contents){
   titles.add(title);
   const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
   assert.equal(ids.length,new Set(ids).size,`${relative}: repeated element ID`);
-  for(const block of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g))JSON.parse(block[1]);
+  for(const block of html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g))JSON.parse(block[1]);
   for(const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)){
     const url=new URL(match[1].replaceAll('&amp;','&'),new URL(relative,base));
     if(url.origin!==base.origin)continue;
@@ -79,7 +79,7 @@ assert.deepEqual(faqItems.filter(item=>item.service).map(item=>item.service).toS
 const faqCards=[...faqPage.matchAll(/<details\b[^>]*data-question-id="([^"]+)"[^>]*><summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g)];
 assert.deepEqual(faqCards.map(card=>card[1]),faqItems.map(item=>item.id),'Answers must be available without JavaScript');
 const plainHtml=value=>value.replace(/<[^>]+>/g,' ').replace(/&quot;/g,'"').replace(/&#x27;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();
-const faqSchema=[...faqPage.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap(match=>JSON.parse(match[1])['@graph']||[]).filter(entity=>entity['@type']==='FAQPage');
+const faqSchema=[...faqPage.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].flatMap(match=>JSON.parse(match[1])['@graph']||[]).filter(entity=>entity['@type']==='FAQPage');
 assert.equal(faqSchema.length,1,'Expected one static FAQPage schema');
 assert.deepEqual(faqSchema[0].mainEntity,faqCards.map(card=>({'@type':'Question',name:plainHtml(card[2]),acceptedAnswer:{'@type':'Answer',text:plainHtml(card[3])}})),'FAQ structured data must match the visible answers');
 faqCards.forEach((card,index)=>{

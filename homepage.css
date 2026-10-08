@@ -53,7 +53,7 @@ h2{font-size:29px;letter-spacing:-1px;font-weight:800}
 :is(.mega-menu,.catalog-dialog) .mega-links button::before,:is(.mega-menu,.catalog-dialog) .mega-links a::before{content:"";width:6px;height:6px;flex:0 0 6px;margin-top:calc(.675em - 3px);border-radius:50%;background:var(--red)}
 :is(.mega-menu,.catalog-dialog) .mega-links button:hover,:is(.mega-menu,.catalog-dialog) .mega-links a:hover{color:var(--ink);text-decoration:underline}
 @media(min-width:701px){
-  .mega-menu{top:calc(100% + 12px);border:1px solid #eceef1;border-radius:16px;padding:26px;max-height:none;overflow:visible;box-shadow:0 14px 38px #181c2014;animation:menu-appear .18s ease-out}
+.mega-menu{top:calc(100% + 12px);border:1px solid #eceef1;border-radius:16px;padding:26px;max-height:none;overflow:visible;box-shadow:0 14px 38px #181c2014}
   .mega-menu::before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
   .mega-layout{grid-template-columns:minmax(0,1fr);align-items:start;max-height:calc(100dvh - 210px);overflow-y:auto;overscroll-behavior:contain}
   .mega-layout>div:first-child{min-width:0}
@@ -61,7 +61,6 @@ h2{font-size:29px;letter-spacing:-1px;font-weight:800}
   .mega-title{padding-bottom:18px;margin-bottom:12px}
 }
 @media(min-width:701px) and (max-width:950px){.mega-menu .mega-links{gap:8px 18px}.mega-menu .mega-links :is(button,a){font-size:18px}}
-@keyframes menu-appear{from{opacity:0;translate:0 -5px}to{opacity:1;translate:0 0}}
 @media(max-width:700px){
   :is(.navigation.mobile-open>.mega-menu,.catalog-dialog) .mega-links{grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-auto-flow:row;gap:4px}
   :is(.navigation.mobile-open>.mega-menu,.catalog-dialog) .mega-links button,:is(.navigation.mobile-open>.mega-menu,.catalog-dialog) .mega-links a{min-height:0;font-size:20px;line-height:1.3}

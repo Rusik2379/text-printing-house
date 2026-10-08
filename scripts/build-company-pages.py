@@ -68,6 +68,7 @@ home=(ROOT/'index.html').read_text(encoding='utf-8')
 header=home[home.index('  <a class="skip-link"'):home.index('  <main id="main">')]
 footer=home[home.index('  <footer'):home.index('</body>')]
 head=home[home.index('<head>')+6:home.index('</head>')]
+head=re.sub(r'\s*<script\b[^>]*id="site-schema"[^>]*>.*?</script>', '', head, flags=re.S)
 
 def icon(name):return f'<span data-icon="{name}"></span>'
 def plain(value):return re.sub(r'\s+',' ',unescape(re.sub('<[^>]+>',' ',value))).strip()
@@ -110,6 +111,7 @@ def build(path,title,intro,art,body,actions=None,schema_type='WebPage',seo=None)
     entity={'@type':schema_type,'name':plain(title),'url':url}
     if article:
         entity.update({'headline':plain(title),'author':{'@type':'Organization','name':'Студия печати ТЕКСТ'},'datePublished':seo['published'],'dateModified':seo['updated'],'inLanguage':'ru'})
+        entity['image']=['https://text-print.ru/assets/'+quote(seo['image'])]
     schema={'@context':'https://schema.org','@graph':[entity,{'@type':'BreadcrumbList','itemListElement':crumbs}]}
     if path=='company/vopros-otvet/':
         questions=re.findall(r'<details\b[^>]*data-question-id="[^"]+"[^>]*><summary>(.*?)</summary>(.*?)</details>',page_body,re.S)
@@ -125,7 +127,9 @@ def build(path,title,intro,art,body,actions=None,schema_type='WebPage',seo=None)
     actions=actions or '<button class="button button-primary" data-action="contacts">Обсудить заказ '+icon('arrow')+'</button><button class="button button-white" data-action="catalog">Наши услуги</button>'
     art_html=f'<div class="company-art"><img src="{prefix}assets/{art}" alt="Робот студии ТЕКСТ — {escape(plain(title))}" width="900" height="900" fetchpriority="high"></div>' if art else ''
     hero=f'<section class="company-hero{" company-hero-text" if not art else ""}" aria-labelledby="company-title"><div><h1 id="company-title">{title}</h1><p>{intro}</p><div class="company-actions">{actions}</div></div>{art_html}</section>'
-    page_class='company-page'+(' company-article-page' if article else ' company-legal-page' if not art else {'company/about/':' company-about-page','contacts/':' company-contacts-page','dostavka-i-oplata/':' company-delivery-page','company/payment/':' company-payment-page','requirements/':' company-requirements-page','company/vopros-otvet/':' company-questions-page'}.get(path,''))
+    if article:
+        hero=f'<section class="article-heading" aria-labelledby="company-title"><div class="article-heading-meta"><span>{escape(seo["category"])}</span><span>{icon("document")} {seo["minutes"]} мин чтения</span></div><h1 id="company-title">{title}</h1><p>{intro}</p><a class="article-back" href="../">{icon("arrow")} Все статьи</a></section>'
+    page_class='company-page'+(' company-article-page' if article else ' company-articles-page' if path=='company/article/' else ' company-legal-page' if not art else {'company/about/':' company-about-page','contacts/':' company-contacts-page','dostavka-i-oplata/':' company-delivery-page','company/payment/':' company-payment-page','requirements/':' company-requirements-page','company/vopros-otvet/':' company-questions-page'}.get(path,''))
     output=f'<!doctype html>\n<html lang="ru"><head>{page_head}</head><body class="{page_class}">\n{page_header}<main id="main"><div class="container">{breadcrumb}{hero}{page_body}</div></main>\n{page_footer}</body></html>\n'
     target=ROOT/path/'index.html';target.parent.mkdir(parents=True,exist_ok=True);target.write_text(output,encoding='utf-8')
 
@@ -399,13 +403,19 @@ def order_guide(prefix):
     grid='<div class="company-grid two">'+''.join(f'<article class="company-card company-order-step"><span class="company-step-number">0{n}</span><h2>{title}</h2><p>{text}</p></article>' for n,(title,text) in enumerate(steps,1))+'</div>'
     return grid+note('Скачивание расчёта или запроса не отправляет заказ. Проверьте письмо и вложения, отправьте его и дождитесь подтверждения студии.')+section('Выберите направление',direction_cards(prefix))+cta(prefix,'Поможем оформить заказ','Расскажите, что хотите напечатать — подскажем параметры и подготовку файла.')
 
-def article_card(a,prefix):
+def article_minutes(a):
+    return max(2,math.ceil(sum(len(b['text'].split()) for b in a['blocks'])/180))
+
+def article_card(a,prefix,heading='h3'):
     teaser=a['teaser'][:170]
     if len(a['teaser'])>170:teaser=teaser.rsplit(' ',1)[0]+'…'
-    return f'<a class="company-card company-article-card" data-filter-item data-category="{escape(a["category"])}" href="{prefix}{a["path"]}"><div class="company-article-visual"><img src="{prefix}assets/{ASSETS[a["category"]]}.webp" alt="" width="180" height="130" loading="lazy"></div><div><small>{escape(a["category"])}</small><h2>{escape(a["title"])}</h2><p>{escape(teaser)}</p><span class="company-read">Читать статью →</span></div></a>'
+    return f'<a class="company-article-card" data-filter-item data-category="{escape(a["category"])}" href="{prefix}{a["path"]}"><span class="article-card-topic">{icon("document")}{escape(a["category"])}</span><{heading}>{escape(a["title"])}</{heading}><p>{escape(teaser)}</p><span class="article-card-footer"><span>{article_minutes(a)} мин чтения</span><span class="company-read">Читать статью {icon("arrow")}</span></span></a>'
 
 def articles(prefix):
-    return '<div id="articles-content">'+filters(TOPICS,True)+'<div class="company-grid" data-filter-list>'+''.join(article_card(a,prefix) for a in ARTICLES)+'</div>'+empty()+'<button class="button button-white company-load-more" data-load-more>Показать ещё статьи '+icon('plus')+'</button></div>'+cta(prefix,'Остались вопросы по печати?','Поможем применить рекомендации к вашему макету и заказу.')
+    topic_icons=['printer','document','layers','sticker','wide','scissors','check']
+    topics='<button type="button" data-company-filter="all" aria-pressed="true">Все статьи <span>150</span></button>'+''.join(f'<button type="button" data-company-filter="{escape(topic)}" aria-pressed="false">{icon(ico)}{escape(topic)} <span>{sum(a["category"]==topic for a in ARTICLES)}</span></button>' for topic,ico in zip(TOPICS,topic_icons))
+    tools='<div class="articles-tools"><div class="articles-search-row"><label class="company-search articles-search">'+icon('search')+'<span class="sr-only">Поиск по статьям</span><input type="search" data-company-search placeholder="О чём хотите узнать?"></label><button class="requirements-search-clear" type="button" data-company-search-clear aria-label="Очистить поиск" hidden>'+icon('close')+'</button></div><div class="company-filter articles-filter" aria-label="Темы статей">'+topics+'</div></div>'
+    return '<section id="articles-content" class="articles-directory" aria-label="Статьи о печати">'+tools+'<div class="articles-results-row"><h2>Выберите полезную статью</h2><p class="company-results" data-results-status role="status" aria-live="polite"></p></div><div class="company-grid articles-grid" data-filter-list>'+''.join(article_card(a,prefix,'h2') for a in ARTICLES)+'</div>'+empty()+'<button class="button button-white company-load-more" data-load-more>Показать ещё статьи '+icon('plus')+'</button></section>'+cta(prefix,'Остались вопросы по печати?','Поможем применить рекомендации к вашему макету и заказу.')
 
 def date_label(value):
     year,month,day=value.split('-')
@@ -458,7 +468,7 @@ build('dostavka-i-oplata/','Ваши идеи<br>уже <em>в пути</em>','�
 build('company/payment/','Сначала детали.<br>Потом <em>оплата</em>','Проверим макеты, согласуем состав заказа и итоговую стоимость. После подтверждения сообщим способ оплаты и реквизиты.','company-payment.webp',payment,seo=page_seo('payment','Оплата заказа в студии ТЕКСТ: согласование макета и итоговой стоимости. Способ оплаты и реквизиты сообщаем при подтверждении заказа.'),actions='<button class="button button-primary" data-action="contacts">Уточнить оплату '+icon('arrow')+'</button><button class="button button-white" type="button" data-action="order-guide" aria-haspopup="dialog">Как оформить заказ</button>')
 build('requirements/','Технические<br><em>требования</em>','Для документов, чертежей, полиграфии и изделий с резкой. Найдите свою услугу и проверьте файл перед отправкой.','company-requirements.webp',requirements,seo=page_seo('requirements'),actions='<a class="button button-primary" href="#requirements-content">Найти требования '+icon('arrow')+'</a><button class="button button-white" data-action="contacts">Помощь с макетом</button>')
 build('company/vopros-otvet/','Вопросы<br><em>и ответы</em>','Как оформить заказ, подготовить макет и получить тираж. Собрали ответы по всем направлениям печати — выберите тему или найдите свой вопрос.','company-contacts.webp',questions,schema_type='FAQPage',seo=page_seo('vopros-otvet','Ответы студии ТЕКСТ о заказе, макетах, оплате и доставке, печати документов, наклейках, полиграфии и UV-печати. Барнаул, Строителей, 11.'),actions='<a class="button button-primary" href="#questions-content">Найти ответ '+icon('search')+'</a><button class="button button-white" data-action="contacts">Задать вопрос</button>')
-build('company/article/','Полезно знать<br><em>перед печатью</em>','150 практических материалов: выбираем бумагу и материалы, готовим документы и макеты, разбираемся в технологиях.','company-requirements.webp',articles,seo=page_seo('articles'),schema_type='CollectionPage',actions='<a class="button button-primary" href="#articles-content">Выбрать статью '+icon('arrow')+'</a><a class="button button-white" href="../../requirements/">Требования к файлам</a>')
+build('company/article/','Полезно знать<br><em>перед печатью</em>','Выбираем бумагу и материалы, готовим документы и макеты, разбираемся в технологиях. 150 практических статей от студии ТЕКСТ.',None,articles,seo=page_seo('articles'),schema_type='CollectionPage',actions='<a class="button button-primary" href="#articles-content">Выбрать статью '+icon('arrow')+'</a><a class="button button-white" href="../../requirements/">Требования к файлам</a>')
 build('kak-oformit-zakaz/','От идеи<br>до <em>готового заказа</em>','Четыре шага: выбрать услугу, подготовить параметры, отправить файлы и подтвердить заказ со студией.','company-contacts.webp',order_guide,actions='<button class="button button-primary" data-action="catalog">Выбрать услугу '+icon('arrow')+'</button><button class="button button-white" data-action="cart">Открыть корзину</button>')
 build('company/','Знакомьтесь:<br>студия печати <em>ТЕКСТ</em>','О нашей работе, производстве и заботе о ваших заказах. Вся полезная информация о студии — в одном разделе.','company-about.webp',lambda prefix:'<div class="company-grid">'+''.join(f'<a class="company-card" href="{prefix}{path}">{icon(i)}<h3>{label}</h3><p>{intro}</p></a>' for (label,path,intro),i in zip(PAGES,['printer','pin','truck','bag','check','message','document','check']))+'</div>'+section('Документы студии','<div class="company-grid">'+''.join(f'<a class="company-card" href="{prefix}{path}">{icon("document")}<h3>{label}</h3><p>{intro}</p></a>' for label,path,intro in LEGAL_PAGES)+'</div>')+cta(prefix),schema_type='CollectionPage')
 
@@ -486,15 +496,17 @@ for a in ARTICLES:
         aside='<aside class="company-reading-aside"><h2>В этой статье</h2>'+''.join(f'<a href="#{anchor}">{escape(text)}</a>' for text,anchor in contents)+f'<a class="button button-primary" href="{prefix}requirements/">Требования к макетам</a></aside>'
         services='<div class="company-service-links">'+''.join(f'<a class="button button-white" href="{escape(resolve_route(s["route"],prefix),quote=True)}">{escape(related_link_label(s))} {icon("arrow")}</a>' for s in a['services'])+'</div>'
         related=[other for other in ARTICLES if other['category']==a['category'] and other['id']!=a['id']][:3]
-        date=f'<p class="company-article-date">Опубликовано {date_label(a["seo"]["Опубликовано"])} · Обновлено {date_label(a["seo"]["Обновлено"])}<br>Редакция студии ТЕКСТ</p>'
+        date=f'<div class="company-article-date"><span>Редакция студии ТЕКСТ</span><span>Опубликовано <time datetime="{a["seo"]["Опубликовано"]}">{date_label(a["seo"]["Опубликовано"])}</time></span><span>Обновлено <time datetime="{a["seo"]["Обновлено"]}">{date_label(a["seo"]["Обновлено"])}</time></span></div>'
         link_title='Услуги по теме' if any(s['route'] in SERVICES for s in a['services']) else 'Полезные ссылки'
         return date+'<div class="company-reading-layout"><article class="company-reading">'+''.join(content)+'</article>'+aside+'</div>'+section(link_title,services)+section('Ещё по этой теме','<div class="company-grid">'+''.join(article_card(other,prefix) for other in related)+'</div>')+cta(prefix,'Применим к вашему заказу','Пришлите макет и параметры — поможем разобраться в деталях.')
-    minutes=max(2,math.ceil(sum(len(b['text'].split()) for b in a['blocks'])/180))
-    seo={'title':a['seo']['Title'],'description':a['seo']['Description'],'published':a['seo']['Опубликовано'],'updated':a['seo']['Обновлено']}
-    build(a['path'],escape(a['title']),f'{escape(a["category"])} · {minutes} мин чтения. Практическая памятка по подготовке и выбору печатной продукции.',ASSETS[a['category']]+'.webp',reading,actions='<a class="button button-white" href="../">'+icon('arrow')+' Все статьи</a>',schema_type='Article',seo=seo)
+    seo={'title':a['seo']['Title'],'description':a['seo']['Description'],'published':a['seo']['Опубликовано'],'updated':a['seo']['Обновлено'],'category':a['category'],'minutes':article_minutes(a),'image':ASSETS[a['category']]+'.webp'}
+    build(a['path'],escape(a['title']),escape(a['teaser']),None,reading,schema_type='Article',seo=seo)
 
 manifest={'source':SOURCE['source'],'articles':[{k:a[k] for k in ['id','title','category','path','source_route']} for a in ARTICLES]}
 (ROOT/'company-articles.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+from site_seo import apply_site_seo
+apply_site_seo()
 
 # A new resource URL invalidates browser caches only when CSS or JavaScript changes.
 asset_versions={}
