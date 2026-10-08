@@ -47,14 +47,17 @@ def cookie_banner(prefix):
     </aside>'''
 
 # Keep the homepage and all product pages connected to the same company section.
-product_pages=[(str(file.relative_to(ROOT)),'../'*len(file.relative_to(ROOT).parent.parts)) for file in sorted((ROOT/'nakleyki-i-stikery').rglob('index.html'))]
+product_pages=[(str(file.relative_to(ROOT)),'../'*len(file.relative_to(ROOT).parent.parts)) for file in sorted([*(ROOT/'nakleyki-i-stikery').rglob('index.html'),*(ROOT/'kopitsentr').rglob('index.html'),*(ROOT/'proektnaya-dokumentatsiya').rglob('index.html')])]
 for relative,prefix in [('index.html',''),*product_pages]:
     file=ROOT/relative
     newline='\r\n' if b'\r\n' in file.read_bytes() else '\n'
     text=file.read_text(encoding='utf-8')
+    text=re.sub(r'\s*<script src="[^"]*project-services\.js(?:\?[^"]*)?" defer></script>','',text)
+    text=re.sub(r'(<script src="[^"]*app\.js(?:\?[^"]*)?" defer></script>)',lambda m:f'<script src="{prefix}project-services.js" defer></script>\n  '+m[1],text,count=1)
+    text=re.sub(r'(<div class="footer-links" id="footer-services">).*?(</div>)',lambda m:m[1]+f'<a href="{prefix}kopitsentr/">Копицентр</a>'+m[2],text,count=1,flags=re.S)
     text=re.sub(r'(<h3>Компания</h3>)<div class="footer-links"[^>]*>.*?</div>',
                 lambda match:match[1]+f'<div class="footer-links" data-company-links>{links(prefix)}</div>',text,count=1,flags=re.S)
-    for asset,tag in [('consent.css',f'<link rel="stylesheet" href="{prefix}consent.css">'),('consent.js',f'<script src="{prefix}consent.js" defer></script>')]:
+    for asset,tag in [('consent.css',f'<link rel="stylesheet" href="{prefix}consent.css">'),('consent.js',f'<script src="{prefix}consent.js" defer></script>'),('cart.css',f'<link rel="stylesheet" href="{prefix}cart.css">'),('cart-pdf.js',f'<script src="{prefix}cart-pdf.js" defer></script>'),('project-services.js',f'<script src="{prefix}project-services.js" defer></script>')]:
         if not re.search(r'(?:href|src)="[^"]*'+re.escape(asset)+r'(?:\?[^\"]*)?"',text):text=text.replace('</head>',tag+'\n</head>',1)
     text=re.sub(r'<div class="container footer-legal" data-legal-links>.*?</div>','',text,flags=re.S)
     text=text.replace('<div class="container footer-bottom">',legal_footer(prefix)+'<div class="container footer-bottom">',1)
@@ -160,16 +163,16 @@ def service_url(service,prefix):
 def resolve_route(route,prefix):
     if route in SOURCE_ROUTES:return prefix+SOURCE_ROUTES[route]
     if route in SERVICES:return service_url(SERVICES[route],prefix)
-    if route in CATEGORY_ROUTES:return prefix+'?category='+quote(CATEGORY_ROUTES[route])
+    if route in CATEGORY_ROUTES:return prefix+route.strip('/')+'/' if (ROOT/route.strip('/')/'index.html').is_file() else prefix+'?category='+quote(CATEGORY_ROUTES[route])
     if route=='/':return prefix+'?catalog=1'
     raise ValueError('Missing local destination for '+route)
 
 # Adapt only instructions about the source site's UI to the actual shared cart.
 # PDF requirements for printing files remain intact.
 COPY_ADAPTATIONS={
-    'Каждая услуга имеет свой калькулятор.':'Для визиток, наклеек и стикерпаков доступны онлайн-калькуляторы; параметры остальных услуг согласуем со студией.',
+    'Каждая услуга имеет свой калькулятор.':'Для копицентра, проектной документации, наклеек и стикерпаков доступны онлайн-калькуляторы; параметры остальных услуг согласуем со студией.',
     'Это описание текущей версии сайта. Возможности отправки могут расшириться: следите за обновлениями.':'После отправки письма студия проверит файлы и подтвердит заказ.',
-    'Расчёт можно редактировать в корзине.':'Параметры наклеек и стикерпаков можно изменить из корзины. Для остальных позиций при необходимости добавьте новый расчёт.',
+    'Расчёт можно редактировать в корзине.':'Расчёты копицентра, проектной документации, наклеек и стикерпаков можно изменить из корзины. Для остальных позиций при необходимости добавьте новый расчёт.',
     'Скачайте или распечатайте перед отправкой.':'Скачайте расчёт или запрос перед отправкой.',
     'В расчёт попадают их названия.':'В расчёт попадают их названия.',
     'Выбрать услугу [/]':'Выбрать услугу',
@@ -192,18 +195,14 @@ def page_seo(name,description=None):
     page=source_page(name)
     return {'title':page['seo_title'],'description':description or page['description']}
 def note(text):return '<div class="company-note">'+icon('info')+'<div>'+text+'</div></div>'
-def direction_cards(prefix,inline=False):
+def direction_cards(prefix):
     descriptions=['Документы, фотографии, ламинирование и переплёт','Чертежи, проекты, фальцовка и готовые альбомы',
                   'Визитки, листовки, буклеты и каталоги','Этикетки, фигурные наклейки и готовые наборы',
                   'Баннеры, постеры, плёнка и печать на холсте','Печать на материалах, таблички и изделия с резкой']
-    if inline:
-        return '<div class="featured-grid company-about-directions">'+''.join(
-            f'<a class="featured-card" href="?category={quote(name)}" data-action="catalog" data-category="{escape(name,quote=True)}" aria-label="{escape(name,quote=True)} — посмотреть услуги"><span class="featured-copy"><span class="featured-name">'+
-            ' '.join(f'<span class="featured-word">{escape(word)}</span>' for word in name.split())+
-            f'</span><span class="company-direction-description">{escape(desc)}</span><span class="company-direction-link">Смотреть услуги →</span></span><span class="featured-art"><img src="{prefix}assets/{asset}.webp" alt="" width="900" height="900" loading="lazy"></span></a>'
-            for (name,asset,_),desc in zip(CATEGORIES,descriptions))+'</div>'
-    return '<div class="company-grid">'+''.join(
-        f'<a class="company-card company-direction" href="{"" if inline else prefix}?category={quote(name)}"{f" data-action=\"catalog\" data-category=\"{escape(name,quote=True)}\"" if inline else ""}><div><h3>{name}</h3><p>{desc}</p><span>Посмотреть услуги →</span></div><img src="{prefix}assets/{asset}.webp" alt="" width="85" height="100" loading="lazy"></a>'
+    return '<div class="featured-grid company-direction-grid">'+''.join(
+        f'<a class="featured-card" href="?category={quote(name)}" data-action="catalog" data-category="{escape(name,quote=True)}" aria-label="{escape(name,quote=True)} — посмотреть услуги"><span class="featured-copy"><span class="featured-name">'+
+        ' '.join(f'<span class="featured-word">{escape(word)}</span>' for word in name.split())+
+        f'</span><span class="company-direction-description">{escape(desc)}</span><span class="company-direction-link">Смотреть услуги →</span></span><span class="featured-art"><img src="{prefix}assets/{asset}.webp" alt="" width="900" height="900" loading="lazy"></span></a>'
         for (name,asset,_),desc in zip(CATEGORIES,descriptions))+'</div>'
 
 def about(prefix):
@@ -223,7 +222,7 @@ def about(prefix):
                   ('','Как подготовить файл?',f'Посмотрите <a href="{prefix}requirements/">требования к выбранной услуге</a>. Если нужна помощь, напишите нам.'),
                   ('','Когда начинается срок изготовления?','После полного согласования макета. Срок считается в рабочих днях. Работаем с понедельника по пятницу с 09:00 до 18:00.')]).replace('company-faq faq-list','faq-list')
     questions='<section class="company-section company-about-faq lower-home home-faq-section"><h2>Частые вопросы</h2><div class="home-faq-stage"><div class="home-faq-content">'+shortfaq+f'</div><img class="faq-mascot" src="{prefix}assets/faq-peeking-robot.webp" alt="Робот ТЕКСТ держится за край карточек с вопросами" width="1166" height="1349" loading="lazy"></div><aside class="faq-help"><div><h3>Не нашли ответ?</h3><p>Позвоните нам или напишите — поможем разобраться с вашим заказом.</p></div><div class="faq-help-actions"><a href="tel:+79236547896">{icon("phone")}+7 (923) 654-78-96</a><button class="button button-primary" data-action="contacts">Задать вопрос</button></div></aside></section>'
-    return trust+section('Больше, чем <span class="company-accent">печать</span>',story)+section('Всё, что нужно вашим идеям',direction_cards(prefix,inline=True))+section('Наше производство',machines)+section('От идеи до готового заказа',steps)+client_section+questions
+    return trust+section('Больше, чем <span class="company-accent">печать</span>',story)+section('Всё, что нужно вашим идеям',direction_cards(prefix))+section('Наше производство',machines)+section('От идеи до готового заказа',steps)+client_section+questions
 
 MAPS=[('Яндекс Карты','https://yandex.ru/maps/-/CXEUYTi7'),('2ГИС','https://2gis.ru/barnaul/firm/70000001043200458'),('Google Карты','https://maps.app.goo.gl/ZmEnRcK45HJikqRp7')]
 def contacts(prefix):
@@ -401,7 +400,7 @@ def order_guide(prefix):
            ('Отправьте параметры и макеты','Нажмите «Открыть письмо» и вручную приложите файлы к письму на tekkkst@yandex.ru. Если почтовая программа не настроена, нажмите «Скачать запрос» и отправьте его вместе с макетом самостоятельно.'),
            ('Подтвердите заказ','После проверки макета согласуем окончательные параметры, стоимость, оплату и получение. Производственный срок начинается после полного согласования макета.')]
     grid='<div class="company-grid two">'+''.join(f'<article class="company-card company-order-step"><span class="company-step-number">0{n}</span><h2>{title}</h2><p>{text}</p></article>' for n,(title,text) in enumerate(steps,1))+'</div>'
-    return grid+note('Скачивание расчёта или запроса не отправляет заказ. Проверьте письмо и вложения, отправьте его и дождитесь подтверждения студии.')+section('Выберите направление',direction_cards(prefix))+cta(prefix,'Поможем оформить заказ','Расскажите, что хотите напечатать — подскажем параметры и подготовку файла.')
+    return grid+note('Скачивание расчёта или запроса не отправляет заказ. Проверьте письмо и вложения, отправьте его и дождитесь подтверждения студии.')+section('Выберите направление',direction_cards(prefix),extra='id="order-directions"')+cta(prefix,'Поможем оформить заказ','Расскажите, что хотите напечатать — подскажем параметры и подготовку файла.')
 
 def article_minutes(a):
     return max(2,math.ceil(sum(len(b['text'].split()) for b in a['blocks'])/180))
@@ -442,6 +441,7 @@ LEGAL_ADAPTATIONS={
 def legal_document(name,prefix):
     if name=='font-license':
         body=section('Шрифты текущей версии','<p>Интерфейс использует системные Arial и Segoe UI, а также стандартный шрифт без засечек. Отдельные файлы веб-шрифтов не загружаются.</p>')
+        body+=section('Шрифты в PDF-расчётах',f'<p>В PDF из корзины встраиваются DejaVu Sans и DejaVu Sans Bold 2.37, чтобы русский текст отображался на любом устройстве. <a href="{prefix}assets/fonts/DejaVu-LICENSE.txt">Лицензия DejaVu</a>.</p>')
         body+=section('Гарнитуры из материалов заказчика','<p>В исходном дизайне предусмотрены Manrope и Playfair Display. Они распространяются по SIL Open Font License 1.1. Тексты лицензий сохранены вместе с сайтом.</p>')
         body+=section('Тексты лицензий',f'<div class="company-actions"><a class="button button-white" href="{prefix}fonts/Manrope-OFL.txt">Manrope — OFL 1.1 {icon("document")}</a><a class="button button-white" href="{prefix}fonts/PlayfairDisplay-OFL.txt">Playfair Display — OFL 1.1 {icon("document")}</a></div>')
     else:
@@ -504,6 +504,13 @@ for a in ARTICLES:
 
 manifest={'source':SOURCE['source'],'articles':[{k:a[k] for k in ['id','title','category','path','source_route']} for a in ARTICLES]}
 (ROOT/'company-articles.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+# Keep all Copy Center pages reproducible with the site's normal build.
+import subprocess, sys
+if (ROOT/'copycenter-content.json').is_file():
+    subprocess.run([sys.executable,str(ROOT/'scripts/build-copycenter-pages.py')],cwd=ROOT,check=True)
+if (ROOT/'project-content.json').is_file():
+    subprocess.run([sys.executable,str(ROOT/'scripts/build-project-pages.py')],cwd=ROOT,check=True)
 
 from site_seo import apply_site_seo
 apply_site_seo()

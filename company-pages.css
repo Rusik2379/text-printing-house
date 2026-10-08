@@ -48,11 +48,11 @@ a.company-card:hover{transform:translateY(-4px);border-color:#f0b9be;box-shadow:
 .company-direction h3{margin:0 0 8px}
 .company-direction img{width:85px;height:100px;object-fit:contain}
 .company-direction span{display:inline-block;color:var(--red);font-size:12px;font-weight:600;margin-top:14px}
-.company-about-directions .featured-card{height:auto;min-height:250px}
-.company-about-directions .featured-copy{gap:10px}
-.company-about-directions .company-direction-description{font-size:13px;line-height:1.5;color:var(--muted)}
-.company-about-directions .company-direction-link{font-size:13px;line-height:1.5;color:var(--muted);white-space:nowrap}
-.company-about-directions .featured-card:hover .company-direction-link{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+.company-direction-grid .featured-card{height:auto;min-height:250px}
+.company-direction-grid .featured-copy{gap:10px}
+.company-direction-grid .company-direction-description{font-size:13px;line-height:1.5;color:var(--muted)}
+.company-direction-grid .company-direction-link{font-size:13px;line-height:1.5;color:var(--muted);white-space:nowrap}
+.company-direction-grid .featured-card:hover .company-direction-link{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
 .company-equipment{background:#f7f7f7;border:0;min-height:195px}
 .company-equipment small{display:block;margin-top:18px;font-size:11px;color:var(--red);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
 .company-equipment h3{margin-top:6px}

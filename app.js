@@ -2,12 +2,14 @@
   'use strict';
   // Resolve from app.js so both domain roots and GitHub Pages subdirectories work.
   const siteRoot = new URL('.', document.currentScript.src).href;
-  const servicePages=window.TEXT_STICKER_SERVICES||{};
+  const servicePages={...window.TEXT_STICKER_SERVICES,...window.TEXT_COPYCENTER_SERVICES,...window.TEXT_PROJECT_SERVICES};
   const serviceUrl=id=>servicePages[id]?siteRoot+servicePages[id].path:null;
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
   const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const currency = value => new Intl.NumberFormat('ru-RU', {maximumFractionDigits:2}).format(value) + ' ₽';
+  const priceRange=(lower,upper=lower)=>upper>lower?currency(lower).replace(' ₽','')+'–'+currency(upper):currency(lower);
+  const cartUpper=(rows,lower)=>lower+rows.reduce((sum,row)=>sum+(Number.isFinite(row.priceUpper)&&row.priceUpper>row.price?row.priceUpper-row.price:0),0);
   const icons = {
     copy:'<rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V3H3v13h5"/>',
     star:'<path d="m12 2 3 6.5 7 1-5 5 1 7-6-3.5L6 21l1-6.5-5-5 7-1L12 2Z"/>',
@@ -86,7 +88,7 @@
   let calcSelection = null;
   let cart = [];
   function readCart(){
-    try { const stored=JSON.parse(localStorage.getItem('text-print-cart-v1') || '[]'); return Array.isArray(stored) ? stored.filter(x => x && typeof x.key==='string' && catalog.some(r => r.id===x.id) && typeof x.description==='string' && (x.price===null || Number.isFinite(x.price) && x.price>=0)) : []; } catch { return []; }
+    try { const stored=JSON.parse(localStorage.getItem('text-print-cart-v1') || '[]'); return Array.isArray(stored) ? stored.filter(x => x && typeof x.key==='string' && catalog.some(r => r.id===x.id) && typeof x.description==='string' && (x.price===null || Number.isFinite(x.price) && x.price>=0) && (x.priceUpper===undefined || x.price!==null && Number.isFinite(x.priceUpper) && x.priceUpper>=x.price)) : []; } catch { return []; }
   }
   cart=readCart();
   const dialog = $('#dialog');
@@ -95,7 +97,7 @@
   function updateCartCount() { for(const id of ['#cart-count','#mobile-cart-count']){const badge=$(id);if(badge){badge.textContent=cart.length;badge.classList.toggle('has-items',cart.length>0);}} }
   let toastTimer;
   function toast(message) {const el=$('#toast');el.textContent=message;el.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('visible'),3000);}
-  function openDialog(html) {closeMenu();$('#navigation').classList.remove('mobile-open');$('#mobile-menu-button').setAttribute('aria-expanded','false');dialogContent.innerHTML=html;document.body.classList.add('modal-open');if(!dialog.open)dialog.showModal();dialog.scrollTop=0;hydrateIcons(dialog);}
+  function openDialog(html) {closeMenu();$('#navigation').classList.remove('mobile-open');$('#mobile-menu-button').setAttribute('aria-expanded','false');dialog.classList.remove('is-cart','is-cart-empty');dialogContent.innerHTML=html;document.body.classList.add('modal-open');if(!dialog.open)dialog.showModal();dialog.scrollTop=0;hydrateIcons(dialog);}
   function closeDialog() {dialog.close();}
   dialog.addEventListener('close',()=>document.body.classList.remove('modal-open'));
   $('#dialog-close').addEventListener('click',closeDialog);
@@ -136,7 +138,8 @@
     const company=name==='Компания';
     const records=catalog.filter(r=>r.category===name);
     const links=company ? companyLinks() : records.map(r=>serviceUrl(r.id)?`<a href="${serviceUrl(r.id)}">${escape(r.name)}</a>`:`<button data-service="${r.id}">${escape(r.name)}</button>`).join('');
-    $('#mega-menu').innerHTML=`<div class="mega-layout"><div><div class="mega-title"><h3>${escape(name)}</h3></div><div class="mega-links">${links}</div></div></div>`;
+    const categoryPath={'Копицентр':'kopitsentr/','Проектная документация':'proektnaya-dokumentatsiya/'}[name];
+    $('#mega-menu').innerHTML=`<div class="mega-layout"><div><div class="mega-title"><h3>${categoryPath?`<a href="${siteRoot}${categoryPath}">${escape(name)}</a>`:escape(name)}</h3></div><div class="mega-links">${links}</div></div></div>`;
     const menuLinks=$('.mega-links',$('#mega-menu'));
     menuLinks.style.setProperty('--menu-rows',Math.ceil(menuLinks.children.length/3));
     $('#mega-menu').hidden=false;
@@ -165,7 +168,7 @@
   $('#header').addEventListener('pointerleave',event=>{if(event.pointerType==='mouse'&&matchMedia('(min-width:701px)').matches)menuCloseTimer=setTimeout(()=>{if(!$('#mega-menu').contains(document.activeElement))closeMenu();},220);});
   $('#header').addEventListener('focusin',()=>clearTimeout(menuCloseTimer));
   $('#header').addEventListener('focusout',event=>{if(!$('#header').contains(event.relatedTarget))menuCloseTimer=setTimeout(closeMenu,220);});
-  $('#footer-services').innerHTML=categories.map(c=>`<button data-action="catalog" data-category="${escape(c.name)}">${escape(c.name)}</button>`).join('');
+  $('#footer-services').innerHTML=categories.map(c=>['Копицентр','Проектная документация'].includes(c.name)?`<a href="${siteRoot}${c.name==='Копицентр'?'kopitsentr/':'proektnaya-dokumentatsiya/'}">${escape(c.name)}</a>`:`<button data-action="catalog" data-category="${escape(c.name)}">${escape(c.name)}</button>`).join('');
   function renderPopular() {
     if(!$('#popular-grid'))return;
     $('#popular-grid').innerHTML=popular.filter(p=>p.record).map(p=>`<${serviceUrl(p.id)?`a href="${serviceUrl(p.id)}"`:'button'} class="featured-card" ${serviceUrl(p.id)?'':`data-service="${p.id}"`} aria-label="${escape(p.name)}"><span class="featured-copy"><span class="featured-name">${p.name.split(/\s+/).map(word=>`<span class="featured-word">${escape(word)}</span>`).join(' ')}</span></span><span class="featured-art"><img src="${imageFor(p.record)}" alt="${escape(p.name)} — иллюстрация студии ТЕКСТ" width="720" height="720" loading="lazy"></span></${serviceUrl(p.id)?'a':'button'}>`).join('');
@@ -236,20 +239,40 @@
   }
   function openCart() {
     cart=readCart();updateCartCount();
-    if(!cart.length){openDialog(`<div class="dialog-body"><h2>Ваша корзина</h2><div class="empty-state">${icon('bag')}<h3>С чего начнём?</h3><p>Рассчитайте визитки или добавьте другие услуги в запрос.<br>Поможем собрать всё в один заказ.</p><button class="button button-primary" data-action="catalog">Выбрать услугу ${icon('arrow')}</button></div></div>`);return;}
+    if(!cart.length){
+      openDialog(`<div class="dialog-body cart-panel"><div class="cart-heading"><h2>Корзина</h2><span class="cart-count-label">0 позиций</span></div><div class="cart-empty"><span class="cart-empty-icon">${icon('bag')}</span><h3>Корзина пока пуста</h3><p>Выберите услугу и рассчитайте стоимость.<br>Все ваши расчёты соберём здесь.</p><button class="button button-primary" data-action="catalog">Выбрать услугу ${icon('arrow')}</button></div></div>`);
+      dialog.classList.add('is-cart','is-cart-empty');return;
+      dialog.classList.add('is-cart');
+  }
     const priced=cart.filter(r=>r.price!==null),cartTotals=window.TEXT_STICKER_CART_BREAKDOWN(cart),total=cartTotals.total;
-    openDialog(`<div class="dialog-body"><div class="eyebrow muted">ВАШ ЗАКАЗ</div><h2>Корзина <small>· ${cart.length}</small></h2><p class="dialog-intro">Параметры сохранены в этом браузере. Отправьте запрос в студию, чтобы согласовать макеты и получение.</p><div>${cart.map(r=>`<div class="cart-row"><div><h3>${escape(catalog.find(c=>c.id===r.id).name)}</h3><p>${escape(r.description)}</p>${serviceUrl(r.id)&&r.configuration?`<a class="cart-edit-link" href="${serviceUrl(r.id)}?edit=${encodeURIComponent(r.key)}">Изменить параметры</a>`:''}<div class="cart-file-actions">${r.fileName?`<button data-download-cart-file="${escape(r.key)}">Макет: ${escape(r.fileName)} ↓</button>`:''}<label>${r.fileName?'Заменить макет':'Прикрепить макет'}<input type="file" data-cart-file="${escape(r.key)}" accept=".pdf,.jpg,.jpeg,.png,.tif,.tiff,.svg,.ai,.eps,.cdr,.psd,.zip"></label></div></div><div class="cart-row-right"><span class="cart-row-price">${r.price===null?'Уточним':currency(r.price)}</span><button class="icon-button" data-remove="${escape(r.key)}" aria-label="Удалить ${escape(catalog.find(c=>c.id===r.id).name)}">${icon('trash')}</button></div></div>`).join('')}</div>${cartTotals.surcharge?`<p class="cart-minimum-note">${Object.entries(cartTotals.surcharges).filter(([,amount])=>amount>0).map(([group,amount])=>`Доплата до минимального чека ${({stickers3d:'3D-стикеров и наборов (1 000 ₽)',stickers:'наклеек и стикерпаков (600 ₽)',uvdtf:'UV-DTF наклеек (800 ₽)',paper:'бумажных стикеров (150 ₽)'})[group]}: ${currency(amount)}.`).join(' ')}</p>`:''}${priced.length?`<div class="cart-summary"><span>${priced.length===cart.length?'Итого за продукцию':'Рассчитанная часть заказа'}</span><strong>${currency(total)}</strong></div>`:''}${priced.length!==cart.length?'<p class="service-sla">Стоимость остальных позиций уточняется после выбора параметров. Доставка рассчитывается отдельно.</p>':'<p class="service-sla">Доставка рассчитывается отдельно.</p>'}<div class="form-actions"><button class="button button-primary" data-action="request" data-cart="true">Подготовить запрос ${icon('arrow')}</button><button class="button button-outline" data-action="catalog">Добавить услугу</button></div></div>`);
+    openDialog(`<div class="dialog-body cart-panel"><h2>Корзина <small>· ${cart.length}</small></h2><p class="dialog-intro">Параметры сохранены в этом браузере. Отправьте запрос в студию, чтобы согласовать макеты и получение.</p><ol class="cart-list">${cart.map(r=>`<li class="cart-row"><div><h3>${escape(catalog.find(c=>c.id===r.id).name)}</h3><p>${escape(r.description)}</p>${serviceUrl(r.id)&&r.configuration?`<a class="cart-edit-link" href="${serviceUrl(r.id)}?edit=${encodeURIComponent(r.key)}">Изменить параметры</a>`:''}<div class="cart-file-actions">${r.fileName?`<button data-download-cart-file="${escape(r.key)}">Макет: ${escape(r.fileName)} ↓</button>`:''}<label>${r.fileName?'Заменить макет':'Прикрепить макет'}<input type="file" data-cart-file="${escape(r.key)}" accept=".pdf,.jpg,.jpeg,.png,.tif,.tiff,.svg,.ai,.eps,.cdr,.psd,.zip"></label></div></div><div class="cart-row-right"><span class="cart-row-price">${r.price===null?'Уточним':priceRange(r.price,r.priceUpper)}</span><button class="icon-button" data-remove="${escape(r.key)}" aria-label="Удалить ${escape(catalog.find(c=>c.id===r.id).name)}">${icon('trash')}</button></div></li>`).join('')}</ol>${cartTotals.surcharge?`<p class="cart-minimum-note">${Object.entries(cartTotals.surcharges).filter(([,amount])=>amount>0).map(([group,amount])=>`Доплата до минимального чека ${({stickers3d:'3D-стикеров и наборов (1 000 ₽)',stickers:'наклеек и стикерпаков (600 ₽)',uvdtf:'UV-DTF наклеек (800 ₽)',paper:'бумажных стикеров (150 ₽)'})[group]}: ${currency(amount)}.`).join(' ')}</p>`:''}${priced.length?`<div class="cart-summary"><span>${priced.length===cart.length?'Итого за продукцию':'Рассчитанная часть заказа'}</span><strong>${priceRange(total,cartUpper(cart,total))}</strong></div>`:''}${priced.length!==cart.length?'<p class="service-sla">Стоимость остальных позиций уточняется после выбора параметров. Доставка рассчитывается отдельно.</p>':'<p class="service-sla">Доставка рассчитывается отдельно.</p>'}<div class="cart-export"><div><strong>Отправьте расчёт одним файлом</strong><p>PDF с логотипом ТЕКСТ, всеми услугами, параметрами и ценами.</p></div><button class="button button-primary" type="button" id="download-cart-pdf">${icon('download')} Скачать расчёт PDF</button></div><p class="cart-pdf-status" id="cart-pdf-status" role="status" aria-live="polite"></p><div class="form-actions"><button class="button button-outline" data-action="request" data-cart="true">Подготовить запрос ${icon('arrow')}</button><button class="button button-outline" data-action="catalog">Добавить услугу</button></div></div>`);
+  }
+  // Capture the displayed cart: an in-progress export is unaffected by later edits.
+  async function downloadCartPDF(button) {
+    if(button.disabled)return;
+    const rows=readCart(),status=$('#cart-pdf-status'),original=button.innerHTML;
+    button.disabled=true;button.setAttribute('aria-busy','true');button.textContent='Готовим PDF…';
+    if(status)status.textContent='Собираем услуги, параметры и цены в один документ.';
+    try{
+      const data=window.TEXT_CART_PDF.model(rows,catalog,window.TEXT_STICKER_CART_BREAKDOWN(rows));
+      await window.TEXT_CART_PDF.download(data);
+      if(status)status.textContent='PDF скачан. Его можно отправить клиенту или в студию.';
+      toast('Расчёт заказа скачан в PDF');
+    }catch{
+      if(status)status.textContent='Не удалось создать PDF. Проверьте подключение и попробуйте ещё раз.';
+      toast('Не удалось скачать PDF. Попробуйте ещё раз.');
+    }finally{button.disabled=false;button.removeAttribute('aria-busy');button.innerHTML=original;}
   }
   function requestText(form,record,includeCart) {
     const data=new FormData(form);
     let lines=['Здравствуйте! Хочу заказать печать в студии ТЕКСТ.',`Имя: ${data.get('name')}`,`Телефон: ${data.get('phone')}`];
     if(record)lines.push(`Услуга: ${record.name}`);
-    if(includeCart)cart.forEach((r,i)=>lines.push(`\n${i+1}. ${catalog.find(c=>c.id===r.id).name}\n${r.description}\n${r.price===null?'Стоимость: требуется расчёт':`Стоимость: ${currency(r.price)}`}`));
+    if(includeCart)cart.forEach((r,i)=>lines.push(`\n${i+1}. ${catalog.find(c=>c.id===r.id).name}\n${r.description}\n${r.price===null?'Стоимость: требуется расчёт':`Стоимость: ${priceRange(r.price,r.priceUpper)}`}`));
     if(includeCart){
       const totals=window.TEXT_STICKER_CART_BREAKDOWN(cart);
       cart.filter(r=>r.fileName).forEach(r=>lines.push(`Макет для ${catalog.find(c=>c.id===r.id).name}: ${r.fileName} (прикреплю к письму)`));
       for(const [group,amount] of Object.entries(totals.surcharges))if(amount>0)lines.push(`Доплата до минимального чека ${({stickers3d:'3D-стикеров и наборов (1 000 ₽)',stickers:'наклеек и стикерпаков (600 ₽)',uvdtf:'UV-DTF наклеек (800 ₽)',paper:'бумажных стикеров (150 ₽)'})[group]}: ${currency(amount)}`);
-      lines.push(`Итого за рассчитанные позиции: ${currency(totals.total)}`);
+      lines.push(`Итого за рассчитанные позиции: ${priceRange(totals.total,cartUpper(cart,totals.total))}`);
     }
     const comment=String(data.get('comment')||'').trim();if(comment)lines.push(`\nЗадача: ${comment}`);
     if(selectedFile)lines.push(`\nМакет: ${selectedFile.name} (прикреплю к письму)`);
@@ -290,6 +313,7 @@
   const deliveryContent={pickup:'<strong>Проспект Строителей, 11</strong><p>Пн–пт 09:00–18:00. Самовывоз — бесплатно.</p>',city:'<strong>Курьером по Барнаулу — от 300 ₽</strong><p>В течение одного дня после готовности. Для малогабаритных заказов от 5 000 ₽ — бесплатно. Стоимость зависит от размера заказа.</p>',country:'<strong>СДЭК, ПЭК, Деловые Линии</strong><p>Доставка в любой город России. Срок и стоимость зависят от города и размера заказа; согласуем их перед отправкой.</p>'};
   function selectDelivery(name){$$('[data-delivery]').forEach(b=>{b.setAttribute('aria-selected',String(b.dataset.delivery===name));b.tabIndex=b.dataset.delivery===name?0:-1;});$('#delivery-details').innerHTML=deliveryContent[name];$('#delivery-details').setAttribute('aria-labelledby','tab-'+name);}
   document.addEventListener('click',event=>{
+    const pdfButton=event.target.closest('#download-cart-pdf');if(pdfButton){downloadCartPDF(pdfButton);return;}
     const calculatorLink=event.target.closest('[data-action="calculators"]');if(calculatorLink){openCalculators();return;}
     const menu=event.target.closest('[data-menu]');if(menu){if(event.detail>0&&matchMedia('(min-width:701px) and (hover:hover)').matches)openMenu(menu.dataset.menu);else toggleMenu(menu.dataset.menu);return;}
     const close=event.target.closest('[data-close-menu]');if(close){closeMenu();$('#navigation').classList.remove('mobile-open');$('#mobile-menu-button').setAttribute('aria-expanded','false');}
@@ -332,7 +356,7 @@
     clientLastTime=time;
     if(canAutoScrollClients(time)){
       // Keep fractional pixels between frames so slow motion also works on screens that round scrollLeft.
-      clientRemainder+=elapsed*24/1000;
+      clientRemainder+=elapsed*60/1000;
       const pixels=Math.floor(clientRemainder);
       clientRemainder-=pixels;
       if(pixels)positionClients(clientStrip.scrollLeft+pixels);
