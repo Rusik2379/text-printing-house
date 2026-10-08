@@ -1,0 +1,26 @@
+/* Local calculator controls; buttons, shell and FAQ use the site's shared styles. */
+.uv-config-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px}
+.uv-config-grid fieldset{min-width:0;margin-bottom:24px}
+.uv-config-grid select,.uv-config-grid input,.uv-custom-quantity input{display:block;width:100%;min-width:0;min-height:43px;padding:11px 13px;background:#fff;border:1px solid #e2e4e8;border-radius:10px;color:#29313b;font:inherit;font-size:13px;transition:border-color .18s}
+.uv-config-grid select{padding-right:26px}
+.uv-config-grid :is(input,select):focus-visible,.uv-custom-quantity input:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.uv-config-grid .sp-choice-stack{display:flex;flex-wrap:wrap;gap:8px}
+.uv-config-grid .sp-option{flex:1;min-width:65px;min-height:43px;font-size:12px;padding:10px 12px;line-height:1.5}
+.uv-quantity-field{border-top:1px solid #e2e4e8!important;padding-top:23px!important}
+.uv-quantity-stack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px}
+.uv-quantity-stack .sp-quantity-row{grid-template-columns:95px minmax(0,1fr)}
+.uv-quantity-stack>.sp-custom-option{grid-column:1/-1}
+.uv-custom-quantity{display:block;font-size:12px;color:#687285;margin-top:16px;max-width:190px}
+.uv-custom-quantity input{margin-top:8px}
+.uv-print-cut-page [hidden]{display:none!important}
+.uv-details{font-size:11px;line-height:1.6;color:#687285}
+.uv-details p{margin:5px 0}
+.uv-print-cut-page .sp-result>p{line-height:1.65;overflow-wrap:anywhere}
+.uv-print-cut-page .sp-result>small{font-size:11px}
+.uv-print-cut-page .sp-field-error:empty{display:none}
+.uv-print-cut-page .sp-copy-button [role=status]{position:absolute;right:0;top:calc(100% + 5px);padding:4px 7px;border-radius:5px;background:#fff;font-size:11px;white-space:nowrap;color:#687285;box-shadow:0 2px 8px #0000000a}
+.uv-print-cut-page .sp-copy-button [role=status]:empty{display:none}
+.uv-print-cut-page .sp-display-service{font-size:clamp(40px,4.7vw,70px);line-height:1.06}
+@media(max-width:1050px){.uv-quantity-stack .sp-quantity-row{grid-template-columns:1fr}.uv-quantity-stack .sp-quantity-price{text-align:left;padding-left:8px}}
+@media(max-width:700px){.uv-config-grid{gap:0 16px}.uv-config-grid :is(select,input){font-size:13px}.uv-quantity-stack .sp-quantity-row{grid-template-columns:1fr auto}.uv-quantity-stack .sp-quantity-row .sp-option{grid-column:auto}.uv-quantity-stack .sp-quantity-price{font-size:11px}.uv-print-cut-page .sp-display-service{font-size:clamp(35px,8.6vw,53px)}}
+@media(max-width:420px){.uv-config-grid{grid-template-columns:1fr}.uv-quantity-stack .sp-quantity-row{grid-template-columns:1fr}.uv-quantity-stack{gap:14px 12px}.uv-quantity-stack .sp-quantity-price{padding-left:8px}.uv-config-grid .sp-option{flex:1;min-width:60px}}

@@ -24,8 +24,8 @@ try{
   assert.equal(await page.locator('h1').count(),1);assert.equal(await page.locator('.wide-checklist>li').count(),6);
   assert.equal(number(await page.locator('#sp-total').textContent()),await page.evaluate(id=>TEXT_QUOTE_WIDE_SERVICE(id,TEXT_WIDE_SERVICES[id].defaults).total,s.id));
   assert.equal(await page.locator('.faq-list>details').count(),s.model==='canvas'?6:5);
-  await page.locator('.faq-list summary').first().click();await page.waitForTimeout(320);assert.equal(await page.locator('.faq-list details[open]').count(),1);
-  await page.locator('.faq-list summary').first().click();await page.waitForTimeout(320);assert.equal(await page.locator('.faq-list details[open]').count(),0);
+  await page.locator('.faq-list summary').first().click();await page.waitForFunction(()=>document.querySelector('.faq-list details').dataset.faqExpanded==='true');assert.equal(await page.locator('.faq-list details[open]').count(),1);
+  await page.locator('.faq-list summary').first().click();await page.waitForFunction(()=>!document.querySelector('.faq-list details').open);assert.equal(await page.locator('.faq-list details[open]').count(),0);
   const schema=await page.locator('script[type="application/ld+json"]').allTextContents();assert.ok(schema.some(t=>JSON.parse(t)['@graph']?.some(g=>g['@type']==='FAQPage'&&g.mainEntity.length===(s.model==='canvas'?6:5))));
   for(const group of ['print','material','thickness','complexity']){
    const enabled=page.locator(`[data-sp-group="${group}"]:not(:disabled)`);if(await enabled.count())await enabled.last().click();

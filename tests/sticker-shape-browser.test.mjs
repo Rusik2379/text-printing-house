@@ -16,6 +16,8 @@ try{
   const text=await page.evaluate(()=>navigator.clipboard.readText());
   assert.ok(text.includes('width=80&height=80'));
   await page.locator('#sp-add').click();
+  await page.waitForFunction(()=>TEXT_APP.getCart().some(item=>item.configuration?.width===80&&item.configuration?.height===80));
+  await page.locator('.cart-button').click();
   const edit=await page.locator('.cart-edit-link').last().getAttribute('href');
   await page.goto(edit,{waitUntil:'networkidle'});
   assert.equal(await page.locator('#sp-height').inputValue(),'80','Cart edit must retain the corrected height');

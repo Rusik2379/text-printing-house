@@ -14,6 +14,7 @@ try{
  assert.ok((await page.locator('#file-feedback').textContent()).includes('Панель-макет.pdf'));
  assert.equal(await page.locator('.request-form img').count(),0,'Comment remains text');
  await page.locator('[name="name"]').fill('Проверка');await page.locator('[name="phone"]').fill('+79236547896');
+ await page.locator('[name="personalDataConsent"]').check();
  const [download]=await Promise.all([page.waitForEvent('download'),page.locator('#download-request').click()]);const text=await readFile(await download.path(),'utf8');
  assert.ok(text.includes('600 × 1 200 мм'));assert.ok(text.includes('Макет: Панель-макет.pdf'));assert.ok(text.includes('Стоимость: индивидуальный расчёт'));
  assert.equal(await page.evaluate(()=>TEXT_APP.getCart().length),0,'No fabricated quote is added to cart');

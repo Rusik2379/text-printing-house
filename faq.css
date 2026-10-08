@@ -1,4 +1,8 @@
-.faq-list{--faq-duration:280ms;--faq-easing:cubic-bezier(.22,1,.36,1)}
-.faq-list .faq-answer{overflow:hidden}
+.faq-list{--faq-duration:420ms;--faq-easing:cubic-bezier(.3,0,.2,1)}
+.faq-answer{overflow:hidden}
 .faq-list details{transition:background-color var(--faq-duration) var(--faq-easing),border-color var(--faq-duration) var(--faq-easing)}
-@media(prefers-reduced-motion:reduce){.faq-list{--faq-duration:0ms}}
+.company-requirements-page :is(.faq-list,.requirements-service){--faq-duration:540ms;--faq-easing:cubic-bezier(.3,0,.2,1)}
+.requirements-service{transition:border-color 540ms cubic-bezier(.3,0,.2,1),box-shadow 540ms cubic-bezier(.3,0,.2,1)}
+.company-requirements-page .requirements-service summary>.icon{transition:transform 540ms cubic-bezier(.3,0,.2,1),color 540ms ease}
+.requirements-service[data-faq-expanded=false] summary>.icon{transform:rotate(0);color:#92969a}
+@media(prefers-reduced-motion:reduce){.faq-list,.company-requirements-page :is(.faq-list,.requirements-service){--faq-duration:0ms}}

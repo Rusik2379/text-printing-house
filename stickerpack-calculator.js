@@ -32,13 +32,13 @@
   };
   window.TEXT_CALCULATE_STICKERPACKS=c=>window.TEXT_CALCULATE_STICKERS({...c,kind:'pack',shape:'rectangle'});
   window.TEXT_STICKER_CART_BREAKDOWN=items=>{
-    const minimums={stickers:window.TEXT_STICKER_PRICING?.flat.minimum||window.TEXT_STICKERPACK_PRICING.minimum,stickers3d:window.TEXT_STICKER_PRICING?.threeD.minimum||1000,uvdtf:800,paper:150,...window.TEXT_WIDE_PRICING?.minimums};
-    const subtotals=Object.fromEntries(Object.keys(minimums).map(k=>[k,0])),surcharges={...subtotals};let other=0;
+    const minimums={stickers:window.TEXT_STICKER_PRICING?.flat.minimum||window.TEXT_STICKERPACK_PRICING.minimum,stickers3d:window.TEXT_STICKER_PRICING?.threeD.minimum||1000,uvdtf:800,paper:150,...window.TEXT_WIDE_PRICING?.minimums,...Object.fromEntries(Object.values(window.TEXT_UV_SERVICES||{}).map(s=>[s.pricingGroup,s.minimum]))};
+    const subtotals=Object.fromEntries(Object.keys(minimums).map(k=>[k,0])),surcharges={...subtotals},pricedGroups=new Set();let other=0;
     for(const item of items){
       if(!Number.isFinite(item.price)||item.price<0)continue;
-      if(Object.hasOwn(subtotals,item.pricingGroup))subtotals[item.pricingGroup]+=item.price;else other+=item.price;
+      if(Object.hasOwn(subtotals,item.pricingGroup)){subtotals[item.pricingGroup]+=item.price;pricedGroups.add(item.pricingGroup);}else other+=item.price;
     }
-    for(const group of Object.keys(subtotals))if(subtotals[group]>0)surcharges[group]=round(Math.max(0,minimums[group]-subtotals[group]),2);
+    for(const group of pricedGroups)surcharges[group]=round(Math.max(0,minimums[group]-subtotals[group]),2);
     const surcharge=round(Object.values(surcharges).reduce((a,b)=>a+b,0),2);
     return {total:round(other+Object.values(subtotals).reduce((a,b)=>a+b,0)+surcharge,2),surcharge,surcharges};
   };

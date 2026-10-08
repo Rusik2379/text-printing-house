@@ -143,7 +143,7 @@
       const details=[description(c),`За ${unitName}: ${money(quote.unit)}; срок: ${quote.days} раб. дн. после согласования`];
       if(comment)details.push(`Комментарий: ${comment}`);
       window.TEXT_APP.upsertCalculatedItem({key,id:service.id,configuration:c,comment,description:details.join('\n'),price:quote.subtotal,unit:quote.unit,days:quote.days,pricingGroup:service.pricingGroup,fileName:orderFile?.name||retainedFile?.fileName||null,fileSize:orderFile?.size||retainedFile?.fileSize||null});
-      window.TEXT_APP.openCart();
+      // Keep the calculator visible; the header badge and toast confirm the addition.
       window.TEXT_APP.notify(previous?'Расчёт в корзине обновлён':service.name+' добавлены в корзину');
     }catch(error){$('#sp-file-status').textContent='Не удалось сохранить макет в браузере. Попробуйте ещё раз или уберите файл и прикрепите позже.';}
     finally{busy=false;sync();}
@@ -194,7 +194,5 @@
   function scheduleMobileTotal(){if(!mobileFrame)mobileFrame=requestAnimationFrame(updateMobileTotal);}
   window.addEventListener('scroll',scheduleMobileTotal,{passive:true});
   window.addEventListener('resize',scheduleMobileTotal,{passive:true});
-  const breadcrumb={'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Главная',item:'https://text-print.ru/'},{'@type':'ListItem',position:2,name:'Наклейки и стикеры',item:'https://text-print.ru/nakleyki-i-stikery/'},{'@type':'ListItem',position:3,name:service.name,item:'https://text-print.ru/'+service.path}]};
-  const schema=document.createElement('script');schema.type='application/ld+json';schema.textContent=JSON.stringify(breadcrumb);document.head.append(schema);
   sync();updateMobileTotal();
 })();
