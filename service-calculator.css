@@ -1,0 +1,281 @@
+/* Shared calculator appearance, based on /nakleyki-i-stikery/figurnye-stikery/.
+   Loaded last so each service keeps its own fields and pricing controller. */
+:root{--calculator-accent:var(--red);--calculator-panel:#f6f6f7;--calculator-line:#ebedef}
+.sp-calculator-section .sp-section-title,
+.cc-heading{text-align:center;margin-bottom:29px}
+.sp-calculator-section .sp-section-title h2,
+.cc-heading h2{font-size:32px;font-weight:800;letter-spacing:-.8px;line-height:1.2}
+.sp-calculator-section .sp-section-title p,
+.cc-heading p{font-size:14px;line-height:1.6;margin-top:10px;color:#777}
+.sp-calculator,
+.cc-calc-layout{display:grid;grid-template-columns:minmax(0,1fr) 302px;gap:18px;align-items:start}
+.sp-options-panel,
+.cc-options-panel{position:relative;min-width:0;border:1px solid var(--calculator-line);border-radius:16px;background:var(--calculator-panel);padding:56px 25px 25px;min-height:0}
+.cc-options-panel{display:flex;flex-direction:column}
+.sp-copy-button,
+.cc-copy-button{position:absolute;top:12px;right:14px;z-index:1;display:flex;align-items:center;justify-content:center;width:34px;height:34px;padding:0;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#7e8794;transition:color .18s,border-color .18s,background-color .18s}
+.sp-copy-button .icon,
+.cc-copy-button .icon{width:18px;height:18px;flex-shrink:0}
+.cc-copy-button>span:not([data-icon]){position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.sp-copy-button:hover,
+.cc-copy-button:hover{background:#fff;color:var(--calculator-accent);border-color:#d8b2b5}
+.sp-copy-button:disabled,
+.cc-copy-button:disabled{opacity:.4;cursor:default}
+.sp-calculator-columns,
+.cc-parameters,
+.project-primary-row .project-row-fields,[data-project-service="2.6"] .project-primary-row .project-row-fields{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.9fr) minmax(0,1.25fr);gap:21px;align-items:start}
+.cc-param-column,.project-primary-row .cc-param-column{gap:23px}
+.cc-field{min-width:0;margin:0;padding:0;border:0}
+.sp-calculator legend,
+.cc-field legend,
+.cc-fixed-service h3,
+.cc-number,
+.project-select-label{color:#6c7380;font-size:13px;font-weight:600;line-height:1.4;letter-spacing:0}
+.sp-calculator legend,
+.cc-field legend,
+.cc-fixed-service h3{margin-bottom:12px;padding:0}
+.sp-info{background:#939ba7}
+.sp-choice-stack,
+.sp-quantity-stack,
+.cc-choice-stack,
+.cc-quantity-stack{display:flex;flex-direction:column;gap:10px}
+.sp-option,
+.cc-option{display:flex;align-items:center;min-width:0;width:100%;min-height:42px;border:1px solid #fff;border-radius:8px;padding:10px 12px;font-size:14px;line-height:1.4;text-align:left;background:#fff;transition:background-color .18s,color .18s,border-color .18s}
+.sp-option:hover,
+.cc-option:hover{border-color:#dfb6b9;background:#fffafa}
+.sp-option[aria-pressed=true],
+.cc-option[aria-pressed=true]{background:var(--calculator-accent);border-color:var(--calculator-accent);color:#fff}
+.sp-option:disabled,
+.cc-option:disabled,.sp-option:disabled:hover,.cc-option:disabled:hover{background:#eeeef0;border-color:#eeeef0;color:#a6a6ad;cursor:not-allowed}
+.sp-custom-option,
+.cc-custom-option{color:#93959a}
+.sp-custom-option[aria-pressed=true],
+.cc-custom-option[aria-pressed=true]{color:#fff}
+.sp-included,
+.cc-included{min-height:42px;border-radius:8px;padding:10px 12px;color:#89909a;font-size:13px;border:1px solid #e4e5e8;background:#fafafa}
+.sp-quantity-row,
+.cc-quantity-row{display:grid;gap:8px;align-items:center;min-height:42px}
+.sp-quantity-row{grid-template-columns:96px minmax(0,1fr) 41px}
+.cc-quantity-row{grid-template-columns:96px minmax(0,1fr)}
+.sp-quantity-row .sp-option,
+.sp-quantity-row .cc-option,
+.cc-quantity-row .sp-option,
+.cc-quantity-row .cc-option{font-size:13px;padding:10px;white-space:normal}
+.sp-quantity-price,
+.cc-quantity-price{font-size:12px;line-height:1.5;color:#808793;text-align:right;padding:0;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.sp-quantity-price{white-space:normal}
+.sp-quantity-row:has([aria-pressed=true]) .sp-quantity-price,
+.sp-quantity-row:has([aria-pressed=true]) .cc-quantity-price,
+.cc-quantity-row:has([aria-pressed=true]) .sp-quantity-price,
+.cc-quantity-row:has([aria-pressed=true]) .cc-quantity-price{color:#29313b;font-weight:600}
+.sp-discount{font-size:11px;background:#e6f0d0;color:#6b8142;border-radius:7px;padding:5px 3px}
+.sp-field-note,
+.cc-field-note{font-size:11px;color:#9297a0;line-height:1.5;margin-top:12px}
+.sp-custom-fields,
+.cc-custom-field{margin-top:12px}
+.sp-custom-fields input,
+.cc-number input,
+.cc-number select,
+.project-select-label select{background:#fff;border:1px solid #dddfe6;border-radius:8px;padding:9px 11px;width:100%;min-width:0;min-height:42px;margin-top:5px;font-size:14px;line-height:1.5;font-weight:400;color:#20242b}
+.sp-custom-fields input:focus,
+.cc-number input:focus,
+.cc-number select:focus,
+.project-select-label select:focus{outline:2px solid #ffb5bb;border-color:var(--calculator-accent)}
+.sp-custom-fields input[aria-invalid=true],
+.cc-number input[aria-invalid=true],
+.cc-number select[aria-invalid=true],
+.project-select-label select[aria-invalid=true]{border-color:var(--calculator-accent)}
+.project-extended-format{margin-top:14px}
+.cc-fixed-service .cc-included{color:#89909a}
+.cc-parameter-footer{margin-top:0;padding-top:18px;gap:12px 22px}
+.cc-fixed{border-color:#e4e5e8;padding-top:18px}
+.cc-fixed span{font-size:11px;color:#858e9b}
+.cc-helper,
+.cc-reset{font-size:11px;color:#858e9b}
+.sp-calculator-note,
+.cc-calculator-note{font-size:11px;line-height:1.6;color:#858e9b}
+.sp-calculator-note{border-color:#e4e5e8;margin-top:3px;padding-top:18px}
+.sp-result-panel,
+.cc-result{position:sticky;top:120px;min-width:0;border:1px solid var(--calculator-line);border-radius:16px;background:var(--calculator-panel);padding:23px 21px}
+.cc-result{display:block}
+.sp-file-zone,
+.cc-upload{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;background:#fff;border:1px solid #d9dde3;border-radius:9px;min-height:137px;padding:15px 12px;text-align:center;cursor:pointer;transition:background-color .18s,border-color .18s}
+.sp-file-zone .icon,
+.cc-upload .icon{color:#66717f;width:27px;height:27px;margin-bottom:9px}
+.sp-file-zone strong,
+.cc-upload strong{font-size:13px;font-weight:500;line-height:1.45;color:#4c5766;overflow-wrap:anywhere;max-width:100%}
+.sp-file-zone:hover,
+.cc-upload:hover,.sp-file-zone.is-dragging,.cc-upload.is-dragging{background:#fffafb;border-color:#c88b90}
+.sp-file-zone small,
+.cc-upload>span:not([data-icon]){color:#9a9fa8;font-size:10px;line-height:1.4;margin-top:7px}
+.sp-file-tools,
+.cc-file-tools{display:flex;justify-content:space-between;align-items:start;gap:6px;margin:9px 0 14px;color:#9098a4;font-size:10px;line-height:1.5}
+.cc-file-status{font-size:10px;line-height:1.5;color:#9098a4}
+.sp-file-tools button,
+.cc-file-tools button{flex-shrink:0;font-size:10px;margin-top:0}
+.cc-comment{font-size:12px;color:#747c87;line-height:1.5}
+.sp-result-panel textarea,
+.cc-comment textarea{border:1px solid #e9eaee;border-radius:8px;padding:11px;font-size:12px;line-height:1.5;min-height:61px;color:var(--ink);background:#fff}
+.cc-comment textarea{margin-top:7px}
+.cc-result-summary{margin:22px 0 0;padding-top:0}
+.sp-result-heading,
+.cc-result h3{font-size:15px;font-weight:600;line-height:1.4;color:#404958;letter-spacing:0}
+.sp-total,
+.cc-total{font-size:35px;font-weight:800;letter-spacing:-1.1px;line-height:1.12;color:#242b34;margin-top:13px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.sp-unit{font-size:12px;color:#9198a3;margin-top:6px}
+.sp-deadline,
+.cc-days{color:#737e8d;margin-top:20px;font-size:12px;line-height:1.5}
+.sp-deadline .icon{color:var(--calculator-accent)}
+.sp-add-button,
+.cc-add-button,.service-page .sp-add-button{display:flex;align-items:center;justify-content:center;width:100%;border:1px solid #e11520;border-radius:11px;font-size:15px;font-weight:600;line-height:1.4;min-height:48px;padding:12px 20px;color:#fff;background:#e8111b;box-shadow:none;transition:background-color .18s,border-color .18s}
+.cc-add-button{margin-top:18px}
+.sp-add-button:hover,
+.cc-add-button:hover{color:#fff;background:var(--red-hover);border-color:var(--red-hover);box-shadow:none}
+.sp-add-button:disabled,
+.cc-add-button:disabled,.sp-add-button:disabled:hover,.cc-add-button:disabled:hover{background:#c8c9cd;border-color:#c8c9cd;box-shadow:none;cursor:not-allowed}
+.sp-download,
+.cc-tools{font-size:11px;color:#939aa6;margin-top:14px}
+.cc-tools{gap:8px;align-items:start}
+.cc-tools button{font-size:11px;color:#939aa6}
+.sp-result-disclosure,
+.cc-disclosure{font-size:10px;color:#a0a5ae;line-height:1.55;margin-top:14px;text-align:center}
+.sp-option:focus-visible,
+.cc-option:focus-visible,
+.sp-copy-button:focus-visible,
+.cc-copy-button:focus-visible,
+.sp-add-button:focus-visible,
+.cc-add-button:focus-visible{outline:3px solid #ffb5bb;outline-offset:3px}
+/* Less common calculators opened from the catalog use the same surfaces. */
+.calc-layout{grid-template-columns:minmax(0,1fr) 302px;gap:18px;align-items:start}
+.calc-layout>.form-fields,.calc-layout>.calc-result{border:1px solid var(--calculator-line);border-radius:16px;padding:23px 21px;background:var(--calculator-panel)}
+.calc-layout .field{font-size:13px;color:#6c7380;line-height:1.4}
+.calc-layout .field input,
+.calc-layout .field select,
+.calc-layout .field textarea{border-color:#dddfe6;border-radius:8px;min-height:42px;font-size:14px;padding:9px 11px}
+.calc-layout .calc-total{font-size:35px;line-height:1.12;color:#242b34;letter-spacing:-1.1px}
+.calc-layout .calc-result .button{border-radius:8px;font-size:15px;min-height:45px}
+.calc-layout .calc-unit{font-size:12px;color:#9198a3}
+@media(max-width:1100px){
+  .sp-calculator,
+  .cc-calc-layout{grid-template-columns:minmax(0,1fr) 275px;gap:14px}
+  .sp-calculator-columns,
+  .cc-parameters,
+  .project-primary-row .project-row-fields,[data-project-service="2.6"] .project-primary-row .project-row-fields{grid-template-columns:minmax(0,1fr) minmax(0,.9fr) minmax(0,1.18fr);gap:15px}
+  .sp-options-panel,
+  .cc-options-panel{padding:53px 19px 22px}
+  .sp-option,
+  .cc-option{font-size:12px;padding:10px}
+  .sp-quantity-row,
+  .cc-quantity-row{grid-template-columns:77px minmax(0,1fr);gap:7px}
+  .sp-quantity-row .sp-option,
+  .sp-quantity-row .cc-option,
+  .cc-quantity-row .sp-option,
+  .cc-quantity-row .cc-option{font-size:12px}
+  .sp-quantity-price,
+  .cc-quantity-price{font-size:11px}
+  .sp-discount{display:none}
+  .sp-result-panel,
+  .cc-result{padding:22px 18px}
+  .sp-total,
+  .cc-total{font-size:32px}
+  .sp-add-button,
+  .cc-add-button,.service-page .sp-add-button{font-size:13px;min-height:44px;padding:11px 15px}
+}
+@media(max-width:850px){
+  .sp-calculator,
+  .cc-calc-layout,
+  .calc-layout{grid-template-columns:1fr}
+  .sp-calculator-columns,
+  .cc-parameters,
+  .project-primary-row .project-row-fields,[data-project-service="2.6"] .project-primary-row .project-row-fields{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.3fr);gap:24px}
+  .sp-options-panel,
+  .cc-options-panel{padding:55px 25px 23px}
+  .sp-option,
+  .cc-option{font-size:13px}
+  .sp-quantity-row{grid-template-columns:87px minmax(0,1fr) 38px;gap:7px}
+  .cc-quantity-row{grid-template-columns:87px minmax(0,1fr);gap:7px}
+  .sp-quantity-price,
+  .cc-quantity-price{padding:0;text-align:right}
+  .sp-discount{display:block;font-size:10px}
+  .sp-result-panel,
+  .cc-result{position:static;padding:25px}
+  .cc-result{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 27px}
+  .cc-result-summary{margin:0;padding:0;align-self:start}
+}
+@media(max-width:700px){
+  .sp-add-button,
+  .cc-add-button,.service-page .sp-add-button{font-size:12px;min-height:43px;padding:11px 12px}
+}
+@media(max-width:600px){
+  .sp-calculator-section .sp-section-title,
+  .cc-heading{margin-bottom:22px}
+  .sp-calculator-section .sp-section-title h2,
+  .cc-heading h2{font-size:26px;letter-spacing:-.6px}
+  .sp-calculator-section .sp-section-title p,
+  .cc-heading p{font-size:12px;margin-top:9px}
+  .sp-options-panel,
+  .cc-options-panel{padding:53px 18px 20px;border-radius:13px}
+  .sp-calculator-columns,
+  .cc-parameters,
+  .project-primary-row .project-row-fields,[data-project-service="2.6"] .project-primary-row .project-row-fields{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  .sp-copy-button,
+  .cc-copy-button{top:11px;right:12px}
+  .sp-calculator legend,
+  .cc-field legend,
+  .cc-number,
+  .project-select-label{font-size:12px}
+  .sp-option,
+  .cc-option{font-size:12px;padding:10px;min-height:41px}
+  .sp-included,
+  .cc-included{font-size:12px;min-height:41px}
+  .sp-calculator-columns>div:last-child,
+  .cc-parameters>.cc-quantity,
+  .project-primary-row .project-row-fields>.cc-quantity{grid-column:1/-1;border-top:1px solid #e2e4e8;padding-top:19px}
+  .sp-quantity-stack,
+  .cc-quantity-stack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .sp-quantity-row,
+  .cc-quantity-row{grid-template-columns:1fr auto;gap:7px}
+  .sp-quantity-row .sp-option,
+  .sp-quantity-row .cc-option,
+  .cc-quantity-row .sp-option,
+  .cc-quantity-row .cc-option{grid-column:1/-1;font-size:13px}
+  .sp-quantity-price,
+  .cc-quantity-price{grid-column:1;font-size:12px;text-align:left;padding-left:8px!important}
+  .sp-discount{padding:3px 6px}
+  .sp-quantity-stack>.sp-custom-option,
+  .sp-quantity-stack>.cc-custom-option,
+  .cc-quantity-stack>.sp-custom-option,
+  .cc-quantity-stack>.cc-custom-option{grid-column:1/-1}
+  .sp-field-note,
+  .cc-field-note{font-size:10px}
+  .sp-calculator-note,
+  .cc-calculator-note{font-size:10px}
+  .sp-result-panel,
+  .cc-result{display:block;padding:22px;border-radius:13px}
+  .sp-file-zone,
+  .cc-upload{min-height:125px}
+  .cc-file-status{font-size:10px}
+  .cc-result-summary{margin-top:22px}
+  .sp-total,
+  .cc-total{font-size:35px}
+  .cc-days{font-size:12px}
+  .cc-disclosure{font-size:10px}
+  .sp-custom-fields input,
+  .cc-number input,
+  .cc-number select,
+  .project-select-label select,
+  .calc-layout .field input,
+  .calc-layout .field select{font-size:16px}
+  .calc-layout{display:grid;gap:18px}
+  .calc-layout>.form-fields,.calc-layout>.calc-result{padding:22px;border-radius:13px}
+}
+@media(prefers-reduced-motion:reduce){
+  .sp-option,
+  .cc-option,
+  .sp-copy-button,
+  .cc-copy-button,
+  .sp-add-button,
+  .cc-add-button,
+  .sp-file-zone,
+  .cc-upload{transition:none}
+}

@@ -47,17 +47,18 @@ def cookie_banner(prefix):
     </aside>'''
 
 # Keep the homepage and all product pages connected to the same company section.
-product_pages=[(str(file.relative_to(ROOT)),'../'*len(file.relative_to(ROOT).parent.parts)) for file in sorted([*(ROOT/'nakleyki-i-stikery').rglob('index.html'),*(ROOT/'kopitsentr').rglob('index.html'),*(ROOT/'proektnaya-dokumentatsiya').rglob('index.html')])]
+product_pages=[(str(file.relative_to(ROOT)),'../'*len(file.relative_to(ROOT).parent.parts)) for file in sorted([*(ROOT/'nakleyki-i-stikery').rglob('index.html'),*(ROOT/'kopitsentr').rglob('index.html'),*(ROOT/'proektnaya-dokumentatsiya').rglob('index.html'),*(ROOT/'listovaya-poligrafiya').rglob('index.html'),*(ROOT/'uv-pechat-i-rezka').rglob('index.html')])]
 for relative,prefix in [('index.html',''),*product_pages]:
     file=ROOT/relative
     newline='\r\n' if b'\r\n' in file.read_bytes() else '\n'
     text=file.read_text(encoding='utf-8')
-    text=re.sub(r'\s*<script src="[^"]*project-services\.js(?:\?[^"]*)?" defer></script>','',text)
-    text=re.sub(r'(<script src="[^"]*app\.js(?:\?[^"]*)?" defer></script>)',lambda m:f'<script src="{prefix}project-services.js" defer></script>\n  '+m[1],text,count=1)
-    text=re.sub(r'(<div class="footer-links" id="footer-services">).*?(</div>)',lambda m:m[1]+f'<a href="{prefix}kopitsentr/">Копицентр</a>'+m[2],text,count=1,flags=re.S)
+    for registry in ['project-services','leaflet-services','uv-services']:
+        text=re.sub(r'\s*<script src="[^"]*'+registry+r'\.js(?:\?[^"]*)?" defer></script>','',text)
+        text=re.sub(r'(<script src="[^"]*app\.js(?:\?[^"]*)?" defer></script>)',lambda m:f'<script src="{prefix}{registry}.js" defer></script>\n  '+m[1],text,count=1)
+    text=re.sub(r'(<div class="footer-links" id="footer-services">).*?(</div>)',lambda m:m[1]+f'<a href="{prefix}kopitsentr/">Копицентр</a><a href="{prefix}proektnaya-dokumentatsiya/">Проектная документация</a><a href="{prefix}listovaya-poligrafiya/">Листовая полиграфия</a><a href="{prefix}uv-pechat-i-rezka/">UV-печать и резка</a>'+m[2],text,count=1,flags=re.S)
     text=re.sub(r'(<h3>Компания</h3>)<div class="footer-links"[^>]*>.*?</div>',
                 lambda match:match[1]+f'<div class="footer-links" data-company-links>{links(prefix)}</div>',text,count=1,flags=re.S)
-    for asset,tag in [('consent.css',f'<link rel="stylesheet" href="{prefix}consent.css">'),('consent.js',f'<script src="{prefix}consent.js" defer></script>'),('cart.css',f'<link rel="stylesheet" href="{prefix}cart.css">'),('cart-pdf.js',f'<script src="{prefix}cart-pdf.js" defer></script>'),('project-services.js',f'<script src="{prefix}project-services.js" defer></script>')]:
+    for asset,tag in [('consent.css',f'<link rel="stylesheet" href="{prefix}consent.css">'),('consent.js',f'<script src="{prefix}consent.js" defer></script>'),('cart.css',f'<link rel="stylesheet" href="{prefix}cart.css">'),('cart-pdf.js',f'<script src="{prefix}cart-pdf.js" defer></script>'),('cart-xlsx.js',f'<script src="{prefix}cart-xlsx.js" defer></script>'),('project-services.js',f'<script src="{prefix}project-services.js" defer></script>')]:
         if not re.search(r'(?:href|src)="[^"]*'+re.escape(asset)+r'(?:\?[^\"]*)?"',text):text=text.replace('</head>',tag+'\n</head>',1)
     text=re.sub(r'<div class="container footer-legal" data-legal-links>.*?</div>','',text,flags=re.S)
     text=text.replace('<div class="container footer-bottom">',legal_footer(prefix)+'<div class="container footer-bottom">',1)
@@ -170,9 +171,9 @@ def resolve_route(route,prefix):
 # Adapt only instructions about the source site's UI to the actual shared cart.
 # PDF requirements for printing files remain intact.
 COPY_ADAPTATIONS={
-    'Каждая услуга имеет свой калькулятор.':'Для копицентра, проектной документации, наклеек и стикерпаков доступны онлайн-калькуляторы; параметры остальных услуг согласуем со студией.',
+    'Каждая услуга имеет свой калькулятор.':'Для копицентра, проектной документации, листовой полиграфии, наклеек, UV-печати и резки доступны онлайн-калькуляторы; параметры остальных услуг согласуем со студией.',
     'Это описание текущей версии сайта. Возможности отправки могут расшириться: следите за обновлениями.':'После отправки письма студия проверит файлы и подтвердит заказ.',
-    'Расчёт можно редактировать в корзине.':'Расчёты копицентра, проектной документации, наклеек и стикерпаков можно изменить из корзины. Для остальных позиций при необходимости добавьте новый расчёт.',
+    'Расчёт можно редактировать в корзине.':'Расчёты копицентра, проектной документации, листовой полиграфии, наклеек, UV-печати и резки можно изменить из корзины. Для остальных позиций при необходимости добавьте новый расчёт.',
     'Скачайте или распечатайте перед отправкой.':'Скачайте расчёт или запрос перед отправкой.',
     'В расчёт попадают их названия.':'В расчёт попадают их названия.',
     'Выбрать услугу [/]':'Выбрать услугу',
@@ -253,7 +254,10 @@ def contacts(prefix):
            ('','Работаете ли вы по выходным?','Суббота и воскресенье — выходные. Обычный график студии: понедельник — пятница, 09:00–18:00.'),
            ('','Можно ли получить заказ с доставкой?','Да. Адрес, перевозчика и стоимость доставки согласуем отдельно. Посмотрите <a href="'+prefix+'dostavka-i-oplata/">варианты получения заказа</a>.')]
     questions='<section class="company-section company-contacts-faq lower-home home-faq-section" aria-labelledby="contacts-faq-title"><h2 id="contacts-faq-title">Частые вопросы</h2><div class="home-faq-stage"><div class="home-faq-content">'+faq(items).replace('company-faq faq-list','faq-list')+f'</div><img class="faq-mascot" src="{prefix}assets/faq-peeking-robot.webp" alt="Робот ТЕКСТ держится за край карточек с вопросами" width="1166" height="1349" loading="lazy"></div></section>'
-    return location+ways+questions+cta(prefix,'Остались вопросы?','Позвоните или напишите — поможем разобраться с вашим заказом.')
+    documents=json.loads((ROOT/'business-documents.json').read_text(encoding='utf-8'))['documents']
+    files='<div class="contacts-documents-grid">'+''.join(f'<a class="contacts-document" href="{prefix}{item["path"]}" download><span class="contacts-document-icon">{icon("document")}<small>PDF</small></span><div class="contacts-document-copy"><h3>{escape(item["name"])}</h3><p>{escape(item["description"])}</p><span class="contacts-document-size">PDF · {round(item["bytes"]/1024)} КБ</span></div><span class="contacts-document-download" aria-hidden="true">{icon("download")}</span></a>' for item in documents)+'</div>'
+    paperwork=section('Фирменные документы',files,'Реквизиты, презентация студии и бланки для деловой переписки. Выберите документ, чтобы скачать PDF.',extra='id="contacts-documents"')
+    return location+ways+paperwork+questions+cta(prefix,'Остались вопросы?','Позвоните или напишите — поможем разобраться с вашим заказом.')
 
 def delivery(prefix):
     page=source_page('delivery')
@@ -511,6 +515,11 @@ if (ROOT/'copycenter-content.json').is_file():
     subprocess.run([sys.executable,str(ROOT/'scripts/build-copycenter-pages.py')],cwd=ROOT,check=True)
 if (ROOT/'project-content.json').is_file():
     subprocess.run([sys.executable,str(ROOT/'scripts/build-project-pages.py')],cwd=ROOT,check=True)
+if (ROOT/'leaflet-content.json').is_file():
+    subprocess.run([sys.executable,str(ROOT/'scripts/build-leaflet-pages.py')],cwd=ROOT,check=True)
+
+if (ROOT/'uv-content.json').is_file():
+    subprocess.run([sys.executable,str(ROOT/'scripts/build-uv-pages.py')],cwd=ROOT,check=True)
 
 from site_seo import apply_site_seo
 apply_site_seo()
@@ -521,6 +530,11 @@ for file in sorted(ROOT.rglob('*.html')):
     if any(part.startswith('.') or part in ('node_modules','preview') for part in file.relative_to(ROOT).parts):continue
     newline='\r\n' if b'\r\n' in file.read_bytes() else '\n'
     text=file.read_text(encoding='utf-8')
+    # Apply after category page generation so this stylesheet is always last.
+    original_text=text
+    text=re.sub(r'\s*<link\b[^>]*href="[^"]*service-calculator\.css(?:\?[^"]*)?"[^>]*>', '', text)
+    calculator_css='../'*len(file.parent.relative_to(ROOT).parts)+'service-calculator.css'
+    text=text.replace('</head>',f'\n<link rel="stylesheet" href="{calculator_css}">\n</head>',1)
     def version_asset(match):
         url=urlsplit(unescape(match[2]))
         if url.scheme or url.netloc or Path(url.path).suffix not in ('.css','.js'):return match[0]
@@ -532,6 +546,6 @@ for file in sorted(ROOT.rglob('*.html')):
         versioned=urlunsplit((url.scheme,url.netloc,url.path,urlencode(query),url.fragment))
         return match[1]+escape(versioned,quote=True)
     versioned=re.sub(r'((?:href|src)=")([^\"]+)(?=")',version_asset,text)
-    if versioned!=text:file.write_text(versioned,encoding='utf-8',newline=newline)
+    if versioned!=original_text:file.write_text(versioned,encoding='utf-8',newline=newline)
 
 print(f'Built {len(PAGES)-1} company pages, overview, order guide, {len(LEGAL_PAGES)} legal pages and {len(ARTICLES)} complete articles with {len(SOURCE["requirements"])} service requirements.')

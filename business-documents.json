@@ -1,0 +1,52 @@
+{
+  "source": {
+    "file": "TEKST_HTML_FINAL_2026-10-09_XLSX_STYLED.zip",
+    "sha256": "d7f2661960a2291ced323d8e5e4d265adc5786ef5b0bbca65fee89e25c3de6f1",
+    "updated": "2026-10-09",
+    "xlsx_template_sha256": "b8027dc6cd4eedffdbaa3142635cf96a95ca409c90949406554c079ffc8a785d"
+  },
+  "documents": [
+    {
+      "name": "Реквизиты",
+      "description": "Карточка реквизитов для оплаты и договоров",
+      "path": "assets/documents/rekvizity.pdf",
+      "bytes": 204324,
+      "sha256": "095fbedc889a4efd5b3dc25139828bb7df0d15c2867aec8341bfb37c9d8f1d11"
+    },
+    {
+      "name": "Презентация компании",
+      "description": "Кратко о студии, услугах и производстве",
+      "path": "assets/documents/prezentaciya-kompanii.pdf",
+      "bytes": 214811,
+      "sha256": "5e61e300ceeb9d2d466d4d3fe32817029fbce84ceeb01887b4c559edc799fd0b"
+    },
+    {
+      "name": "Официальное письмо",
+      "description": "Фирменный бланк деловой переписки",
+      "path": "assets/documents/oficialnoe-pismo.pdf",
+      "bytes": 219462,
+      "sha256": "478381c3a9dfcdc76dc7d99ba2afa9afbc72c17b1dd1baa218ccd22bab9f8f26"
+    },
+    {
+      "name": "Служебная записка",
+      "description": "Бланк докладной и служебной записки",
+      "path": "assets/documents/sluzhebnaya-zapiska.pdf",
+      "bytes": 211558,
+      "sha256": "0331383c39427522c09102b690ee4cb9a9a10b39eafd09a7895f7a08a1c11177"
+    },
+    {
+      "name": "Объяснительная записка",
+      "description": "Фирменный бланк объяснительной",
+      "path": "assets/documents/obyasnitelnaya-zapiska.pdf",
+      "bytes": 211002,
+      "sha256": "e78fdbc68694216f8c492551a9bbd7e6a11d6fcd4c249ccf7397b48d1265f5e0"
+    },
+    {
+      "name": "Заявление",
+      "description": "Фирменный бланк заявления",
+      "path": "assets/documents/zayavlenie.pdf",
+      "bytes": 209740,
+      "sha256": "093c54b6de1de540d16281a187970c7097a37dcea902eb625554b6a7a8b26cde"
+    }
+  ]
+}

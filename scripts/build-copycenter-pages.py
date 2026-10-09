@@ -123,7 +123,7 @@ def calculator(s,prefix):
     return f'''<section class="cc-calculator" id="calculator" aria-labelledby="calculator-title">
       <div class="cc-heading"><h2 id="calculator-title">Выберите нужные параметры</h2><p>Сравните варианты тиража — стоимость пересчитывается сразу.</p></div>
       <form id="copycenter-form"><div class="cc-calc-layout"><div class="cc-options-panel">
-        <button class="cc-copy-button" type="button" data-cc-copy disabled title="Скопировать параметры, стоимость и ссылку">{icon('copy')}<span>Скопировать расчёт</span></button>
+        <button class="cc-copy-button" type="button" data-cc-copy disabled aria-label="Скопировать параметры, стоимость и ссылку" title="Скопировать параметры, стоимость и ссылку">{icon('copy')}<span>Скопировать расчёт</span></button>
         <div class="cc-parameters" data-cc-fields></div>
         <div class="cc-parameter-footer">{('<div class="cc-fixed">'+''.join('<span>'+text(v)+'</span>' for v in fixed)+'</div>') if fixed and s['id']!='1.8' else ''}
         <p class="cc-helper"><a href="#service-requirements">Проверить требования к макету →</a></p><button class="cc-reset" type="button" data-cc-reset>Сбросить параметры</button></div>

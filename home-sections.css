@@ -85,13 +85,17 @@
 .lower-home .faq-list details p{font-size:15px;line-height:1.6;padding:0 18px 18px;color:#62666b;margin:0}
 .faq-inline-link,.lower-home .faq-list a{display:inline;padding:0;color:var(--section-red);text-decoration:underline;text-underline-offset:2px;font-size:inherit;text-align:left}
 .faq-mascot{position:absolute;left:calc(100% - var(--faq-rail) - var(--faq-robot-width)*.2);top:-55px;width:var(--faq-robot-width);height:auto;object-fit:contain;pointer-events:none;z-index:2}
-.faq-help{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:24px;background:#faeded;border-radius:12px;padding:22px 28px;margin-top:18px}
-.faq-help h3{font-size:30px;font-weight:800;color:var(--section-red);letter-spacing:-.5px;line-height:1.2}
-.faq-help p{font-size:14px;line-height:1.55;color:var(--section-muted);margin-top:7px}
-.faq-help-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.faq-help-actions>a{display:inline-flex;align-items:center;gap:7px;color:var(--section-red);font-size:17px;font-weight:700;white-space:nowrap}
-.faq-help-actions>a .icon{width:19px;height:19px}
-.faq-help-actions .button{min-height:36px;font-size:12px;font-weight:700;padding:8px 13px}
+/* Contact banners share the homepage typography and controls on every page. */
+.faq-help,.company-cta{--section-red:#c52830;--section-muted:#737373;width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:24px;background:#faeded;border-radius:12px;padding:22px 28px;margin-top:18px;font-family:var(--font)}
+.faq-help>div:first-child,.company-cta>div:first-child{min-width:0}
+.faq-help>div:first-child>h3,.company-cta>div:first-child>h2{font-size:30px;font-weight:800;color:var(--section-red);letter-spacing:-.5px;line-height:1.2;margin:0}
+.faq-help>div:first-child>p,.company-cta>div:first-child>p{font-size:14px;line-height:1.55;color:var(--section-muted);margin:7px 0 0}
+.faq-help-actions,.company-cta .company-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;flex-direction:row;min-width:0}
+.faq-help-actions>a,.company-cta .company-actions>a{display:inline-flex;align-items:center;gap:7px;color:var(--section-red);font-size:17px;font-weight:700;white-space:nowrap}
+.faq-help-actions>a .icon,.company-cta .company-actions>a .icon{width:19px;height:19px;margin:0}
+.faq-help-actions .button,.company-cta .company-actions .button{min-height:36px;font-size:12px;font-weight:700;padding:8px 13px;max-width:100%;white-space:normal}
+.faq-help .button-primary,.company-cta .button-primary{background:var(--section-red);border-color:var(--section-red);border-radius:7px;box-shadow:0 5px 12px #a51c2412;color:white}
+.faq-help .button-primary:hover,.company-cta .button-primary:hover{background:#ac2028}
 .lower-home .home-faq-section{margin-bottom:78px}
 .calculator-picker{display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:24px;align-items:center;padding:22px;background:#faf7f7;border:1px solid #f0e6e7;border-radius:13px;margin-top:22px}
 .calculator-picker h3{font-size:23px;margin-bottom:9px}
@@ -113,7 +117,7 @@
   .feedback-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
   .feedback-head{flex-wrap:wrap}
   .feedback-summary h3{font-size:24px}
-  .faq-help{padding:20px;gap:20px}
+  .faq-help,.company-cta{padding:20px;gap:20px}
 }
 @media(max-width:950px){
   .lower-home .lower-section{margin-top:52px}
@@ -137,10 +141,10 @@
   .faq-mascot{top:-35px}
   .lower-home .faq-list summary{min-height:112px;font-size:16px;padding:16px}
   .lower-home .faq-list details p{font-size:15px;padding:0 16px 16px}
-  .faq-help{grid-template-columns:1fr;padding:20px 22px;gap:14px}
-  .faq-help h3{font-size:26px}
-  .faq-help-actions>a{font-size:15px}
-  .faq-help p{font-size:13px}
+  .faq-help,.company-cta{grid-template-columns:1fr;padding:20px 22px;gap:14px}
+  .faq-help>div:first-child>h3,.company-cta>div:first-child>h2{font-size:26px}
+  .faq-help-actions>a,.company-cta .company-actions>a{font-size:15px}
+  .faq-help>div:first-child>p,.company-cta>div:first-child>p{font-size:13px}
 }
 @media(max-width:700px){
   .lower-home .lower-section{margin-top:40px}
@@ -185,12 +189,12 @@
   .lower-home .faq-list{grid-template-columns:1fr;gap:9px}
   .lower-home .faq-list summary{min-height:88px;font-size:16px;padding:18px 16px}
   .lower-home .faq-list details p{font-size:15px;padding:0 16px 18px}
-  .faq-help{padding:19px 21px;margin-top:12px;position:relative;z-index:1;gap:14px}
-  .faq-help h3{font-size:26px}
-  .faq-help p{font-size:13px}
-  .faq-help-actions{gap:12px;align-items:center}
-  .faq-help-actions>a{font-size:16px}
-  .faq-help-actions .button{font-size:12px;min-height:38px}
+  .faq-help,.company-cta{padding:19px 21px;margin-top:12px;position:relative;z-index:1;gap:14px}
+  .faq-help>div:first-child>h3,.company-cta>div:first-child>h2{font-size:26px}
+  .faq-help>div:first-child>p,.company-cta>div:first-child>p{font-size:13px}
+  .faq-help-actions,.company-cta .company-actions{gap:12px;align-items:center}
+  .faq-help-actions>a,.company-cta .company-actions>a{font-size:16px}
+  .faq-help-actions .button,.company-cta .company-actions .button{font-size:12px;min-height:38px}
   .faq-mascot{display:none}
   .lower-home .home-faq-section{margin-bottom:44px}
   .calculator-picker{grid-template-columns:1fr;gap:12px;padding:20px}
@@ -204,8 +208,8 @@
   .benefit-card{padding:12px;min-height:220px}
   .benefit-card h3{font-size:12px}
   .benefit-card p{font-size:11px}
-  .faq-help{padding:18px}
-  .faq-help h3{font-size:24px}
+  .faq-help,.company-cta{padding:18px}
+  .faq-help>div:first-child>h3,.company-cta>div:first-child>h2{font-size:24px}
 }
 @media(prefers-reduced-motion:reduce){
   .partner-strip{scroll-behavior:auto}

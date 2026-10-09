@@ -2,7 +2,7 @@
   'use strict';
   // Resolve from app.js so both domain roots and GitHub Pages subdirectories work.
   const siteRoot = new URL('.', document.currentScript.src).href;
-  const servicePages={...window.TEXT_STICKER_SERVICES,...window.TEXT_COPYCENTER_SERVICES,...window.TEXT_PROJECT_SERVICES};
+  const servicePages={...window.TEXT_STICKER_SERVICES,...window.TEXT_COPYCENTER_SERVICES,...window.TEXT_PROJECT_SERVICES,...window.TEXT_LEAFLET_SERVICES,...window.TEXT_UV_SERVICES};
   const serviceUrl=id=>servicePages[id]?siteRoot+servicePages[id].path:null;
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -58,6 +58,7 @@
     ['Оплата','company/payment/'],['Технические требования','requirements/'],
     ['Вопросы и ответы','company/vopros-otvet/'],['Статьи','company/article/'],['Как заказать','kak-oformit-zakaz/']
   ];
+  const categoryRoutes={'Копицентр':'kopitsentr/','Проектная документация':'proektnaya-dokumentatsiya/','Листовая полиграфия':'listovaya-poligrafiya/','UV-печать и резка':'uv-pechat-i-rezka/'};
   const companyLinks=()=>companyPages.map(([label,path])=>`<a href="${siteRoot}${path}" data-close-menu${new URL(path,siteRoot).pathname===location.pathname.replace(/index\.html$/,'')?' aria-current="page"':''}>${label}</a>`).join('');
   $$('[data-company-links]').forEach(element=>{element.innerHTML=companyLinks();});
   const popular = [
@@ -138,7 +139,7 @@
     const company=name==='Компания';
     const records=catalog.filter(r=>r.category===name);
     const links=company ? companyLinks() : records.map(r=>serviceUrl(r.id)?`<a href="${serviceUrl(r.id)}">${escape(r.name)}</a>`:`<button data-service="${r.id}">${escape(r.name)}</button>`).join('');
-    const categoryPath={'Копицентр':'kopitsentr/','Проектная документация':'proektnaya-dokumentatsiya/'}[name];
+    const categoryPath=categoryRoutes[name];
     $('#mega-menu').innerHTML=`<div class="mega-layout"><div><div class="mega-title"><h3>${categoryPath?`<a href="${siteRoot}${categoryPath}">${escape(name)}</a>`:escape(name)}</h3></div><div class="mega-links">${links}</div></div></div>`;
     const menuLinks=$('.mega-links',$('#mega-menu'));
     menuLinks.style.setProperty('--menu-rows',Math.ceil(menuLinks.children.length/3));
@@ -168,7 +169,7 @@
   $('#header').addEventListener('pointerleave',event=>{if(event.pointerType==='mouse'&&matchMedia('(min-width:701px)').matches)menuCloseTimer=setTimeout(()=>{if(!$('#mega-menu').contains(document.activeElement))closeMenu();},220);});
   $('#header').addEventListener('focusin',()=>clearTimeout(menuCloseTimer));
   $('#header').addEventListener('focusout',event=>{if(!$('#header').contains(event.relatedTarget))menuCloseTimer=setTimeout(closeMenu,220);});
-  $('#footer-services').innerHTML=categories.map(c=>['Копицентр','Проектная документация'].includes(c.name)?`<a href="${siteRoot}${c.name==='Копицентр'?'kopitsentr/':'proektnaya-dokumentatsiya/'}">${escape(c.name)}</a>`:`<button data-action="catalog" data-category="${escape(c.name)}">${escape(c.name)}</button>`).join('');
+  $('#footer-services').innerHTML=categories.map(c=>categoryRoutes[c.name]?`<a href="${siteRoot}${categoryRoutes[c.name]}">${escape(c.name)}</a>`:`<button data-action="catalog" data-category="${escape(c.name)}">${escape(c.name)}</button>`).join('');
   function renderPopular() {
     if(!$('#popular-grid'))return;
     $('#popular-grid').innerHTML=popular.filter(p=>p.record).map(p=>`<${serviceUrl(p.id)?`a href="${serviceUrl(p.id)}"`:'button'} class="featured-card" ${serviceUrl(p.id)?'':`data-service="${p.id}"`} aria-label="${escape(p.name)}"><span class="featured-copy"><span class="featured-name">${p.name.split(/\s+/).map(word=>`<span class="featured-word">${escape(word)}</span>`).join(' ')}</span></span><span class="featured-art"><img src="${imageFor(p.record)}" alt="${escape(p.name)} — иллюстрация студии ТЕКСТ" width="720" height="720" loading="lazy"></span></${serviceUrl(p.id)?'a':'button'}>`).join('');
@@ -245,7 +246,7 @@
       dialog.classList.add('is-cart');
   }
     const priced=cart.filter(r=>r.price!==null),cartTotals=window.TEXT_STICKER_CART_BREAKDOWN(cart),total=cartTotals.total;
-    openDialog(`<div class="dialog-body cart-panel"><h2>Корзина <small>· ${cart.length}</small></h2><p class="dialog-intro">Параметры сохранены в этом браузере. Отправьте запрос в студию, чтобы согласовать макеты и получение.</p><ol class="cart-list">${cart.map(r=>`<li class="cart-row"><div><h3>${escape(catalog.find(c=>c.id===r.id).name)}</h3><p>${escape(r.description)}</p>${serviceUrl(r.id)&&r.configuration?`<a class="cart-edit-link" href="${serviceUrl(r.id)}?edit=${encodeURIComponent(r.key)}">Изменить параметры</a>`:''}<div class="cart-file-actions">${r.fileName?`<button data-download-cart-file="${escape(r.key)}">Макет: ${escape(r.fileName)} ↓</button>`:''}<label>${r.fileName?'Заменить макет':'Прикрепить макет'}<input type="file" data-cart-file="${escape(r.key)}" accept=".pdf,.jpg,.jpeg,.png,.tif,.tiff,.svg,.ai,.eps,.cdr,.psd,.zip"></label></div></div><div class="cart-row-right"><span class="cart-row-price">${r.price===null?'Уточним':priceRange(r.price,r.priceUpper)}</span><button class="icon-button" data-remove="${escape(r.key)}" aria-label="Удалить ${escape(catalog.find(c=>c.id===r.id).name)}">${icon('trash')}</button></div></li>`).join('')}</ol>${cartTotals.surcharge?`<p class="cart-minimum-note">${Object.entries(cartTotals.surcharges).filter(([,amount])=>amount>0).map(([group,amount])=>`Доплата до минимального чека ${({stickers3d:'3D-стикеров и наборов (1 000 ₽)',stickers:'наклеек и стикерпаков (600 ₽)',uvdtf:'UV-DTF наклеек (800 ₽)',paper:'бумажных стикеров (150 ₽)'})[group]}: ${currency(amount)}.`).join(' ')}</p>`:''}${priced.length?`<div class="cart-summary"><span>${priced.length===cart.length?'Итого за продукцию':'Рассчитанная часть заказа'}</span><strong>${priceRange(total,cartUpper(cart,total))}</strong></div>`:''}${priced.length!==cart.length?'<p class="service-sla">Стоимость остальных позиций уточняется после выбора параметров. Доставка рассчитывается отдельно.</p>':'<p class="service-sla">Доставка рассчитывается отдельно.</p>'}<div class="cart-export"><div><strong>Отправьте расчёт одним файлом</strong><p>PDF с логотипом ТЕКСТ, всеми услугами, параметрами и ценами.</p></div><button class="button button-primary" type="button" id="download-cart-pdf">${icon('download')} Скачать расчёт PDF</button></div><p class="cart-pdf-status" id="cart-pdf-status" role="status" aria-live="polite"></p><div class="form-actions"><button class="button button-outline" data-action="request" data-cart="true">Подготовить запрос ${icon('arrow')}</button><button class="button button-outline" data-action="catalog">Добавить услугу</button></div></div>`);
+    openDialog(`<div class="dialog-body cart-panel"><h2>Корзина <small>· ${cart.length}</small></h2><p class="dialog-intro">Параметры сохранены в этом браузере. Отправьте запрос в студию, чтобы согласовать макеты и получение.</p><ol class="cart-list">${cart.map(r=>`<li class="cart-row"><div><h3>${escape(catalog.find(c=>c.id===r.id).name)}</h3><p>${escape(r.description)}</p>${serviceUrl(r.id)&&r.configuration?`<a class="cart-edit-link" href="${serviceUrl(r.id)}?edit=${encodeURIComponent(r.key)}">Изменить параметры</a>`:''}<div class="cart-file-actions">${r.fileName?`<button data-download-cart-file="${escape(r.key)}">Макет: ${escape(r.fileName)} ↓</button>`:''}<label>${r.fileName?'Заменить макет':'Прикрепить макет'}<input type="file" data-cart-file="${escape(r.key)}" accept=".pdf,.jpg,.jpeg,.png,.tif,.tiff,.svg,.ai,.eps,.cdr,.psd,.zip"></label></div></div><div class="cart-row-right"><span class="cart-row-price">${r.price===null?'Уточним':priceRange(r.price,r.priceUpper)}</span><button class="icon-button" data-remove="${escape(r.key)}" aria-label="Удалить ${escape(catalog.find(c=>c.id===r.id).name)}">${icon('trash')}</button></div></li>`).join('')}</ol>${cartTotals.surcharge?`<p class="cart-minimum-note">${Object.entries(cartTotals.surcharges).filter(([,amount])=>amount>0).map(([group,amount])=>`Доплата до минимального чека ${({stickers3d:'3D-стикеров и наборов (1 000 ₽)',stickers:'наклеек и стикерпаков (600 ₽)',uvdtf:'UV-DTF наклеек (800 ₽)',paper:'бумажных стикеров (150 ₽)'})[group]}: ${currency(amount)}.`).join(' ')}</p>`:''}${priced.length?`<div class="cart-summary"><span>${priced.length===cart.length?'Итого за продукцию':'Рассчитанная часть заказа'}</span><strong>${priceRange(total,cartUpper(cart,total))}</strong></div>`:''}${priced.length!==cart.length?'<p class="service-sla">Стоимость остальных позиций уточняется после выбора параметров. Доставка рассчитывается отдельно.</p>':'<p class="service-sla">Доставка рассчитывается отдельно.</p>'}<div class="cart-export"><div><strong>Скачайте документы заказа</strong><p>PDF — общий расчёт с параметрами и ценами.<br>Excel — фирменный товарный чек и акт. Номер документа и данные покупателя можно заполнить в Excel.</p></div><div class="cart-export-actions"><button class="button button-primary" type="button" id="download-cart-pdf">${icon('download')} Скачать PDF</button><button class="button button-outline" type="button" id="download-cart-xlsx">${icon('document')} Скачать Excel</button></div></div><p class="cart-pdf-status" id="cart-pdf-status" role="status" aria-live="polite"></p><p class="cart-pdf-status" id="cart-xlsx-status" role="status" aria-live="polite"></p><div class="form-actions"><button class="button button-outline" data-action="request" data-cart="true">Подготовить запрос ${icon('arrow')}</button><button class="button button-outline" data-action="catalog">Добавить услугу</button></div></div>`);
   }
   // Capture the displayed cart: an in-progress export is unaffected by later edits.
   async function downloadCartPDF(button) {
@@ -261,6 +262,21 @@
     }catch{
       if(status)status.textContent='Не удалось создать PDF. Проверьте подключение и попробуйте ещё раз.';
       toast('Не удалось скачать PDF. Попробуйте ещё раз.');
+    }finally{button.disabled=false;button.removeAttribute('aria-busy');button.innerHTML=original;}
+  }
+  async function downloadCartExcel(button){
+    if(button.disabled)return;
+    const rows=readCart(),status=$('#cart-xlsx-status'),original=button.innerHTML;
+    button.disabled=true;button.setAttribute('aria-busy','true');button.textContent='Готовим Excel…';
+    if(status)status.textContent='Собираем товарный чек и акт из позиций корзины.';
+    try{
+      const data=window.TEXT_CART_XLSX.model(rows,catalog,window.TEXT_STICKER_CART_BREAKDOWN(rows));
+      await window.TEXT_CART_XLSX.download(data);
+      if(status)status.textContent='Excel скачан. Заполните реквизиты на листе «Товарный чек» — они появятся в акте.';
+      toast('Товарный чек и акт скачаны в Excel');
+    }catch{
+      if(status)status.textContent='Не удалось создать Excel. Попробуйте ещё раз.';
+      toast('Не удалось скачать Excel. Попробуйте ещё раз.');
     }finally{button.disabled=false;button.removeAttribute('aria-busy');button.innerHTML=original;}
   }
   function requestText(form,record,includeCart) {
@@ -314,6 +330,7 @@
   function selectDelivery(name){$$('[data-delivery]').forEach(b=>{b.setAttribute('aria-selected',String(b.dataset.delivery===name));b.tabIndex=b.dataset.delivery===name?0:-1;});$('#delivery-details').innerHTML=deliveryContent[name];$('#delivery-details').setAttribute('aria-labelledby','tab-'+name);}
   document.addEventListener('click',event=>{
     const pdfButton=event.target.closest('#download-cart-pdf');if(pdfButton){downloadCartPDF(pdfButton);return;}
+    const excelButton=event.target.closest('#download-cart-xlsx');if(excelButton){downloadCartExcel(excelButton);return;}
     const calculatorLink=event.target.closest('[data-action="calculators"]');if(calculatorLink){openCalculators();return;}
     const menu=event.target.closest('[data-menu]');if(menu){if(event.detail>0&&matchMedia('(min-width:701px) and (hover:hover)').matches)openMenu(menu.dataset.menu);else toggleMenu(menu.dataset.menu);return;}
     const close=event.target.closest('[data-close-menu]');if(close){closeMenu();$('#navigation').classList.remove('mobile-open');$('#mobile-menu-button').setAttribute('aria-expanded','false');}

@@ -1,4 +1,4 @@
-"""Build the Project documentation landing and nine service pages in the shared design.
+"""Build the Project documentation landing and seven service pages in the shared design.
 
 Run before build-company-pages.py, which applies SEO and resource fingerprints
 to the whole site. Content is imported separately; this build needs no archive.
@@ -30,6 +30,21 @@ def section(title, body, anchor='', intro=''):
     return f'<section class="company-section"{f" id=\"{anchor}\"" if anchor else ""}><div class="company-section-heading"><h2>{title}</h2></div>{f"<p class=\"company-section-intro\">{intro}</p>" if intro else ""}{body}</section>'
 def money(value): return f'{value:,.2f}'.rstrip('0').rstrip('.').replace(',', '\u00a0').replace('.', ',') + ' ₽'
 def price(q): return money(q['price']).removesuffix(' ₽')+'–'+money(q['upper']) if q['range'] else money(q['price'])
+
+def preparation(s, prefix):
+    tech=s['technical']
+    checks='<ul class="cc-checks">'+''.join(f'<li>{icon("check")}<span>{text(v)}</span></li>' for v in tech['checks'])+'</ul>'
+    guide=f'<aside class="cc-file-guide"><h3>Что подготовить</h3><p>{text(tech["send"])}</p><p>{text(s["requirements"])}</p><p class="cc-example-note"><strong>Например:</strong> {text(tech["example"])}</p><a class="text-button" href="{prefix}requirements/#requirement-{s["id"].replace(".","-")}">Все требования к услуге {icon("arrow")}</a></aside>'
+    answers=[]
+    if tech.get('fileSpec'):
+        answers.append(('Какой файл или оригинал подготовить?',paragraphs(tech['fileSpec'])))
+    for key,title in [('critical','Что особенно важно проверить?'),('mistakes','Каких ошибок избежать?')]:
+        if tech.get(key):
+            answers.append((title,paragraphs('\n\n'.join(tech[key]))))
+    if tech.get('preflight'):
+        answers.append(('Что проверим перед запуском?',paragraphs(tech['preflight'])))
+    details='<div class="company-faq cc-faq faq-list project-preparation-details">'+''.join(f'<details><summary>{title}{icon("plus")}</summary>{body}</details>' for title,body in answers)+'</div>'
+    return f'<div class="cc-requirements">{checks}{guide}</div>'+details
 
 EXAMPLES = {
  '2.1':[('Чертежи A1',{},'A1 · ч/б · 10 листов · без обработки'),('Комплект разных форматов',{'rows':[{'B':'A1','C':'Ч/Б','D':5},{'B':'A2','C':'Цвет','D':10}],'B4':'Под A4'},'5 листов A1 + 10 листов A2 · фальцовка под A4'),('Проект на пружине',{'rows':[{'B':'A1','C':'Ч/Б','D':20}],'B4':'Под A4','B5':'Да','B6':'Пластик','B7':'A4','B8':'10–12 мм (до 80 л.)','B9':1},'20 листов A1 · фальцовка · одна брошюра A4')],
@@ -80,7 +95,7 @@ def faq(service=None):
     ]
     if service:
         items += [
-          {'q':'Что передать для начала работы?','a':service['technical']['send']+' '+service['requirements']},
+          {'q':'Можно отправить расчёт своему заказчику?', 'a':'Да. Добавьте нужные позиции в корзину и нажмите «Скачать расчёт PDF». В документе будут логотип ТЕКСТ, параметры, список услуг и цены. Это предварительный расчёт; стоимость и срок подтвердим перед производством.'},
           {'q':'Как получить готовый заказ?','a':'Можно забрать заказ на проспекте Строителей, 11 в Барнауле. Курьерскую доставку и отправку по России, стоимость и срок согласуйте со студией.'},
           {'q':'Добавление в корзину запускает производство?','a':'Корзина сохраняет расчёт в вашем браузере. Подготовьте запрос, отправьте его вместе с файлами и согласуйте заказ со студией. После подтверждения параметров, макета и оплаты заказ передаётся в работу.'},
         ]
@@ -102,21 +117,25 @@ def related_link(service_id,prefix):
 def calculator(s,prefix):
     fixed = s['technical']['fixed']
     if s['id']=='2.2':fixed=['Проектная документация · коэффициент 1,15']
+    paper=s['id'] in ('2.2','2.3','2.4','2.5')
+    upload_label='Прикрепите файл или пример' if paper else 'Загрузите макет'
+    file_hint='Файл можно приложить для уточнения задачи. Для работы с бумажными листами передайте оригиналы в студию.' if paper else 'PDF, изображения, исходники или ZIP · до 100 МБ. Можно прикрепить позже в корзине.'
+    comment_hint={'2.1':'Масштаб, порядок листов и комплектность','2.2':'Порядок листов, обложки и сторона крепления','2.3':'Конечный формат, подшивка и расположение штампа','2.4':'Формат готовых файлов, детализация и порядок страниц','2.5':'Состояние оригиналов, масштаб и порядок копий','2.6':'Порядок страниц, обложка и сторона крепления','2.7':'Контрольный размер, маркировка и число комплектов'}[s['id']]
     return f'''<section class="cc-calculator" id="calculator" aria-labelledby="calculator-title">
       <div class="cc-heading"><h2 id="calculator-title">Выберите нужные параметры</h2><p>Укажите параметры заказа — стоимость пересчитывается сразу.</p></div>
       <form id="copycenter-form"><div class="cc-calc-layout"><div class="cc-options-panel">
-        <button class="cc-copy-button" type="button" data-cc-copy disabled title="Скопировать параметры, стоимость и ссылку">{icon('copy')}<span>Скопировать расчёт</span></button>
+        <button class="cc-copy-button" type="button" data-cc-copy disabled aria-label="Скопировать параметры, стоимость и ссылку" title="Скопировать параметры, стоимость и ссылку">{icon('copy')}<span>Скопировать расчёт</span></button>
         <div class="cc-parameters" data-cc-fields></div>
         <div class="cc-parameter-footer">{('<div class="cc-fixed">'+''.join('<span>'+text(v)+'</span>' for v in fixed)+'</div>') if fixed else ''}
         <p class="cc-helper"><a href="#service-requirements">Проверить требования к макету →</a></p><button class="cc-reset" type="button" data-cc-reset>Сбросить параметры</button></div>
       </div><aside class="cc-result" aria-label="Макет и результат расчёта">
-        <label class="cc-upload" data-cc-file-zone>{icon('upload')}<strong data-cc-file-label>Загрузите макет</strong><span>или перетащите файл сюда</span><input type="file" data-cc-file accept=".pdf,.jpg,.jpeg,.png,.tif,.tiff,.svg,.ai,.eps,.cdr,.psd,.zip"></label>
-        <div class="cc-file-tools"><p class="cc-file-status" data-cc-file-status role="status"></p><button type="button" data-cc-remove-file hidden>Убрать файл</button></div>
-        <label class="cc-comment" for="cc-comment">Комментарий к заказу<textarea id="cc-comment" data-cc-comment rows="2" maxlength="2000" placeholder="Пожелания к макету или заказу"></textarea></label>
+        <label class="cc-upload" data-cc-file-zone>{icon('upload')}<strong data-cc-file-label>{upload_label}</strong><span>или перетащите файл сюда</span><input type="file" data-cc-file accept=".pdf,.jpg,.jpeg,.png,.tif,.tiff,.svg,.ai,.eps,.cdr,.psd,.zip"></label>
+        <div class="cc-file-tools"><p class="cc-file-status" data-cc-file-status role="status">{file_hint}</p><button type="button" data-cc-remove-file hidden>Убрать файл</button></div>
+        <label class="cc-comment" for="cc-comment">Комментарий к заказу<textarea id="cc-comment" data-cc-comment rows="2" maxlength="2000" placeholder="{comment_hint}"></textarea></label>
         <div class="cc-result-summary"><p class="cc-error" data-cc-error role="status" hidden></p><h3>Стоимость заказа</h3><div class="cc-total" data-cc-total aria-live="polite">—</div><p class="cc-days" data-cc-days></p>
         <p class="cc-range-note" data-cc-range-note hidden>Листы A4 не требуют фальцовки.</p>
         <button class="cc-add-button" type="submit" data-cc-add disabled>В корзину</button><div class="cc-tools"><button type="button" data-cc-download disabled>{icon('download')}Скачать расчёт</button><button type="button" data-action="cart">Открыть корзину</button></div>
-        <p class="cc-disclosure">Расчёт и наличие материалов подтвердим перед производством. Файл сохраняется только в вашем браузере.</p></div>
+        <p class="cc-disclosure">После добавления позиций в корзину можно скачать общий PDF с параметрами и ценами. Стоимость и срок подтвердим перед производством.</p></div>
       </aside></div><details class="cc-breakdown" data-cc-breakdown-panel hidden><summary>Из чего складывается цена</summary><dl data-cc-breakdown></dl></details><p class="cc-calculator-note">{text(s['sla'])} Подготовка макета и доставка согласуются отдельно.</p></form><noscript><p>Для интерактивного расчёта включите JavaScript. Ниже доступны примеры стоимости; точный заказ можно согласовать по телефону +7 (923) 654-78-96.</p></noscript>
     </section>'''
 
@@ -125,8 +144,7 @@ def service_body(s,prefix):
     examples='<div class="cc-examples">'+''.join(f'<article class="cc-example"><h3>{text(q["name"])}</h3><p>{text(q["note"])}</p><strong>{price(q)}</strong><a href="?calc={quote(json.dumps(q["configuration"],ensure_ascii=False,separators=(",",":")))}#calculator">Рассчитать этот вариант</a></article>' for q in QUOTES[sid])+'</div>'
     variants='<div class="cc-variants">'+''.join(f'<article class="cc-variant">{icon(i)}<h3>{h}</h3><p>{p}</p></article>' for h,p,i in VARIANTS[sid])+'</div>'
     process='<div class="cc-process">'+''.join(f'<article class="cc-step"><span class="cc-step-number">0{n}</span><h3>{h}</h3><p>{p}</p></article>' for n,h,p in [(1,'Согласуем заказ','Выберите параметры, подготовьте файл или оригиналы. До запуска подтвердим стоимость, срок и детали.'),(2,'Выполним работу',text(s['production'])),(3,'Передадим вам','Заберите заказ в студии или согласуйте доставку. Проверим комплектность и упаковку.')])+'</div>'
-    checks='<ul class="cc-checks">'+''.join(f'<li>{icon("check")}<span>{text(v)}</span></li>' for v in tech['checks'])+'</ul>'
-    requirements=f'<div class="cc-requirements">{checks}<aside class="cc-file-guide"><h3>Что подготовить</h3><p>{text(tech["send"])}</p><p>{text(s["requirements"])}</p><p class="cc-example-note"><strong>Например:</strong> {text(tech["example"])}</p><a class="text-button" href="{prefix}requirements/#requirement-{sid.replace(".","-")}">Все требования к услуге {icon("arrow")}</a></aside></div>'
+    requirements=preparation(s,prefix)
     articles=[a for a in SOURCE['articles'] if a['id'] in s['articleIds']][:3]
     local={a['source_route']:a for a in ARTICLES}
     reading='<div class="cc-reading">'+''.join(f'<a href="{prefix}{local[a["url"]]["path"]}"><h3>{text(a["h1"])}</h3><span>Читать статью →</span></a>' for a in articles)+'</div>'
@@ -137,7 +155,7 @@ CARD_TEXT = ['A4–A0 · ч/б и цвет · фальцовка и сборка
 
 def landing_body(prefix):
     cards='<div class="cc-category-grid" id="project-services">'+''.join(f'<a class="cc-service-card" href="{s["path"].removeprefix("proektnaya-dokumentatsiya/")}"><div><h3>{text(s["name"])}</h3><p>{CARD_TEXT[i]}</p><span>Рассчитать →</span></div><img src="{prefix}assets/{s["art"]}" alt="" width="960" height="960" loading="lazy"></a>' for i,s in enumerate(SERVICES))+'</div>'
-    return section('Всё для вашего проекта',cards,intro='Выберите услугу, рассчитайте параметры и соберите заказ в общей корзине.')+section('Как оформить заказ','<div class="cc-process">'+''.join(f'<article class="cc-step"><span class="cc-step-number">0{n}</span><h3>{h}</h3><p>{p}</p></article>' for n,h,p in [(1,'Выберите услугу','Откройте калькулятор на странице услуги. Укажите формат, материал, количество и дополнительные работы.'),(2,'Подготовьте запрос','Добавьте расчёты в корзину. Отправьте запрос и файлы в студию или принесите бумажные оригиналы.'),(3,'Получите результат','После согласования и оплаты выполним работу. Самовывоз в Барнауле или согласованная доставка.')])+'</div>')+section('Частые вопросы',faq(),'service-faq')
+    return section('Всё для вашего проекта',cards,intro='Выберите услугу, рассчитайте параметры и соберите заказ в общей корзине.')+section('Как оформить заказ','<div class="cc-process">'+''.join(f'<article class="cc-step"><span class="cc-step-number">0{n}</span><h3>{h}</h3><p>{p}</p></article>' for n,h,p in [(1,'Выберите услугу','Откройте калькулятор на странице услуги. Укажите формат, материал, количество и дополнительные работы.'),(2,'Сохраните расчёт','Добавьте позиции в корзину и скачайте общий PDF с параметрами и ценами. Отправьте его и файлы в студию.'),(3,'Получите результат','После согласования и оплаты выполним работу. Самовывоз в Барнауле или согласованная доставка.')])+'</div>')+section('Частые вопросы',faq(),'service-faq')
 
 for service in [None,*SERVICES]:
     path=service['path'] if service else 'proektnaya-dokumentatsiya/';prefix='../'*len(Path(path).parts)

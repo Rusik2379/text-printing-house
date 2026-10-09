@@ -1,0 +1,8 @@
+/* All page components and calculators inherit the shared Copy Center design. */
+.leaflet-page .nav-item[data-menu="Копицентр"]{color:var(--ink)}
+.leaflet-page .nav-item[data-menu="Листовая полиграфия"]{color:var(--red)}
+.leaflet-page .cc-service-card>div{min-width:0}
+.leaflet-page .cc-service-card h3{overflow-wrap:break-word}
+.leaflet-page .cc-number select{display:block;width:100%;min-width:0;min-height:45px;margin-top:10px;border:1px solid #dee0e4;border-radius:9px;background:white;padding:10px 12px;font-size:16px;color:var(--ink);font-weight:500;line-height:1.4}
+.leaflet-page .cc-number select:focus{outline:2px solid #ffb5bb;border-color:var(--red)}
+.leaflet-preparation-details{margin-top:28px}
