@@ -1,8 +1,8 @@
 {
   "source": {
-    "archive": "TEKST_HTML_FINAL.zip",
-    "sha256": "814d41b011730216e848f187df4dd99df09bc61cffb262def88c9bd3bc8b0380",
-    "imported": "2026-10-08",
+    "archive": "Еговерсия3",
+    "sha256": "e64ea22ea25f52c464e08aa54f2e6af0c8b925b1773bab3ed3c1e3d1e84f466d",
+    "imported": "2026-10-10",
     "html_pages": 232,
     "services": 55,
     "articles": 150
@@ -16332,15 +16332,6 @@
               "areaServed": {
                 "@type": "City",
                 "name": "Барнаул"
-              },
-              "hasMap": "https://yandex.ru/maps/-/CXEUYTi7",
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+79236547896",
-                "contactType": "customer service",
-                "availableLanguage": [
-                  "ru"
-                ]
               }
             },
             {

@@ -1,4 +1,4 @@
-"""Apply imported SEO to existing routes, keeping all visible HTML unchanged."""
+"""Build static service enrichment and SEO for the site's existing routes."""
 from copy import deepcopy
 from html import escape, unescape
 from html.parser import HTMLParser
@@ -95,7 +95,10 @@ def mappings(source):
 
 def apply_site_seo(mode=None):
     if not (ROOT / 'seo-content.json').is_file(): return
+    from site_enrichment import apply_site_enrichment
+    apply_site_enrichment()
     source = json.loads((ROOT / 'seo-content.json').read_text(encoding='utf-8'))
+    services = list(json.loads((ROOT / 'service-enrichment.json').read_text(encoding='utf-8'))['services'].values())
     mode = mode or json.loads((ROOT / 'seo-config.json').read_text(encoding='utf-8'))['mode']
     if mode not in ('preview', 'production'): raise ValueError('Unknown SEO mode')
     origin = source['origin']
@@ -123,12 +126,27 @@ def apply_site_seo(mode=None):
         by_type = {entity['@type']: deepcopy(entity) for entity in entities if entity.get('@type')}
         for inherited in ('LocalBusiness', 'FAQPage', 'BreadcrumbList'): by_type.pop(inherited, None)
         h1 = ' '.join(' '.join(facts.heading).split())
-        if not by_type:
-            service = next((deepcopy(entity) for block in metadata['schema']
-                            for entity in block.get('@graph', []) if entity.get('@type') == 'Service'), None)
-            by_type['Service' if service else 'WebPage'] = service or {'@type': 'WebPage', 'name': h1}
+        service = next((s for s in services if route == '/' + s['path']), None)
+        category_services = [s for s in services if route == '/' + s['path'].split('/')[0] + '/']
+        if service:
+            # The reference's delivery/calculator facts apply to this service only.
+            source_service = next((deepcopy(entity) for block in metadata['schema']
+                                   for entity in block.get('@graph', [block]) if entity.get('@type') == 'Service'), None)
+            by_type = {'Service': source_service or {'@type': 'Service'}}
+            by_type['Service']['name'] = service['name']
+        elif category_services:
+            # A category must list its own children, never the template's services.
+            by_type = {'CollectionPage': {'@type': 'CollectionPage', 'name': h1, 'hasPart': [
+                {'@type': 'WebPage', 'name': s['name'], 'url': urljoin(origin, s['path'])}
+                for s in category_services]}}
+        elif not by_type:
+            by_type = {'WebPage': {'@type': 'WebPage', 'name': h1}}
+        elif 'Article' in by_type:
+            by_type.pop('WebPage', None)
         # Source Article dates remain the editorial dates already checked against the customer data.
         for entity in by_type.values():
+            entity.pop('@context', None)
+            if entity['@type'] not in ('Service', 'Article'): entity['name'] = h1
             entity['url'] = canonical
             entity['@id'] = canonical + ('#article' if entity['@type'] == 'Article' else '#page')
             entity['description'] = description
