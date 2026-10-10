@@ -28,6 +28,8 @@ def card(s,prefix):
 def save(path,title,description,body,schema,calculator=False):
  prefix='../'*len(Path(path).parts)
  head=paths(HEAD,prefix)
+ # This section retains its own calculator styles when the homepage changes.
+ head=re.sub(r'\s*<link\b[^>]*href="[^"]*service-calculator\.css(?:\?[^"]*)?"[^>]*>', '', head)
  head=re.sub(r'<title>.*?</title>',f'<title>{escape(title)}</title>',head)
  head=re.sub(r'<meta name="description"[^>]+>',lambda _:f'<meta name="description" content="{escape(description,quote=True)}">',head)
  head=head.replace('noindex, nofollow','index, follow')

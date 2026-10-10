@@ -13,6 +13,9 @@
 .cart-export p{margin:5px 0 0;font-size:13px;line-height:1.55;color:var(--muted)}
 .cart-export .button{flex-shrink:0;min-height:45px}
 .cart-export .button:disabled{cursor:wait;opacity:.65}
+.cart-export-actions{display:flex;flex-direction:column;gap:10px;flex-shrink:0}
+.cart-export-actions .button{width:100%;white-space:nowrap}
+.cart-panel .cart-export-actions{min-width:205px}
 .cart-pdf-status{font-size:13px;color:var(--muted);margin:8px 0 0;min-height:20px}
 .dialog.is-cart{width:min(900px,calc(100% - 40px));border-radius:20px}
 .dialog.is-cart-empty{width:min(560px,calc(100% - 40px))}

@@ -1,8 +1,13 @@
 (() => {
   'use strict';
-  const root=document.querySelector('[data-copycenter-service]');
+  const root=document.querySelector('[data-copycenter-service],[data-leaflet-service],[data-uv-service]');
   if(!root)return;
-  const id=root.dataset.copycenterService,pricing=window.TEXT_COPYCENTER_PRICING;
+  const leaflet=Boolean(root.dataset.leafletService);
+  const uv=Boolean(root.dataset.uvService),customUI=uv?window.TEXT_UV_UI:leaflet?window.TEXT_LEAFLET_UI:null;
+  const id=root.dataset.uvService||root.dataset.leafletService||root.dataset.copycenterService;
+  const pricing=uv?window.TEXT_UV_PRICING:leaflet?window.TEXT_LEAFLET_PRICING:window.TEXT_COPYCENTER_PRICING;
+  const data=uv?window.TEXT_UV_DATA:leaflet?window.TEXT_LEAFLET_DATA:window.TEXT_COPYCENTER_DATA;
+  const services=uv?window.TEXT_UV_SERVICES:leaflet?window.TEXT_LEAFLET_SERVICES:window.TEXT_COPYCENTER_SERVICES;
   const form=root.querySelector('#copycenter-form'),controls=root.querySelector('[data-cc-fields]');
   const error=root.querySelector('[data-cc-error]'),total=root.querySelector('[data-cc-total]');
   const days=root.querySelector('[data-cc-days]'),breakdown=root.querySelector('[data-cc-breakdown]');
@@ -14,7 +19,7 @@
   const money=q=>q.range?`${format(q.price)}–${format(q.upper)} ₽`:`${format(q.price)} ₽`;
   const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   // Parameter columns, quantity cell and presets; pricing stays in the workbook API.
-  const layout={
+  const layout=customUI?customUI.layouts[id]:{
     '1.1':{columns:[['B4','B5','B6'],['B8','colorRate']],quantity:'B7',unit:'стр.',label:'Количество страниц',presets:[10,25,50,100,300,500]},
     '1.2':{columns:[['B4','B5'],['B6']],quantity:'B7',unit:'прог.',label:'Количество прогонов',presets:[10,25,50,100,200,500]},
     '1.3':{columns:[['B4'],['B5','B6','B7']],quantity:'B8',unit:'шт.',label:'Количество фотографий',presets:[1,10,36,50,100,200]},
@@ -25,7 +30,7 @@
     '1.8':{columns:[],quantity:'B7',unit:'шт.',label:'Количество этикеток',presets:[50,100,200,500,1000,2000]},
     '1.9':{columns:[['B4','B5'],['B7']],quantity:'B8',unit:'экз.',label:'Количество экземпляров',presets:[10,25,50,100,200,500]}
   }[id];
-  const hints={
+  const hints=customUI?customUI.hints:{
     '1.1':{B7:'Считаются печатные страницы, а не листы. Разные комплекты добавляйте отдельными позициями.'},
     '1.2':{B7:'Один прогон — одна скопированная сторона. Учитывайте обороты и число комплектов.'},
     '1.3':{B5:'До A3 — сатин. Для A2, A1 и своего размера доступна также матовая бумага.'},
@@ -46,7 +51,7 @@
     try{
       const saved=JSON.parse(params.get('calc'));
       if(!saved||typeof saved!=='object'||Array.isArray(saved))throw Error('Invalid calculation');
-      const allowed=new Set([...window.TEXT_COPYCENTER_DATA[id].schema.fields.map(field=>field.cell),'colorRate']);
+      const allowed=new Set([...data[id].schema.fields.map(field=>field.cell),...(customUI?[]:['colorRate'])]);
       values=pricing.normalize(id,Object.fromEntries(Object.entries(saved).filter(([key])=>allowed.has(key))));
       if(!pricing.quote(id,values).valid)throw Error('Invalid calculation');
     }catch{values=pricing.defaults(id);window.TEXT_APP.notify('Параметры ссылки некорректны. Открыт стандартный расчёт.');}
@@ -54,12 +59,13 @@
   let customQuantity=!layout.presets.includes(Number(values[layout.quantity]));
   function numericInput(field){
     const hint=hints[id]?.[field.cell];
-    return `<label class="cc-number" for="cc-${field.cell}">${field.cell===layout.quantity?'Ваше количество':escape(field.label)}<input id="cc-${field.cell}" name="${field.cell}" data-cc-cell="${field.cell}" type="number" inputmode="${field.step===1?'numeric':'decimal'}" min="${field.min}" step="${field.step}" required value="${escape(values[field.cell])}"${hint?` aria-describedby="hint-${field.cell}"`:''}></label>`;
+    if(leaflet&&field.options)return `<label class="cc-number" for="cc-${field.cell}">Другой тираж<select id="cc-${field.cell}" data-cc-cell="${field.cell}">${field.options.map(v=>`<option value="${escape(v)}"${String(values[field.cell])===v?' selected':''}>${format(Number(v))} шт.</option>`).join('')}</select></label>`;
+    return `<label class="cc-number" for="cc-${field.cell}">${field.cell===layout.quantity?'Ваше количество':escape(field.label)}<input id="cc-${field.cell}" name="${field.cell}" data-cc-cell="${field.cell}" type="number" inputmode="${field.step===1?'numeric':'decimal'}" min="${field.min}"${field.max===undefined?'':` max="${field.max}"`} step="${field.step}" required value="${escape(values[field.cell])}"${hint?` aria-describedby="hint-${field.cell}"`:''}></label>`;
   }
   function fieldHTML(field){
     const hint=hints[id]?.[field.cell];
-    if(!field.options)return `<div class="cc-field" data-cc-field="${field.cell}">${numericInput(field)}${hint?`<p class="cc-field-note" id="hint-${field.cell}">${escape(hint)}</p>`:''}</div>`;
-    return `<fieldset class="cc-field" data-cc-field="${field.cell}"><legend>${escape(field.label)}</legend><div class="cc-choice-stack">${field.options.map(value=>`<button class="cc-option" type="button" data-cc-choice="${field.cell}" data-cc-value="${escape(value)}" aria-pressed="${String(values[field.cell])===value}"${field.locked?' disabled':''}>${escape(labels[value]||value)}</button>`).join('')}</div>${hint?`<p class="cc-field-note" id="hint-${field.cell}">${escape(hint)}</p>`:''}</fieldset>`;
+    if(!field.options)return `<div class="cc-field" data-cc-field="${field.cell}">${numericInput(field)}${hint?`<p class="cc-field-note" id="hint-${field.cell}">${escape(hint)}</p>`:''}${customUI?.extra?.(field,id)||''}</div>`;
+    return `<fieldset class="cc-field" data-cc-field="${field.cell}"><legend>${escape(field.label)}</legend><div class="cc-choice-stack">${field.options.map(value=>`<button class="cc-option" type="button" data-cc-choice="${field.cell}" data-cc-value="${escape(value)}" aria-pressed="${String(values[field.cell])===value}"${field.locked?' disabled':''}>${escape(customUI?customUI.choiceLabel(id,field,value):labels[value]||value)}</button>`).join('')}</div>${hint?`<p class="cc-field-note" id="hint-${field.cell}">${escape(hint)}</p>`:''}</fieldset>`;
   }
   function drawFields(focusCell=null){
     const fields=pricing.fields(id,values);
@@ -91,6 +97,7 @@
     for(const n of layout.presets){
       const preset=pricing.quote(id,{...values,[layout.quantity]:n});
       controls.querySelector(`[data-cc-price="${n}"]`).textContent=preset.valid?money(preset):'—';
+      if(customUI)controls.querySelector(`[data-cc-quantity="${n}"]`).disabled=!preset.valid;
     }
     root.querySelector('[data-cc-range-note]').hidden=!(quote.valid&&quote.range);
     root.querySelector('[data-cc-breakdown-panel]').hidden=!quote.valid;
@@ -108,7 +115,12 @@
   });
   controls.addEventListener('input',event=>{
     const input=event.target.closest('[data-cc-cell]');if(!input)return;
+    if(input.tagName==='SELECT')return;
     values[input.dataset.ccCell]=input.value;updateQuote();
+  });
+  controls.addEventListener('change',event=>{
+    const select=event.target.closest('select[data-cc-cell]');if(!select)return;
+    values[select.dataset.ccCell]=select.value;updateQuote();
   });
   root.querySelector('[data-cc-reset]').addEventListener('click',()=>{
     values=pricing.defaults(id);customQuantity=!layout.presets.includes(Number(values[layout.quantity]));drawFields();updateQuote();
@@ -135,7 +147,7 @@
   }
   function calculationText(){
     const name=pendingFile?.name||(!fileRemoved&&existing?.fileName);
-    return [`ТЕКСТ — ${window.TEXT_COPYCENTER_SERVICES[id].name}`,quote.description,`Стоимость: ${money(quote)}`,`Срок: ${quote.days} раб. дн. после полного согласования`,
+    return [`ТЕКСТ — ${services[id].name}`,quote.description,`Стоимость: ${money(quote)}`,`Срок: ${quote.days} раб. дн. после полного согласования`,
       ...quote.details.map(item=>item.label+': '+item.value),comment.value.trim()?`Комментарий: ${comment.value.trim()}`:'',
       quote.range?'Для цветной печати A3 итог уточняется после проверки заполнения страниц.':'Стоимость рассчитана для выбранных параметров.',
       'Доставка и подготовка макета согласуются отдельно.',`Ссылка на расчёт: ${shareURL()}`,name?`Макет: ${name} — прикрепить к письму вручную.`:'',
@@ -163,7 +175,7 @@
   download.addEventListener('click',()=>{
     updateQuote();if(!quote.valid)return;
     const url=URL.createObjectURL(new Blob(['\ufeff',calculationText()],{type:'text/plain;charset=utf-8'}));
-    const link=document.createElement('a');link.href=url;link.download=`ТЕКСТ — ${window.TEXT_COPYCENTER_SERVICES[id].name}.txt`;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+    const link=document.createElement('a');link.href=url;link.download=`ТЕКСТ — ${services[id].name}.txt`;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
   });
   copy.addEventListener('click',async()=>{
     updateQuote();if(!quote.valid||copying)return;copying=true;

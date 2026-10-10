@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import vm from 'node:vm';
+const root=process.env.MERGE_TEST_ROOT?resolve(process.env.MERGE_TEST_ROOT):new URL('../',import.meta.url);
+const c={};c.window=c;vm.createContext(c);
+for(const file of ['cart-pdf.js','cart-xlsx.js'])vm.runInContext(await readFile(root instanceof URL?new URL(file,root):resolve(root,file),'utf8'),c);
+const items=[{id:'5.8',description:'ПВХ · 500 × 500 мм · 7 шт.',price:700,configuration:{quantity:7}},{id:'6.6',description:'Брелоки · 25 × 45 мм · 100 шт.',price:9329.98,configuration:{B10:100}}];
+const catalog=[{id:'5.8',name:'Накатка на ПВХ'},{id:'6.6',name:'Брелоки'}];
+const model=c.TEXT_CART_XLSX.model(items,catalog,{surcharges:{'wide-pvc':100}});
+assert.equal(model.cart[0].quantity,7,'Wide-format quantity must survive the new Excel export');
+assert.equal(model.cart[0].unit,'шт.');assert.equal(model.cart[1].quantity,100);
+assert.equal(model.lower,10129.98);assert.ok(model.cart[2].name.includes('ПВХ'));
+console.log('Merged wide/UV order: quantities, subtotal, minimum label and Excel export passed.');

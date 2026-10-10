@@ -12,7 +12,7 @@ with zipfile.ZipFile(archive) as z:
     base = next(n for n in z.namelist() if n.endswith('/data.js')).removesuffix('data.js')
     read = lambda name: z.read(base + name).decode('utf-8-sig')
     data = payload(read('data.js'), '=')
-    technical = json.loads(read('technical-content.json'))
+    technical = payload(read('technical-data.js'), '=') if base + 'technical-data.js' in z.namelist() else json.loads(read('technical-content.json'))
     services, pricing, registry = [], {}, {}
     for original in data['services']:
         if original['category'] != 1: continue
@@ -23,6 +23,8 @@ with zipfile.ZipFile(archive) as z:
         schema = data['schemas'][service['book']]
         model = payload(read(schema['file']), ']=')
         service['technical'] = technical['services'][service['id']]
+        if service['technical']['url'] != service['url']:
+            raise ValueError('Technical requirements route mismatch: ' + service['id'])
         service['path'] = service['url'].strip('/') + '/'
         service['art'] = 'project-' + service['path'].split('/')[1] + '.webp'
         services.append(service)

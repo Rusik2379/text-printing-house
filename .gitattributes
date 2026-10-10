@@ -1,0 +1,2 @@
+# Keep the original PDF bytes, including embedded fonts and stream offsets.
+*.pdf binary
