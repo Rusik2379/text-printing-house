@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const source=JSON.parse(await readFile(path.join(root,'seo-content.json'),'utf8'));
 const config=JSON.parse(await readFile(path.join(root,'seo-config.json'),'utf8'));
+const services=Object.values(JSON.parse(await readFile(path.join(root,'service-enrichment.json'),'utf8')).services);
 const origin=new URL(source.origin);
 const decode=value=>value.replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#x27;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>');
 async function pages(dir){
@@ -18,7 +19,7 @@ async function pages(dir){
   }
   return result;
 }
-const files=await pages(root),canonicals=new Map(),titles=new Set(),indexable=new Set();
+const files=await pages(root),canonicals=new Map(),titles=new Set(),descriptions=new Set(),indexable=new Set();
 for(const file of files){
   const relative=path.relative(root,file).split(path.sep).join('/');
   const route=relative==='index.html'?'/':'/'+relative.replace(/index\.html$/,'');
@@ -37,6 +38,9 @@ for(const file of files){
     assert.ok(!metas.has(tag[1]),`${route}: duplicate ${tag[1]}`);metas.set(tag[1],decode(tag[2]));
   }
   assert.ok(metas.get('description')?.length,`${route}: description missing`);
+  assert.ok(!descriptions.has(metas.get('description')),`${route}: repeated description`);descriptions.add(metas.get('description'));
+  assert.ok(metas.get('viewport')?.includes('width=device-width'),`${route}: responsive viewport missing`);
+  assert.equal((html.match(/<h1\b/g)||[]).length,1,`${route}: expected one main heading`);
   assert.equal(metas.get('og:title'),decode(title),`${route}: sharing title differs`);
   assert.equal(metas.get('og:description'),metas.get('description'),`${route}: sharing description differs`);
   assert.equal(metas.get('og:url'),expected,`${route}: sharing URL differs`);
@@ -50,10 +54,28 @@ for(const file of files){
   const blocks=[...head.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(m=>JSON.parse(m[1]));
   assert.equal(blocks.length,1,`${route}: expected one static graph`);
   const graph=blocks[0]['@graph'];
+  const ids=graph.map(entity=>entity['@id']).filter(Boolean);
+  assert.equal(ids.length,new Set(ids).size,`${route}: duplicate structured entity ID`);
   const business=graph.filter(entity=>entity['@type']==='LocalBusiness');
   assert.equal(business.length,1,`${route}: business missing/duplicated`);
   assert.equal(business[0]['@id'],origin.href+'#studio');
   assert.ok(!business[0].aggregateRating,`${route}: ratings must not be invented`);
+  const service=services.find(s=>route==='/'+s.path);
+  if(service){
+    const entities=graph.filter(e=>e['@type']==='Service');
+    assert.equal(entities.length,1,`${route}: service schema missing/duplicated`);
+    assert.equal(entities[0].name,service.name,`${route}: wrong service name`);
+    assert.ok(entities[0].serviceType,`${route}: service type missing`);
+    assert.ok(entities[0].areaServed?.some(e=>e.name==='Барнаул'),`${route}: city missing`);
+    assert.ok(entities[0].areaServed?.some(e=>e.name==='Россия'),`${route}: delivery area missing`);
+    assert.ok(entities[0].additionalProperty?.some(e=>e.name==='Онлайн-калькулятор'),`${route}: calculator property missing`);
+  }
+  const categoryServices=services.filter(s=>'/'+s.path.split('/')[0]+'/'===route);
+  if(categoryServices.length){
+    const collection=graph.filter(e=>e['@type']==='CollectionPage');
+    assert.equal(collection.length,1,`${route}: category schema missing/duplicated`);
+    assert.deepEqual(new Set(collection[0].hasPart.map(s=>s.url)),new Set(categoryServices.map(s=>new URL(s.path,origin).href)),`${route}: incorrect category services`);
+  }
   for(const entity of graph){
     if(entity.url&&entity['@type']!=='LocalBusiness')assert.equal(entity.url,expected);
     if(entity['@type']==='BreadcrumbList')for(const item of entity.itemListElement){

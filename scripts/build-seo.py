@@ -1,4 +1,4 @@
-"""Apply the imported SEO without rebuilding the design or the content."""
+"""Apply the imported service blocks, shared header and static SEO."""
 import argparse
 import json
 from pathlib import Path
