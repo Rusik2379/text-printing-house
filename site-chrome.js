@@ -7,6 +7,7 @@
  const catalog=window.TEXT_CATALOG||[],normalize=value=>value.toLocaleLowerCase('ru').replaceAll('ё','е').trim();
  let selected=-1;
  function hideSearch(){if(!results)return;results.hidden=true;input.setAttribute('aria-expanded','false');input.removeAttribute('aria-activedescendant');selected=-1;}
+ function closeMobileSearch(restoreFocus=false){const wasOpen=header?.classList.contains('search-open');header?.classList.remove('search-open');toggle?.setAttribute('aria-expanded','false');hideSearch();if(wasOpen&&restoreFocus)toggle?.focus();}
  function search(){
   const q=normalize(input.value);selected=-1;input.removeAttribute('aria-activedescendant');if(!q){hideSearch();return;}
   const matches=catalog.filter(s=>normalize(s.name+' '+s.category).includes(q)&&services[s.id]).slice(0,9);
@@ -18,13 +19,15 @@
   input.addEventListener('keydown',event=>{
    const links=[...results.querySelectorAll('a')];
    if(['ArrowDown','ArrowUp'].includes(event.key)&&links.length){event.preventDefault();selected=selected<0?(event.key==='ArrowDown'?0:links.length-1):(selected+(event.key==='ArrowDown'?1:-1)+links.length)%links.length;links.forEach((n,i)=>n.setAttribute('aria-selected',String(i===selected)));input.setAttribute('aria-activedescendant',links[selected].id);links[selected].scrollIntoView({block:'nearest'});}
-   if(event.key==='Escape'){event.stopPropagation();hideSearch();}
+   if(event.key==='Escape'){event.stopPropagation();closeMobileSearch(true);}
    if(event.key==='Enter'&&selected>=0&&links[selected]){event.preventDefault();location.assign(links[selected].href);}
   });
   form.addEventListener('submit',hideSearch);
-  document.addEventListener('click',event=>{if(!form.contains(event.target)&&!event.target.closest('[data-header-search-toggle]'))hideSearch();});
+  document.addEventListener('click',event=>{if(!form.contains(event.target)&&!event.target.closest('[data-header-search-toggle]'))closeMobileSearch();});
  }
  toggle?.addEventListener('click',()=>{const open=header.classList.toggle('search-open');toggle.setAttribute('aria-expanded',String(open));if(open)input.focus();else hideSearch();});
+ document.querySelector('[data-header-search-close]')?.addEventListener('click',()=>closeMobileSearch(true));
+ matchMedia('(max-width:700px)').addEventListener('change',()=>closeMobileSearch());
  function syncHeader(){
   if(!header)return;
   header.style.setProperty('--header-bottom',Math.max(0,header.getBoundingClientRect().bottom)+'px');

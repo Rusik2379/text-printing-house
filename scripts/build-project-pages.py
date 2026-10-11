@@ -7,6 +7,7 @@ from pathlib import Path
 from html import escape
 from urllib.parse import quote
 import json, re, subprocess, os, shutil
+from project_multi_template import multi_calculator
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = json.loads((ROOT / 'project-content.json').read_text(encoding='utf-8'))
@@ -20,6 +21,7 @@ footer = home[home.index('  <footer'):home.index('</body>')]
 head = home[home.index('<head>')+6:home.index('</head>')]
 head = re.sub(r'\s*<script\b[^>]*type="application/ld\+json"[^>]*>.*?</script>', '', head, flags=re.S)
 head = re.sub(r'\s*<meta\b[^>]*(?:name="(?:description|robots)"|property="og:[^"]+")[^>]*>|\s*<link\b[^>]*rel="canonical"[^>]*>', '', head)
+head = re.sub(r'\s*<link\b[^>]*href="[^"]*service-calculator\.css(?:\?[^"]*)?"[^>]*>', '', head)
 
 def icon(name): return f'<span data-icon="{name}"></span>'
 def text(value): return escape(str(value))
@@ -115,6 +117,7 @@ def related_link(service_id,prefix):
     return f'<{tag} class="featured-card" {attrs} aria-label="{text(s["name"])}"><span class="featured-copy"><span class="featured-name">{name}</span><span class="cc-card-link">Выбрать услугу →</span></span><span class="featured-art"><img src="{prefix}assets/{image}" alt="" width="960" height="960" loading="lazy"></span></{tag}>'
 
 def calculator(s,prefix):
+    if s['id'] in ('2.1','2.5','2.6'):return multi_calculator(s,prefix)
     fixed = s['technical']['fixed']
     if s['id']=='2.2':fixed=['Проектная документация · коэффициент 1,15']
     paper=s['id'] in ('2.2','2.3','2.4','2.5')
@@ -167,16 +170,20 @@ for service in [None,*SERVICES]:
     actions=f'<a class="button button-primary" href="{primary}">{"Рассчитать стоимость" if service else "Выбрать услугу"} {icon("arrow")}</a><button class="button button-white" type="button" data-action="contacts">Задать вопрос</button>'
     breadcrumb=f'<nav class="company-breadcrumbs" aria-label="Хлебные крошки"><a href="{prefix}">Главная</a><span aria-hidden="true">/</span>'+(f'<a href="../">Проектная документация</a><span aria-hidden="true">/</span><span aria-current="page">{text(service["name"])}</span>' if service else '<span aria-current="page">Проектная документация</span>')+'</nav>'
     hero=f'<section class="cc-hero" aria-labelledby="copycenter-title"><div><h1 id="copycenter-title">{heading}</h1><p>{intro}</p><div class="company-actions">{actions}</div></div><div class="cc-art"><img src="{prefix}assets/{art}" alt="Робот ТЕКСТ — {text(service["name"] if service else "проектная документация")}" width="960" height="960" fetchpriority="high"></div></section>'
+    multi=service and service['id'] in ('2.1','2.5','2.6')
+    if multi:hero=f'<section class="cc-hero project-reference-intro" aria-labelledby="copycenter-title"><div><h1 id="copycenter-title">{heading}</h1><p>{intro}</p></div></section>'
     cta=f'<aside class="company-cta"><div><h2>Поможем с вашим заказом</h2><p>Обсудим параметры, проверим файл и согласуем готовность.</p></div><div class="company-actions"><a class="company-phone" href="tel:+79236547896">{icon("phone")}+7 (923) 654-78-96</a><button class="button button-primary" type="button" data-action="contacts">Написать нам {icon("arrow")}</button></div></aside>'
     page_head=paths(head,prefix)
     page_head=re.sub(r'<title>.*?</title>',f'<title>{text(service["title"] if service else "Проектная документация в Барнауле | ТЕКСТ")}</title>',page_head)
     page_head+=f'<link rel="stylesheet" href="{prefix}company-pages.css"><link rel="stylesheet" href="{prefix}copycenter.css"><link rel="stylesheet" href="{prefix}project.css">\n'
     if service:
         page_head+=''.join(f'<script src="{prefix}{file}.js" defer></script>\n' for file in ['project-pricing-data','copycenter-engine','project-pricing','project'])
+    page_head+=f'\n<link rel="stylesheet" href="{prefix}service-calculator.css">\n'
     page_header=paths(header,prefix).replace('class="brand" href="#main"',f'class="brand" href="{prefix}"')
     page_footer=paths(footer,prefix).replace('class="brand" href="#main"',f'class="brand" href="{prefix}"')
     body=service_body(service,prefix) if service else landing_body(prefix)
+    if multi:body=body.replace(multi_calculator(service,prefix),multi_calculator(service,prefix)+benefits(),1)
     attribute=f' data-project-service="{service["id"]}"' if service else ''
-    html=f'<!doctype html>\n<html lang="ru"><head>{page_head}</head><body class="company-page copycenter-page project-page">\n{page_header}<main id="main"{attribute}><div class="container">{breadcrumb}{hero}{benefits()}{body}{cta}</div></main>\n{page_footer}</body></html>\n'
+    html=f'<!doctype html>\n<html lang="ru"><head>{page_head}</head><body class="company-page copycenter-page project-page">\n{page_header}<main id="main"{attribute}><div class="container">{breadcrumb}{hero}{'' if multi else benefits()}{body}{cta}</div></main>\n{page_footer}</body></html>\n'
     output=ROOT/path/'index.html';output.parent.mkdir(parents=True,exist_ok=True);output.write_text(html,encoding='utf-8')
 print('Built Project documentation landing and 7 service pages with 21 calculated examples.')

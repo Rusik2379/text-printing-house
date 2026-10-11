@@ -140,8 +140,7 @@
     const company=name==='Компания';
     const records=catalog.filter(r=>r.category===name);
     const links=company ? companyLinks() : records.map(r=>serviceUrl(r.id)?`<a href="${serviceUrl(r.id)}">${escape(r.name)}</a>`:`<button data-service="${r.id}">${escape(r.name)}</button>`).join('');
-    const categoryPath=categoryRoutes[name];
-    $('#mega-menu').innerHTML=`<div class="mega-layout"><div><div class="mega-title"><h3>${categoryPath?`<a href="${siteRoot}${categoryPath}">${escape(name)}</a>`:escape(name)}</h3></div><div class="mega-links">${links}</div></div></div>`;
+    $('#mega-menu').innerHTML=`<div class="mega-layout"><div class="mega-links" aria-label="${escape(name)}">${links}</div></div>`;
     const menuLinks=$('.mega-links',$('#mega-menu'));
     menuLinks.style.setProperty('--menu-rows',Math.ceil(menuLinks.children.length/3));
     $('#mega-menu').hidden=false;
