@@ -11,9 +11,9 @@
 .map-badge strong{color:#fff3ad;font-size:12px;font-weight:900;white-space:nowrap;letter-spacing:.01em}
 .chrome-map-links .map-badge:hover{opacity:1;background:#ffffff29;border-color:#ffffff73}
 .chrome-contact-links{justify-content:flex-end}
-.chrome-contact-links .social-mini{width:40px;min-width:40px;height:40px;padding:5px;border:1px solid #ffffff3d;background:#ffffff14;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.chrome-contact-links .social-mini{width:40px;min-width:40px;height:40px;padding:5px;border:0;background:none;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
 .chrome-contact-links .messenger-logo{width:28px;height:28px;border-radius:50%;object-fit:contain}
-.chrome-contact-links .social-mini:hover{opacity:1;background:#ffffff29}
+.chrome-contact-links .social-mini:hover{opacity:.85}
 .chrome-contact-links .topbar-phone{font-size:13px;font-weight:850;color:#fff}
 .chrome-header{--header-bottom:141px;background:#fffc;backdrop-filter:blur(18px);isolation:isolate;color:#202024;font:16px/1.5 Manrope,Arial,sans-serif;border-bottom:1px solid #ececef}
 .chrome-header .container{width:min(1380px,calc(100% - 80px));max-width:none;margin-inline:auto}
