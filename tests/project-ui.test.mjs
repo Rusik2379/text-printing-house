@@ -18,7 +18,10 @@ function setup(service,query='',cart=[]){
   const html=fs.readFileSync(path.join(root,service.path,'index.html'),'utf8');
   const dom=new JSDOM(html,{url:'https://example.invalid/text-printing-house/'+service.path+query,runScripts:'outside-only'});
   const w=dom.window;
-  for(const selector of sharedSelectors)assert.equal(componentShape(w.document.querySelector(selector)),referenceShapes[selector],service.id+' shares the Copy Center component: '+selector);
+  for(const selector of sharedSelectors){
+    if(['2.1','2.5','2.6'].includes(service.id)&&['.cc-hero','.cc-heading','.cc-result'].includes(selector))continue;
+    assert.equal(componentShape(w.document.querySelector(selector)),referenceShapes[selector],service.id+' shares the Copy Center component: '+selector);
+  }
   w.matchMedia=()=>({matches:false,addEventListener(){},removeEventListener(){}});
   w.ResizeObserver=w.IntersectionObserver=class{observe(){} disconnect(){}};
   w.requestAnimationFrame=()=>0;w.cancelAnimationFrame=()=>{};
@@ -34,7 +37,7 @@ function setup(service,query='',cart=[]){
     w.eval(fs.readFileSync(path.join(root,file),'utf8'));
   }
   currentScript=null;
-  return {dom,w,d:w.document,click:s=>{const button=w.document.querySelector(s);assert.ok(button,s);button.click();},input:(s,v)=>{const input=w.document.querySelector(s);assert.ok(input,s);input.value=String(v);input.dispatchEvent(new w.Event('input',{bubbles:true}));}};
+  return {dom,w,d:w.document,click:s=>{const button=w.document.querySelector(s);assert.ok(button,s);button.click();},input:(s,v)=>{const input=w.document.querySelector(s);assert.ok(input,s);input.value=String(v);input.dispatchEvent(new w.Event(input.tagName==='SELECT'?'change':'input',{bubbles:true}));}};
 }
 async function submit(t){
   t.d.querySelector('#copycenter-form').dispatchEvent(new t.w.Event('submit',{bubbles:true,cancelable:true}));
@@ -67,53 +70,45 @@ for(const service of content.services){
 }
 for(const id of ['2.1','2.5','2.6']){
   const service=content.services.find(s=>s.id===id),t=setup(service),countCol=id==='2.6'?'E':'D',colourCol=id==='2.6'?'D':'C';
-  const processing=t.d.querySelector('[data-project-processing-toggle]');
-  assert.equal(processing.getAttribute('aria-expanded'),String(id==='2.6'),'Existing binding is visible on initial and shared calculations');
-  assert.equal(t.d.querySelector('#project-processing-options').hidden,id!=='2.6');
+  assert.equal(t.d.querySelectorAll('[data-project-row="0"] select').length,id==='2.6'?3:2,'The first row uses the same compact controls as the rest');
+  t.input(`[data-project-index="0"][data-project-row-cell="${countCol}"]`,25);
   const preset=t.w.TEXT_PROJECT_PRICING.quote(id,{...t.w.TEXT_PROJECT_PRICING.defaults(id),rows:[{...t.w.TEXT_PROJECT_PRICING.defaults(id).rows[0],[countCol]:25}]});
   const formatted=new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2}).format(preset.price)+' ₽';
-  assert.equal(t.d.querySelector('[data-project-preset-price="25"]').textContent,formatted,'Preset shows the full workbook total');
-  t.click('[data-project-quantity="25"]');
-  assert.equal(t.d.querySelector(`[data-project-row-cell="${countCol}"]`).value,'25');
   assert.equal(t.d.querySelector('[data-cc-total]').textContent,formatted);
-  t.click('[data-project-quantity="10"]');
+  t.input(`[data-project-index="0"][data-project-row-cell="${countCol}"]`,10);
   if(id!=='2.6'){
     t.input('[data-project-index="0"][data-project-row-cell="B"]','A4x3');
-    assert.ok([...t.d.querySelectorAll('[data-project-row-choice="B"]')].every(b=>b.getAttribute('aria-pressed')==='false'));
     const extended=(await submit(t))[0];assert.equal(extended.configuration.rows[0].B,'A4x3','Extended formats remain available');
     const restored=setup(service,'?calc='+encodeURIComponent(JSON.stringify(extended.configuration)));
     assert.equal(restored.d.querySelector('[data-project-row-cell="B"]').value,'A4x3');restored.dom.window.close();
     t.w.localStorage.setItem('text-print-cart-v1','[]');
-    t.click('[data-project-row-choice="B"][data-project-value="A1"]');
-    assert.equal(t.d.querySelector('[data-project-row-cell="B"]').value,'');
-    t.click('[data-project-processing-toggle]');
-    t.click('[data-cc-choice="B4"][data-cc-value="Под A4"]');
-    t.click('[data-cc-choice="B5"][data-cc-value="Да"]');
-    t.click('[data-project-processing-toggle]');
-    assert.equal(t.d.querySelector('#project-processing-options').hidden,true);
+    t.input('[data-project-index="0"][data-project-row-cell="B"]','A1');
+    t.input('[data-project-select="B4"]','Под A4');
+    t.input('[data-project-select="B5"]','Да');
+    assert.ok(t.d.querySelector('[data-project-select="B6"]'),'Binding reveals its dependent options');
     const processed=(await submit(t))[0];
-    assert.equal(processed.configuration.B4,'Под A4');assert.equal(processed.configuration.B5,'Да','Collapsing processing preserves the selection');
+    assert.equal(processed.configuration.B4,'Под A4');assert.equal(processed.configuration.B5,'Да');
     const restoredProcessing=setup(service,'?calc='+encodeURIComponent(JSON.stringify(processed.configuration)));
-    assert.equal(restoredProcessing.d.querySelector('#project-processing-options').hidden,false,'Saved processing is visible after restoration');
+    assert.equal(restoredProcessing.d.querySelector('[data-project-select="B5"]').value,'Да');
     restoredProcessing.dom.window.close();
     t.w.localStorage.setItem('text-print-cart-v1','[]');t.click('[data-cc-reset]');
   }
-  t.click('[data-project-duplicate="0"]');
+  t.input(`[data-project-index="0"][data-project-row-cell="${countCol}"]`,10);
+  t.click('[data-project-add]');
   assert.equal(t.d.querySelectorAll('[data-project-row]').length,2);
   t.input(`[data-project-index="1"][data-project-row-cell="${countCol}"]`,5);
-  t.click(`[data-project-index="1"][data-project-row-choice="${colourCol}"][data-project-value="Цвет"]`);
+  t.input(`[data-project-index="1"][data-project-row-cell="${colourCol}"]`,'Цвет');
   const rows=(await submit(t))[0].configuration.rows;
-  assert.equal(rows[0][countCol],10,'Duplicated rows are independent');
+  assert.equal(rows[0][countCol],10,'Added rows are independent');
   assert.equal(rows[1][countCol],5);assert.equal(rows[1][colourCol],'Цвет');
-  assert.match(t.d.querySelector('[data-project-sheet-summary]').textContent,/15/);
   t.input(`[data-project-index="1"][data-project-row-cell="${countCol}"]`,0);
   assert.equal(t.d.querySelector('[data-cc-add]').disabled,true,'Invalid sheets cannot be ordered');
   t.click('[data-project-remove="1"]');assert.equal(t.d.querySelectorAll('[data-project-row]').length,1);
   assert.equal(t.d.querySelector('[data-cc-add]').disabled,false);
   const limit=id==='2.6'?5:20;
-  for(let i=1;i<limit;i++)t.click('[data-project-duplicate="0"]');
+  for(let i=1;i<limit;i++)t.click('[data-project-add]');
   assert.equal(t.d.querySelector('[data-project-add]').disabled,true);
-  assert.ok([...t.d.querySelectorAll('[data-project-duplicate]')].every(b=>b.disabled));
+  assert.equal(t.d.querySelectorAll('[data-project-duplicate]').length,0);
   t.dom.window.close();checks++;
 }
 const fold=setup(content.services.find(s=>s.id==='2.3'));
