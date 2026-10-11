@@ -34,7 +34,6 @@
     '2.7':{B4:'Не более 841 мм. PDF в масштабе 1:1.',B5:'Не более 18 000 мм.'}
   };
   const labels={'Ч/Б':'Чёрно-белая','Цвет':'Цветная','ДА':'Да','НЕТ':'Нет'};
-  const paperLabels={'Стандартная (80 г/м²)':'80 г/м²','Color Copy 120 г/м²':'120 г/м²','Color Copy 200 г/м²':'200 г/м²','Color Copy 300 г/м²':'300 г/м²'};
   const choiceLabel=(field,value)=>id==='2.4'&&field.cell==='B6'?(value==='ДА'?'Да, сшит':'Нет, отдельные листы'):labels[value]||value;
   let values=pricing.defaults(id),quote,editKey=null,existing=null,pendingFile=null,fileRemoved=false,busy=false,copying=false;
   const params=new URLSearchParams(location.search),requestedKey=params.get('edit');
@@ -52,22 +51,23 @@
     }catch{values=pricing.defaults(id);window.TEXT_APP.notify('Параметры ссылки некорректны. Открыт стандартный расчёт.');}
   }
   let customQuantity=!layout.presets.includes(Number(values[layout.quantity]));
-  root.classList.toggle('calculator-compact',Boolean(schema.rows));
-  const bindingCell=id==='2.6'?'B4':'B5';
-  let processingOpen=schema.rows&&(values[bindingCell]==='Да'||id!=='2.6'&&values.B4!=='Без фальцовки');
   function numericInput(field){
     const hint=hints[id]?.[field.cell];
     return `<label class="cc-number" for="cc-${field.cell}">${field.cell===layout.quantity?'Ваше количество':escape(field.label)}<input id="cc-${field.cell}" name="${field.cell}" data-cc-cell="${field.cell}" type="number" inputmode="${field.step===1?'numeric':'decimal'}" min="${field.min}"${field.max?` max="${field.max}"`:''} step="${field.step}" required value="${escape(values[field.cell])}"${hint?` aria-describedby="hint-${field.cell}"`:''}></label>`;
   }
   function fieldHTML(field){
     const hint=hints[id]?.[field.cell];
-    if(field.options&&(schema.rows||field.options.length>5))return `<div class="cc-field" data-cc-field="${field.cell}"><label class="project-select-label" for="cc-${field.cell}">${escape(field.label)}<select id="cc-${field.cell}" data-project-select="${field.cell}"${field.locked?' disabled':''}${hint?` aria-describedby="hint-${field.cell}"`:''}>${field.options.map(v=>`<option value="${escape(v)}"${v===String(values[field.cell])?' selected':''}>${escape(choiceLabel(field,v))}</option>`).join('')}</select></label>${hint?`<p class="cc-field-note" id="hint-${field.cell}">${escape(hint)}</p>`:''}</div>`;
-    if(!field.options)return `<div class="cc-field" data-cc-field="${field.cell}">${numericInput(field)}${hint?`<p class="cc-field-note" id="hint-${field.cell}">${escape(hint)}</p>`:''}</div>`;
+    if(schema.rows&&field.options)return `<div class="cc-field" data-cc-field="${field.cell}"><label class="project-select-label" for="cc-${field.cell}">${escape(field.label)}<select id="cc-${field.cell}" data-project-select="${field.cell}"${field.locked?' disabled':''}>${field.options.map(v=>`<option value="${escape(v)}"${v===String(values[field.cell])?' selected':''}>${escape(choiceLabel(field,v))}</option>`).join('')}</select></label></div>`;
+    if(field.options?.length>5)return `<div class="cc-field" data-cc-field="${field.cell}"><label class="project-select-label" for="cc-${field.cell}">${escape(field.label)}<select id="cc-${field.cell}" data-project-select="${field.cell}">${field.options.map(v=>`<option value="${escape(v)}"${v===String(values[field.cell])?' selected':''}>${escape(v)}</option>`).join('')}</select></label></div>`;
+    if(!field.options)return `<div class="cc-field" data-cc-field="${field.cell}">${numericInput(field)}${hint?`<p class="cc-field-note" id="hint-${field.cell}"${schema.rows?' hidden':''}>${escape(hint)}</p>`:''}</div>`;
     return `<fieldset class="cc-field" data-cc-field="${field.cell}"><legend>${escape(field.label)}</legend><div class="cc-choice-stack">${field.options.map(value=>`<button class="cc-option" type="button" data-cc-choice="${field.cell}" data-cc-value="${escape(value)}" aria-pressed="${String(values[field.cell])===value}"${field.locked?' disabled':''}>${escape(choiceLabel(field,value))}</button>`).join('')}</div>${hint?`<p class="cc-field-note" id="hint-${field.cell}">${escape(hint)}</p>`:''}</fieldset>`;
   }
-  function sheetRow(row,index,fields,limit){
-    const options=fields.map(field=>`<div class="cc-field"><label class="${field.options?'project-select-label':'cc-number'}">${escape(field.label)}${field.options?`<select data-project-row-cell="${field.col}" data-project-index="${index}" aria-label="${escape(field.label)}, группа ${index+1}">${field.options.map(v=>`<option value="${escape(v)}"${String(row[field.col])===v?' selected':''}>${escape(labels[v]||paperLabels[v]||v.replace(' (1м2)',''))}</option>`).join('')}</select>`:`<input data-project-row-cell="${field.col}" data-project-index="${index}" aria-label="Количество листов, группа ${index+1}" type="number" min="1" step="1" required inputmode="numeric" value="${escape(row[field.col])}">`}</label></div>`).join('');
-    return `<article class="project-sheet-row" data-project-row="${index}" aria-label="Группа листов ${index+1}"><div class="project-row-heading"><h4>Группа листов ${index+1}</h4><div><button class="cc-reset" type="button" data-project-duplicate="${index}" aria-label="Дублировать группу ${index+1}"${values.rows.length>=limit?' disabled':''}>Дублировать</button><button class="project-remove-row" type="button" data-project-remove="${index}" aria-label="Удалить группу ${index+1}"${values.rows.length===1?' disabled':''}>×</button></div></div><div class="project-row-fields">${options}</div><div class="project-row-price"><span>Печать этой группы</span><strong data-project-row-price="${index}">—</strong></div></article>`;
+  function sheetRow(row,index,fields){
+    const options=fields.map(field=>{
+      const attrs=`data-project-row-cell="${field.col}" data-project-index="${index}" aria-label="Строка ${index+1}: ${escape(field.label)}"`;
+      return field.options?`<select ${attrs}>${field.options.map(v=>`<option value="${escape(v)}"${String(row[field.col])===v?' selected':''}>${escape(v)}</option>`).join('')}</select>`:`<input ${attrs} type="number" min="1" step="1" required inputmode="numeric" value="${escape(row[field.col])}">`;
+    }).join('');
+    return `<div class="project-sheet-row${id==='2.6'?' project-design-row':''}" data-project-row="${index}">${options}<button type="button" data-project-remove="${index}" aria-label="Удалить строку ${index+1}"${values.rows.length===1?' disabled':''}>×</button></div>`;
   }
   function drawFields(focusCell=null){
     const fields=pricing.fields(id,values);
@@ -75,16 +75,16 @@
     const quantity=fields.find(field=>field.cell===layout.quantity);
     if(schema.rows){
       controls.classList.add('project-multi');
-      const fields=pricing.rowFields(id,values),limit=schema.rows.end-schema.rows.start+1;
-      controls.innerHTML=`<div class="project-sheets"><div class="project-sheet-list">${values.rows.map((row,index)=>sheetRow(row,index,fields,limit)).join('')}</div><p class="cc-field-note project-sheet-note">Укажите листы на весь заказ${id==='2.6'?' — на все альбомы':''}. Для другого формата${id==='2.6'?' или бумаги':''} добавьте группу.</p><div class="project-sheets-footer"><button type="button" class="project-add-row" data-project-add${values.rows.length>=limit?' disabled':''}>＋ Добавить другой формат</button><p data-project-sheet-summary aria-live="polite"></p></div></div><div class="project-processing"><button type="button" class="project-processing-toggle" data-project-processing-toggle aria-controls="project-processing-options" aria-expanded="${processingOpen}"><span>${id==='2.6'?'Брошюровка альбомов':'Фальцовка и брошюровка'}</span><span class="project-processing-summary" data-project-processing-summary></span><span class="project-processing-chevron" aria-hidden="true"></span></button><div id="project-processing-options"${processingOpen?'':' hidden'}><div class="project-processing-columns">${columns}</div><p class="cc-field-note">${id==='2.6'?'Количество альбомов определяет число переплётов, а не количество печатных листов.':'Обработка входит в общую стоимость заказа.'}</p></div></div>`;
-      if(focusCell)controls.querySelector(`[data-project-select="${focusCell}"], [data-cc-choice="${focusCell}"][aria-pressed="true"]`)?.focus({preventScroll:true});
+      const rowFields=pricing.rowFields(id,values),limit=schema.rows.end-schema.rows.start+1;
+      controls.innerHTML=`<div class="project-order-options">${fields.map(fieldHTML).join('')}</div><div class="project-sheets"><h3>Состав комплекта</h3><p class="project-sheet-note">Укажите форматы, цветность${id==='2.6'?', бумагу':''} и количество листов.</p><div class="project-sheet-list">${values.rows.map((row,index)=>sheetRow(row,index,rowFields)).join('')}</div><button type="button" class="button button-white project-add-row" data-project-add${values.rows.length>=limit?' disabled':''}>Добавить формат</button></div>`;
+      if(focusCell)controls.querySelector(`[data-project-select="${focusCell}"], [data-cc-cell="${focusCell}"]`)?.focus({preventScroll:true});
       return;
     }
     controls.innerHTML=columns+
       `<fieldset class="cc-field cc-quantity" data-cc-field="${layout.quantity}"><legend>${layout.label}</legend><div class="cc-quantity-stack">${layout.presets.map(n=>`<div class="cc-quantity-row"><button class="cc-option" type="button" data-cc-quantity="${n}" aria-pressed="false">${format(n)} ${layout.unit}</button><span class="cc-quantity-price" data-cc-price="${n}">—</span></div>`).join('')}<button type="button" class="cc-option cc-custom-option" data-cc-quantity="custom" aria-pressed="false">Другое количество</button></div><div class="cc-custom-field" data-cc-custom${customQuantity?'':' hidden'}>${numericInput(quantity)}</div>${hints[id]?.[layout.quantity]?`<p class="cc-field-note" id="hint-${layout.quantity}">${escape(hints[id][layout.quantity])}</p>`:''}</fieldset>`;
     if(focusCell){
       const buttons=[...controls.querySelectorAll('[data-cc-choice]')];
-      (buttons.find(button=>button.dataset.ccChoice===focusCell&&button.getAttribute('aria-pressed')==='true')||controls.querySelector(`[data-project-select="${focusCell}"], [data-cc-cell="${focusCell}"]`))?.focus({preventScroll:true});
+      (buttons.find(button=>button.dataset.ccChoice===focusCell&&button.getAttribute('aria-pressed')==='true')||controls.querySelector(`[data-cc-cell="${focusCell}"]`))?.focus({preventScroll:true});
     }
   }
   function updateQuote(){
@@ -96,25 +96,11 @@
       total.textContent='Проверьте параметры';days.textContent='Срок появится после расчёта';breakdown.innerHTML='';
     }else{
       const n=quote.days,word=n%10===1&&n%100!==11?'рабочий день':[2,3,4].includes(n%10)&&![12,13,14].includes(n%100)?'рабочих дня':'рабочих дней';
-      total.textContent=money(quote);days.textContent=`${n} ${word} после согласования`;
+      total.textContent=money(quote);days.textContent=schema.rows?`${n} ${word}`:`${n} ${word} после согласования`;
       breakdown.innerHTML=quote.details.map(item=>`<div><dt>${escape(item.label)}</dt><dd>${escape(typeof item.value==='number'?format(item.value):item.value)}</dd></div>`).join('');
     }
     controls.querySelectorAll('[data-cc-quantity]').forEach(button=>button.setAttribute('aria-pressed',button.dataset.ccQuantity==='custom'?customQuantity:!customQuantity&&Number(button.dataset.ccQuantity)===Number(values[layout.quantity])));
     if(layout.quantity)controls.querySelector('[data-cc-custom]').hidden=!customQuantity;
-    controls.querySelectorAll('[data-project-row-price]').forEach(node=>{const price=quote.rowPrices?.[Number(node.dataset.projectRowPrice)];node.textContent=quote.valid&&Number.isFinite(price)?format(price)+' ₽':'—';});
-    const sheetSummary=controls.querySelector('[data-project-sheet-summary]');
-    if(sheetSummary){const count=values.rows.reduce((sum,row)=>sum+Number(row[id==='2.6'?'E':'D']),0);sheetSummary.textContent=quote.valid?`Всего листов: ${format(count)}`:'Проверьте параметры листов';}
-    const processingSummary=controls.querySelector('[data-project-processing-summary]');
-    if(processingSummary){
-      const selected=[];
-      if(id!=='2.6'&&values.B4!=='Без фальцовки')selected.push(`Фальцовка ${values.B4.toLowerCase()}`);
-      if(values[bindingCell]==='Да')selected.push('На пружине');
-      processingSummary.textContent=selected.join(' · ')||'Без обработки';
-      if(!quote.valid&&quote.cell&&controls.querySelector(`#project-processing-options [data-cc-field="${quote.cell}"]`)){
-        processingOpen=true;controls.querySelector('#project-processing-options').hidden=false;
-        controls.querySelector('[data-project-processing-toggle]').setAttribute('aria-expanded','true');
-      }
-    }
     if(!quote.valid&&quote.row!=null)controls.querySelector(`[data-project-index="${quote.row}"][data-project-row-cell="${quote.col}"]`)?.setAttribute('aria-invalid','true');
     for(const n of layout.presets){
       const preset=pricing.quote(id,{...values,[layout.quantity]:n});
@@ -123,31 +109,19 @@
     const note=root.querySelector('[data-cc-range-note]');
     note.textContent='Листы A4 не требуют складывания. Фальцовку добавлять к заказу не нужно.';
     note.hidden=!(quote.valid&&id==='2.3'&&quote.price===0);
-    root.querySelector('[data-cc-breakdown-panel]').hidden=!quote.valid;
+    root.querySelector('[data-cc-breakdown-panel]').hidden=schema.rows?false:!quote.valid;
     add.disabled=busy||!quote.valid||quote.price===0;download.disabled=copy.disabled=!quote.valid;
     add.textContent=busy?'Сохраняем…':editKey?'Сохранить изменения':'В корзину';
   }
   controls.addEventListener('click',event=>{
-    const processingToggle=event.target.closest('[data-project-processing-toggle]');
-    if(processingToggle){
-      processingOpen=!processingOpen;processingToggle.setAttribute('aria-expanded',String(processingOpen));
-      controls.querySelector('#project-processing-options').hidden=!processingOpen;return;
-    }
     const choice=event.target.closest('[data-cc-choice]'),quantity=event.target.closest('[data-cc-quantity]');
-    const duplicate=event.target.closest('[data-project-duplicate]');
-    if(duplicate){
-      const limit=schema.rows.end-schema.rows.start+1;if(values.rows.length>=limit)return;
-      const index=Number(duplicate.dataset.projectDuplicate)+1;
-      values.rows.splice(index,0,{...values.rows[index-1]});drawFields();updateQuote();
-      controls.querySelector(`[data-project-row="${index}"] select`)?.focus({preventScroll:true});return;
-    }
     if(event.target.closest('[data-project-add]')){
       const limit=schema.rows.end-schema.rows.start+1;if(values.rows.length>=limit)return;
       values.rows.push(Object.fromEntries(pricing.rowFields(id,values).map(f=>[f.col,f.options?f.options[0]:1])));drawFields();updateQuote();
       controls.querySelector(`[data-project-index="${values.rows.length-1}"]`)?.focus({preventScroll:true});
     }
     const remove=event.target.closest('[data-project-remove]');
-    if(remove&&values.rows.length>1){values.rows.splice(Number(remove.dataset.projectRemove),1);drawFields();updateQuote();controls.querySelector('[data-project-add]')?.focus({preventScroll:true});}
+    if(remove&&values.rows.length>1){const index=Number(remove.dataset.projectRemove);values.rows.splice(index,1);drawFields();updateQuote();controls.querySelector(`[data-project-index="${Math.min(index,values.rows.length-1)}"]`)?.focus({preventScroll:true});}
 
     if(choice){values[choice.dataset.ccChoice]=choice.dataset.ccValue;values=pricing.normalize(id,values);drawFields(choice.dataset.ccChoice);updateQuote();}
     if(quantity){
@@ -157,11 +131,14 @@
     }
   });
   controls.addEventListener('change',event=>{
-    const select=event.target.closest('[data-project-select]');if(select){values[select.dataset.projectSelect]=select.value;values=pricing.normalize(id,values);drawFields(select.dataset.projectSelect);updateQuote();}
+    const select=event.target.closest('[data-project-select]');
+    if(select){values[select.dataset.projectSelect]=select.value;if(schema.rows){values=pricing.normalize(id,values);drawFields(select.dataset.projectSelect);}updateQuote();return;}
+    const rowSelect=event.target.closest('select[data-project-row-cell]');
+    if(rowSelect){values.rows[Number(rowSelect.dataset.projectIndex)][rowSelect.dataset.projectRowCell]=rowSelect.value;updateQuote();}
   });
   controls.addEventListener('input',event=>{
     const rowInput=event.target.closest('[data-project-row-cell]');
-    if(rowInput){
+    if(rowInput&&rowInput.tagName!=='SELECT'){
       const index=Number(rowInput.dataset.projectIndex),col=rowInput.dataset.projectRowCell;
       values.rows[index][col]=rowInput.value;
       updateQuote();return;
@@ -172,7 +149,7 @@
   });
   root.querySelector('[data-cc-reset]').addEventListener('click',()=>{
     values=pricing.defaults(id);customQuantity=!layout.presets.includes(Number(values[layout.quantity]));
-    processingOpen=schema.rows&&(values[bindingCell]==='Да'||id!=='2.6'&&values.B4!=='Без фальцовки');drawFields();updateQuote();
+    drawFields();updateQuote();
   });
   function showFile(){
     const name=pendingFile?.name||(!fileRemoved&&existing?.fileName);
@@ -241,5 +218,6 @@
     }catch{window.TEXT_APP.notify('Не удалось скопировать расчёт. Скачайте его файлом.');}
     finally{copying=false;}
   });
+  if(schema.rows&&comment.value){root.querySelector('.project-calc-extra').open=true;root.querySelector('[data-cc-breakdown-panel]').open=true;}
   drawFields();updateQuote();showFile();
 })();

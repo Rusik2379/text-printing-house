@@ -22,6 +22,7 @@
 .is-cart .dialog-top{padding:15px 24px}
 .is-cart .cart-panel{padding:26px}
 .cart-heading{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.cart-heading .cart-clear{margin-left:auto;flex-shrink:0;color:var(--red);border-color:#f2d9dc;white-space:nowrap}
 .cart-heading h2,.cart-panel>h2{margin:0;font-size:30px;line-height:1.2;letter-spacing:-.8px}
 .cart-count-label{padding:6px 10px;background:#f2f3f5;border-radius:7px;font-size:12px;color:#62676b;white-space:nowrap}
 .cart-panel>.dialog-intro{margin:12px 0 24px;font-size:14px;line-height:1.6}
@@ -45,7 +46,7 @@
 .cart-select-all{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:600;cursor:pointer}
 .cart-selected-count{font-size:13px;color:#747b86}
 .cart-bulk-actions{display:flex;gap:10px;margin-left:auto;flex-wrap:wrap}
-.cart-bulk-actions button{min-height:36px;padding:7px 11px;border:1px solid #e1e4e9;background:#fff;border-radius:8px;font-size:13px;font-weight:500;transition:background .2s,border-color .2s,color .2s}
+.cart-bulk-actions button{min-height:44px;padding:7px 11px;border:1px solid #e1e4e9;background:#fff;border-radius:8px;font-size:13px;font-weight:500;transition:background .2s,border-color .2s,color .2s}
 .cart-bulk-actions button:hover:enabled{color:var(--red);border-color:#efb6c0;background:#fff5f7}
 .cart-bulk-actions button:disabled{opacity:.45;cursor:default}
 .cart-panel .cart-row-right{align-items:flex-start;gap:16px}
@@ -75,6 +76,7 @@
  .is-cart .dialog-top{padding:12px 18px}
  .is-cart .cart-panel{padding:20px 16px}
  .cart-heading h2,.cart-panel>h2{font-size:26px}
+ .cart-heading .cart-clear{margin-left:0;width:100%}
  .cart-empty{padding:22px 0 8px}
  .cart-empty-icon{width:62px;height:62px;border-radius:18px}
  .cart-empty h3{font-size:21px}

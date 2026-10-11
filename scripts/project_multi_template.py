@@ -1,0 +1,19 @@
+"""Multirow calculator composition from the customer's Еговерсия3 reference."""
+from html import escape as text
+
+def icon(name):
+    return f'<span data-icon="{name}"></span>'
+
+def multi_calculator(s,prefix):
+    comment_hint={'2.1':'Масштаб, порядок листов и комплектность','2.5':'Состояние оригиналов, масштаб и порядок копий','2.6':'Порядок страниц, обложка и сторона крепления'}[s['id']]
+    extra=f'''<details class="project-calc-extra"><summary>Комментарий и дополнительные действия</summary><label class="cc-comment" for="cc-comment">Комментарий к заказу<textarea id="cc-comment" data-cc-comment rows="2" maxlength="2000" placeholder="{comment_hint}"></textarea></label><div class="project-extra-links"><a href="#requirements">Требования к макету →</a><button class="cc-reset" type="button" data-cc-reset>Сбросить параметры</button></div><p class="cc-disclosure">Стоимость и срок подтвердим перед производством. Подготовка макета и доставка согласуются отдельно.</p></details><div class="cc-tools"><button type="button" data-cc-download disabled>{icon('download')}Скачать расчёт</button><button type="button" data-action="cart">Открыть корзину</button></div>'''
+    return f'''<div class="project-reference-layout">
+      <aside class="project-service-visual" aria-label="{text(s['name'])}"><div class="project-visual-art"><img src="{prefix}assets/{s['art']}" alt="Робот ТЕКСТ — {text(s['name'])}" width="1200" height="675" fetchpriority="high"></div><div class="project-visual-meta"><div><b>Ваш размер и тираж</b><span>Стоимость онлайн</span></div><div><b>ТЕКСТ · Барнаул</b><span>Собственное производство</span></div></div></aside>
+      <section class="cc-calculator project-reference-calculator" id="calculator" aria-labelledby="calculator-title">
+        <div class="project-calc-title"><h2 id="calculator-title">Рассчитайте стоимость</h2><small>01 / Параметры</small><button class="cc-copy-button" type="button" data-cc-copy disabled aria-label="Скопировать параметры, стоимость и ссылку" title="Скопировать параметры, стоимость и ссылку">{icon('copy')}<span>Скопировать расчёт</span></button></div>
+        <form id="copycenter-form"><div class="project-calc-form">
+          <div class="cc-parameters" data-cc-fields></div>
+          <label class="project-upload" data-cc-file-zone><input type="file" data-cc-file accept=".pdf,.jpg,.jpeg,.png,.tif,.tiff,.svg,.ai,.eps,.cdr,.psd,.zip"><span class="project-upload-icon">{icon('upload')}</span><span class="project-upload-copy"><strong data-cc-file-label>Загрузить макет</strong><span>PDF, изображения, исходники или архив</span></span><span class="project-upload-choose">Выбрать файл</span><small>До 100 МБ. Файл сохраняется в браузере; к письму приложите его вручную.</small></label>
+          <div class="cc-file-tools"><p class="cc-file-status" data-cc-file-status role="status">Файл пока не выбран</p><button type="button" data-cc-remove-file hidden>Убрать файл</button></div>
+        </div><div class="cc-result project-calc-result" aria-label="Результат расчёта"><div class="cc-result-summary"><p class="cc-error" data-cc-error role="status" hidden></p><div class="project-price-line"><div><h3>Стоимость заказа</h3><div class="cc-total" data-cc-total aria-live="polite">—</div></div><div class="project-deadline"><p class="cc-days" data-cc-days></p><small>После согласования макета</small></div></div><p class="cc-range-note" data-cc-range-note hidden></p><button class="button button-primary cc-add-button" type="submit" data-cc-add disabled>В корзину</button><details class="cc-breakdown" data-cc-breakdown-panel hidden><summary>Из чего складывается стоимость</summary><dl data-cc-breakdown></dl>{extra}</details></div></div></form><noscript><p>Для интерактивного расчёта включите JavaScript или позвоните +7 (923) 654-78-96.</p></noscript>
+      </section></div>'''
