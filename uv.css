@@ -10,10 +10,13 @@
 .uv-fill-guide dl>div{display:grid;grid-template-columns:58px minmax(0,1fr);gap:8px}
 .uv-fill-guide dt{color:var(--red);font-weight:600}
 .uv-fill-guide dd{margin:0;overflow-wrap:anywhere}
-.uv-number-set{padding:26px;border:1px solid var(--line);border-radius:16px;background:#f6f6f7}
-.uv-number-grid{list-style:none;display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:12px;padding:0;margin:0}
-.uv-number-grid li{display:flex;align-items:center;justify-content:center;position:relative;aspect-ratio:.8;background:#fff;border:1px solid #e0e2e7;border-radius:13px;color:var(--red);font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;padding-top:12px}
+.uv-number-set{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:30px;padding:26px;border:1px solid var(--line);border-radius:16px;background:#f6f6f7}
+.uv-number-grid{list-style:none;display:grid;grid-template-columns:repeat(3,62px) 22px 62px;gap:10px;padding:0;margin:0}
+.uv-number-grid li{display:flex;align-items:center;justify-content:center;position:relative;min-height:78px;background:#fff;border:1px solid #e0e2e7;border-radius:11px;color:var(--red);font-size:20px;font-weight:800;font-variant-numeric:tabular-nums;padding-top:12px}
 .uv-number-grid li::before{content:"";position:absolute;top:10px;left:calc(50% - 4px);width:8px;height:8px;border-radius:50%;background:#f6f6f7;border:1px solid #e0e2e7}
-.uv-number-set p{font-size:14px;line-height:1.7;color:var(--muted);margin-top:22px}
-@media(max-width:850px){.uv-number-grid{grid-template-columns:repeat(10,minmax(0,1fr));gap:8px}.uv-number-grid li{font-size:17px}}
-@media(max-width:600px){.uv-number-set{padding:18px}.uv-number-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}.uv-number-grid li{font-size:20px}}
+.uv-number-grid .uv-number-ellipsis{min-height:0;padding:0;border:0;background:none;color:#8b9099;font-size:22px}
+.uv-number-grid .uv-number-ellipsis::before{content:none}
+.uv-number-copy h3{margin:0;font-size:18px;line-height:1.4;font-weight:700}
+.uv-number-set p{font-size:14px;line-height:1.65;color:var(--muted);margin-top:8px}
+@media(max-width:850px){.uv-number-set{grid-template-columns:1fr;gap:22px}}
+@media(max-width:600px){.uv-number-set{padding:20px}.uv-number-grid{width:100%;max-width:250px;min-width:0;grid-template-columns:repeat(3,minmax(0,1fr)) 18px minmax(0,1fr);gap:8px}.uv-number-grid li{min-height:66px;font-size:18px}}

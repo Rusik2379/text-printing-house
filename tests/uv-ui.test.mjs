@@ -114,9 +114,15 @@ assert.deepEqual(metal.options('B4'),['Алюминий','Нержавейка A
 metal.dom.window.close();
 
 const numbers=setup(find('6.9'));
-assert.equal(numbers.d.querySelectorAll('.uv-number-grid li').length,50);
+assert.ok(numbers.d.querySelectorAll('.uv-number-grid li').length<10,'A short illustration explains the sequence without listing the whole order');
 assert.equal(numbers.d.querySelector('.uv-number-grid li').textContent,'001');
 assert.equal([...numbers.d.querySelectorAll('.uv-number-grid li')].at(-1).textContent,'050');
+const quantityButton=numbers.d.querySelector('[data-cc-quantity="50"]'),quantityPrice=numbers.d.querySelector('[data-cc-price="50"]');
+assert.ok(quantityButton.contains(quantityPrice),'Each quantity owns its displayed price');
+const expectedTotal=quantityPrice.textContent;
+quantityPrice.click();
+assert.equal(quantityButton.getAttribute('aria-pressed'),'true','Clicking the price selects its quantity');
+assert.equal(numbers.d.querySelector('[data-cc-total]').textContent,expectedTotal,'The selected price matches the order total');
 assert.equal(numbers.options('B12').length,1);
 assert.equal(numbers.options('B12')[0],'Без фурнитуры');
 numbers.dom.window.close();
@@ -141,4 +147,4 @@ const landing=new JSDOM(fs.readFileSync(path.join(root,'uv-pechat-i-rezka/index.
 assert.equal(landing.window.document.querySelectorAll('.cc-service-card').length,9);
 assert.equal(landing.window.document.querySelectorAll('link[href*="service-calculator.css"]').length,1);
 landing.window.close();
-console.log(`UV DOM: ${checks} service flows, plus dependent materials, fill guide, full number sequence, menus, cart, editing, sharing, files and copying passed.`);
+console.log(`UV DOM: ${checks} service flows, plus dependent materials, fill guide, numbering example, menus, cart, editing, sharing, files and copying passed.`);
