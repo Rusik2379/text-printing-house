@@ -7,6 +7,7 @@ import {fileURLToPath} from 'node:url';
 import {JSDOM} from 'jsdom';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const currentProfiles=JSON.parse(fs.readFileSync(path.join(root,'service-enrichment.json'),'utf8')).services;
 const content=JSON.parse(fs.readFileSync(path.join(root,'uv-content.json'),'utf8'));
 const reference=new JSDOM(fs.readFileSync(path.join(root,'kopitsentr/pechat-dokumentov/index.html'),'utf8'));
 const sharedSelectors=['.cc-hero','.cc-benefits','.cc-heading','.cc-result','.cc-example','.cc-variant','.cc-step','.cc-reading a'];
@@ -34,7 +35,7 @@ function setup(service,query='',cart=[]){
     w.eval(fs.readFileSync(path.join(root,file),'utf8'));
   }
   currentScript=null;
-  return {dom,w,d:w.document,click:s=>{const button=w.document.querySelector(s);assert.ok(button,s);button.click();},input:(s,v)=>{const input=w.document.querySelector(s);assert.ok(input,s);input.value=String(v);input.dispatchEvent(new w.Event('input',{bubbles:true}));}};
+  return {dom,w,d:w.document,click:s=>{const button=w.document.querySelector(s);assert.ok(button,s);button.click();},choose:(cell,value)=>{const select=w.document.querySelector(`[data-cc-select="${cell}"], [data-project-select="${cell}"]`);if(select){assert.ok([...select.options].some(option=>option.value===value),value);select.value=value;select.dispatchEvent(new w.Event('change',{bubbles:true}));}else{const button=w.document.querySelector(`[data-cc-choice="${cell}"][data-cc-value="${value}"]`);assert.ok(button,cell+': '+value);button.click();}},options:cell=>{const select=w.document.querySelector(`[data-cc-select="${cell}"]`);return select?[...select.options].map(option=>option.value):[...w.document.querySelectorAll(`[data-cc-choice="${cell}"]`)].map(button=>button.dataset.ccValue);},input:(s,v)=>{const input=w.document.querySelector(s);assert.ok(input,s);input.value=String(v);input.dispatchEvent(new w.Event('input',{bubbles:true}));}};
 }
 async function submit(t){
   t.d.querySelector('#copycenter-form').dispatchEvent(new t.w.Event('submit',{bubbles:true,cancelable:true}));
@@ -59,9 +60,10 @@ for(const service of content.services){
   const link=setup(service,'?calc='+encodeURIComponent(JSON.stringify(saved.configuration)));
   assert.equal(link.d.querySelector('[data-cc-error]').hidden,true);
   const linkedItems=await submit(link);assert.equal(linkedItems[0].price,saved.price);
-  assert.equal(t.d.querySelectorAll('.uv-preparation-details details').length,4);
-  assert.ok(t.d.querySelector('.cc-requirements .cc-file-guide'));
-  for(const value of [service.technical.fileSpec,service.technical.preflight,service.technical.note,...service.technical.critical,...service.technical.mistakes])assert.ok(t.d.body.textContent.includes(value),'Full technical requirements are visible');
+  const requirements=t.d.querySelector('.req-inline');
+  assert.ok(requirements,'Technical requirements are visible beside the calculator');
+  const profile=currentProfiles[service.id].technical;
+  for(const value of [profile.fileSpec,profile.preflight,profile.note,...profile.checks,...profile.critical,...profile.mistakes].filter(Boolean))assert.ok(requirements.textContent.includes(value),'Current technical requirements are visible');
   for(const instance of [t,editing,link])instance.dom.window.close();
   checks++;
 }
@@ -69,9 +71,9 @@ for(const service of content.services){
 
 const find=id=>content.services.find(s=>s.id===id);
 const uv=setup(find('6.1'));
-uv.click('[data-cc-choice="B4"][data-cc-value="ПЭТ"]');
-assert.deepEqual([...uv.d.querySelectorAll('[data-cc-choice="B5"]')].map(b=>b.dataset.ccValue),['0.5','1','1.5']);
-assert.equal(uv.d.querySelector('[data-cc-choice="B5"][aria-pressed="true"]').dataset.ccValue,'0.5');
+uv.choose('B4','ПЭТ');
+assert.deepEqual(uv.options('B5'),['0.5','1','1.5']);
+assert.equal(uv.d.querySelector('[data-cc-select="B5"]').value,'0.5');
 uv.input('[data-cc-cell="B7"]',401);assert.equal(uv.d.querySelector('[data-cc-add]').disabled,true);
 uv.click('[data-cc-reset]');assert.equal(uv.d.querySelector('[data-cc-add]').disabled,false);
 uv.click('.nav-item[data-menu="UV-печать и резка"]');
@@ -81,8 +83,8 @@ uv.dom.window.close();
 
 const laser=setup(find('6.3'));
 assert.ok(laser.d.body.textContent.includes('работы без стоимости материала'));
-laser.click('[data-cc-choice="B4"][data-cc-value="Картон"]');
-assert.deepEqual([...laser.d.querySelectorAll('[data-cc-choice="B5"]')].map(b=>b.dataset.ccValue),['1','2','3']);
+laser.choose('B4','Картон');
+assert.deepEqual(laser.options('B5'),['1','2','3']);
 assert.equal(laser.d.querySelector('[data-cc-cell="B8"]'),null,'The preliminary cut length is an output, not an editable input');
 laser.dom.window.close();
 
@@ -90,33 +92,33 @@ const engraving=setup(find('6.4'));
 assert.equal(engraving.d.querySelector('[data-cc-cell="B8"]').min,'10');
 assert.equal(engraving.d.querySelector('.uv-fill-guide dl').children.length,5);
 engraving.input('[data-cc-cell="B8"]',101);assert.equal(engraving.d.querySelector('[data-cc-add]').disabled,true);
-engraving.click('[data-cc-choice="B5"][data-cc-value="КОНТУРНАЯ"]');
+engraving.choose('B5','КОНТУРНАЯ');
 assert.equal(engraving.d.querySelector('[data-cc-cell="B8"]'),null);assert.equal(engraving.d.querySelector('.uv-fill-guide'),null);
 assert.equal(engraving.d.querySelector('[data-cc-add]').disabled,false,'Contour does not use the invalid hidden fill');
-engraving.click('[data-cc-choice="B5"][data-cc-value="ПЛОЩАДНАЯ"]');
+engraving.choose('B5','ПЛОЩАДНАЯ');
 assert.equal(engraving.d.querySelector('[data-cc-cell="B8"]').value,'20');
 engraving.dom.window.close();
 
 const keys=setup(find('6.6'));
-keys.click('[data-cc-choice="B13"][data-cc-value="ВЫБОРОЧНЫЙ ЛАК"]');
-keys.click('[data-cc-choice="B5"][data-cc-value="Акрил зеркальный"]');
-assert.equal(keys.d.querySelectorAll('[data-cc-choice="B7"]').length,1);
-assert.equal(keys.d.querySelector('[data-cc-choice="B7"]').dataset.ccValue,'ГРАВИРОВКА 1 СТОРОНА');
-assert.equal(keys.d.querySelectorAll('[data-cc-choice="B13"]').length,1);
-assert.equal(keys.d.querySelector('[data-cc-choice="B13"]').dataset.ccValue,'БЕЗ ЛАКА');
+keys.choose('B13','ВЫБОРОЧНЫЙ ЛАК');
+keys.choose('B5','Акрил зеркальный');
+assert.equal(keys.options('B7').length,1);
+assert.equal(keys.options('B7')[0],'ГРАВИРОВКА 1 СТОРОНА');
+assert.equal(keys.options('B13').length,1);
+assert.equal(keys.options('B13')[0],'БЕЗ ЛАКА');
 assert.equal(keys.d.querySelector('[data-cc-add]').disabled,false);
 keys.dom.window.close();
 
 const metal=setup(find('6.8'));
-assert.deepEqual([...metal.d.querySelectorAll('[data-cc-choice="B4"]')].map(b=>b.dataset.ccValue),['Алюминий','Нержавейка AISI']);
+assert.deepEqual(metal.options('B4'),['Алюминий','Нержавейка AISI']);
 metal.dom.window.close();
 
 const numbers=setup(find('6.9'));
 assert.equal(numbers.d.querySelectorAll('.uv-number-grid li').length,50);
 assert.equal(numbers.d.querySelector('.uv-number-grid li').textContent,'001');
 assert.equal([...numbers.d.querySelectorAll('.uv-number-grid li')].at(-1).textContent,'050');
-assert.equal(numbers.d.querySelectorAll('[data-cc-choice="B12"]').length,1);
-assert.equal(numbers.d.querySelector('[data-cc-choice="B12"]').dataset.ccValue,'Без фурнитуры');
+assert.equal(numbers.options('B12').length,1);
+assert.equal(numbers.options('B12')[0],'Без фурнитуры');
 numbers.dom.window.close();
 
 const files=setup(find('6.1')),savedFiles=new Map();

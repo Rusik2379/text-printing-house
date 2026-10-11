@@ -42,6 +42,8 @@
   };
   const labels={'чб':'Чёрно-белая','цветная':'Цветная','Ч/Б':'Чёрно-белая','Цвет':'Цветная','односторонняя':'Одна сторона','двусторонняя':'Две стороны','Твердый':'Твёрдый','ПЕЧАТАЕМ':'С нашей печатью','ПЕЧАТЬ ВАША':'Ваш готовый блок','ДА':'Да','НЕТ':'Нет','БЕЛАЯ':'Белая','ГОЛУБОЙ':'Голубая','ЖЕЛТЫЙ':'Жёлтая','ЗЕЛЕНЫЙ':'Зелёная','РОЗОВЫЙ':'Розовая'};
   let values=pricing.defaults(id),quote,editKey=null,existing=null,pendingFile=null,fileRemoved=false,busy=false,copying=false;
+  const compactParameters=data[id].schema.fields.length>=7;
+  root.classList.toggle('calculator-compact',compactParameters);
   const params=new URLSearchParams(location.search),requestedKey=params.get('edit');
   if(requestedKey){
     existing=window.TEXT_APP.getCart().find(item=>item.key===requestedKey&&item.id===id&&item.configuration);
@@ -65,6 +67,7 @@
   function fieldHTML(field){
     const hint=hints[id]?.[field.cell];
     if(!field.options)return `<div class="cc-field" data-cc-field="${field.cell}">${numericInput(field)}${hint?`<p class="cc-field-note" id="hint-${field.cell}">${escape(hint)}</p>`:''}${customUI?.extra?.(field,id)||''}</div>`;
+    if(compactParameters||field.options.length>5)return `<div class="cc-field" data-cc-field="${field.cell}"><label class="calculator-select-label" for="cc-${field.cell}">${escape(field.label)}<select id="cc-${field.cell}" data-cc-select="${field.cell}"${field.locked?' disabled':''}${hint?` aria-describedby="hint-${field.cell}"`:''}>${field.options.map(value=>`<option value="${escape(value)}"${String(values[field.cell])===value?' selected':''}>${escape(customUI?customUI.choiceLabel(id,field,value):labels[value]||value)}</option>`).join('')}</select></label>${hint?`<p class="cc-field-note" id="hint-${field.cell}">${escape(hint)}</p>`:''}</div>`;
     return `<fieldset class="cc-field" data-cc-field="${field.cell}"><legend>${escape(field.label)}</legend><div class="cc-choice-stack">${field.options.map(value=>`<button class="cc-option" type="button" data-cc-choice="${field.cell}" data-cc-value="${escape(value)}" aria-pressed="${String(values[field.cell])===value}"${field.locked?' disabled':''}>${escape(customUI?customUI.choiceLabel(id,field,value):labels[value]||value)}</button>`).join('')}</div>${hint?`<p class="cc-field-note" id="hint-${field.cell}">${escape(hint)}</p>`:''}</fieldset>`;
   }
   function drawFields(focusCell=null){
@@ -77,7 +80,7 @@
     if(id==='1.1'&&values.B4==='А4'&&values.B5==='цветная')controls.querySelector('[data-cc-field="colorRate"]').insertAdjacentHTML('beforeend','<p class="cc-field-note">Зависит от заполнения страницы. Подтвердим тариф после проверки файла.</p>');
     if(focusCell){
       const buttons=[...controls.querySelectorAll('[data-cc-choice]')];
-      (buttons.find(button=>button.dataset.ccChoice===focusCell&&button.getAttribute('aria-pressed')==='true')||controls.querySelector(`[data-cc-cell="${focusCell}"]`))?.focus({preventScroll:true});
+      (buttons.find(button=>button.dataset.ccChoice===focusCell&&button.getAttribute('aria-pressed')==='true')||controls.querySelector(`[data-cc-select="${focusCell}"], [data-cc-cell="${focusCell}"]`))?.focus({preventScroll:true});
     }
   }
   function updateQuote(){
@@ -85,7 +88,7 @@
     controls.querySelectorAll('[aria-invalid]').forEach(input=>input.removeAttribute('aria-invalid'));
     error.textContent=quote.valid?'':quote.error;error.hidden=quote.valid;
     if(!quote.valid){
-      if(quote.cell)controls.querySelector(`[data-cc-cell="${quote.cell}"], [data-cc-field="${quote.cell}"]`)?.setAttribute('aria-invalid','true');
+      if(quote.cell)(controls.querySelector(`[data-cc-cell="${quote.cell}"], [data-cc-select="${quote.cell}"]`)||controls.querySelector(`[data-cc-field="${quote.cell}"]`))?.setAttribute('aria-invalid','true');
       total.textContent='Проверьте параметры';days.textContent='Срок появится после расчёта';breakdown.innerHTML='';
     }else{
       const n=quote.days,word=n%10===1&&n%100!==11?'рабочий день':[2,3,4].includes(n%10)&&![12,13,14].includes(n%100)?'рабочих дня':'рабочих дней';
@@ -119,6 +122,8 @@
     values[input.dataset.ccCell]=input.value;updateQuote();
   });
   controls.addEventListener('change',event=>{
+    const choice=event.target.closest('select[data-cc-select]');
+    if(choice){values[choice.dataset.ccSelect]=choice.value;values=pricing.normalize(id,values);drawFields(choice.dataset.ccSelect);updateQuote();return;}
     const select=event.target.closest('select[data-cc-cell]');if(!select)return;
     values[select.dataset.ccCell]=select.value;updateQuote();
   });

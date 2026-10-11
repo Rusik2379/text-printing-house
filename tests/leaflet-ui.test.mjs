@@ -7,6 +7,7 @@ import {fileURLToPath} from 'node:url';
 import {JSDOM} from 'jsdom';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const currentProfiles=JSON.parse(fs.readFileSync(path.join(root,'service-enrichment.json'),'utf8')).services;
 const content=JSON.parse(fs.readFileSync(path.join(root,'leaflet-content.json'),'utf8'));
 const reference=new JSDOM(fs.readFileSync(path.join(root,'kopitsentr/pechat-dokumentov/index.html'),'utf8'));
 const sharedSelectors=['.cc-hero','.cc-benefits','.cc-heading','.cc-result','.cc-file-guide','.cc-example','.cc-variant','.cc-step','.cc-reading a'];
@@ -34,7 +35,7 @@ function setup(service,query='',cart=[]){
     w.eval(fs.readFileSync(path.join(root,file),'utf8'));
   }
   currentScript=null;
-  return {dom,w,d:w.document,click:s=>{const button=w.document.querySelector(s);assert.ok(button,s);button.click();},input:(s,v)=>{const input=w.document.querySelector(s);assert.ok(input,s);input.value=String(v);input.dispatchEvent(new w.Event('input',{bubbles:true}));}};
+  return {dom,w,d:w.document,click:s=>{const button=w.document.querySelector(s);assert.ok(button,s);button.click();},choose:(cell,value)=>{const select=w.document.querySelector(`[data-cc-select="${cell}"], [data-project-select="${cell}"]`);if(select){assert.ok([...select.options].some(option=>option.value===value),value);select.value=value;select.dispatchEvent(new w.Event('change',{bubbles:true}));}else{const button=w.document.querySelector(`[data-cc-choice="${cell}"][data-cc-value="${value}"]`);assert.ok(button,cell+': '+value);button.click();}},options:cell=>{const select=w.document.querySelector(`[data-cc-select="${cell}"]`);return select?[...select.options].map(option=>option.value):[...w.document.querySelectorAll(`[data-cc-choice="${cell}"]`)].map(button=>button.dataset.ccValue);},input:(s,v)=>{const input=w.document.querySelector(s);assert.ok(input,s);input.value=String(v);input.dispatchEvent(new w.Event('input',{bubbles:true}));}};
 }
 async function submit(t){
   t.d.querySelector('#copycenter-form').dispatchEvent(new t.w.Event('submit',{bubbles:true,cancelable:true}));
@@ -59,9 +60,10 @@ for(const service of content.services){
   const link=setup(service,'?calc='+encodeURIComponent(JSON.stringify(saved.configuration)));
   assert.equal(link.d.querySelector('[data-cc-error]').hidden,true);
   const linkedItems=await submit(link);assert.equal(linkedItems[0].price,saved.price);
-  assert.equal(t.d.querySelectorAll('.leaflet-preparation-details details').length,4);
-  assert.ok(t.d.querySelector('.cc-requirements .cc-file-guide'));
-  for(const value of [service.technical.fileSpec,service.technical.preflight,...service.technical.critical,...service.technical.mistakes])assert.ok(t.d.body.textContent.includes(value),'Full technical requirements are visible');
+  const requirements=t.d.querySelector('.req-inline');
+  assert.ok(requirements,'Technical requirements are visible beside the calculator');
+  const profile=currentProfiles[service.id].technical;
+  for(const value of [profile.fileSpec,profile.preflight,profile.note,...profile.checks,...profile.critical,...profile.mistakes].filter(Boolean))assert.ok(requirements.textContent.includes(value),'Current technical requirements are visible');
   for(const instance of [t,editing,link])instance.dom.window.close();
   checks++;
 }
@@ -86,7 +88,7 @@ assert.equal(cards.d.querySelectorAll('.mega-links a[href*="/listovaya-poligrafi
 cards.dom.window.close();
 
 const leaflets=setup(content.services.find(s=>s.id==='3.2'));
-leaflets.click('[data-cc-choice="B4"][data-cc-value="Индивидуальный"]');
+leaflets.choose('B4','Индивидуальный');
 leaflets.input('[data-cc-cell="B5"]',90);leaflets.input('[data-cc-cell="B6"]',50);
 const selected=(await submit(leaflets))[0];assert.equal(selected.configuration.B5,90);assert.equal(selected.configuration.B6,50);
 const linked=setup(content.services.find(s=>s.id==='3.2'),'?calc='+encodeURIComponent(JSON.stringify(selected.configuration)));

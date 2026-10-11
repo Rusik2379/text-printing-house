@@ -3,6 +3,7 @@ from pathlib import Path
 from html import escape,unescape
 from html.parser import HTMLParser
 import json,re
+from service_requirements_diagrams import model
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -11,19 +12,17 @@ def text(value):return escape(str(value),quote=True)
 
 def technical(s,container=''):
     r=s['technical'];items=lambda values:''.join(f'<li>{text(v)}</li>' for v in values)
-    check=icon('check')
-    return f'''<section class="{container}section req-inline req-inline-v2" id="requirements" aria-labelledby="service-requirements-title">
-<span id="service-requirements" aria-hidden="true"></span><div class="req-inline-head"><div><div class="eyebrow">Макет без переделок</div><h2 id="service-requirements-title">Технические требования<br>для «{text(s['name'])}»</h2><p>Не общий шаблон: ниже — чек-лист именно для этой услуги, с её размером, обработкой и типом файла.</p></div><div class="req-inline-links"><button class="text-button req-print-link" type="button" data-print-requirements>{icon('printer')}Печать / сохранить PDF</button><a class="text-button" href="../../requirements/#requirement-{s['id'].replace('.','-')}">Все требования →</a></div></div>
-<div class="req-detail"><div class="req-detail-main"><div class="req-send"><span class="req-icon">{icon('document')}</span><div><small>Что передать</small><b>{text(r['send'])}</b></div></div>{s['schemeHtml']}<div class="req-fixed">{''.join(f'<span>{text(v)}</span>' for v in r['fixed'])}</div></div>
-<div class="req-checks"><h3>Проверьте перед отправкой</h3><ul>{''.join(f'<li>{check}<span>{text(v)}</span></li>' for v in r['checks'])}</ul></div>
-<aside class="req-example"><span>Пример</span><p>{text(r['example'])}</p>{f'<div class="req-note"><b>Важно</b>{text(r["note"])}</div>' if r.get('note') else ''}</aside>
-<div class="req-file-spec"><span class="req-mini-icon">{icon('document')}</span><div><small>Файл и технический минимум</small><p>{text(r['fileSpec'])}</p></div></div>
-<div class="req-deep-grid"><section class="req-deep-card req-deep-critical"><div class="req-deep-title">{icon('shield')}<h3>Критично</h3></div><ul>{items(r['critical'])}</ul></section><section class="req-deep-card req-deep-mistakes"><div class="req-deep-title">{icon('close')}<h3>Не делайте так</h3></div><ul>{items(r['mistakes'])}</ul></section></div>
-<div class="req-preflight"><span class="req-mini-icon">{icon('check')}</span><div><small>Что проверяем перед запуском</small><p>{text(r['preflight'])}</p></div></div></div><div class="req-source-line"><span>Обновлено {text(r.get('updated','07.10.2026'))}</span><span>Параметры из калькулятора и производственных правил ТЕКСТ имеют приоритет перед общими рекомендациями.</span></div></section>'''
+    checklist=''.join(f'<li><span class="req-check-text">{text(v)}</span></li>' for v in r['checks'])
+    return f'''<section class="{container}section req-inline req-inline-v2 req-inline-v3" id="requirements" aria-labelledby="service-requirements-title">
+<span id="service-requirements" aria-hidden="true"></span><div class="req-inline-head"><div><div class="eyebrow">Технические требования</div><h2 id="service-requirements-title">Подготовьте макет<br><span>без переделок</span></h2><p>Для услуги <strong>«{text(s['name'])}»</strong>. Соберите файл, проверьте пункты ниже и передайте макет вместе с параметрами заказа.</p></div><div class="req-inline-links"><button class="button button-white req-print-link" type="button" data-print-requirements>{icon('printer')}Печать / сохранить PDF</button><a class="text-button" href="../../requirements/#requirement-{s['id'].replace('.','-')}">Все требования {icon('arrow')}</a></div></div>
+<div class="req-detail"><div class="req-detail-main"><div class="req-step-heading"><h3>Подготовьте файл</h3><p>{text(r['send'])}</p></div>{model(s)}<div class="req-fixed">{''.join(f'<span>{text(v)}</span>' for v in r['fixed'])}</div></div>
+<div class="req-checks"><div class="req-step-heading"><h3>Проверьте перед отправкой</h3></div><ul>{checklist}</ul></div>
+<aside class="req-example"><div><span>Пример</span><p>{text(r['example'])}</p>{f'<div class="req-note"><b>Важно</b>{text(r["note"])}</div>' if r.get('note') else ''}</div></aside>
+<div class="req-technical-notes"><div class="req-file-spec"><span class="req-mini-icon">{icon('document')}</span><div><small>Файл и технический минимум</small><p>{text(r['fileSpec'])}</p></div></div><section class="req-deep-card req-deep-critical"><div class="req-deep-title">{icon('shield')}<h3>Критично</h3></div><ul>{items(r['critical'])}</ul></section><section class="req-deep-card req-deep-mistakes"><div class="req-deep-title">{icon('close')}<h3>Не делайте так</h3></div><ul>{items(r['mistakes'])}</ul></section><div class="req-preflight"><span class="req-mini-icon">{icon('check')}</span><div><small>Что проверяем перед запуском</small><p>{text(r['preflight'])}</p></div></div></div></div><div class="req-source-line"><span>Обновлено {text(r.get('updated','07.10.2026'))}</span><span>Параметры из калькулятора и производственных правил ТЕКСТ имеют приоритет перед общими рекомендациями.</span></div></section>'''
 
 def geo(s,container=''):
     key='service-geo-'+s['id'].replace('.','-')
-    return f'<section class="{container}geo-answer section" aria-labelledby="{key}"><div class="geo-answer-head"><div><div class="eyebrow">Коротко и по делу</div><h2 id="{key}">Ответы об услуге «{text(s["name"])}»</h2><p>Всё важное о заказе — в одном месте.</p></div><span class="geo-proof">Факты из калькулятора и условий ТЕКСТ</span></div><div class="geo-answer-grid">'+''.join(f'<article class="geo-answer-card"><span>{i:02}</span><h3>{text(a["title"])}</h3><p>{text(a["text"])}</p></article>' for i,a in enumerate(s['answers'],1))+'</div></section>'
+    return f'<section class="{container}geo-answer section" aria-labelledby="{key}"><div class="geo-answer-head"><div><div class="eyebrow">Коротко и по делу</div><h2 id="{key}">Ответы об услуге «{text(s["name"])}»</h2><p>Всё важное о заказе — в одном месте.</p></div></div><div class="geo-answer-grid">'+''.join(f'<article class="geo-answer-card"><h3>{text(a["title"])}</h3><p>{text(a["text"])}</p></article>' for a in s['answers'])+'</div></section>'
 
 def intent(s,container=''):
     return '<section class="intent-block'+(' container' if container else '')+'"><div><div class="eyebrow">ТЕКСТ · Барнаул</div><h2>Заказ без скрытых условий</h2><p>Цена считается по выбранной конфигурации. Самовывоз — проспект Строителей, 11; готовые тиражи можем отправить по России после согласования перевозчика и стоимости.</p></div><div class="intent-chips" aria-label="Популярные формулировки услуги">'+''.join(f'<span>{text(v)}</span>' for v in dict.fromkeys(s['terms']))+'</div></section>'
@@ -48,7 +47,32 @@ class Sections(HTMLParser):
         for i in range(len(self.parents)-1,-1,-1):
             if self.parents[i][0]==tag:del self.parents[i:];break
 
+def service_overview(source,s):
+    targets=[]
+    for n in Sections(source).sections:
+        fragment=source[n['start']:n['end']]
+        if 'service-overview' in n['attrs'].get('class','').split() or re.search(r'class="(?:cc-seo|sp-seo-body)"',fragment):targets.append(n)
+    assert len(targets)==1,(s['id'],'Expected one detailed service section')
+    target=targets[0];fragment=source[target['start']:target['end']]
+    if 'service-overview' in target['attrs'].get('class','').split():
+        paragraphs=re.findall(r'<article class="service-overview-card">.*?<p>(.*?)</p>.*?</article>',fragment,re.S)
+    else:
+        body=re.search(r'<div class="(?:cc-seo|sp-seo-body)">(.*?)</div>',fragment,re.S)
+        paragraphs=re.findall(r'<p\b[^>]*>(.*?)</p>',body[1],re.S)
+    assert len(paragraphs)==3,(s['id'],'Expected three customer paragraphs')
+    related=re.search(r'<div class="(?:sp-seo-related|service-overview-related)">(.*?)</div>',fragment,re.S)
+    related=f'<div class="service-overview-related">{related[1]}</div>' if related else ''
+    container='' if target['in_container'] else 'container '
+    key='service-overview-'+s['id'].replace('.','-')
+    anchor=target['attrs'].get('id',key)
+    titles=['Что важно учесть','Что подготовить','Как выполняем заказ']
+    cards=''.join(f'<article class="service-overview-card"><h3>{title}</h3><p>{paragraph}</p></article>' for title,paragraph in zip(titles,paragraphs))
+    arrow='<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg>'
+    block=f'''<section class="{container}service-overview section" id="{anchor}" aria-labelledby="{key}-title"><div class="service-overview-heading"><div class="eyebrow">Подробно об услуге</div><h2 id="{key}-title">{text(s['name'])} — что важно перед заказом</h2></div><div class="service-overview-grid">{cards}</div>{related}<div class="service-overview-cta"><div><h3>Нужна точная стоимость?</h3><p>Выберите параметры в калькуляторе — стоимость пересчитается автоматически.</p></div><a class="button button-white" href="#calculator">К калькулятору {arrow}</a></div></section>'''
+    return source[:target['start']]+block+source[target['end']:]
+
 def service_blocks(source,s):
+    source=service_overview(source,s)
     sections=Sections(source).sections
     existing=[n for n in sections if 'req-inline-v2' in n['attrs'].get('class','').split()]
     if existing:
@@ -95,7 +119,7 @@ def apply_site_enrichment():
         source=file.read_text(encoding='utf8');prefix='../'*len(file.parent.relative_to(ROOT).parts)
         # The shared header includes the location strip, but preserves skip links.
         source=re.sub(r'<div class="topbar">.*?</header>',lambda _:chrome(prefix),source,count=1,flags=re.S)
-        for name,tag in [('site-chrome.css','link'),('service-enrichment.css','link'),('site-chrome.js','script')]:
+        for name,tag in [('faq.css','link'),('faq.js','script'),('site-chrome.css','link'),('service-enrichment.css','link'),('site-chrome.js','script')]:
             source=re.sub(r'\s*<(?:link|script)\b[^>]*(?:href|src)="[^"]*'+re.escape(name)+r'(?:\?[^\"]*)?"[^>]*>(?:</script>)?','',source)
             resource=f'<link rel="stylesheet" href="{prefix}{name}">' if tag=='link' else f'<script src="{prefix}{name}" defer></script>'
             source=source.replace('</head>',resource+'\n</head>',1)

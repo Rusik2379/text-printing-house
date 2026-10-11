@@ -7,6 +7,7 @@ import {fileURLToPath} from 'node:url';
 import {JSDOM} from 'jsdom';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const currentProfiles=JSON.parse(fs.readFileSync(path.join(root,'service-enrichment.json'),'utf8')).services;
 const content=JSON.parse(fs.readFileSync(path.join(root,'project-content.json'),'utf8'));
 const reference=new JSDOM(fs.readFileSync(path.join(root,'kopitsentr/pechat-dokumentov/index.html'),'utf8'));
 const sharedSelectors=['.cc-hero','.cc-benefits','.cc-heading','.cc-result','.cc-file-guide','.cc-example','.cc-variant','.cc-step','.cc-reading a'];
@@ -34,7 +35,7 @@ function setup(service,query='',cart=[]){
     w.eval(fs.readFileSync(path.join(root,file),'utf8'));
   }
   currentScript=null;
-  return {dom,w,d:w.document,click:s=>{const button=w.document.querySelector(s);assert.ok(button,s);button.click();},input:(s,v)=>{const input=w.document.querySelector(s);assert.ok(input,s);input.value=String(v);input.dispatchEvent(new w.Event('input',{bubbles:true}));}};
+  return {dom,w,d:w.document,click:s=>{const button=w.document.querySelector(s);assert.ok(button,s);button.click();},choose:(cell,value)=>{const select=w.document.querySelector(`[data-cc-select="${cell}"], [data-project-select="${cell}"]`);if(select){assert.ok([...select.options].some(option=>option.value===value),value);select.value=value;select.dispatchEvent(new w.Event('change',{bubbles:true}));}else{const button=w.document.querySelector(`[data-cc-choice="${cell}"][data-cc-value="${value}"]`);assert.ok(button,cell+': '+value);button.click();}},options:cell=>{const select=w.document.querySelector(`[data-cc-select="${cell}"]`);return select?[...select.options].map(option=>option.value):[...w.document.querySelectorAll(`[data-cc-choice="${cell}"]`)].map(button=>button.dataset.ccValue);},input:(s,v)=>{const input=w.document.querySelector(s);assert.ok(input,s);input.value=String(v);input.dispatchEvent(new w.Event('input',{bubbles:true}));}};
 }
 async function submit(t){
   t.d.querySelector('#copycenter-form').dispatchEvent(new t.w.Event('submit',{bubbles:true,cancelable:true}));
@@ -59,9 +60,10 @@ for(const service of content.services){
   const link=setup(service,'?calc='+encodeURIComponent(JSON.stringify(saved.configuration)));
   assert.equal(link.d.querySelector('[data-cc-error]').hidden,true);
   const linkedItems=await submit(link);assert.equal(linkedItems[0].price,saved.price);
-  assert.equal(t.d.querySelectorAll('.project-preparation-details details').length,4);
-  assert.ok(t.d.querySelector('.cc-requirements .cc-file-guide'));
-  for(const value of [service.technical.fileSpec,service.technical.preflight,...service.technical.critical,...service.technical.mistakes])assert.ok(t.d.body.textContent.includes(value),'Full technical requirements are visible');
+  const requirements=t.d.querySelector('.req-inline');
+  assert.ok(requirements,'Technical requirements are visible beside the calculator');
+  const profile=currentProfiles[service.id].technical;
+  for(const value of [profile.fileSpec,profile.preflight,profile.note,...profile.checks,...profile.critical,...profile.mistakes].filter(Boolean))assert.ok(requirements.textContent.includes(value),'Current technical requirements are visible');
   for(const instance of [t,editing,link])instance.dom.window.close();
   checks++;
 }
@@ -72,23 +74,22 @@ for(const id of ['2.1','2.5','2.6']){
   assert.equal(t.d.querySelector('#project-processing-options').hidden,id!=='2.6');
   const preset=t.w.TEXT_PROJECT_PRICING.quote(id,{...t.w.TEXT_PROJECT_PRICING.defaults(id),rows:[{...t.w.TEXT_PROJECT_PRICING.defaults(id).rows[0],[countCol]:25}]});
   const formatted=new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2}).format(preset.price)+' ₽';
-  assert.equal(t.d.querySelector('[data-project-preset-price="25"]').textContent,formatted,'Preset shows the full workbook total');
-  t.click('[data-project-quantity="25"]');
+  t.input(`[data-project-row-cell="${countCol}"]`,25);
   assert.equal(t.d.querySelector(`[data-project-row-cell="${countCol}"]`).value,'25');
   assert.equal(t.d.querySelector('[data-cc-total]').textContent,formatted);
-  t.click('[data-project-quantity="10"]');
+  t.input(`[data-project-row-cell="${countCol}"]`,10);
   if(id!=='2.6'){
     t.input('[data-project-index="0"][data-project-row-cell="B"]','A4x3');
-    assert.ok([...t.d.querySelectorAll('[data-project-row-choice="B"]')].every(b=>b.getAttribute('aria-pressed')==='false'));
+    assert.equal(t.d.querySelector('[data-project-row-cell="B"]').value,'A4x3');
     const extended=(await submit(t))[0];assert.equal(extended.configuration.rows[0].B,'A4x3','Extended formats remain available');
     const restored=setup(service,'?calc='+encodeURIComponent(JSON.stringify(extended.configuration)));
     assert.equal(restored.d.querySelector('[data-project-row-cell="B"]').value,'A4x3');restored.dom.window.close();
     t.w.localStorage.setItem('text-print-cart-v1','[]');
-    t.click('[data-project-row-choice="B"][data-project-value="A1"]');
-    assert.equal(t.d.querySelector('[data-project-row-cell="B"]').value,'');
+    t.input('[data-project-row-cell="B"]','A1');
+    assert.equal(t.d.querySelector('[data-project-row-cell="B"]').value,'A1');
     t.click('[data-project-processing-toggle]');
-    t.click('[data-cc-choice="B4"][data-cc-value="Под A4"]');
-    t.click('[data-cc-choice="B5"][data-cc-value="Да"]');
+    t.choose('B4','Под A4');
+    t.choose('B5','Да');
     t.click('[data-project-processing-toggle]');
     assert.equal(t.d.querySelector('#project-processing-options').hidden,true);
     const processed=(await submit(t))[0];
@@ -101,7 +102,7 @@ for(const id of ['2.1','2.5','2.6']){
   t.click('[data-project-duplicate="0"]');
   assert.equal(t.d.querySelectorAll('[data-project-row]').length,2);
   t.input(`[data-project-index="1"][data-project-row-cell="${countCol}"]`,5);
-  t.click(`[data-project-index="1"][data-project-row-choice="${colourCol}"][data-project-value="Цвет"]`);
+  t.input(`[data-project-index="1"][data-project-row-cell="${colourCol}"]`,'Цвет');
   const rows=(await submit(t))[0].configuration.rows;
   assert.equal(rows[0][countCol],10,'Duplicated rows are independent');
   assert.equal(rows[1][countCol],5);assert.equal(rows[1][colourCol],'Цвет');

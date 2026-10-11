@@ -36,6 +36,18 @@
 .cart-panel .cart-list{display:grid;gap:12px}
 .cart-panel .cart-row{padding:20px 18px 20px 52px;border:1px solid #e5e7ea;border-radius:14px;align-items:flex-start}
 .cart-panel .cart-row::before{left:18px;top:23px}
+.cart-panel .cart-row::before{content:none}
+.cart-item-content{min-width:0;flex:1}
+.cart-row-select{position:absolute;left:17px;top:22px;display:grid;place-items:center;cursor:pointer}
+.cart-row-select input,.cart-select-all input{width:18px;height:18px;margin:0;accent-color:var(--red);cursor:pointer}
+.cart-panel .cart-row.is-selected{border-color:#e996a3;background:#fff8fa}
+.cart-bulk-controls{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:22px;padding:14px 16px;background:#f6f7f8;border:1px solid #e5e7ea;border-radius:12px}
+.cart-select-all{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:600;cursor:pointer}
+.cart-selected-count{font-size:13px;color:#747b86}
+.cart-bulk-actions{display:flex;gap:10px;margin-left:auto;flex-wrap:wrap}
+.cart-bulk-actions button{min-height:36px;padding:7px 11px;border:1px solid #e1e4e9;background:#fff;border-radius:8px;font-size:13px;font-weight:500;transition:background .2s,border-color .2s,color .2s}
+.cart-bulk-actions button:hover:enabled{color:var(--red);border-color:#efb6c0;background:#fff5f7}
+.cart-bulk-actions button:disabled{opacity:.45;cursor:default}
 .cart-panel .cart-row-right{align-items:flex-start;gap:16px}
 .cart-panel .cart-row-right .icon-button{border:1px solid #e7e9ec;border-radius:8px;width:32px;height:32px;color:#82868b;display:grid;place-items:center}
 .cart-panel .cart-row-right .icon-button:hover{color:var(--red);background:#fff0f1;border-color:#f2b9bf}
@@ -70,6 +82,10 @@
  .cart-empty .button{width:100%;min-width:0}
  .cart-panel .cart-row{padding:16px 16px 16px 42px}
  .cart-panel .cart-row::before{left:13px;top:20px}
+ .cart-row-select{left:13px;top:18px}
+ .cart-bulk-controls{gap:12px;padding:13px}
+ .cart-bulk-actions{width:100%;margin-left:0}
+ .cart-bulk-actions button{flex:1;font-size:12px;min-height:40px}
  .cart-panel .cart-row-right{align-items:center}
  .cart-panel .cart-summary{padding:16px;font-size:14px}
  .cart-panel .cart-summary strong{font-size:23px;overflow-wrap:anywhere;max-width:100%}

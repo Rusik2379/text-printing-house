@@ -1,6 +1,33 @@
 /* Shared calculator appearance, based on /nakleyki-i-stikery/figurnye-stikery/.
    Loaded last so each service keeps its own fields and pricing controller. */
 :root{--calculator-accent:var(--red);--calculator-panel:#f6f6f7;--calculator-line:#ebedef}
+.calculator-select-label{display:block;color:#6c7380;font-size:13px;font-weight:600;line-height:1.4}
+.calculator-select-label select{display:block;width:100%;min-width:0;min-height:44px;margin-top:12px;padding:10px 12px;border:1px solid #dddfe6;border-radius:8px;background:#fff;color:#20242b;font-size:14px;font-weight:400;line-height:1.5}
+.calculator-select-label select:focus{outline:2px solid #ffb5bb;border-color:var(--calculator-accent)}
+.calculator-select-label select:disabled{background:#eeeef0;color:#858c98}
+.calculator-select-label select[aria-invalid=true]{border-color:var(--calculator-accent)}
+.calculator-compact .cc-parameters{gap:24px}
+.calculator-compact .cc-param-column{gap:22px}
+.calculator-compact .cc-parameters:not(.project-multi){grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.calculator-compact .cc-parameters:not(.project-multi)>.cc-param-column{display:contents}
+.calculator-compact .cc-parameters:not(.project-multi)>.cc-quantity{grid-column:1/-1;border-top:1px solid #e1e4e9;padding-top:22px}
+.calculator-compact .cc-parameters:not(.project-multi) .cc-quantity-stack{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 16px}
+.calculator-compact .cc-parameters:not(.project-multi) .cc-quantity-stack>.cc-custom-option{grid-column:1/-1}
+.calculator-compact .project-sheet-row{padding:20px;border:1px solid #e1e4e9;border-radius:12px;background:#fff}
+.calculator-compact .project-sheet-list{gap:14px}
+.calculator-compact .project-row-heading{margin-bottom:18px}
+.calculator-compact .project-row-heading h4{margin:0;font-size:15px;color:var(--ink)}
+.calculator-compact .project-row-fields{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.calculator-compact[data-project-service="2.6"] .project-row-fields{grid-template-columns:repeat(4,minmax(0,1fr))}
+.calculator-compact .project-row-fields :is(input,select){background:#f8f9fb}
+.calculator-compact .project-row-price{margin-top:18px;padding-top:12px;border-top:1px solid #eef0f3}
+@media(max-width:700px){
+ .calculator-select-label select{font-size:16px}
+ .calculator-compact .cc-parameters:not(.project-multi) .cc-quantity-stack{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .calculator-compact .project-sheet-row{padding:16px}
+ .calculator-compact .project-row-fields,.calculator-compact[data-project-service="2.6"] .project-row-fields{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+ .calculator-compact .project-row-fields .cc-field:last-child:nth-child(odd){grid-column:1/-1}
+}
 .sp-calculator-section .sp-section-title,
 .cc-heading{text-align:center;margin-bottom:29px}
 .sp-calculator-section .sp-section-title h2,

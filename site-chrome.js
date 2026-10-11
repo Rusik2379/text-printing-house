@@ -38,11 +38,12 @@
  for(const link of document.querySelectorAll('.nav-category-link'))if(location.pathname.startsWith(new URL(link.href).pathname))link.setAttribute('aria-current','true');
  document.addEventListener('click',event=>{if(!header.contains(event.target)&&nav.classList.contains('mobile-open')){nav.classList.remove('mobile-open');document.querySelector('#mobile-menu-button').setAttribute('aria-expanded','false');}});
 
- const top=document.createElement('button');top.type='button';top.className='back-to-top';top.title='Наверх';top.setAttribute('aria-label','Вернуться наверх');top.innerHTML='<span aria-hidden="true">↑</span>';top.hidden=true;document.body.append(top);
+ const top=document.createElement('button');top.type='button';top.className='back-to-top';top.title='Наверх';top.setAttribute('aria-label','Вернуться наверх');top.setAttribute('aria-hidden','true');top.tabIndex=-1;top.inert=true;top.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg>';document.body.append(top);
  const dialog=document.querySelector('#dialog'),cookie=document.querySelector('#cookie-banner');
  const bottomPanels=[cookie,...document.querySelectorAll('.mobile-bottom,.sp-mobile-total')].filter(Boolean);
  function updateTop(){
-  top.hidden=scrollY<500||Boolean(dialog?.open)||nav.classList.contains('mobile-open');
+  const visible=scrollY>=500&&!dialog?.open&&!nav.classList.contains('mobile-open');
+  top.classList.toggle('is-visible',visible);top.setAttribute('aria-hidden',String(!visible));top.tabIndex=visible?0:-1;top.inert=!visible;
   let bottom=24;
   for(const n of bottomPanels){
    if(!n||n.hidden||getComputedStyle(n).display==='none')continue;
