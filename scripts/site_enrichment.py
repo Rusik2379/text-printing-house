@@ -2,7 +2,7 @@
 from pathlib import Path
 from html import escape,unescape
 from html.parser import HTMLParser
-import json,re
+import hashlib,json,re
 from service_requirements_diagrams import model
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -99,6 +99,43 @@ def chrome(prefix):
     return f'''<div class="topbar"><div class="container topbar-inner chrome-topbar topbar-grid"><div class="chrome-location"><a href="{prefix}contacts/"><b>Барнаул</b><span>пр-т Строителей, 11</span></a><span class="chrome-hours">Пн–Пт 09:00–18:00 · Сб–Вс выходной</span></div><div class="chrome-map-links" aria-label="Карты и рейтинги">{badges}</div><div class="chrome-contact-links"><a class="social-mini max" href="https://max.ru/u/f9LHodD0cOII3pfsxMqRJ6CzaCIs8OuOO5zmsR3qDGblmxnJwlsxM4WiGoY" target="_blank" rel="noopener" aria-label="Написать в MAX">{messenger_logo('max')}</a><a class="social-mini tg" href="https://t.me/tekkkstos" target="_blank" rel="noopener" aria-label="Написать в Telegram">{messenger_logo('telegram')}</a><a class="topbar-phone" href="tel:+79236547896">+7 (923) 654-78-96</a></div></div></div>
 <header class="site-header chrome-header" id="header"><div class="container header-main"><a class="brand" href="{prefix or './'}" aria-label="ТЕКСТ — на главную"><img src="{prefix}assets/brand-mark.webp" alt="" width="52" height="52"><span class="chrome-brand-text"><strong>ТЕКСТ</strong><small>СТУДИЯ ПЕЧАТИ</small></span></a><form class="home-search" id="home-search" role="search"><div class="home-search-field"><label for="home-search-input" class="sr-only">Найти услугу</label>{icon('search')}<input id="home-search-input" data-header-search type="search" placeholder="Что будем печатать? Найдите свою услугу" autocomplete="off" aria-controls="header-search-results" aria-expanded="false" aria-autocomplete="list" role="combobox"><button class="icon-button chrome-search-close" type="button" data-header-search-close aria-label="Закрыть поиск">{icon('close')}</button></div><div class="header-search-results" id="header-search-results" role="listbox" aria-label="Результаты поиска" hidden></div></form><div class="header-actions"><button type="button" class="icon-button chrome-search-toggle" data-header-search-toggle aria-label="Открыть поиск" aria-expanded="false" aria-controls="home-search">{icon('search')}</button><button class="cart-button" data-action="cart" aria-label="Открыть корзину">{cart}<span class="cart-label">Корзина</span><span class="cart-count" id="cart-count">0</span></button><button class="icon-button mobile-menu-button" id="mobile-menu-button" aria-label="Открыть меню" aria-expanded="false" aria-controls="navigation">{icon('menu')}</button></div></div><nav class="container navigation" id="navigation" aria-label="Главное меню">{navigation}</nav><div class="mega-menu" id="mega-menu" hidden></div></header>'''
 
+def standard_service_hero(source,prefix):
+    """Give sticker and wide-format pages the existing CC service introduction.
+
+    Replace only the legacy introduction; calculators and enriched content keep
+    their current markup. Used during enrichment, including future page builds.
+    """
+    heroes=[n for n in Sections(source).sections if 'sp-hero-section' in n['attrs'].get('class','').split()]
+    if not heroes:return source
+    hero=heroes[0];fragment=source[hero['start']:hero['end']]
+    if 'class="cc-hero"' not in fragment:
+        heading=re.search(r'<h1\b[^>]*>(.*?)</h1>',fragment,re.S)[1]
+        heading=heading.replace(' в Барнауле',' <span class="cc-hero-place">в Барнауле</span>')
+        intro=re.search(r'<p class="sp-intro">(.*?)</p>',fragment,re.S)
+        if not intro:intro=re.search(r'</h1>\s*<p>(.*?)</p>',fragment,re.S)
+        assert intro,'The service introduction must be retained'
+        breadcrumbs=re.search(r'<nav\b.*?</nav>',fragment,re.S)[0].replace('sp-breadcrumbs','company-breadcrumbs')
+        actions=re.search(r'<div class="sp-hero-actions">(.*?)</div>',fragment,re.S)
+        if actions:
+            actions=actions[1].replace('button-outline','button-white')
+            actions=re.sub(r'<button(?![^>]*\btype=)', '<button type="button"', actions)
+        else:
+            actions='<a class="button button-primary" href="#services">Выбрать услугу '+icon('arrow')+'</a><button class="button button-white" type="button" data-action="contacts">Задать вопрос</button>'
+            source=source[:hero['end']]+source[hero['end']:].replace('<section class="container sp-section">','<section class="container sp-section" id="services">',1)
+        art=re.search(r'<img\b[^>]*>',fragment)
+        art=art[0] if art else f'<img src="{prefix}assets/stickerpack-robot-transparent.webp" alt="Робот ТЕКСТ со стикерпаками" width="1254" height="1254" fetchpriority="high">'
+        benefits=[('calculator','Стоимость онлайн','Параметры и состав цены перед заказом'),('check','Проверим детали','Файл или оригиналы согласуем до работы'),('pin','Удобно получить','Барнаул, Строителей, 11 · отправка по России')]
+        benefits='<div class="cc-benefits">'+''.join(f'<article>{icon(i)}<div><h2>{title}</h2><p>{detail}</p></div></article>' for i,title,detail in benefits)+'</div>'
+        block=f'<section class="container sp-hero-section">{breadcrumbs}<section class="cc-hero" aria-labelledby="service-title"><div><h1 id="service-title">{heading}</h1><p>{intro[1]}</p><div class="company-actions">{actions}</div></div><div class="cc-art">{art}</div></section>{benefits}</section>'
+        source=source[:hero['start']]+block+source[hero['end']:]
+    # Reuse the same typography, buttons, benefit strip and mobile rules as
+    # copy center, leaflet printing and UV services, rather than a second skin.
+    for name in ['company-pages.css','copycenter.css']:
+        if re.search(r'href="[^"]*'+re.escape(name)+r'(?:\?[^"]*)?"',source):continue
+        version=hashlib.sha256((ROOT/name).read_bytes()).hexdigest()[:12]
+        source=source.replace('</head>',f'<link rel="stylesheet" href="{prefix}{name}?v={version}">\n</head>',1)
+    return source
+
 def ensure_sticker_category():
     target=ROOT/'nakleyki-i-stikery/index.html'
     if target.is_file():return
@@ -121,6 +158,8 @@ def apply_site_enrichment():
     for file in sorted(ROOT.rglob('*.html')):
         if any(p.startswith('.') or p in ('preview','node_modules') for p in file.relative_to(ROOT).parts):continue
         source=file.read_text(encoding='utf8');prefix='../'*len(file.parent.relative_to(ROOT).parts)
+        if file.relative_to(ROOT).parts[0] in ('nakleyki-i-stikery','shirokiy-format'):
+            source=standard_service_hero(source,prefix)
         # The shared header includes the location strip, but preserves skip links.
         source=re.sub(r'<div class="topbar">.*?</header>',lambda _:chrome(prefix),source,count=1,flags=re.S)
         for name,tag in [('faq.css','link'),('faq.js','script'),('site-chrome.css','link'),('service-enrichment.css','link'),('site-chrome.js','script')]:

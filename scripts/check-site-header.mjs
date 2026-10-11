@@ -42,7 +42,20 @@ try{
    assert.equal(await page.locator('[data-header-search-toggle]').getAttribute('aria-expanded'),'false');
    assert.equal(await page.locator('[data-header-search]').isVisible(),false);
   }
-  if(width<=1100){await page.locator('#mobile-menu-button').click();await page.locator('[data-menu="Наклейки и стикеры"]').click();assert.equal(await page.locator('#mega-menu a').count(),11);await page.keyboard.press('Escape');}
+  if(width<=1100){
+   await page.locator('#mobile-menu-button').click();
+   const navBounds=await page.locator('#navigation').boundingBox(),headerBounds=await page.locator('#header').boundingBox();
+   assert.ok(Math.abs(navBounds.y-headerBounds.y-headerBounds.height)<=1,'Mobile menu starts directly below the header');
+   assert.ok(Math.abs(navBounds.y+navBounds.height-900)<=1,'Mobile menu fills the available viewport height');
+   await page.locator('[data-menu="Наклейки и стикеры"]').click();assert.equal(await page.locator('#mega-menu a').count(),11);
+   const lastLink=page.locator('#mega-menu a').last();await lastLink.scrollIntoViewIfNeeded();
+   const linkBounds=await lastLink.boundingBox();
+   assert.ok(linkBounds.y>=navBounds.y&&linkBounds.y+linkBounds.height<=900,'Last submenu item can be scrolled fully into view');
+   const expectedPath=new URL(await lastLink.getAttribute('href'),page.url()).pathname;
+   await lastLink.click();assert.equal(new URL(page.url()).pathname,expectedPath,'Mobile submenu link navigates to its service');
+   await page.locator('#mobile-menu-button').click();await page.keyboard.press('Escape');
+   assert.equal(await page.locator('#navigation').isVisible(),false,'Escape closes mobile navigation');
+  }
   else{await page.locator('[data-menu="Широкий формат"]').hover();assert.equal(await page.locator('#mega-menu a').count(),9);await page.keyboard.press('Escape');}
   console.log(`${width}px: eight templates, messenger logos, compact rows and navigation passed`);
  }

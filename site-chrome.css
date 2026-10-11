@@ -76,6 +76,8 @@
  .chrome-contact-links .social-mini{width:36px;min-width:36px;height:36px;padding:3px}
 }
 @media(max-width:1100px){
+ /* A backdrop filter would constrain the fixed mobile menu to the header. */
+ .chrome-header{background:#fff;-webkit-backdrop-filter:none;backdrop-filter:none}
  .chrome-header .header-main{height:76px;min-height:76px;gap:16px}
  .chrome-header .brand>img{width:42px;height:42px}.chrome-brand-text strong{font-size:29px}.chrome-brand-text small{font-size:10px}
  .chrome-header .home-search-field input{font-size:13px}.chrome-header .cart-label{display:none}
