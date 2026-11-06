@@ -1,3 +1,5 @@
 * text=auto eol=lf
 # Keep the original PDF bytes, including embedded fonts and stream offsets.
 *.pdf binary
+# Vendored files have pinned content hashes; checkout must preserve their exact bytes.
+/vendor/** -text -whitespace
