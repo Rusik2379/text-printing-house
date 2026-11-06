@@ -1,0 +1,11 @@
+.category-with-faq main {
+  padding-bottom: 96px;
+}
+.category-with-faq .home-faq-section {
+  margin-bottom: 0;
+}
+@media (max-width: 700px) {
+  .category-with-faq main {
+    padding-bottom: 56px;
+  }
+}

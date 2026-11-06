@@ -1,0 +1,9 @@
+/* One typeface across the public site, calculators, forms and administration. */
+:root {
+  --font: Arial, sans-serif;
+  --font-editorial: Arial, sans-serif;
+}
+body,
+body * {
+  font-family: var(--font) !important;
+}

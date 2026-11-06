@@ -1,0 +1,3955 @@
+{
+  "cases": {
+    "doc10": {
+      "id": "1.1",
+      "configuration": {
+        "B7": 10
+      }
+    },
+    "doc100": {
+      "id": "1.1",
+      "configuration": {
+        "B7": 100
+      }
+    },
+    "doc50duplex": {
+      "id": "1.1",
+      "configuration": {
+        "B7": 50,
+        "B6": "двусторонняя"
+      }
+    },
+    "diploma60": {
+      "id": "1.6",
+      "configuration": {
+        "B8": 50,
+        "B9": 10,
+        "B13": 0
+      }
+    },
+    "diploma100": {
+      "id": "1.6",
+      "configuration": {
+        "B8": 100,
+        "B9": 0,
+        "B13": 0
+      }
+    },
+    "diploma200": {
+      "id": "1.6",
+      "configuration": {
+        "B8": 200,
+        "B9": 0,
+        "B13": 0
+      }
+    },
+    "abstract": {
+      "id": "1.9",
+      "configuration": {
+        "B4": 20,
+        "B5": 4,
+        "B8": 10
+      }
+    },
+    "copy50": {
+      "id": "1.2",
+      "configuration": {
+        "B4": "A4",
+        "B5": "Ч/Б",
+        "B6": "С автоподатчика",
+        "B7": 50
+      }
+    },
+    "copycolor10": {
+      "id": "1.2",
+      "configuration": {
+        "B4": "A3",
+        "B5": "Цвет",
+        "B6": "Со стекла",
+        "B7": 10
+      }
+    },
+    "photo6": {
+      "id": "1.3",
+      "configuration": {
+        "B4": "A6",
+        "B5": "Сатин",
+        "B8": 1
+      }
+    },
+    "photo4": {
+      "id": "1.3",
+      "configuration": {
+        "B4": "A4",
+        "B5": "Сатин",
+        "B8": 11
+      }
+    },
+    "photo4unit": {
+      "id": "1.3",
+      "configuration": {
+        "B4": "A4",
+        "B5": "Сатин",
+        "B8": 11
+      },
+      "divisor": 11,
+      "digits": 2
+    },
+    "photo2": {
+      "id": "1.3",
+      "configuration": {
+        "B4": "A2",
+        "B5": "Сатин",
+        "B8": 1
+      }
+    },
+    "lam1": {
+      "id": "1.4",
+      "configuration": {
+        "B4": "A4",
+        "B5": "100 мкм",
+        "B6": 1
+      }
+    },
+    "lam20": {
+      "id": "1.4",
+      "configuration": {
+        "B4": "A4",
+        "B5": "100 мкм",
+        "B6": 20
+      }
+    },
+    "lamunit": {
+      "id": "1.4",
+      "configuration": {
+        "B4": "A4",
+        "B5": "100 мкм",
+        "B6": 20
+      },
+      "divisor": 20,
+      "digits": 2
+    },
+    "minlam": {
+      "id": "1.4",
+      "kind": "minimum"
+    },
+    "spring12": {
+      "id": "1.5",
+      "configuration": {
+        "B4": "Металл",
+        "B5": "A3",
+        "B7": "10 мм (до 80 л.)",
+        "B8": 12
+      }
+    },
+    "scan50": {
+      "id": "1.7",
+      "configuration": {
+        "B4": "ТЕКСТОВЫЙ",
+        "B5": "A4",
+        "B6": "НЕТ",
+        "B7": 50
+      }
+    },
+    "scan3": {
+      "id": "1.7",
+      "configuration": {
+        "B5": "A3",
+        "B6": "ДА",
+        "B7": 10
+      }
+    },
+    "eng2": {
+      "id": "2.1",
+      "configuration": {
+        "B4": "Под A3",
+        "rows": [
+          {
+            "B": "A2",
+            "C": "Ч/Б",
+            "D": 10
+          }
+        ]
+      }
+    },
+    "eng3": {
+      "id": "2.1",
+      "configuration": {
+        "B4": "Без фальцовки",
+        "rows": [
+          {
+            "B": "A3",
+            "C": "Цвет",
+            "D": 20
+          }
+        ]
+      }
+    },
+    "eng1": {
+      "id": "2.1",
+      "configuration": {
+        "B4": "Под A3",
+        "rows": [
+          {
+            "B": "A1",
+            "C": "Ч/Б",
+            "D": 5
+          }
+        ]
+      }
+    },
+    "foldA2": {
+      "id": "2.3",
+      "configuration": {
+        "B4": "A2",
+        "B5": 10
+      }
+    },
+    "foldA1": {
+      "id": "2.3",
+      "configuration": {
+        "B4": "A1",
+        "B5": 10
+      }
+    },
+    "foldA0": {
+      "id": "2.3",
+      "configuration": {
+        "B4": "A0 (1м²)",
+        "B5": 10
+      }
+    },
+    "projectbind": {
+      "id": "2.2",
+      "configuration": {
+        "B4": "Пластик",
+        "B5": "A4",
+        "B7": "10–12 мм (до 80 л.)",
+        "B8": 10
+      }
+    },
+    "cards100": {
+      "id": "3.1",
+      "configuration": {
+        "B6": 100
+      }
+    },
+    "cards500": {
+      "id": "3.1",
+      "configuration": {
+        "B5": "двусторонние",
+        "B6": 500
+      }
+    },
+    "cardslam": {
+      "id": "3.1",
+      "configuration": {
+        "B5": "двусторонние",
+        "B6": 1000,
+        "B7": "да"
+      }
+    },
+    "leaf6": {
+      "id": "3.2",
+      "configuration": {
+        "B4": "A6",
+        "B7": 120,
+        "B8": "Односторонняя",
+        "B10": 50
+      }
+    },
+    "leaf5": {
+      "id": "3.2",
+      "configuration": {
+        "B4": "A5",
+        "B7": 160,
+        "B8": "Двусторонняя",
+        "B10": 100
+      }
+    },
+    "leaf4": {
+      "id": "3.2",
+      "configuration": {
+        "B4": "A4",
+        "B7": 250,
+        "B8": "Двусторонняя",
+        "B10": 50
+      }
+    },
+    "book1": {
+      "id": "3.3",
+      "configuration": {
+        "B4": "A4",
+        "B5": 120,
+        "B7": 1,
+        "B8": 100
+      }
+    },
+    "book2": {
+      "id": "3.3",
+      "configuration": {
+        "B4": "A4",
+        "B5": 120,
+        "B7": 2,
+        "B8": 100
+      }
+    },
+    "book3": {
+      "id": "3.3",
+      "configuration": {
+        "B4": "A3",
+        "B5": 160,
+        "B7": 2,
+        "B8": 50
+      }
+    },
+    "bookdifference": {
+      "kind": "difference",
+      "left": "book2",
+      "right": "book1"
+    },
+    "brochure16": {
+      "id": "3.4",
+      "configuration": {
+        "B4": "A5",
+        "B7": 16,
+        "B8": 10
+      }
+    },
+    "brochure24": {
+      "id": "3.4",
+      "configuration": {
+        "B4": "A5",
+        "B7": 24,
+        "B8": 50
+      }
+    },
+    "brochure32": {
+      "id": "3.4",
+      "configuration": {
+        "B4": "A4",
+        "B7": 32,
+        "B8": 50
+      }
+    },
+    "award": {
+      "id": "3.7",
+      "configuration": {
+        "B7": 250,
+        "B10": 10
+      }
+    },
+    "postcard": {
+      "id": "3.6",
+      "configuration": {}
+    },
+    "tags100": {
+      "id": "3.10",
+      "configuration": {
+        "B5": 50,
+        "B6": 90,
+        "B7": 200,
+        "B8": "ОДНОСТОРОННЯЯ",
+        "B9": 100
+      }
+    },
+    "mintags": {
+      "id": "3.10",
+      "kind": "minimum"
+    },
+    "labelvinyl": {
+      "id": "4.5",
+      "configuration": {
+        "width": 50,
+        "height": 30,
+        "quantity": 500,
+        "print": "vinyl",
+        "material": "white"
+      }
+    },
+    "labeluv": {
+      "id": "4.5",
+      "configuration": {
+        "width": 50,
+        "height": 30,
+        "quantity": 500,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "labelclear": {
+      "id": "4.5",
+      "configuration": {
+        "width": 50,
+        "height": 30,
+        "quantity": 500,
+        "print": "uv",
+        "material": "transparent"
+      }
+    },
+    "figvinyl": {
+      "id": "4.1",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "vinyl",
+        "material": "white"
+      }
+    },
+    "figuv": {
+      "id": "4.1",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "fig70": {
+      "id": "4.1",
+      "configuration": {
+        "width": 70,
+        "height": 70,
+        "quantity": 500,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "roundvinyl": {
+      "id": "4.2",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "vinyl",
+        "material": "white"
+      }
+    },
+    "rounduv": {
+      "id": "4.2",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "round70": {
+      "id": "4.2",
+      "configuration": {
+        "width": 70,
+        "height": 70,
+        "quantity": 500,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "rectvinyl": {
+      "id": "4.3",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "vinyl",
+        "material": "white"
+      }
+    },
+    "rectuv": {
+      "id": "4.3",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "rect70": {
+      "id": "4.3",
+      "configuration": {
+        "width": 70,
+        "height": 70,
+        "quantity": 500,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "fig3d": {
+      "id": "4.8",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "round3d": {
+      "id": "4.9",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "rect3d": {
+      "id": "4.10",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "dtf100": {
+      "id": "4.6",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "uv",
+        "material": "transfer"
+      }
+    },
+    "dtf70": {
+      "id": "4.6",
+      "configuration": {
+        "width": 70,
+        "height": 70,
+        "quantity": 100,
+        "print": "uv",
+        "material": "transfer"
+      }
+    },
+    "dtf500": {
+      "id": "4.6",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 500,
+        "print": "uv",
+        "material": "transfer"
+      }
+    },
+    "pack50": {
+      "id": "4.4",
+      "configuration": {
+        "width": 100,
+        "height": 150,
+        "quantity": 50,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "pack100": {
+      "id": "4.4",
+      "configuration": {
+        "width": 100,
+        "height": 150,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "packlarge": {
+      "id": "4.4",
+      "configuration": {
+        "width": 150,
+        "height": 200,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "roundunit": {
+      "id": "4.2",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "vinyl",
+        "material": "white"
+      },
+      "divisor": 100,
+      "digits": 2
+    },
+    "round70unit": {
+      "id": "4.2",
+      "configuration": {
+        "width": 70,
+        "height": 70,
+        "quantity": 500,
+        "print": "uv",
+        "material": "white"
+      },
+      "divisor": 500,
+      "digits": 2
+    },
+    "pack50unit": {
+      "id": "4.4",
+      "configuration": {
+        "width": 100,
+        "height": 150,
+        "quantity": 50,
+        "print": "uv",
+        "material": "white"
+      },
+      "divisor": 50,
+      "digits": 2
+    },
+    "pack100unit": {
+      "id": "4.4",
+      "configuration": {
+        "width": 100,
+        "height": 150,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      },
+      "divisor": 100,
+      "digits": 2
+    },
+    "pack3d": {
+      "id": "4.11",
+      "configuration": {
+        "width": 110,
+        "height": 110,
+        "stickerWidth": 25,
+        "stickerHeight": 25,
+        "perPack": 9,
+        "quantity": 50
+      }
+    },
+    "pack3dunit": {
+      "id": "4.11",
+      "configuration": {
+        "width": 110,
+        "height": 110,
+        "stickerWidth": 25,
+        "stickerHeight": 25,
+        "perPack": 9,
+        "quantity": 50
+      },
+      "divisor": 50,
+      "digits": 2
+    },
+    "paper500": {
+      "id": "4.7",
+      "configuration": {
+        "width": 50,
+        "height": 40,
+        "quantity": 500,
+        "cut": "yes"
+      }
+    },
+    "mindtf": {
+      "id": "4.6",
+      "kind": "minimum"
+    },
+    "banner1": {
+      "id": "5.1",
+      "configuration": {
+        "width": 1000,
+        "height": 1000,
+        "quantity": 1
+      }
+    },
+    "banner2": {
+      "id": "5.1",
+      "configuration": {
+        "width": 1000,
+        "height": 2000,
+        "quantity": 1
+      }
+    },
+    "banner6": {
+      "id": "5.1",
+      "configuration": {
+        "width": 2000,
+        "height": 3000,
+        "quantity": 1
+      }
+    },
+    "poster2": {
+      "id": "5.2",
+      "configuration": {
+        "width": 420,
+        "height": 594,
+        "quantity": 1
+      }
+    },
+    "poster1": {
+      "id": "5.2",
+      "configuration": {
+        "width": 594,
+        "height": 841,
+        "quantity": 1
+      }
+    },
+    "poster0": {
+      "id": "5.2",
+      "configuration": {
+        "width": 841,
+        "height": 1189,
+        "quantity": 1
+      }
+    },
+    "poster900": {
+      "id": "5.2",
+      "configuration": {
+        "width": 600,
+        "height": 900,
+        "quantity": 1
+      }
+    },
+    "canvas500": {
+      "id": "5.4",
+      "configuration": {
+        "width": 500,
+        "height": 700,
+        "quantity": 1
+      }
+    },
+    "canvas600": {
+      "id": "5.4",
+      "configuration": {
+        "width": 600,
+        "height": 900,
+        "quantity": 1
+      }
+    },
+    "canvas1": {
+      "id": "5.4",
+      "configuration": {
+        "width": 1000,
+        "height": 1000,
+        "quantity": 1
+      }
+    },
+    "film1": {
+      "id": "5.5",
+      "configuration": {
+        "width": 1000,
+        "height": 1000,
+        "quantity": 1
+      }
+    },
+    "film2": {
+      "id": "5.5",
+      "configuration": {
+        "width": 1000,
+        "height": 2000,
+        "quantity": 1
+      }
+    },
+    "film5": {
+      "id": "5.5",
+      "configuration": {
+        "width": 1000,
+        "height": 5000,
+        "quantity": 1
+      }
+    },
+    "pvc": {
+      "id": "5.8",
+      "configuration": {
+        "width": 500,
+        "height": 500,
+        "quantity": 10,
+        "thickness": "3"
+      }
+    },
+    "foam": {
+      "id": "5.9",
+      "configuration": {
+        "width": 500,
+        "height": 500,
+        "quantity": 10,
+        "thickness": "5"
+      }
+    },
+    "cut1": {
+      "id": "5.7",
+      "configuration": {
+        "width": 500,
+        "height": 500,
+        "quantity": 1,
+        "complexity": "complex"
+      }
+    },
+    "cut10": {
+      "id": "5.7",
+      "configuration": {
+        "width": 600,
+        "height": 1000,
+        "quantity": 10,
+        "complexity": "simple"
+      }
+    },
+    "cut50": {
+      "id": "5.7",
+      "configuration": {
+        "width": 600,
+        "height": 2000,
+        "quantity": 50,
+        "complexity": "complex",
+        "material": "color"
+      }
+    },
+    "bannerm2": {
+      "id": "5.1",
+      "configuration": {
+        "width": 2000,
+        "height": 3000,
+        "quantity": 1
+      },
+      "divisor": 6,
+      "digits": 2
+    },
+    "filmm2": {
+      "id": "5.5",
+      "configuration": {
+        "width": 1000,
+        "height": 5000,
+        "quantity": 1
+      },
+      "divisor": 5,
+      "digits": 2
+    },
+    "pvcunit": {
+      "id": "5.8",
+      "configuration": {
+        "width": 500,
+        "height": 500,
+        "quantity": 10,
+        "thickness": "3"
+      },
+      "divisor": 10,
+      "digits": 2
+    },
+    "minbanner": {
+      "id": "5.1",
+      "kind": "minimum"
+    },
+    "minpvc": {
+      "id": "5.8",
+      "kind": "minimum"
+    },
+    "minfoam": {
+      "id": "5.9",
+      "kind": "minimum"
+    },
+    "mincut": {
+      "id": "5.7",
+      "kind": "minimum"
+    },
+    "uv100": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 3,
+        "B7": 100,
+        "B8": 100,
+        "B9": 10,
+        "B10": "Нет"
+      }
+    },
+    "uvA4": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 3,
+        "B7": 210,
+        "B8": 297,
+        "B9": 10,
+        "B10": "Нет"
+      }
+    },
+    "uvlarge": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 3,
+        "B7": 300,
+        "B8": 400,
+        "B9": 20,
+        "B10": "Нет"
+      }
+    },
+    "uv200": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 3,
+        "B7": 200,
+        "B8": 100,
+        "B9": 10,
+        "B10": "Нет"
+      }
+    },
+    "uvglass": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "Оргстекло",
+        "B5": 3,
+        "B7": 200,
+        "B8": 100,
+        "B9": 10,
+        "B10": "Нет"
+      }
+    },
+    "uvwhite": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 5,
+        "B7": 300,
+        "B8": 200,
+        "B9": 10,
+        "B10": "Да"
+      }
+    },
+    "uv100unit": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 3,
+        "B7": 100,
+        "B8": 100,
+        "B9": 10,
+        "B10": "Нет"
+      },
+      "divisor": 10,
+      "digits": 2
+    },
+    "uvA4unit": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 3,
+        "B7": 210,
+        "B8": 297,
+        "B9": 10,
+        "B10": "Нет"
+      },
+      "divisor": 10,
+      "digits": 2
+    },
+    "uvlargeunit": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 3,
+        "B7": 300,
+        "B8": 400,
+        "B9": 20,
+        "B10": "Нет"
+      },
+      "divisor": 20,
+      "digits": 2
+    },
+    "minuv": {
+      "id": "6.5",
+      "kind": "minimum"
+    },
+    "metal": {
+      "id": "6.8",
+      "configuration": {
+        "B4": "Нержавейка AISI",
+        "B5": 1,
+        "B6": 90,
+        "B7": 110,
+        "B8": 10
+      }
+    },
+    "metalrate": {
+      "id": "6.8",
+      "configuration": {
+        "B4": "Нержавейка AISI",
+        "B5": 1,
+        "B6": 90,
+        "B7": 110,
+        "B8": 10
+      },
+      "divisor": 990,
+      "digits": 2
+    },
+    "minmetal": {
+      "id": "6.8",
+      "kind": "minimum"
+    },
+    "engrave30": {
+      "id": "6.4",
+      "configuration": {
+        "B4": "Фанера / дерево",
+        "B6": 100,
+        "B7": 100,
+        "B8": 30,
+        "B10": 10
+      }
+    },
+    "engrave60": {
+      "id": "6.4",
+      "configuration": {
+        "B4": "Фанера / дерево",
+        "B6": 100,
+        "B7": 100,
+        "B8": 60,
+        "B10": 10
+      }
+    },
+    "engrave100": {
+      "id": "6.4",
+      "configuration": {
+        "B4": "Фанера / дерево",
+        "B6": 100,
+        "B7": 100,
+        "B8": 100,
+        "B10": 10
+      }
+    },
+    "laser1": {
+      "id": "6.3",
+      "configuration": {
+        "B4": "Фанера",
+        "B5": 3,
+        "B6": 300,
+        "B7": 200,
+        "B9": 10,
+        "B10": "ПРОСТАЯ"
+      }
+    },
+    "laser2": {
+      "id": "6.3",
+      "configuration": {
+        "B4": "Фанера",
+        "B5": 6,
+        "B6": 500,
+        "B7": 500,
+        "B9": 20,
+        "B10": "ПРОСТАЯ"
+      }
+    },
+    "laser3": {
+      "id": "6.3",
+      "configuration": {
+        "B4": "Акрил / оргстекло",
+        "B5": 3,
+        "B6": 600,
+        "B7": 400,
+        "B9": 20,
+        "B10": "СЛОЖНАЯ"
+      }
+    },
+    "key50": {
+      "id": "6.6",
+      "configuration": {
+        "B5": "Акрил прозрачный",
+        "B8": 40,
+        "B9": 60,
+        "B10": 50,
+        "B7": "УФ-ПЕЧАТЬ 1 СТОРОНА",
+        "B11": "ФИГУРНАЯ",
+        "B12": "Кольцо с цепочкой"
+      }
+    },
+    "key100": {
+      "id": "6.6",
+      "configuration": {
+        "B5": "Акрил прозрачный",
+        "B8": 40,
+        "B9": 60,
+        "B10": 100,
+        "B7": "УФ-ПЕЧАТЬ 2 СТОРОНЫ",
+        "B11": "ФИГУРНАЯ",
+        "B12": "Кольцо с цепочкой"
+      }
+    },
+    "keywood": {
+      "id": "6.6",
+      "configuration": {
+        "B5": "Фанера",
+        "B8": 40,
+        "B9": 60,
+        "B10": 100,
+        "B7": "ГРАВИРОВКА 1 СТОРОНА",
+        "B11": "ФИГУРНАЯ",
+        "B12": "Кольцо с цепочкой"
+      }
+    },
+    "number50": {
+      "id": "6.9",
+      "configuration": {
+        "B5": "Акрил прозрачный",
+        "B8": 50,
+        "B9": 70,
+        "B10": 50,
+        "B7": "ГРАВИРОВКА 1 СТОРОНА",
+        "B11": "ПРОСТАЯ",
+        "B12": "Без фурнитуры"
+      }
+    },
+    "number100": {
+      "id": "6.9",
+      "configuration": {
+        "B5": "Акрил прозрачный",
+        "B8": 50,
+        "B9": 70,
+        "B10": 100,
+        "B7": "УФ-ПЕЧАТЬ 1 СТОРОНА",
+        "B11": "ПРОСТАЯ",
+        "B12": "Без фурнитуры"
+      }
+    },
+    "numberwood": {
+      "id": "6.9",
+      "configuration": {
+        "B5": "Фанера",
+        "B8": 50,
+        "B9": 70,
+        "B10": 100,
+        "B7": "ГРАВИРОВКА 1 СТОРОНА",
+        "B11": "ПРОСТАЯ",
+        "B12": "Без фурнитуры"
+      }
+    },
+    "key50unit": {
+      "id": "6.6",
+      "configuration": {
+        "B5": "Акрил прозрачный",
+        "B8": 40,
+        "B9": 60,
+        "B10": 50,
+        "B7": "УФ-ПЕЧАТЬ 1 СТОРОНА",
+        "B11": "ФИГУРНАЯ",
+        "B12": "Кольцо с цепочкой"
+      },
+      "divisor": 50,
+      "digits": 2
+    },
+    "key100unit": {
+      "id": "6.6",
+      "configuration": {
+        "B5": "Акрил прозрачный",
+        "B8": 40,
+        "B9": 60,
+        "B10": 100,
+        "B7": "УФ-ПЕЧАТЬ 2 СТОРОНЫ",
+        "B11": "ФИГУРНАЯ",
+        "B12": "Кольцо с цепочкой"
+      },
+      "divisor": 100,
+      "digits": 2
+    },
+    "keywoodunit": {
+      "id": "6.6",
+      "configuration": {
+        "B5": "Фанера",
+        "B8": 40,
+        "B9": 60,
+        "B10": 100,
+        "B7": "ГРАВИРОВКА 1 СТОРОНА",
+        "B11": "ФИГУРНАЯ",
+        "B12": "Кольцо с цепочкой"
+      },
+      "divisor": 100,
+      "digits": 2
+    },
+    "thermal100": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 100
+      }
+    },
+    "thermalunit100": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 100
+      },
+      "divisor": 100,
+      "digits": 2
+    },
+    "thermal300": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 300
+      }
+    },
+    "thermalunit300": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 300
+      },
+      "divisor": 300,
+      "digits": 2
+    },
+    "thermal1000": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 1000
+      }
+    },
+    "thermalunit1000": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 1000
+      },
+      "divisor": 1000,
+      "digits": 2
+    },
+    "minimum_1_4": {
+      "id": "1.4",
+      "kind": "minimum"
+    },
+    "minimum_3_10": {
+      "id": "3.10",
+      "kind": "minimum"
+    },
+    "minimum_4_1": {
+      "id": "4.1",
+      "kind": "minimum"
+    },
+    "minimum_4_2": {
+      "id": "4.2",
+      "kind": "minimum"
+    },
+    "minimum_4_3": {
+      "id": "4.3",
+      "kind": "minimum"
+    },
+    "minimum_4_4": {
+      "id": "4.4",
+      "kind": "minimum"
+    },
+    "minimum_4_8": {
+      "id": "4.8",
+      "kind": "minimum"
+    },
+    "minimum_4_9": {
+      "id": "4.9",
+      "kind": "minimum"
+    },
+    "minimum_4_10": {
+      "id": "4.10",
+      "kind": "minimum"
+    },
+    "minimum_4_5": {
+      "id": "4.5",
+      "kind": "minimum"
+    },
+    "minimum_4_6": {
+      "id": "4.6",
+      "kind": "minimum"
+    },
+    "minimum_4_7": {
+      "id": "4.7",
+      "kind": "minimum"
+    },
+    "minimum_4_11": {
+      "id": "4.11",
+      "kind": "minimum"
+    },
+    "minimum_5_1": {
+      "id": "5.1",
+      "kind": "minimum"
+    },
+    "minimum_5_2": {
+      "id": "5.2",
+      "kind": "minimum"
+    },
+    "minimum_5_3": {
+      "id": "5.3",
+      "kind": "minimum"
+    },
+    "minimum_5_4": {
+      "id": "5.4",
+      "kind": "minimum"
+    },
+    "minimum_5_5": {
+      "id": "5.5",
+      "kind": "minimum"
+    },
+    "minimum_5_6": {
+      "id": "5.6",
+      "kind": "minimum"
+    },
+    "minimum_5_7": {
+      "id": "5.7",
+      "kind": "minimum"
+    },
+    "minimum_5_8": {
+      "id": "5.8",
+      "kind": "minimum"
+    },
+    "minimum_5_9": {
+      "id": "5.9",
+      "kind": "minimum"
+    },
+    "minimum_6_7": {
+      "id": "6.7",
+      "kind": "minimum"
+    },
+    "lamdiscount": {
+      "kind": "detail",
+      "id": "1.4",
+      "configuration": {
+        "B6": 20
+      },
+      "label": "Скидка",
+      "suffix": " %"
+    },
+    "thermalbare100": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 100
+      },
+      "divisor": 100,
+      "digits": 2,
+      "suffix": ""
+    },
+    "thermalbare300": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 300
+      },
+      "divisor": 300,
+      "digits": 2,
+      "suffix": ""
+    },
+    "thermalbare1000": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 1000
+      },
+      "divisor": 1000,
+      "digits": 2,
+      "suffix": ""
+    },
+    "doc10unit": {
+      "id": "1.1",
+      "configuration": {
+        "B7": 10
+      },
+      "divisor": 10
+    },
+    "doc100unit": {
+      "id": "1.1",
+      "configuration": {
+        "B7": 100
+      },
+      "divisor": 100
+    },
+    "card_1_1_0": {
+      "id": "1.1",
+      "configuration": {
+        "B4": "А4",
+        "B5": "чб",
+        "B6": "односторонняя",
+        "B7": 10,
+        "B8": "Стандартная (80 г/м²)",
+        "colorRate": 20
+      },
+      "range": true
+    },
+    "card_1_1_1": {
+      "id": "1.1",
+      "configuration": {
+        "B4": "А4",
+        "B5": "чб",
+        "B6": "двусторонняя",
+        "B7": 50,
+        "B8": "Стандартная (80 г/м²)",
+        "colorRate": 20
+      },
+      "range": true
+    },
+    "card_1_1_2": {
+      "id": "1.1",
+      "configuration": {
+        "B4": "А3",
+        "B5": "цветная",
+        "B6": "односторонняя",
+        "B7": 10,
+        "B8": "Стандартная (80 г/м²)",
+        "colorRate": 20
+      },
+      "range": true
+    },
+    "geo_1_1_0": {
+      "id": "1.1",
+      "configuration": {
+        "B7": 1
+      }
+    },
+    "geo_1_1_1": {
+      "id": "1.1",
+      "configuration": {
+        "B7": 2000
+      }
+    },
+    "card_1_2_0": {
+      "id": "1.2",
+      "configuration": {
+        "B4": "A4",
+        "B5": "Ч/Б",
+        "B6": "Со стекла",
+        "B7": 25
+      },
+      "range": true
+    },
+    "card_1_2_1": {
+      "id": "1.2",
+      "configuration": {
+        "B4": "A4",
+        "B5": "Ч/Б",
+        "B6": "С автоподатчика",
+        "B7": 50
+      },
+      "range": true
+    },
+    "card_1_2_2": {
+      "id": "1.2",
+      "configuration": {
+        "B4": "A3",
+        "B5": "Цвет",
+        "B6": "Со стекла",
+        "B7": 10
+      },
+      "range": true
+    },
+    "card_1_3_0": {
+      "id": "1.3",
+      "configuration": {
+        "B4": "A6",
+        "B5": "Сатин",
+        "B6": 300,
+        "B7": 400,
+        "B8": 10
+      },
+      "range": true
+    },
+    "card_1_3_1": {
+      "id": "1.3",
+      "configuration": {
+        "B4": "A2",
+        "B5": "Матовая",
+        "B6": 300,
+        "B7": 400,
+        "B8": 1
+      },
+      "range": true
+    },
+    "card_1_3_2": {
+      "id": "1.3",
+      "configuration": {
+        "B4": "Индивидуальный",
+        "B5": "Сатин",
+        "B6": 300,
+        "B7": 400,
+        "B8": 3
+      },
+      "range": true
+    },
+    "geo_1_3_0": {
+      "id": "1.3",
+      "configuration": {
+        "B8": 1
+      }
+    },
+    "geo_1_3_1": {
+      "id": "1.3",
+      "configuration": {
+        "B8": 200
+      }
+    },
+    "card_1_4_0": {
+      "id": "1.4",
+      "configuration": {
+        "B4": "A4",
+        "B5": "75 мкм",
+        "B6": 1
+      },
+      "range": true
+    },
+    "card_1_4_1": {
+      "id": "1.4",
+      "configuration": {
+        "B4": "A6",
+        "B5": "125 мкм",
+        "B6": 25
+      },
+      "range": true
+    },
+    "card_1_4_2": {
+      "id": "1.4",
+      "configuration": {
+        "B4": "A4",
+        "B5": "100 мкм",
+        "B6": 20
+      },
+      "range": true
+    },
+    "geo_1_4_0": {
+      "id": "1.4",
+      "configuration": {
+        "B6": 1
+      }
+    },
+    "geo_1_4_1": {
+      "id": "1.4",
+      "configuration": {
+        "B6": 20
+      }
+    },
+    "card_1_5_0": {
+      "id": "1.5",
+      "configuration": {
+        "B4": "Пластик",
+        "B5": "A4",
+        "B6": "Форматные документы",
+        "B7": "6–8 мм (до 40 л.)",
+        "B8": 1
+      },
+      "range": true
+    },
+    "card_1_5_1": {
+      "id": "1.5",
+      "configuration": {
+        "B4": "Металл",
+        "B5": "A3",
+        "B6": "Форматные документы",
+        "B7": "10 мм (до 80 л.)",
+        "B8": 12
+      },
+      "range": true
+    },
+    "card_1_5_2": {
+      "id": "1.5",
+      "configuration": {
+        "B4": "Металл",
+        "B5": "A4",
+        "B6": "Форматные документы",
+        "B7": "10 мм (до 80 л.)",
+        "B8": 26
+      },
+      "range": true
+    },
+    "geo_1_5_0": {
+      "id": "1.5",
+      "configuration": {
+        "B8": 1
+      }
+    },
+    "geo_1_5_1": {
+      "id": "1.5",
+      "configuration": {
+        "B8": 50
+      }
+    },
+    "card_1_6_0": {
+      "id": "1.6",
+      "configuration": {
+        "B4": "Твердый",
+        "B5": "ПЕЧАТАЕМ",
+        "B6": "односторонняя",
+        "B7": 200,
+        "B8": 55,
+        "B9": 22,
+        "B11": 1,
+        "B12": "Красный",
+        "B13": 3,
+        "B14": "Нет"
+      },
+      "range": true
+    },
+    "card_1_6_1": {
+      "id": "1.6",
+      "configuration": {
+        "B4": "Твердый",
+        "B5": "ПЕЧАТЬ ВАША",
+        "B6": "односторонняя",
+        "B7": 50,
+        "B8": 55,
+        "B9": 22,
+        "B11": 1,
+        "B12": "Красный",
+        "B13": 0,
+        "B14": "Нет"
+      },
+      "range": true
+    },
+    "card_1_6_2": {
+      "id": "1.6",
+      "configuration": {
+        "B4": "Мягкий",
+        "B5": "ПЕЧАТЬ ВАША",
+        "B6": "односторонняя",
+        "B7": 50,
+        "B8": 55,
+        "B9": 22,
+        "B11": 1,
+        "B12": "Белый",
+        "B13": 0,
+        "B14": "Нет"
+      },
+      "range": true
+    },
+    "geo_1_6_0": {
+      "id": "1.6",
+      "configuration": {
+        "B11": 1
+      }
+    },
+    "geo_1_6_1": {
+      "id": "1.6",
+      "configuration": {
+        "B11": 5000
+      }
+    },
+    "card_1_7_0": {
+      "id": "1.7",
+      "configuration": {
+        "B4": "ТЕКСТОВЫЙ",
+        "B5": "A4",
+        "B6": "ДА",
+        "B7": 2
+      },
+      "range": true
+    },
+    "card_1_7_1": {
+      "id": "1.7",
+      "configuration": {
+        "B4": "ТЕКСТОВЫЙ",
+        "B5": "A4",
+        "B6": "НЕТ",
+        "B7": 25
+      },
+      "range": true
+    },
+    "card_1_7_2": {
+      "id": "1.7",
+      "configuration": {
+        "B4": "ТЕКСТОВЫЙ",
+        "B5": "A3",
+        "B6": "ДА",
+        "B7": 10
+      },
+      "range": true
+    },
+    "geo_1_7_0": {
+      "id": "1.7",
+      "configuration": {
+        "B7": 1
+      }
+    },
+    "geo_1_7_1": {
+      "id": "1.7",
+      "configuration": {
+        "B7": 2000
+      }
+    },
+    "card_1_8_0": {
+      "id": "1.8",
+      "configuration": {
+        "B4": "ТЕРМОНАКЛЕЙКИ",
+        "B5": "TSC TE200",
+        "B6": "58×40 мм",
+        "B7": 50
+      },
+      "range": true
+    },
+    "card_1_8_1": {
+      "id": "1.8",
+      "configuration": {
+        "B4": "ТЕРМОНАКЛЕЙКИ",
+        "B5": "TSC TE200",
+        "B6": "58×40 мм",
+        "B7": 200
+      },
+      "range": true
+    },
+    "card_1_8_2": {
+      "id": "1.8",
+      "configuration": {
+        "B4": "ТЕРМОНАКЛЕЙКИ",
+        "B5": "TSC TE200",
+        "B6": "58×40 мм",
+        "B7": 501
+      },
+      "range": true
+    },
+    "geo_1_8_0": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 50
+      }
+    },
+    "geo_1_8_1": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 1000
+      }
+    },
+    "card_1_9_0": {
+      "id": "1.9",
+      "configuration": {
+        "B4": 24,
+        "B5": 0,
+        "B7": "ЗЕЛЕНЫЙ",
+        "B8": 100
+      },
+      "range": true
+    },
+    "card_1_9_1": {
+      "id": "1.9",
+      "configuration": {
+        "B4": 24,
+        "B5": 0,
+        "B7": "БЕЛАЯ",
+        "B8": 10
+      },
+      "range": true
+    },
+    "card_1_9_2": {
+      "id": "1.9",
+      "configuration": {
+        "B4": 20,
+        "B5": 4,
+        "B7": "БЕЛАЯ",
+        "B8": 50
+      },
+      "range": true
+    },
+    "geo_1_9_0": {
+      "id": "1.9",
+      "configuration": {
+        "B8": 10
+      }
+    },
+    "geo_1_9_1": {
+      "id": "1.9",
+      "configuration": {
+        "B8": 500
+      }
+    },
+    "card_2_1_0": {
+      "id": "2.1",
+      "configuration": {
+        "B4": "Без фальцовки",
+        "B5": "Нет",
+        "B6": "Пластик",
+        "B7": "A4",
+        "B8": "10–12 мм (до 80 л.)",
+        "B9": 1,
+        "rows": [
+          {
+            "B": "A1",
+            "C": "Ч/Б",
+            "D": 10
+          }
+        ]
+      },
+      "range": true
+    },
+    "card_2_1_1": {
+      "id": "2.1",
+      "configuration": {
+        "B4": "Под A4",
+        "B5": "Нет",
+        "B6": "Пластик",
+        "B7": "A4",
+        "B8": "10–12 мм (до 80 л.)",
+        "B9": 1,
+        "rows": [
+          {
+            "B": "A1",
+            "C": "Ч/Б",
+            "D": 5
+          },
+          {
+            "B": "A2",
+            "C": "Цвет",
+            "D": 10
+          }
+        ]
+      },
+      "range": true
+    },
+    "card_2_1_2": {
+      "id": "2.1",
+      "configuration": {
+        "B4": "Под A4",
+        "B5": "Да",
+        "B6": "Пластик",
+        "B7": "A4",
+        "B8": "10–12 мм (до 80 л.)",
+        "B9": 1,
+        "rows": [
+          {
+            "B": "A1",
+            "C": "Ч/Б",
+            "D": 20
+          }
+        ]
+      },
+      "range": true
+    },
+    "geo_2_1_0": {
+      "id": "2.1",
+      "configuration": {
+        "rows": [
+          {
+            "B": "A1",
+            "C": "Ч/Б",
+            "D": 1
+          }
+        ]
+      }
+    },
+    "geo_2_1_1": {
+      "id": "2.1",
+      "configuration": {
+        "rows": [
+          {
+            "B": "A1",
+            "C": "Ч/Б",
+            "D": 2000
+          }
+        ]
+      }
+    },
+    "card_2_2_0": {
+      "id": "2.2",
+      "configuration": {
+        "B4": "Металл",
+        "B5": "A3",
+        "B6": "Проектная документация",
+        "B7": "10 мм (до 80 л.)",
+        "B8": 1
+      },
+      "range": true
+    },
+    "card_2_2_1": {
+      "id": "2.2",
+      "configuration": {
+        "B4": "Пластик",
+        "B5": "A4",
+        "B6": "Проектная документация",
+        "B7": "6–8 мм (до 40 л.)",
+        "B8": 1
+      },
+      "range": true
+    },
+    "card_2_2_2": {
+      "id": "2.2",
+      "configuration": {
+        "B4": "Металл",
+        "B5": "A3",
+        "B6": "Проектная документация",
+        "B7": "10 мм (до 80 л.)",
+        "B8": 12
+      },
+      "range": true
+    },
+    "geo_2_2_0": {
+      "id": "2.2",
+      "configuration": {
+        "B8": 1
+      }
+    },
+    "geo_2_2_1": {
+      "id": "2.2",
+      "configuration": {
+        "B8": 50
+      }
+    },
+    "card_2_3_0": {
+      "id": "2.3",
+      "configuration": {
+        "B4": "A1",
+        "B5": 10
+      },
+      "range": true
+    },
+    "card_2_3_1": {
+      "id": "2.3",
+      "configuration": {
+        "B4": "A2",
+        "B5": 25
+      },
+      "range": true
+    },
+    "card_2_3_2": {
+      "id": "2.3",
+      "configuration": {
+        "B4": "A1x4",
+        "B5": 10
+      },
+      "range": true
+    },
+    "card_2_4_0": {
+      "id": "2.4",
+      "configuration": {
+        "B4": "ЧЕРТЕЖ",
+        "B5": "A4",
+        "B6": "ДА",
+        "B7": 10
+      },
+      "range": true
+    },
+    "card_2_4_1": {
+      "id": "2.4",
+      "configuration": {
+        "B4": "ЧЕРТЕЖ",
+        "B5": "A3",
+        "B6": "ДА",
+        "B7": 10
+      },
+      "range": true
+    },
+    "card_2_4_2": {
+      "id": "2.4",
+      "configuration": {
+        "B4": "ЧЕРТЕЖ",
+        "B5": "A3",
+        "B6": "НЕТ",
+        "B7": 25
+      },
+      "range": true
+    },
+    "geo_2_4_0": {
+      "id": "2.4",
+      "configuration": {
+        "B7": 1
+      }
+    },
+    "geo_2_4_1": {
+      "id": "2.4",
+      "configuration": {
+        "B7": 2000
+      }
+    },
+    "card_2_5_0": {
+      "id": "2.5",
+      "configuration": {
+        "B4": "A4",
+        "B5": "Ч/Б",
+        "B6": "Со стекла",
+        "B7": 25
+      },
+      "range": true
+    },
+    "card_2_5_1": {
+      "id": "2.5",
+      "configuration": {
+        "B4": "A3",
+        "B5": "Цвет",
+        "B6": "Со стекла",
+        "B7": 10
+      },
+      "range": true
+    },
+    "card_2_5_2": {
+      "id": "2.5",
+      "configuration": {
+        "B4": "A4",
+        "B5": "Ч/Б",
+        "B6": "С автоподатчика",
+        "B7": 100
+      },
+      "range": true
+    },
+    "card_2_6_0": {
+      "id": "2.6",
+      "configuration": {
+        "B4": "Да",
+        "B5": "Металл",
+        "B6": "A3",
+        "B7": "8 мм (до 50 л.)",
+        "B8": 1,
+        "rows": [
+          {
+            "B": "A3",
+            "C": "Стандартная (80 г/м²)",
+            "D": "Цвет",
+            "E": 10
+          }
+        ]
+      },
+      "range": true
+    },
+    "card_2_6_1": {
+      "id": "2.6",
+      "configuration": {
+        "B4": "Да",
+        "B5": "Металл",
+        "B6": "A3",
+        "B7": "8 мм (до 50 л.)",
+        "B8": 1,
+        "rows": [
+          {
+            "B": "A3",
+            "C": "Стандартная (80 г/м²)",
+            "D": "Ч/Б",
+            "E": 20
+          },
+          {
+            "B": "A3",
+            "C": "Color Copy 200 г/м²",
+            "D": "Цвет",
+            "E": 10
+          }
+        ]
+      },
+      "range": true
+    },
+    "card_2_6_2": {
+      "id": "2.6",
+      "configuration": {
+        "B4": "Нет",
+        "B5": "Металл",
+        "B6": "A3",
+        "B7": "8 мм (до 50 л.)",
+        "B8": 1,
+        "rows": [
+          {
+            "B": "A4",
+            "C": "Color Copy 120 г/м²",
+            "D": "Цвет",
+            "E": 10
+          }
+        ]
+      },
+      "range": true
+    },
+    "card_2_7_0": {
+      "id": "2.7",
+      "configuration": {
+        "B4": 841,
+        "B5": 1500,
+        "B6": "Ч/Б",
+        "B7": 1
+      },
+      "range": true
+    },
+    "card_2_7_1": {
+      "id": "2.7",
+      "configuration": {
+        "B4": 600,
+        "B5": 1000,
+        "B6": "Ч/Б",
+        "B7": 2
+      },
+      "range": true
+    },
+    "card_2_7_2": {
+      "id": "2.7",
+      "configuration": {
+        "B4": 841,
+        "B5": 2000,
+        "B6": "Цвет",
+        "B7": 1
+      },
+      "range": true
+    },
+    "geo_2_7_0": {
+      "id": "2.7",
+      "configuration": {
+        "B7": 1
+      }
+    },
+    "geo_2_7_1": {
+      "id": "2.7",
+      "configuration": {
+        "B7": 1000
+      }
+    },
+    "card_3_1_0": {
+      "id": "3.1",
+      "configuration": {
+        "B4": "Color Copy 350гр",
+        "B5": "односторонние",
+        "B6": 100,
+        "B7": "нет",
+        "B8": "нет"
+      },
+      "range": true
+    },
+    "card_3_1_1": {
+      "id": "3.1",
+      "configuration": {
+        "B4": "Color Copy 350гр",
+        "B5": "двусторонние",
+        "B6": 300,
+        "B7": "нет",
+        "B8": "нет"
+      },
+      "range": true
+    },
+    "card_3_1_2": {
+      "id": "3.1",
+      "configuration": {
+        "B4": "Color Copy 350гр",
+        "B5": "односторонние",
+        "B6": 500,
+        "B7": "да",
+        "B8": "да"
+      },
+      "range": true
+    },
+    "geo_3_1_0": {
+      "id": "3.1",
+      "configuration": {
+        "B6": 100
+      }
+    },
+    "geo_3_1_1": {
+      "id": "3.1",
+      "configuration": {
+        "B6": 1000
+      }
+    },
+    "card_3_2_0": {
+      "id": "3.2",
+      "configuration": {
+        "B4": "A6",
+        "B5": 95,
+        "B6": 95,
+        "B7": 120,
+        "B8": "Односторонняя",
+        "B9": "Без ламинации",
+        "B10": 100
+      },
+      "range": true
+    },
+    "card_3_2_1": {
+      "id": "3.2",
+      "configuration": {
+        "B4": "A5",
+        "B5": 95,
+        "B6": 95,
+        "B7": 160,
+        "B8": "Двусторонняя",
+        "B9": "Без ламинации",
+        "B10": 100
+      },
+      "range": true
+    },
+    "card_3_2_2": {
+      "id": "3.2",
+      "configuration": {
+        "B4": "Индивидуальный",
+        "B5": 100,
+        "B6": 100,
+        "B7": 120,
+        "B8": "Односторонняя",
+        "B9": "Без ламинации",
+        "B10": 200
+      },
+      "range": true
+    },
+    "geo_3_2_0": {
+      "id": "3.2",
+      "configuration": {
+        "B7": 300,
+        "B10": 100
+      }
+    },
+    "geo_3_2_1": {
+      "id": "3.2",
+      "configuration": {
+        "B7": 300,
+        "B10": 1000
+      }
+    },
+    "card_3_3_0": {
+      "id": "3.3",
+      "configuration": {
+        "B4": "A4",
+        "B5": 120,
+        "B6": "ДВУСТОРОННЯЯ",
+        "B7": 2,
+        "B8": 100
+      },
+      "range": true
+    },
+    "card_3_3_1": {
+      "id": "3.3",
+      "configuration": {
+        "B4": "A3",
+        "B5": 160,
+        "B6": "ДВУСТОРОННЯЯ",
+        "B7": 1,
+        "B8": 50
+      },
+      "range": true
+    },
+    "card_3_3_2": {
+      "id": "3.3",
+      "configuration": {
+        "B4": "A4",
+        "B5": 120,
+        "B6": "ДВУСТОРОННЯЯ",
+        "B7": 3,
+        "B8": 25
+      },
+      "range": true
+    },
+    "geo_3_3_0": {
+      "id": "3.3",
+      "configuration": {
+        "B8": 100
+      }
+    },
+    "geo_3_3_1": {
+      "id": "3.3",
+      "configuration": {
+        "B8": 500
+      }
+    },
+    "card_3_4_0": {
+      "id": "3.4",
+      "configuration": {
+        "B4": "A4",
+        "B5": 300,
+        "B6": 160,
+        "B7": 16,
+        "B8": 10
+      },
+      "range": true
+    },
+    "card_3_4_1": {
+      "id": "3.4",
+      "configuration": {
+        "B4": "A5",
+        "B5": 300,
+        "B6": 160,
+        "B7": 20,
+        "B8": 25
+      },
+      "range": true
+    },
+    "card_3_4_2": {
+      "id": "3.4",
+      "configuration": {
+        "B4": "A4",
+        "B5": 300,
+        "B6": 160,
+        "B7": 8,
+        "B8": 1
+      },
+      "range": true
+    },
+    "geo_3_4_0": {
+      "id": "3.4",
+      "configuration": {
+        "B8": 100
+      }
+    },
+    "geo_3_4_1": {
+      "id": "3.4",
+      "configuration": {
+        "B8": 5000
+      }
+    },
+    "card_3_5_0": {
+      "id": "3.5",
+      "configuration": {
+        "B4": "A4",
+        "B5": 300,
+        "B6": 160,
+        "B7": 16,
+        "B8": 10
+      },
+      "range": true
+    },
+    "card_3_5_1": {
+      "id": "3.5",
+      "configuration": {
+        "B4": "A5",
+        "B5": 300,
+        "B6": 160,
+        "B7": 24,
+        "B8": 25
+      },
+      "range": true
+    },
+    "card_3_5_2": {
+      "id": "3.5",
+      "configuration": {
+        "B4": "A4",
+        "B5": 300,
+        "B6": 160,
+        "B7": 8,
+        "B8": 5
+      },
+      "range": true
+    },
+    "geo_3_5_0": {
+      "id": "3.5",
+      "configuration": {
+        "B8": 100
+      }
+    },
+    "geo_3_5_1": {
+      "id": "3.5",
+      "configuration": {
+        "B8": 5000
+      }
+    },
+    "card_3_6_0": {
+      "id": "3.6",
+      "configuration": {
+        "B4": "A6",
+        "B5": 100,
+        "B6": 150,
+        "B7": 250,
+        "B8": "ДВУСТОРОННЯЯ",
+        "B9": "БЕЗ ЛАМИНАЦИИ",
+        "B10": 100
+      },
+      "range": true
+    },
+    "card_3_6_1": {
+      "id": "3.6",
+      "configuration": {
+        "B4": "A5",
+        "B5": 100,
+        "B6": 150,
+        "B7": 300,
+        "B8": "ДВУСТОРОННЯЯ",
+        "B9": "БЕЗ ЛАМИНАЦИИ",
+        "B10": 50
+      },
+      "range": true
+    },
+    "card_3_6_2": {
+      "id": "3.6",
+      "configuration": {
+        "B4": "ИНДИВИДУАЛЬНЫЙ",
+        "B5": 120,
+        "B6": 120,
+        "B7": 250,
+        "B8": "ДВУСТОРОННЯЯ",
+        "B9": "БЕЗ ЛАМИНАЦИИ",
+        "B10": 50
+      },
+      "range": true
+    },
+    "geo_3_6_0": {
+      "id": "3.6",
+      "configuration": {
+        "B10": 100
+      }
+    },
+    "geo_3_6_1": {
+      "id": "3.6",
+      "configuration": {
+        "B10": 1000
+      }
+    },
+    "card_3_7_0": {
+      "id": "3.7",
+      "configuration": {
+        "B4": "A4",
+        "B5": 210,
+        "B6": 297,
+        "B7": 120,
+        "B8": "ОДНОСТОРОННЯЯ",
+        "B9": "БЕЗ ЛАМИНАЦИИ",
+        "B10": 100
+      },
+      "range": true
+    },
+    "card_3_7_1": {
+      "id": "3.7",
+      "configuration": {
+        "B4": "A4",
+        "B5": 210,
+        "B6": 297,
+        "B7": 300,
+        "B8": "ОДНОСТОРОННЯЯ",
+        "B9": "БЕЗ ЛАМИНАЦИИ",
+        "B10": 25
+      },
+      "range": true
+    },
+    "card_3_7_2": {
+      "id": "3.7",
+      "configuration": {
+        "B4": "A4",
+        "B5": 210,
+        "B6": 297,
+        "B7": 120,
+        "B8": "ОДНОСТОРОННЯЯ",
+        "B9": "1 СТОРОНА",
+        "B10": 10
+      },
+      "range": true
+    },
+    "geo_3_7_0": {
+      "id": "3.7",
+      "configuration": {
+        "B10": 100
+      }
+    },
+    "geo_3_7_1": {
+      "id": "3.7",
+      "configuration": {
+        "B10": 500
+      }
+    },
+    "card_3_8_0": {
+      "id": "3.8",
+      "configuration": {
+        "B4": "A4",
+        "B5": 210,
+        "B6": 297,
+        "B7": 120,
+        "B8": "ОДНОСТОРОННЯЯ",
+        "B9": "БЕЗ ЛАМИНАЦИИ",
+        "B10": 100
+      },
+      "range": true
+    },
+    "card_3_8_1": {
+      "id": "3.8",
+      "configuration": {
+        "B4": "A4",
+        "B5": 210,
+        "B6": 297,
+        "B7": 300,
+        "B8": "ДВУСТОРОННЯЯ",
+        "B9": "БЕЗ ЛАМИНАЦИИ",
+        "B10": 25
+      },
+      "range": true
+    },
+    "card_3_8_2": {
+      "id": "3.8",
+      "configuration": {
+        "B4": "ИНДИВИДУАЛЬНЫЙ",
+        "B5": 100,
+        "B6": 200,
+        "B7": 120,
+        "B8": "ОДНОСТОРОННЯЯ",
+        "B9": "БЕЗ ЛАМИНАЦИИ",
+        "B10": 50
+      },
+      "range": true
+    },
+    "geo_3_8_0": {
+      "id": "3.8",
+      "configuration": {
+        "B10": 100
+      }
+    },
+    "geo_3_8_1": {
+      "id": "3.8",
+      "configuration": {
+        "B10": 500
+      }
+    },
+    "card_3_9_0": {
+      "id": "3.9",
+      "configuration": {
+        "B4": "A4",
+        "B5": 210,
+        "B6": 297,
+        "B7": 120,
+        "B8": "ОДНОСТОРОННЯЯ",
+        "B9": "БЕЗ ЛАМИНАЦИИ",
+        "B10": 100
+      },
+      "range": true
+    },
+    "card_3_9_1": {
+      "id": "3.9",
+      "configuration": {
+        "B4": "A3",
+        "B5": 210,
+        "B6": 297,
+        "B7": 160,
+        "B8": "ОДНОСТОРОННЯЯ",
+        "B9": "БЕЗ ЛАМИНАЦИИ",
+        "B10": 25
+      },
+      "range": true
+    },
+    "card_3_9_2": {
+      "id": "3.9",
+      "configuration": {
+        "B4": "A4",
+        "B5": 210,
+        "B6": 297,
+        "B7": 120,
+        "B8": "ОДНОСТОРОННЯЯ",
+        "B9": "2 СТОРОНЫ",
+        "B10": 10
+      },
+      "range": true
+    },
+    "geo_3_9_0": {
+      "id": "3.9",
+      "configuration": {
+        "B10": 100
+      }
+    },
+    "geo_3_9_1": {
+      "id": "3.9",
+      "configuration": {
+        "B10": 500
+      }
+    },
+    "card_3_10_0": {
+      "id": "3.10",
+      "configuration": {
+        "B4": "ИНДИВИДУАЛЬНЫЙ",
+        "B5": 40,
+        "B6": 40,
+        "B7": 300,
+        "B8": "ДВУСТОРОННЯЯ",
+        "B9": 500
+      },
+      "range": true
+    },
+    "card_3_10_1": {
+      "id": "3.10",
+      "configuration": {
+        "B4": "ИНДИВИДУАЛЬНЫЙ",
+        "B5": 40,
+        "B6": 40,
+        "B7": 200,
+        "B8": "ОДНОСТОРОННЯЯ",
+        "B9": 50
+      },
+      "range": true
+    },
+    "card_3_10_2": {
+      "id": "3.10",
+      "configuration": {
+        "B4": "ИНДИВИДУАЛЬНЫЙ",
+        "B5": 50,
+        "B6": 90,
+        "B7": 300,
+        "B8": "ДВУСТОРОННЯЯ",
+        "B9": 200
+      },
+      "range": true
+    },
+    "geo_3_10_0": {
+      "id": "3.10",
+      "configuration": {
+        "B9": 100
+      }
+    },
+    "geo_3_10_1": {
+      "id": "3.10",
+      "configuration": {
+        "B9": 5000
+      }
+    },
+    "geo_4_1_0": {
+      "id": "4.1",
+      "configuration": {
+        "quantity": 100
+      }
+    },
+    "geo_4_1_1": {
+      "id": "4.1",
+      "configuration": {
+        "quantity": 5000
+      }
+    },
+    "geo_4_2_0": {
+      "id": "4.2",
+      "configuration": {
+        "quantity": 100
+      }
+    },
+    "geo_4_2_1": {
+      "id": "4.2",
+      "configuration": {
+        "quantity": 5000
+      }
+    },
+    "geo_4_3_0": {
+      "id": "4.3",
+      "configuration": {
+        "quantity": 100
+      }
+    },
+    "geo_4_3_1": {
+      "id": "4.3",
+      "configuration": {
+        "quantity": 5000
+      }
+    },
+    "geo_4_4_0": {
+      "id": "4.4",
+      "configuration": {
+        "print": "uv",
+        "material": "white",
+        "width": 100,
+        "height": 150,
+        "quantity": 100
+      }
+    },
+    "geo_4_4_1": {
+      "id": "4.4",
+      "configuration": {
+        "print": "uv",
+        "material": "white",
+        "width": 100,
+        "height": 150,
+        "quantity": 5000
+      }
+    },
+    "geo_4_8_0": {
+      "id": "4.8",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100
+      }
+    },
+    "geo_4_8_1": {
+      "id": "4.8",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 5000
+      }
+    },
+    "geo_4_9_0": {
+      "id": "4.9",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100
+      }
+    },
+    "geo_4_9_1": {
+      "id": "4.9",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 5000
+      }
+    },
+    "geo_4_10_0": {
+      "id": "4.10",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100
+      }
+    },
+    "geo_4_10_1": {
+      "id": "4.10",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 5000
+      }
+    },
+    "geo_4_5_0": {
+      "id": "4.5",
+      "configuration": {
+        "width": 30,
+        "height": 30,
+        "quantity": 100
+      }
+    },
+    "geo_4_5_1": {
+      "id": "4.5",
+      "configuration": {
+        "width": 30,
+        "height": 30,
+        "quantity": 5000
+      }
+    },
+    "geo_4_6_0": {
+      "id": "4.6",
+      "configuration": {
+        "quantity": 100
+      }
+    },
+    "geo_4_6_1": {
+      "id": "4.6",
+      "configuration": {
+        "quantity": 5000
+      }
+    },
+    "geo_4_7_0": {
+      "id": "4.7",
+      "configuration": {
+        "width": 152,
+        "height": 108,
+        "cut": "no",
+        "quantity": 100
+      }
+    },
+    "geo_4_7_1": {
+      "id": "4.7",
+      "configuration": {
+        "width": 152,
+        "height": 108,
+        "cut": "no",
+        "quantity": 200
+      }
+    },
+    "geo_4_11_0": {
+      "id": "4.11",
+      "configuration": {
+        "quantity": 100
+      }
+    },
+    "geo_4_11_1": {
+      "id": "4.11",
+      "configuration": {
+        "quantity": 500
+      }
+    },
+    "geo_5_1_0": {
+      "id": "5.1",
+      "configuration": {
+        "quantity": 1
+      }
+    },
+    "geo_5_1_1": {
+      "id": "5.1",
+      "configuration": {
+        "quantity": 20
+      }
+    },
+    "geo_5_2_0": {
+      "id": "5.2",
+      "configuration": {
+        "quantity": 1
+      }
+    },
+    "geo_5_2_1": {
+      "id": "5.2",
+      "configuration": {
+        "quantity": 20
+      }
+    },
+    "geo_5_3_0": {
+      "id": "5.3",
+      "configuration": {
+        "quantity": 1
+      }
+    },
+    "geo_5_3_1": {
+      "id": "5.3",
+      "configuration": {
+        "quantity": 20
+      }
+    },
+    "geo_5_4_0": {
+      "id": "5.4",
+      "configuration": {
+        "quantity": 1
+      }
+    },
+    "geo_5_4_1": {
+      "id": "5.4",
+      "configuration": {
+        "quantity": 100
+      }
+    },
+    "geo_5_5_0": {
+      "id": "5.5",
+      "configuration": {
+        "quantity": 1
+      }
+    },
+    "geo_5_5_1": {
+      "id": "5.5",
+      "configuration": {
+        "quantity": 20
+      }
+    },
+    "geo_5_6_0": {
+      "id": "5.6",
+      "configuration": {
+        "quantity": 1
+      }
+    },
+    "geo_5_6_1": {
+      "id": "5.6",
+      "configuration": {
+        "quantity": 50
+      }
+    },
+    "geo_5_7_0": {
+      "id": "5.7",
+      "configuration": {
+        "quantity": 1
+      }
+    },
+    "geo_5_7_1": {
+      "id": "5.7",
+      "configuration": {
+        "quantity": 50
+      }
+    },
+    "geo_5_8_0": {
+      "id": "5.8",
+      "configuration": {
+        "width": 210,
+        "height": 297,
+        "quantity": 1
+      }
+    },
+    "geo_5_8_1": {
+      "id": "5.8",
+      "configuration": {
+        "width": 210,
+        "height": 297,
+        "quantity": 100
+      }
+    },
+    "geo_5_9_0": {
+      "id": "5.9",
+      "configuration": {
+        "width": 600,
+        "height": 1200,
+        "quantity": 1
+      }
+    },
+    "geo_5_9_1": {
+      "id": "5.9",
+      "configuration": {
+        "width": 600,
+        "height": 1200,
+        "quantity": 100
+      }
+    },
+    "card_6_1_0": {
+      "id": "6.1",
+      "configuration": {
+        "B4": "Оргстекло",
+        "B5": 3,
+        "B6": "УФ",
+        "B7": 400,
+        "B8": 200,
+        "B9": 10,
+        "B10": "Да"
+      },
+      "range": true
+    },
+    "card_6_1_1": {
+      "id": "6.1",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 3,
+        "B6": "УФ",
+        "B7": 100,
+        "B8": 150,
+        "B9": 5,
+        "B10": "Нет"
+      },
+      "range": true
+    },
+    "card_6_1_2": {
+      "id": "6.1",
+      "configuration": {
+        "B4": "ПЭТ",
+        "B5": 1,
+        "B6": "УФ",
+        "B7": 200,
+        "B8": 300,
+        "B9": 25,
+        "B10": "Да"
+      },
+      "range": true
+    },
+    "geo_6_1_0": {
+      "id": "6.1",
+      "configuration": {
+        "B9": 1
+      }
+    },
+    "geo_6_1_1": {
+      "id": "6.1",
+      "configuration": {
+        "B9": 100
+      }
+    },
+    "card_6_2_0": {
+      "id": "6.2",
+      "configuration": {
+        "B4": "БЕЛАЯ",
+        "B5": 1000,
+        "B6": 600,
+        "B7": 1,
+        "B8": "Пленка монтажная Oratape",
+        "B9": "СЛОЖНАЯ"
+      },
+      "range": true
+    },
+    "card_6_2_1": {
+      "id": "6.2",
+      "configuration": {
+        "B4": "ЦВЕТНАЯ",
+        "B5": 500,
+        "B6": 500,
+        "B7": 5,
+        "B8": "Пленка монтажная Oratape",
+        "B9": "ПРОСТАЯ"
+      },
+      "range": true
+    },
+    "card_6_2_2": {
+      "id": "6.2",
+      "configuration": {
+        "B4": "МЕТАЛЛИЗИРОВАННАЯ",
+        "B5": 600,
+        "B6": 2000,
+        "B7": 10,
+        "B8": "Пленка монтажная Oratape",
+        "B9": "СЛОЖНАЯ"
+      },
+      "range": true
+    },
+    "geo_6_2_0": {
+      "id": "6.2",
+      "configuration": {
+        "B7": 1
+      }
+    },
+    "geo_6_2_1": {
+      "id": "6.2",
+      "configuration": {
+        "B7": 50
+      }
+    },
+    "card_6_3_0": {
+      "id": "6.3",
+      "configuration": {
+        "B4": "Фанера",
+        "B5": 3,
+        "B6": 300,
+        "B7": 200,
+        "B9": 10,
+        "B10": "ПРОСТАЯ"
+      },
+      "range": true
+    },
+    "card_6_3_1": {
+      "id": "6.3",
+      "configuration": {
+        "B4": "Акрил / оргстекло",
+        "B5": 5,
+        "B6": 400,
+        "B7": 300,
+        "B9": 25,
+        "B10": "СЛОЖНАЯ"
+      },
+      "range": true
+    },
+    "card_6_3_2": {
+      "id": "6.3",
+      "configuration": {
+        "B4": "Картон",
+        "B5": 2,
+        "B6": 150,
+        "B7": 100,
+        "B9": 100,
+        "B10": "ПРОСТАЯ"
+      },
+      "range": true
+    },
+    "geo_6_3_0": {
+      "id": "6.3",
+      "configuration": {
+        "B9": 1
+      }
+    },
+    "geo_6_3_1": {
+      "id": "6.3",
+      "configuration": {
+        "B9": 1000
+      }
+    },
+    "card_6_4_0": {
+      "id": "6.4",
+      "configuration": {
+        "B4": "Акрил / оргстекло",
+        "B5": "ПЛОЩАДНАЯ",
+        "B6": 100,
+        "B7": 100,
+        "B8": 20,
+        "B10": 10,
+        "B11": "СТАНДАРТНАЯ"
+      },
+      "range": true
+    },
+    "card_6_4_1": {
+      "id": "6.4",
+      "configuration": {
+        "B4": "Фанера / дерево",
+        "B5": "ПЛОЩАДНАЯ",
+        "B6": 200,
+        "B7": 100,
+        "B8": 50,
+        "B10": 25,
+        "B11": "ПЛОТНАЯ"
+      },
+      "range": true
+    },
+    "card_6_4_2": {
+      "id": "6.4",
+      "configuration": {
+        "B4": "Акрил / оргстекло",
+        "B5": "КОНТУРНАЯ",
+        "B6": 200,
+        "B7": 100,
+        "B8": 20,
+        "B10": 100,
+        "B11": "СТАНДАРТНАЯ"
+      },
+      "range": true
+    },
+    "geo_6_4_0": {
+      "id": "6.4",
+      "configuration": {
+        "B10": 1
+      }
+    },
+    "geo_6_4_1": {
+      "id": "6.4",
+      "configuration": {
+        "B10": 50
+      }
+    },
+    "card_6_5_0": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "Оргстекло",
+        "B5": 3,
+        "B6": "УФ",
+        "B7": 400,
+        "B8": 200,
+        "B9": 10,
+        "B10": "Да"
+      },
+      "range": true
+    },
+    "card_6_5_1": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 5,
+        "B6": "УФ",
+        "B7": 200,
+        "B8": 100,
+        "B9": 5,
+        "B10": "Нет"
+      },
+      "range": true
+    },
+    "card_6_5_2": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "АКП",
+        "B5": 3,
+        "B6": "УФ",
+        "B7": 300,
+        "B8": 400,
+        "B9": 3,
+        "B10": "Да"
+      },
+      "range": true
+    },
+    "geo_6_5_0": {
+      "id": "6.5",
+      "configuration": {
+        "B9": 1
+      }
+    },
+    "geo_6_5_1": {
+      "id": "6.5",
+      "configuration": {
+        "B9": 100
+      }
+    },
+    "card_6_6_0": {
+      "id": "6.6",
+      "configuration": {
+        "B5": "Акрил прозрачный",
+        "B6": 3,
+        "B7": "УФ-ПЕЧАТЬ 1 СТОРОНА",
+        "B8": 25,
+        "B9": 45,
+        "B10": 100,
+        "B11": "ФИГУРНАЯ",
+        "B12": "Шнурок",
+        "B13": "БЕЗ ЛАКА"
+      },
+      "range": true
+    },
+    "card_6_6_1": {
+      "id": "6.6",
+      "configuration": {
+        "B5": "Фанера",
+        "B6": 3,
+        "B7": "ГРАВИРОВКА 1 СТОРОНА",
+        "B8": 40,
+        "B9": 40,
+        "B10": 50,
+        "B11": "ПРОСТАЯ",
+        "B12": "Кольцо с цепочкой",
+        "B13": "БЕЗ ЛАКА"
+      },
+      "range": true
+    },
+    "card_6_6_2": {
+      "id": "6.6",
+      "configuration": {
+        "B5": "Акрил прозрачный",
+        "B6": 3,
+        "B7": "УФ-ПЕЧАТЬ 2 СТОРОНЫ",
+        "B8": 50,
+        "B9": 50,
+        "B10": 25,
+        "B11": "ФИГУРНАЯ",
+        "B12": "Карабин",
+        "B13": "БЕЗ ЛАКА"
+      },
+      "range": true
+    },
+    "geo_6_6_0": {
+      "id": "6.6",
+      "configuration": {
+        "B10": 1
+      }
+    },
+    "geo_6_6_1": {
+      "id": "6.6",
+      "configuration": {
+        "B10": 1000
+      }
+    },
+    "card_6_7_0": {
+      "id": "6.7",
+      "configuration": {
+        "B4": "Нержавейка AISI",
+        "B5": 0.8,
+        "B6": 90,
+        "B7": 110,
+        "B8": 26
+      },
+      "range": true
+    },
+    "card_6_7_1": {
+      "id": "6.7",
+      "configuration": {
+        "B4": "Алюминий",
+        "B5": 0.5,
+        "B6": 80,
+        "B7": 40,
+        "B8": 25
+      },
+      "range": true
+    },
+    "card_6_7_2": {
+      "id": "6.7",
+      "configuration": {
+        "B4": "Пластик двуслойный",
+        "B5": 1.5,
+        "B6": 100,
+        "B7": 50,
+        "B8": 10
+      },
+      "range": true
+    },
+    "geo_6_7_0": {
+      "id": "6.7",
+      "configuration": {
+        "B8": 1
+      }
+    },
+    "geo_6_7_1": {
+      "id": "6.7",
+      "configuration": {
+        "B8": 5
+      }
+    },
+    "card_6_8_0": {
+      "id": "6.8",
+      "configuration": {
+        "B4": "Нержавейка AISI",
+        "B5": 0.8,
+        "B6": 90,
+        "B7": 110,
+        "B8": 26
+      },
+      "range": true
+    },
+    "card_6_8_1": {
+      "id": "6.8",
+      "configuration": {
+        "B4": "Алюминий",
+        "B5": 1,
+        "B6": 200,
+        "B7": 100,
+        "B8": 5
+      },
+      "range": true
+    },
+    "card_6_8_2": {
+      "id": "6.8",
+      "configuration": {
+        "B4": "Алюминий",
+        "B5": 0.5,
+        "B6": 100,
+        "B7": 100,
+        "B8": 1
+      },
+      "range": true
+    },
+    "geo_6_8_0": {
+      "id": "6.8",
+      "configuration": {
+        "B8": 1
+      }
+    },
+    "geo_6_8_1": {
+      "id": "6.8",
+      "configuration": {
+        "B8": 5
+      }
+    },
+    "card_6_9_0": {
+      "id": "6.9",
+      "configuration": {
+        "B5": "Акрил прозрачный",
+        "B6": 3,
+        "B7": "УФ-ПЕЧАТЬ 1 СТОРОНА",
+        "B8": 40,
+        "B9": 60,
+        "B10": 50,
+        "B11": "ПРОСТАЯ",
+        "B12": "Без фурнитуры",
+        "B13": "БЕЗ ЛАКА"
+      },
+      "range": true
+    },
+    "card_6_9_1": {
+      "id": "6.9",
+      "configuration": {
+        "B5": "Пластик двухслойный",
+        "B6": 1.5,
+        "B7": "ГРАВИРОВКА 1 СТОРОНА",
+        "B8": 40,
+        "B9": 60,
+        "B10": 100,
+        "B11": "ПРОСТАЯ",
+        "B12": "Без фурнитуры",
+        "B13": "БЕЗ ЛАКА"
+      },
+      "range": true
+    },
+    "card_6_9_2": {
+      "id": "6.9",
+      "configuration": {
+        "B5": "Акрил прозрачный",
+        "B6": 3,
+        "B7": "УФ-ПЕЧАТЬ 1 СТОРОНА",
+        "B8": 40,
+        "B9": 60,
+        "B10": 200,
+        "B11": "ПРОСТАЯ",
+        "B12": "Без фурнитуры",
+        "B13": "БЕЗ ЛАКА"
+      },
+      "range": true
+    },
+    "geo_6_9_0": {
+      "id": "6.9",
+      "configuration": {
+        "B10": 1
+      }
+    },
+    "geo_6_9_1": {
+      "id": "6.9",
+      "configuration": {
+        "B10": 1000
+      }
+    }
+  },
+  "comparisons": {
+    "geo_1_1": {
+      "label": "A4 · Ч/Б · 1 сторона · бумага 80 г/м²",
+      "points": [
+        {
+          "key": "geo_1_1_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_1_1_1",
+          "quantity": 2000
+        }
+      ]
+    },
+    "geo_1_3": {
+      "label": "A6 · сатин",
+      "points": [
+        {
+          "key": "geo_1_3_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_1_3_1",
+          "quantity": 200
+        }
+      ]
+    },
+    "geo_1_4": {
+      "label": "A6 · плёнка 125 мкм",
+      "points": [
+        {
+          "key": "geo_1_4_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_1_4_1",
+          "quantity": 20
+        }
+      ]
+    },
+    "geo_1_5": {
+      "label": "A3 · металлическая пружина 10 мм",
+      "points": [
+        {
+          "key": "geo_1_5_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_1_5_1",
+          "quantity": 50
+        }
+      ]
+    },
+    "geo_1_6": {
+      "label": "твёрдый переплёт · печать блока · красная обложка",
+      "points": [
+        {
+          "key": "geo_1_6_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_1_6_1",
+          "quantity": 5000
+        }
+      ]
+    },
+    "geo_1_7": {
+      "label": "A4 · текстовый документ · сшитый",
+      "points": [
+        {
+          "key": "geo_1_7_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_1_7_1",
+          "quantity": 2000
+        }
+      ]
+    },
+    "geo_1_8": {
+      "label": "58×40 мм · TSC TE200",
+      "points": [
+        {
+          "key": "geo_1_8_0",
+          "quantity": 50
+        },
+        {
+          "key": "geo_1_8_1",
+          "quantity": 1000
+        }
+      ]
+    },
+    "geo_1_9": {
+      "label": "A5 · 24 страницы · обложка и скрепление",
+      "points": [
+        {
+          "key": "geo_1_9_0",
+          "quantity": 10
+        },
+        {
+          "key": "geo_1_9_1",
+          "quantity": 500
+        }
+      ]
+    },
+    "geo_2_1": {
+      "label": "A1 · Ч/Б · без фальцовки и брошюровки",
+      "points": [
+        {
+          "key": "geo_2_1_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_2_1_1",
+          "quantity": 2000
+        }
+      ]
+    },
+    "geo_2_2": {
+      "label": "A3 · проектная документация · металлическая пружина 10 мм",
+      "points": [
+        {
+          "key": "geo_2_2_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_2_2_1",
+          "quantity": 50
+        }
+      ]
+    },
+    "geo_2_4": {
+      "label": "A4 · чертёж · сшитый оригинал",
+      "points": [
+        {
+          "key": "geo_2_4_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_2_4_1",
+          "quantity": 2000
+        }
+      ]
+    },
+    "geo_2_7": {
+      "label": "841×1500 мм · Ч/Б",
+      "points": [
+        {
+          "key": "geo_2_7_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_2_7_1",
+          "quantity": 1000
+        }
+      ]
+    },
+    "geo_3_1": {
+      "label": "90×50 мм · Color Copy 350 г/м² · 1 сторона",
+      "points": [
+        {
+          "key": "geo_3_1_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_3_1_1",
+          "quantity": 1000
+        }
+      ]
+    },
+    "geo_3_2": {
+      "label": "A6 · 300 г/м² · 1 сторона · без ламинации",
+      "points": [
+        {
+          "key": "geo_3_2_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_3_2_1",
+          "quantity": 1000
+        }
+      ]
+    },
+    "geo_3_3": {
+      "label": "A4 · 120 г/м² · двусторонняя печать",
+      "points": [
+        {
+          "key": "geo_3_3_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_3_3_1",
+          "quantity": 500
+        }
+      ]
+    },
+    "geo_3_4": {
+      "label": "A4 · обложка 300 г/м² · блок 160 г/м²",
+      "points": [
+        {
+          "key": "geo_3_4_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_3_4_1",
+          "quantity": 5000
+        }
+      ]
+    },
+    "geo_3_5": {
+      "label": "A4 · обложка 300 г/м² · блок 160 г/м²",
+      "points": [
+        {
+          "key": "geo_3_5_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_3_5_1",
+          "quantity": 5000
+        }
+      ]
+    },
+    "geo_3_6": {
+      "label": "A6 · 250 г/м² · 2 стороны · без ламинации",
+      "points": [
+        {
+          "key": "geo_3_6_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_3_6_1",
+          "quantity": 1000
+        }
+      ]
+    },
+    "geo_3_7": {
+      "label": "A4 · 250 г/м² · 1 сторона",
+      "points": [
+        {
+          "key": "geo_3_7_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_3_7_1",
+          "quantity": 500
+        }
+      ]
+    },
+    "geo_3_8": {
+      "label": "A4 · 250 г/м² · 1 сторона",
+      "points": [
+        {
+          "key": "geo_3_8_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_3_8_1",
+          "quantity": 500
+        }
+      ]
+    },
+    "geo_3_9": {
+      "label": "A4 · 250 г/м² · 1 сторона",
+      "points": [
+        {
+          "key": "geo_3_9_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_3_9_1",
+          "quantity": 500
+        }
+      ]
+    },
+    "geo_3_10": {
+      "label": "50×90 мм · 200 г/м² · 1 сторона",
+      "points": [
+        {
+          "key": "geo_3_10_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_3_10_1",
+          "quantity": 5000
+        }
+      ]
+    },
+    "geo_4_1": {
+      "label": "30×30 мм · УФ-печать · белая плёнка · фигурная форма",
+      "points": [
+        {
+          "key": "geo_4_1_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_4_1_1",
+          "quantity": 5000
+        }
+      ]
+    },
+    "geo_4_2": {
+      "label": "30×30 мм · УФ-печать · белая плёнка · круглая форма",
+      "points": [
+        {
+          "key": "geo_4_2_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_4_2_1",
+          "quantity": 5000
+        }
+      ]
+    },
+    "geo_4_3": {
+      "label": "30×30 мм · УФ-печать · белая плёнка · прямоугольная форма",
+      "points": [
+        {
+          "key": "geo_4_3_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_4_3_1",
+          "quantity": 5000
+        }
+      ]
+    },
+    "geo_4_4": {
+      "label": "стикерпак 100×150 мм · УФ-печать · белая плёнка",
+      "points": [
+        {
+          "key": "geo_4_4_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_4_4_1",
+          "quantity": 5000
+        }
+      ]
+    },
+    "geo_4_8": {
+      "label": "50×50 мм · белая плёнка · фигурная 3D-форма",
+      "points": [
+        {
+          "key": "geo_4_8_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_4_8_1",
+          "quantity": 5000
+        }
+      ]
+    },
+    "geo_4_9": {
+      "label": "50×50 мм · белая плёнка · круглая 3D-форма",
+      "points": [
+        {
+          "key": "geo_4_9_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_4_9_1",
+          "quantity": 5000
+        }
+      ]
+    },
+    "geo_4_10": {
+      "label": "50×50 мм · белая плёнка · прямоугольная 3D-форма",
+      "points": [
+        {
+          "key": "geo_4_10_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_4_10_1",
+          "quantity": 5000
+        }
+      ]
+    },
+    "geo_4_5": {
+      "label": "30×30 мм · УФ-печать · белая плёнка · прямоугольная этикетка",
+      "points": [
+        {
+          "key": "geo_4_5_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_4_5_1",
+          "quantity": 5000
+        }
+      ]
+    },
+    "geo_4_6": {
+      "label": "50×50 мм · UV-DTF · круглая форма",
+      "points": [
+        {
+          "key": "geo_4_6_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_4_6_1",
+          "quantity": 5000
+        }
+      ]
+    },
+    "geo_4_7": {
+      "label": "152×108 мм · самоклеящаяся бумага · без контурной резки",
+      "points": [
+        {
+          "key": "geo_4_7_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_4_7_1",
+          "quantity": 200
+        }
+      ]
+    },
+    "geo_4_11": {
+      "label": "стикерпак 150×210 мм · 3D-стикеры 30×30 мм · белая плёнка",
+      "points": [
+        {
+          "key": "geo_4_11_0",
+          "quantity": 100
+        },
+        {
+          "key": "geo_4_11_1",
+          "quantity": 500
+        }
+      ]
+    },
+    "geo_5_1": {
+      "label": "1000×1000 мм · литой баннер · интерьерная печать",
+      "points": [
+        {
+          "key": "geo_5_1_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_5_1_1",
+          "quantity": 20
+        }
+      ]
+    },
+    "geo_5_2": {
+      "label": "1000×1000 мм · постерная бумага · интерьерная печать",
+      "points": [
+        {
+          "key": "geo_5_2_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_5_2_1",
+          "quantity": 20
+        }
+      ]
+    },
+    "geo_5_3": {
+      "label": "1000×1000 мм · постерная бумага · интерьерная печать",
+      "points": [
+        {
+          "key": "geo_5_3_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_5_3_1",
+          "quantity": 20
+        }
+      ]
+    },
+    "geo_5_4": {
+      "label": "300×400 мм · синтетический матовый холст · UV-печать",
+      "points": [
+        {
+          "key": "geo_5_4_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_5_4_1",
+          "quantity": 100
+        }
+      ]
+    },
+    "geo_5_5": {
+      "label": "1000×1000 мм · белая матовая плёнка · интерьерная печать",
+      "points": [
+        {
+          "key": "geo_5_5_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_5_5_1",
+          "quantity": 20
+        }
+      ]
+    },
+    "geo_5_6": {
+      "label": "1000×600 мм · белая плёнка · сложный контур · Oratape",
+      "points": [
+        {
+          "key": "geo_5_6_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_5_6_1",
+          "quantity": 50
+        }
+      ]
+    },
+    "geo_5_7": {
+      "label": "1000×600 мм · белая плёнка · сложный контур · Oratape",
+      "points": [
+        {
+          "key": "geo_5_7_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_5_7_1",
+          "quantity": 50
+        }
+      ]
+    },
+    "geo_5_8": {
+      "label": "210×297 мм · ПВХ 3 мм · печать на плёнке + накатка",
+      "points": [
+        {
+          "key": "geo_5_8_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_5_8_1",
+          "quantity": 100
+        }
+      ]
+    },
+    "geo_5_9": {
+      "label": "600×1200 мм · пенокартон 5 мм · печать на плёнке + накатка",
+      "points": [
+        {
+          "key": "geo_5_9_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_5_9_1",
+          "quantity": 100
+        }
+      ]
+    },
+    "geo_6_1": {
+      "label": "400×200 мм · оргстекло 3 мм · UV-печать · белая подложка",
+      "points": [
+        {
+          "key": "geo_6_1_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_6_1_1",
+          "quantity": 100
+        }
+      ]
+    },
+    "geo_6_2": {
+      "label": "1000×600 мм · белая плёнка · сложный контур · Oratape",
+      "points": [
+        {
+          "key": "geo_6_2_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_6_2_1",
+          "quantity": 50
+        }
+      ]
+    },
+    "geo_6_3": {
+      "label": "300×200 мм · фанера 3 мм · простой контур",
+      "points": [
+        {
+          "key": "geo_6_3_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_6_3_1",
+          "quantity": 1000
+        }
+      ]
+    },
+    "geo_6_4": {
+      "label": "зона 210×297 мм · акрил/оргстекло · заполнение 20%",
+      "points": [
+        {
+          "key": "geo_6_4_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_6_4_1",
+          "quantity": 50
+        }
+      ]
+    },
+    "geo_6_5": {
+      "label": "400×200 мм · оргстекло 3 мм · UV-печать · белая подложка",
+      "points": [
+        {
+          "key": "geo_6_5_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_6_5_1",
+          "quantity": 100
+        }
+      ]
+    },
+    "geo_6_6": {
+      "label": "25×45 мм · прозрачный акрил 3 мм · UV 1 сторона",
+      "points": [
+        {
+          "key": "geo_6_6_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_6_6_1",
+          "quantity": 1000
+        }
+      ]
+    },
+    "geo_6_7": {
+      "label": "90×110 мм · нержавеющая сталь AISI 0,8 мм",
+      "points": [
+        {
+          "key": "geo_6_7_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_6_7_1",
+          "quantity": 5
+        }
+      ]
+    },
+    "geo_6_8": {
+      "label": "90×110 мм · готовая табличка AISI 0,8 мм",
+      "points": [
+        {
+          "key": "geo_6_8_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_6_8_1",
+          "quantity": 5
+        }
+      ]
+    },
+    "geo_6_9": {
+      "label": "25×45 мм · прозрачный акрил 3 мм · UV 1 сторона",
+      "points": [
+        {
+          "key": "geo_6_9_0",
+          "quantity": 1
+        },
+        {
+          "key": "geo_6_9_1",
+          "quantity": 1000
+        }
+      ]
+    }
+  }
+}

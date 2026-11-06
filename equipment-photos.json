@@ -1,0 +1,93 @@
+{
+  "equipment/mimaki-ujf-6042-mkii-e/": {
+    "file": "assets/equipment/mimaki-ujf-6042-mkii-e.png",
+    "source": "https://d2w577gk9zpoty.cloudfront.net/archives/002/202110/33c98d115607b649c7927a13b2f7ae61ef6fbffa8e0fd73b7aced035daf47d37.png",
+    "alt": "Mimaki UJF-6042 MkII e — фото оборудования",
+    "width": 320,
+    "height": 228
+  },
+  "equipment/mimaki-ujv100-160-plus/": {
+    "file": "assets/equipment/mimaki-ujv100-160-plus.png",
+    "source": "https://d2w577gk9zpoty.cloudfront.net/archives/002/202309/155a025d4c0a3b99b2a261595da862b4ab9dafa881ce61db192fa0b60fc0c7d7.png",
+    "alt": "Mimaki UJV100-160 Plus — фото оборудования",
+    "width": 500,
+    "height": 324
+  },
+  "equipment/mimaki-cjv200/": {
+    "file": "assets/equipment/mimaki-cjv200.png",
+    "source": "https://d2w577gk9zpoty.cloudfront.net/archives/002/202409/0030928bf91aae0f858457cee0c552b970e16f82bd6bdb5f6dffe31313b3431a.png",
+    "alt": "Mimaki CJV200 Series — фото оборудования",
+    "width": 1000,
+    "height": 667
+  },
+  "equipment/canon-tm-200/": {
+    "file": "assets/equipment/canon-tm-200.jpg",
+    "source": "https://s7d1.scene7.com/is/image/canon/3062C002_tandm-charge---200_primary?wid=1200&qlt=90&fmt=jpeg",
+    "alt": "Canon imagePROGRAF TM-200 — фото оборудования",
+    "width": 1200,
+    "height": 1200
+  },
+  "equipment/canon-tx-3100/": {
+    "file": "assets/equipment/canon-tx-3100.jpg",
+    "source": "https://s7d1.scene7.com/is/image/canon/imageprograf-tx-3100-01front-1roll-stk-e_primary?wid=1200&qlt=90&fmt=jpeg",
+    "alt": "Canon imagePROGRAF TX-3100 — фото оборудования",
+    "width": 1200,
+    "height": 900
+  },
+  "equipment/canon-imagepress-c165/": {
+    "file": "assets/equipment/canon-imagepress-c165.jpg",
+    "source": "https://s7d1.scene7.com/is/image/canon/imagepress-lite-c165-img1-675x450?wid=1200&qlt=90&fmt=jpeg",
+    "alt": "Canon imagePRESS C165 — фото оборудования",
+    "width": 1200,
+    "height": 450
+  },
+  "equipment/canon-imagerunner-advance-dx-c3822/": {
+    "file": "assets/equipment/canon-imagerunner-advance-dx-c3822.jpg",
+    "source": "https://www.mwmoffice.pl/stock/res/8/4872/6997b332b282d-imagerunner-advance-dx-c3822i.jpg",
+    "alt": "Canon imageRUNNER ADVANCE DX C3822 — фото оборудования",
+    "width": 1024,
+    "height": 1024
+  },
+  "equipment/wattsan-6090-lt/": {
+    "file": "assets/equipment/wattsan-6090-lt.png",
+    "source": "https://virmer.com/assets/images/products/59/big/6090scaled.png",
+    "alt": "Wattsan 6090 LT — фото оборудования",
+    "width": 730,
+    "height": 730
+  },
+  "equipment/graphtec-ce7000-60/": {
+    "file": "assets/equipment/graphtec-ce7000-60.webp",
+    "source": "https://www.graphteccorp.com/wp-content/uploads/product-ce7000-eyecatch.webp",
+    "alt": "Graphtec CE7000-60 — фото оборудования",
+    "width": 1201,
+    "height": 401
+  },
+  "equipment/rongda-l-fold4000/": {
+    "file": "assets/equipment/rongda-l-fold4000.png",
+    "source": "https://rongda.iq-tech.ru/upload/iblock/715/zsivk76b7dg2uxagtx9zuairtqhyxnlb/4017_1.png",
+    "alt": "Rongda L-FOLD4000 — фото оборудования",
+    "width": 1366,
+    "height": 911
+  },
+  "equipment/bulros-pd360b/": {
+    "file": "assets/equipment/bulros-pd360b.jpg",
+    "source": "https://www.foroffice.ru/upload/iblock/371/bulros_pd360b.jpg",
+    "alt": "Bulros PD360B — фото оборудования",
+    "width": 401,
+    "height": 480
+  },
+  "equipment/bulros-450vs-plus/": {
+    "file": "assets/equipment/bulros-450vs-plus.jpg",
+    "source": "https://www.foroffice.ru/upload/iblock/904/450vs_plus_3.jpg",
+    "alt": "Bulros 450VS+ — фото оборудования",
+    "width": 600,
+    "height": 600
+  },
+  "equipment/konica-minolta-accuriopress-c7100/": {
+    "file": "assets/equipment/konica-minolta-accuriopress-c7100.webp",
+    "source": "https://d1nz2cwxocqem8.cloudfront.net/image/380230487157/image_pbsbtrmgu128v2qhe0ct13183n/-FWEBP%2CQ75%2C-S3840",
+    "alt": "Konica Minolta AccurioPress C7100 — фото оборудования",
+    "width": 3840,
+    "height": 1038
+  }
+}

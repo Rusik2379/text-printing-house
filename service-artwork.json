@@ -1,0 +1,522 @@
+{
+  "sourceArchive": "баннера и главные баннера.rar",
+  "services": {
+    "1.1": {
+      "path": "kopitsentr/pechat-dokumentov/",
+      "source": "!печать документов.png",
+      "asset": "assets/copycenter-pechat-dokumentov.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "96c4558e77bcee3bbec45a7ae744d2cc25383e1fcb5f8e39f5d3a22019beddb9"
+    },
+    "1.2": {
+      "path": "kopitsentr/kopirovanie-dokumentov/",
+      "source": "!копирование документов.png",
+      "asset": "assets/copycenter-kopirovanie-dokumentov.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d0476245e9ecb4c77790993e40d64645bb40c57f6131661ae36f6a32efdb37d3"
+    },
+    "1.3": {
+      "path": "kopitsentr/pechat-fotografiy/",
+      "source": "!печать фотографий.png",
+      "asset": "assets/copycenter-pechat-fotografiy.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "4254c6edd4b6843ea0f0fb813ba4ea667a3d2b7161c6427be6b4a042bec7841c"
+    },
+    "1.4": {
+      "path": "kopitsentr/paketnoe-laminirovanie/",
+      "source": "!пакетное ламинирование.png",
+      "asset": "assets/copycenter-paketnoe-laminirovanie.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "43ac3d2fcb8e22047a3b8e8b19c01003cfb28cafe193e700a2adb444af08052e"
+    },
+    "1.5": {
+      "path": "kopitsentr/broshyurovka-na-pruzhinu/",
+      "source": "!Брошюровка документов на пружину.png",
+      "asset": "assets/copycenter-broshyurovka-na-pruzhinu.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "5d2b97186dda0e4ae3f1ad2193206ac78dc2b49a11ac9fedf832cb1d33b4e13d"
+    },
+    "1.6": {
+      "path": "kopitsentr/tverdyy-pereplet-diplomov/",
+      "source": "!твердый переплет.png",
+      "asset": "assets/copycenter-tverdyy-pereplet-diplomov.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d1ec6c46468dbcb4f358e0a729235342e04126091c329b13f29b16535dfb172d"
+    },
+    "1.7": {
+      "path": "kopitsentr/skanirovanie-dokumentov/",
+      "source": "!сканирование документов.png",
+      "asset": "assets/copycenter-skanirovanie-dokumentov.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d0d5d287225b4c5cf9cf7c786c9d609cb76933baf0be2f484b2dc3fc1ce5974d"
+    },
+    "1.8": {
+      "path": "kopitsentr/termonakleyki/",
+      "source": "!термонаклейки.png",
+      "asset": "assets/copycenter-termonakleyki.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "abcbbe0d949b8c4375ed3e1be1dd78a8ec6bcd620d55d7da5c46d9246a12bbb2"
+    },
+    "1.9": {
+      "path": "kopitsentr/pechat-avtoreferatov/",
+      "source": "!авторефераты.png",
+      "asset": "assets/copycenter-pechat-avtoreferatov.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "0bb25e5cee5ac34fb4b448eefa62a710480803c50ffb04858ba8136887bfb3a3"
+    },
+    "2.1": {
+      "path": "proektnaya-dokumentatsiya/inzhenernaya-pechat/",
+      "source": "!Инженерная печать.png",
+      "asset": "assets/project-inzhenernaya-pechat.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "e8b3a83681e7d03e2857b825a33b3777f722d1d652d9c416b4d3e3fdd7e94acf"
+    },
+    "2.2": {
+      "path": "proektnaya-dokumentatsiya/broshyurovka-proektnoy-dokumentatsii/",
+      "source": "!Брошюровка на пружину.png",
+      "asset": "assets/project-broshyurovka-proektnoy-dokumentatsii.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "12e42e3a4c0116fe5cef337d06a17206105ccf08165928399f7b15dcb67efb43"
+    },
+    "2.3": {
+      "path": "proektnaya-dokumentatsiya/falcovka-chertezhey/",
+      "source": "!Фальцовка.png",
+      "asset": "assets/project-falcovka-chertezhey.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "9cc8f9b8b890a77f6b0bb9d1d9ca1ee9814f6cf78817ae7df584fdaa77afc414"
+    },
+    "2.4": {
+      "path": "proektnaya-dokumentatsiya/skanirovanie-chertezhey/",
+      "source": "!Сканирование.png",
+      "asset": "assets/project-scanning-banner.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "4f5e5d5d59aceac5d2b926fc53c03b41cc1f8678b62b0bca70a114e4283a8047"
+    },
+    "2.5": {
+      "path": "proektnaya-dokumentatsiya/kopirovanie-chertezhey/",
+      "source": "!Копирование.png",
+      "asset": "assets/project-kopirovanie-chertezhey.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "4c8a54721650b7a5ab43aead4a0dd43f73a4883366eec0dc4cf35387c840a8cf"
+    },
+    "2.6": {
+      "path": "proektnaya-dokumentatsiya/pechat-dizayn-proektov/",
+      "source": "!Печать дизайн-проектов.png",
+      "asset": "assets/project-pechat-dizayn-proektov.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "becdda50bf9e210c4fab63514dd29aadb109fbf805ccf2b2297d2da2e23a5467"
+    },
+    "2.7": {
+      "path": "proektnaya-dokumentatsiya/pechat-lekal-i-vykroek/",
+      "source": "!печать лекал и выкроек.png",
+      "asset": "assets/project-pechat-lekal-i-vykroek.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "4e5994c168deefae30cc692af594784ce0a3cdb4373acbb4e8543c5329bb221b"
+    },
+    "3.1": {
+      "path": "listovaya-poligrafiya/vizitki/",
+      "source": "!визитки.png",
+      "asset": "assets/leaflet-vizitki.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "a7ade86346eaa759bbcd9009f4651e9ccd86e137326330f93ffa8d512602a4a7"
+    },
+    "3.2": {
+      "path": "listovaya-poligrafiya/listovki/",
+      "source": "!Листовки.png",
+      "asset": "assets/leaflet-listovki.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "18e0c8d8109d9f548614bd165a9a5b86fb8da0a1bde3ff34ccb10f0d64b237fd"
+    },
+    "3.3": {
+      "path": "listovaya-poligrafiya/buklety/",
+      "source": "!Буклеты.png",
+      "asset": "assets/leaflet-buklety.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "355af9df30c990ab483ede41e2d7dd76b7a6ebac37a1862e37b346e9819e1f48"
+    },
+    "3.4": {
+      "path": "listovaya-poligrafiya/broshyury/",
+      "source": "!брошюры.png",
+      "asset": "assets/leaflet-broshyury.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "74027d47a24af962765b87eed42c41c3cf085213150289c09066832b8b7e97bb"
+    },
+    "3.5": {
+      "path": "listovaya-poligrafiya/katalogi/",
+      "source": "!Каталоги.png",
+      "asset": "assets/leaflet-katalogi.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "722b83947fc0569795a0a39773d0dd552e1e8fcad5cc470fa829c88aff3f6b32"
+    },
+    "3.6": {
+      "path": "listovaya-poligrafiya/otkrytki/",
+      "source": "!Открытки.png",
+      "asset": "assets/leaflet-otkrytki.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "674919d5052ed5fe67599b1bd473c12c405e8390aed648ff7ad6673d52bc7850"
+    },
+    "3.7": {
+      "path": "listovaya-poligrafiya/gramoty-i-diplomy/",
+      "source": "!грамоты и дипломы.png",
+      "asset": "assets/leaflet-gramoty-i-diplomy.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "782fff575a2aa5042eba3a7e16b8cb5230ac8b8b9ad4e02d92ca3372cde66eac"
+    },
+    "3.8": {
+      "path": "listovaya-poligrafiya/sertifikaty/",
+      "source": "!Сертификаты.png",
+      "asset": "assets/leaflet-sertifikaty.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d3c59a38193bd4752229ba511069e12396a5ef2dfd452d9d103b3effe3027311"
+    },
+    "3.9": {
+      "path": "listovaya-poligrafiya/afishi/",
+      "source": "!Афиши.png",
+      "asset": "assets/leaflet-afishi.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "442d3c328b69bad9e360db88973dac61107ad4c6fd929ff6ac872b311996e9a6"
+    },
+    "3.10": {
+      "path": "listovaya-poligrafiya/birki/",
+      "source": "!Бирки.png",
+      "asset": "assets/leaflet-birki.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "85660f2b2cb15303c5ae85311e604cd8b1a57c14746515ff7597d64b7674d720"
+    },
+    "4.1": {
+      "path": "nakleyki-i-stikery/figurnye-stikery/",
+      "source": "!фигурные стикеры.png",
+      "asset": "assets/sticker-hero-flat-figure.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "2c5dbd7c02d5d2f24d00155685aa38c359dcc1e785b45ee3a54722553e3de32f"
+    },
+    "4.2": {
+      "path": "nakleyki-i-stikery/kruglye-stikery/",
+      "source": "!круглые стикеры.png",
+      "asset": "assets/sticker-hero-flat-round.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "401214b5061a08150a0d0823e5062b345150ea9269066f995a2f62ba19eb492e"
+    },
+    "4.3": {
+      "path": "nakleyki-i-stikery/pryamougolnye-stikery/",
+      "source": "!прямоугольные стикеры.png",
+      "asset": "assets/sticker-hero-flat-rectangle.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "becbf13439c7aa7c8c9e25cbbd316a5d029b1b5f10aa5bd4620fbd45ce6d04b7"
+    },
+    "4.4": {
+      "path": "nakleyki-i-stikery/stikerpaki/",
+      "source": "!стикерпаки.png",
+      "asset": "assets/stickerpack-robot-transparent.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "c1d5099cc458c923cfad6d3f8a9d2f4c647e569c2a795fc72513c6300f8d5427"
+    },
+    "4.5": {
+      "path": "nakleyki-i-stikery/etiketki/",
+      "source": "!этикетки.png",
+      "asset": "assets/sticker-hero-labels-brand.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "54d4643b5c26ac59feea5bf44206d8f6d3b5f5be29c335caaa6cd2cbce0b3ef1"
+    },
+    "4.6": {
+      "path": "nakleyki-i-stikery/uv-dtf-nakleyki/",
+      "source": "!уф дтф наклейки.png",
+      "asset": "assets/sticker-hero-uv-dtf.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "3a19248aa9f4c26628418ee54cd9b1106f034cf6b8e805c7f8e0ae11daf784c5"
+    },
+    "4.7": {
+      "path": "nakleyki-i-stikery/bumazhnye-stikery/",
+      "source": "!стикеры на бумаге.png",
+      "asset": "assets/sticker-hero-paper.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "a28e6c39d5fa16dc9812a7321391664cce934423a42639e9131b3f992b9e5855"
+    },
+    "4.8": {
+      "path": "nakleyki-i-stikery/figurnye-3d-stikery/",
+      "source": "!фигурные 3д стикеры.png",
+      "asset": "assets/sticker-hero-3d-figure.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "aa5eebb8dda0e73002e4142cbcd7d0e33d9aa9d789997b3c26775fa5edd5f243"
+    },
+    "4.9": {
+      "path": "nakleyki-i-stikery/kruglye-3d-stikery/",
+      "source": "!круглые 3д стикеры.png",
+      "asset": "assets/sticker-hero-3d-round.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "e7a63c958613363449aa90d0621e4bdfff7bc0c122e3e9f7253fd46ab05bdd09"
+    },
+    "4.10": {
+      "path": "nakleyki-i-stikery/pryamougolnye-3d-stikery/",
+      "source": "!прямоугольные 3д стикеры.png",
+      "asset": "assets/sticker-hero-3d-rectangle.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "4b319e25a9bf988553dd08f1df8c9dbd5f191995344a69cff4a971951f910d8d"
+    },
+    "4.11": {
+      "path": "nakleyki-i-stikery/3d-stikerpaki/",
+      "source": "!3д стикерпаки.png",
+      "asset": "assets/sticker-hero-3d-pack.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "ca0a95aa65f47c24525233a93305f15f55289e089812bc99d8146d42b8b232b5"
+    },
+    "5.1": {
+      "path": "shirokiy-format/bannery/",
+      "source": "!Баннеры.png",
+      "asset": "assets/wide-hero-bannery.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "c38c5319a9731c37164a59d0a016a25f05d6a6f11eb4c7015bc583108a99daff"
+    },
+    "5.2": {
+      "path": "shirokiy-format/postery/",
+      "source": "!Постеры.png",
+      "asset": "assets/wide-hero-postery.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "003457cbfdc315673f95e8826ac64774f75ee3daddebe0feae4743744ca34863"
+    },
+    "5.3": {
+      "path": "shirokiy-format/plakaty/",
+      "source": "!Плакаты.png",
+      "asset": "assets/wide-hero-plakaty.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "1bb7d5f89286ee8c21e5dc817d571316fad3607b362307da46e1d20286410cc6"
+    },
+    "5.4": {
+      "path": "shirokiy-format/pechat-na-holste/",
+      "source": "!печать на холсте.png",
+      "asset": "assets/wide-hero-pechat-na-holste.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "f9db9869f5d269af164324cea6b5a001d19596275fa1f1d07f4540eb9c6fa03e"
+    },
+    "5.5": {
+      "path": "shirokiy-format/samokleyashchayasya-plenka/",
+      "source": "!Самоклеящаяся пленка.png",
+      "asset": "assets/wide-hero-samokleyashchayasya-plenka.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "bcc477b46a4ad52f4551da3d51f922267a9f381f97c09ddb139066b3b6ac59f9"
+    },
+    "5.6": {
+      "path": "shirokiy-format/nakleyki-na-avto/",
+      "source": "!наклейки на авто.png",
+      "asset": "assets/wide-hero-nakleyki-na-avto.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "a219d70c14a70931ef55bd845664dd8d7d025ba615cd9171801c6e56234a8c62"
+    },
+    "5.7": {
+      "path": "shirokiy-format/nakleyki-na-steklo/",
+      "source": "!наклейки на стекло.png",
+      "asset": "assets/wide-hero-nakleyki-na-steklo.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "cc6f74c73bbc0190f00a14312b23deefb6f79b88955f1d720a00e9afdc372196"
+    },
+    "5.8": {
+      "path": "shirokiy-format/nakatka-na-pvh/",
+      "source": "!Накатка на ПВХ1.png",
+      "asset": "assets/wide-hero-nakatka-na-pvh.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "9ce388c50bbcf1f022d4b5e6c2a54c30df5427b25e5e11eba8a6e0680f96a1b5"
+    },
+    "5.9": {
+      "path": "shirokiy-format/nakatka-na-penokarton/",
+      "source": "!Накатка на пенокартон.png",
+      "asset": "assets/wide-hero-nakatka-na-penokarton.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "e68da82f3e0c8307a4e754ca4204a08a0fd930cb3d4b8e2efac24d097cd38bc2"
+    },
+    "6.1": {
+      "path": "uv-pechat-i-rezka/pryamaya-uv-pechat/",
+      "source": "!Прямая УФ печать.png",
+      "asset": "assets/uv-pryamaya-uv-pechat.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "ae6ddaece415df8d410be60a1ced55755220739084279c9ed860b3966cd8d01a"
+    },
+    "6.2": {
+      "path": "uv-pechat-i-rezka/plotternaya-rezka/",
+      "source": "!Плоттерная резка.png",
+      "asset": "assets/uv-plotternaya-rezka.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "e8d55d72c182d609f69cece6b72bcd84660de859a6c367d0dd7cefb493f05e4e"
+    },
+    "6.3": {
+      "path": "uv-pechat-i-rezka/lazernaya-rezka/",
+      "source": "!лазерная резка.png",
+      "asset": "assets/uv-lazernaya-rezka.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "63c6302033a3fefd04d4f750ce99235867ce00d8cdb5ae82d6c26cabba27aedc"
+    },
+    "6.4": {
+      "path": "uv-pechat-i-rezka/gravirovka-co2/",
+      "source": "!Гравировка СО2.png",
+      "asset": "assets/uv-gravirovka-co2.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "0a4f348697bab09393c5b1fee7dda3820454d757242b700d5277e08ce4155699"
+    },
+    "6.5": {
+      "path": "uv-pechat-i-rezka/tablichki/",
+      "source": "!Таблички.png",
+      "asset": "assets/uv-tablichki.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d615ef0c89cdc9bf1c12731f5f50770ea3e8e9efb634a7380ce4f7a32ce2570f"
+    },
+    "6.6": {
+      "path": "uv-pechat-i-rezka/breloki/",
+      "source": "!Брелоки.png",
+      "asset": "assets/uv-breloki.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "2c545a621707d0f5d74733bb04faa8764ce4b506d27d758318a85a3bd9c2bfe9"
+    },
+    "6.7": {
+      "path": "uv-pechat-i-rezka/shildy/",
+      "source": "!шильды.png",
+      "asset": "assets/uv-shildy.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "c61ce3c1bf64f883e4288bd3d8256eac69b6bc9cdf38eca1991d9832449d878f"
+    },
+    "6.8": {
+      "path": "uv-pechat-i-rezka/pechat-na-metalle/",
+      "source": "!печать на металле.png",
+      "asset": "assets/uv-pechat-na-metalle.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "a31a5fd305cfdcd9455772c61c3896b8dfac2a81e01fbb5757b24d48ec041317"
+    },
+    "6.9": {
+      "path": "uv-pechat-i-rezka/garderobnye-nomerki/",
+      "source": "!гардеробные номерки.png",
+      "asset": "assets/uv-garderobnye-nomerki.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "fba5f13d0be761bc98e707307966b6b71ec4d36039a48bf864d62cb99c90e103"
+    }
+  },
+  "categories": {
+    "kopitsentr/": {
+      "source": "!копицентр.png",
+      "asset": "assets/category-copycenter-banner.webp",
+      "width": 1672,
+      "height": 941,
+      "sha256": "0c4dd389676f64ccf74d88cce6cd0f752561ad9779b6aebab2d6ed16af292ce9"
+    },
+    "proektnaya-dokumentatsiya/": {
+      "source": "!проектная документация.png",
+      "asset": "assets/project-category-banner.webp",
+      "width": 1672,
+      "height": 941,
+      "sha256": "6f27fe33bf19ac0f7315cfec77c5915b45039ef7931636a277ef41954c347343"
+    },
+    "listovaya-poligrafiya/": {
+      "source": "!листовая полиграфия.png",
+      "asset": "assets/category-leaflet-banner.webp",
+      "width": 1672,
+      "height": 941,
+      "sha256": "8eae61266d944f20f9fbe3e63ee4cb7ba5da8d4584277f1d753db4f3a87fc34a"
+    },
+    "nakleyki-i-stikery/": {
+      "source": "!наклейки и стикеры.png",
+      "asset": "assets/category-stickers-banner.webp",
+      "width": 1672,
+      "height": 941,
+      "sha256": "6c2f6af1a85e583f57045c6ab387c133c6487ea039197a01fd1353c465fbda15"
+    },
+    "shirokiy-format/": {
+      "source": "!широкий формат.png",
+      "asset": "assets/category-wide-banner.webp",
+      "width": 1672,
+      "height": 941,
+      "sha256": "9543d2ef35596fc16857dd0f58023db6542377c884f5c5714e7340c991c4523f"
+    },
+    "uv-pechat-i-rezka/": {
+      "source": "!уф печать и резка.png",
+      "asset": "assets/category-uv-banner.webp",
+      "width": 1672,
+      "height": 941,
+      "sha256": "aadf03b428042c4572a96ee16f5faf21385c8688feef4154c2fd8cf112b3dfba"
+    }
+  },
+  "other": {
+    "company/": {
+      "source": "!компания.png",
+      "asset": "assets/company-about.webp",
+      "width": 1672,
+      "height": 941,
+      "sha256": "9b898ee006e921e575a6b9f1c5e3d7b1b5c39d629fc30ab653892fa89afcec36"
+    },
+    "company/about/": {
+      "source": "!компания.png",
+      "asset": "assets/company-about.webp",
+      "width": 1672,
+      "height": 941,
+      "sha256": "9b898ee006e921e575a6b9f1c5e3d7b1b5c39d629fc30ab653892fa89afcec36"
+    },
+    "company/payment/": {
+      "source": "!оплата заказа.png",
+      "asset": "assets/company-payment.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d658bdb933f21ede06e05e2723a93a13832a4d4a3641eff35205f0a058a103d5"
+    },
+    "home-calculator": {
+      "source": "!калькулятор.png",
+      "asset": "assets/calculator-original.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "47ae08cde1ff255d2dd4ebde85dbbc737442e373f4cfd01d4655e95e18a896b3"
+    }
+  },
+  "unassigned": [
+    "!Интерьерная печать.png"
+  ]
+}

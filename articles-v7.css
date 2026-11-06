@@ -1,0 +1,42 @@
+/* ТЕКСТ v7: ONLY company/article/ additions; all other site styles remain from v6. */
+.tekstv7-short-answer {
+  border-left: 3px solid var(--color-primary, #ed1622);
+  background: rgba(237, 22, 34, 0.045);
+  padding: 16px 20px;
+  margin: 20px 0 26px;
+  border-radius: 0 12px 12px 0;
+}
+.tekstv7-short-answer strong {
+  display: block;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.tekstv7-short-answer p {
+  margin: 0;
+}
+
+.articles-directory .articles-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.articles-directory .articles-filter button {
+  white-space: normal;
+  text-align: left;
+}
+.company-reading ul {
+  padding-left: 1.4em;
+  margin: 12px 0 20px;
+}
+.company-reading ul li {
+  margin: 7px 0;
+  line-height: 1.7;
+}
+@media (max-width: 640px) {
+  .tekstv7-short-answer {
+    padding: 14px;
+  }
+  .articles-directory .articles-filter button {
+    font-size: 12px;
+  }
+}

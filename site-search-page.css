@@ -1,0 +1,120 @@
+#ts-search-form {
+  display: flex;
+  gap: 12px;
+  max-width: 950px;
+  margin: 24px 0 20px;
+}
+#ts-search-q {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 15px;
+  font-size: 16px;
+  background: var(--soft);
+  color: var(--ink);
+}
+#ts-search-q:focus {
+  outline: 2px solid #ed162230;
+  border-color: var(--red);
+}
+#ts-search-form button {
+  min-width: 100px;
+  background: var(--red);
+  color: #fff;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-weight: 700;
+}
+.ts-search-examples,
+#ts-search-filters {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin: 18px 0;
+}
+.ts-search-examples button,
+.ts-filter {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 9px 13px;
+  background: #fff;
+  font-size: 13px;
+}
+.ts-filter[aria-pressed='true'] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+#ts-search-summary {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 22px 0;
+}
+.ts-result-group {
+  margin: 28px 0;
+}
+.ts-result-group h2 {
+  font-size: 24px;
+  margin: 0 0 14px;
+  letter-spacing: -0.5px;
+}
+.ts-search-result {
+  display: block;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  margin-bottom: 11px;
+}
+.ts-search-result:hover {
+  border-color: var(--red);
+  background: #fffafa;
+}
+.ts-search-result strong {
+  display: block;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.ts-search-result p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+#ts-search-more {
+  padding: 13px 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-weight: 700;
+  margin: 10px 0 50px;
+}
+#ts-search-more[hidden] {
+  display: none;
+}
+.site-search-page main {
+  padding-bottom: 40px;
+}
+.site-search-page main > .container {
+  padding-top: 25px;
+}
+.site-search-page main h1 {
+  font-size: clamp(32px, 4vw, 46px);
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin: 20px 0 15px;
+}
+@media (max-width: 600px) {
+  #ts-search-form {
+    gap: 8px;
+  }
+  #ts-search-form button {
+    min-width: 0;
+    padding: 12px;
+  }
+  #ts-search-q {
+    font-size: 14px;
+  }
+  .ts-search-result {
+    padding: 17px;
+  }
+}

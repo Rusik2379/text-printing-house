@@ -1,0 +1,21 @@
+/* Shared SVGs keep the sizes and interaction states of their surrounding controls. */
+svg.icon {
+  display: inline-block;
+  overflow: visible;
+  vertical-align: middle;
+}
+svg.icon > g {
+  paint-order: fill stroke;
+}
+.requirements-hero-animation .req-paper img.req-icon-svg {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  display: block;
+}
+@media (max-width: 560px) {
+  .requirements-hero-animation .req-paper img.req-icon-svg {
+    width: 44px;
+    height: 44px;
+  }
+}

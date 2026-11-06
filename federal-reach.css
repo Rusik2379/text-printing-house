@@ -1,0 +1,140 @@
+/* Regional ordering uses the same typography, controls and palette as service pages. */
+.td-fed-section {
+  width: min(1440px, calc(100% - 64px));
+  margin: 56px auto;
+}
+.td-fed-shell {
+  padding: clamp(22px, 3vw, 36px);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--soft);
+}
+.td-fed-kicker {
+  color: var(--red);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.td-fed-section h2 {
+  max-width: 1000px;
+  margin: 13px 0 18px;
+  font-size: clamp(25px, 3vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -0.7px;
+}
+.td-fed-lead {
+  max-width: 1050px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+.td-fed-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 25px;
+}
+.td-fed-section h3 {
+  font-size: 18px;
+  line-height: 1.4;
+  margin: 0 0 12px;
+}
+.td-fed-note,
+.td-fed-usecases {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.td-fed-usecases {
+  margin: 0;
+  padding-left: 18px;
+}
+.td-fed-usecases li + li {
+  margin-top: 9px;
+}
+.td-fed-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 16px 0;
+}
+.td-fed-links a {
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.td-fed-links a:hover {
+  color: var(--red);
+  border-color: var(--red);
+}
+.td-fed-note > a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.td-semantic-usecases,
+.td-fed-faq {
+  border-top: 1px solid var(--line);
+  margin-top: 25px;
+  padding-top: 25px;
+}
+.td-semantic-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.td-semantic-card {
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 17px;
+  background: #fff;
+}
+.td-semantic-card strong,
+.td-semantic-card span {
+  display: block;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.td-semantic-card span {
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.td-semantic-card:hover {
+  border-color: var(--red);
+}
+.td-semantic-label {
+  margin: 22px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+.td-fed-faq details {
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+}
+.td-fed-faq summary {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.td-fed-faq details p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+@media (max-width: 700px) {
+  .td-fed-section {
+    width: calc(100% - 40px);
+    margin: 38px auto;
+  }
+  .td-fed-grid,
+  .td-semantic-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

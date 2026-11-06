@@ -1,0 +1,2980 @@
+{
+  "cases": {
+    "doc10": {
+      "id": "1.1",
+      "configuration": {
+        "B7": 10
+      }
+    },
+    "doc100": {
+      "id": "1.1",
+      "configuration": {
+        "B7": 100
+      }
+    },
+    "doc50duplex": {
+      "id": "1.1",
+      "configuration": {
+        "B7": 50,
+        "B6": "двусторонняя"
+      }
+    },
+    "diploma60": {
+      "id": "1.6",
+      "configuration": {
+        "B8": 50,
+        "B9": 10,
+        "B13": 0
+      }
+    },
+    "diploma100": {
+      "id": "1.6",
+      "configuration": {
+        "B8": 100,
+        "B9": 0,
+        "B13": 0
+      }
+    },
+    "diploma200": {
+      "id": "1.6",
+      "configuration": {
+        "B8": 200,
+        "B9": 0,
+        "B13": 0
+      }
+    },
+    "abstract": {
+      "id": "1.9",
+      "configuration": {
+        "B4": 20,
+        "B5": 4,
+        "B8": 10
+      }
+    },
+    "copy50": {
+      "id": "1.2",
+      "configuration": {
+        "B4": "A4",
+        "B5": "Ч/Б",
+        "B6": "С автоподатчика",
+        "B7": 50
+      }
+    },
+    "copycolor10": {
+      "id": "1.2",
+      "configuration": {
+        "B4": "A3",
+        "B5": "Цвет",
+        "B6": "Со стекла",
+        "B7": 10
+      }
+    },
+    "photo6": {
+      "id": "1.3",
+      "configuration": {
+        "B4": "A6",
+        "B5": "Сатин",
+        "B8": 1
+      }
+    },
+    "photo4": {
+      "id": "1.3",
+      "configuration": {
+        "B4": "A4",
+        "B5": "Сатин",
+        "B8": 11
+      }
+    },
+    "photo4unit": {
+      "id": "1.3",
+      "configuration": {
+        "B4": "A4",
+        "B5": "Сатин",
+        "B8": 11
+      },
+      "divisor": 11,
+      "digits": 2
+    },
+    "photo2": {
+      "id": "1.3",
+      "configuration": {
+        "B4": "A2",
+        "B5": "Сатин",
+        "B8": 1
+      }
+    },
+    "lam1": {
+      "id": "1.4",
+      "configuration": {
+        "B4": "A4",
+        "B5": "100 мкм",
+        "B6": 1
+      }
+    },
+    "lam20": {
+      "id": "1.4",
+      "configuration": {
+        "B4": "A4",
+        "B5": "100 мкм",
+        "B6": 20
+      }
+    },
+    "lamunit": {
+      "id": "1.4",
+      "configuration": {
+        "B4": "A4",
+        "B5": "100 мкм",
+        "B6": 20
+      },
+      "divisor": 20,
+      "digits": 2
+    },
+    "minlam": {
+      "id": "1.4",
+      "kind": "minimum"
+    },
+    "spring12": {
+      "id": "1.5",
+      "configuration": {
+        "B4": "Металл",
+        "B5": "A3",
+        "B7": "10 мм (до 80 л.)",
+        "B8": 12
+      }
+    },
+    "scan50": {
+      "id": "1.7",
+      "configuration": {
+        "B4": "ТЕКСТОВЫЙ",
+        "B5": "A4",
+        "B6": "НЕТ",
+        "B7": 50
+      }
+    },
+    "scan3": {
+      "id": "1.7",
+      "configuration": {
+        "B5": "A3",
+        "B6": "ДА",
+        "B7": 10
+      }
+    },
+    "eng2": {
+      "id": "2.1",
+      "configuration": {
+        "B4": "Под A3",
+        "rows": [
+          {
+            "B": "A2",
+            "C": "Ч/Б",
+            "D": 10
+          }
+        ]
+      }
+    },
+    "eng3": {
+      "id": "2.1",
+      "configuration": {
+        "B4": "Без фальцовки",
+        "rows": [
+          {
+            "B": "A3",
+            "C": "Цвет",
+            "D": 20
+          }
+        ]
+      }
+    },
+    "eng1": {
+      "id": "2.1",
+      "configuration": {
+        "B4": "Под A3",
+        "rows": [
+          {
+            "B": "A1",
+            "C": "Ч/Б",
+            "D": 5
+          }
+        ]
+      }
+    },
+    "foldA2": {
+      "id": "2.3",
+      "configuration": {
+        "B4": "A2",
+        "B5": 10
+      }
+    },
+    "foldA1": {
+      "id": "2.3",
+      "configuration": {
+        "B4": "A1",
+        "B5": 10
+      }
+    },
+    "foldA0": {
+      "id": "2.3",
+      "configuration": {
+        "B4": "A0 (1м²)",
+        "B5": 10
+      }
+    },
+    "projectbind": {
+      "id": "2.2",
+      "configuration": {
+        "B4": "Пластик",
+        "B5": "A4",
+        "B7": "10–12 мм (до 80 л.)",
+        "B8": 10
+      }
+    },
+    "cards100": {
+      "id": "3.1",
+      "configuration": {
+        "B6": 100
+      }
+    },
+    "cards500": {
+      "id": "3.1",
+      "configuration": {
+        "B5": "двусторонние",
+        "B6": 500
+      }
+    },
+    "cardslam": {
+      "id": "3.1",
+      "configuration": {
+        "B5": "двусторонние",
+        "B6": 1000,
+        "B7": "да"
+      }
+    },
+    "leaf6": {
+      "id": "3.2",
+      "configuration": {
+        "B4": "A6",
+        "B7": 120,
+        "B8": "Односторонняя",
+        "B10": 50
+      }
+    },
+    "leaf5": {
+      "id": "3.2",
+      "configuration": {
+        "B4": "A5",
+        "B7": 160,
+        "B8": "Двусторонняя",
+        "B10": 100
+      }
+    },
+    "leaf4": {
+      "id": "3.2",
+      "configuration": {
+        "B4": "A4",
+        "B7": 250,
+        "B8": "Двусторонняя",
+        "B10": 50
+      }
+    },
+    "book1": {
+      "id": "3.3",
+      "configuration": {
+        "B4": "A4",
+        "B5": 120,
+        "B7": 1,
+        "B8": 100
+      }
+    },
+    "book2": {
+      "id": "3.3",
+      "configuration": {
+        "B4": "A4",
+        "B5": 120,
+        "B7": 2,
+        "B8": 100
+      }
+    },
+    "book3": {
+      "id": "3.3",
+      "configuration": {
+        "B4": "A3",
+        "B5": 160,
+        "B7": 2,
+        "B8": 50
+      }
+    },
+    "bookdifference": {
+      "kind": "difference",
+      "left": "book2",
+      "right": "book1"
+    },
+    "brochure16": {
+      "id": "3.4",
+      "configuration": {
+        "B4": "A5",
+        "B7": 16,
+        "B8": 10
+      }
+    },
+    "brochure24": {
+      "id": "3.4",
+      "configuration": {
+        "B4": "A5",
+        "B7": 24,
+        "B8": 50
+      }
+    },
+    "brochure32": {
+      "id": "3.4",
+      "configuration": {
+        "B4": "A4",
+        "B7": 32,
+        "B8": 50
+      }
+    },
+    "award": {
+      "id": "3.7",
+      "configuration": {
+        "B7": 250,
+        "B10": 10
+      }
+    },
+    "postcard": {
+      "id": "3.6",
+      "configuration": {}
+    },
+    "tags100": {
+      "id": "3.10",
+      "configuration": {
+        "B5": 50,
+        "B6": 90,
+        "B7": 200,
+        "B8": "ОДНОСТОРОННЯЯ",
+        "B9": 100
+      }
+    },
+    "mintags": {
+      "id": "3.10",
+      "kind": "minimum"
+    },
+    "labelvinyl": {
+      "id": "4.5",
+      "configuration": {
+        "width": 50,
+        "height": 30,
+        "quantity": 500,
+        "print": "vinyl",
+        "material": "white"
+      }
+    },
+    "labeluv": {
+      "id": "4.5",
+      "configuration": {
+        "width": 50,
+        "height": 30,
+        "quantity": 500,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "labelclear": {
+      "id": "4.5",
+      "configuration": {
+        "width": 50,
+        "height": 30,
+        "quantity": 500,
+        "print": "uv",
+        "material": "transparent"
+      }
+    },
+    "figvinyl": {
+      "id": "4.1",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "vinyl",
+        "material": "white"
+      }
+    },
+    "figuv": {
+      "id": "4.1",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "fig70": {
+      "id": "4.1",
+      "configuration": {
+        "width": 70,
+        "height": 70,
+        "quantity": 500,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "roundvinyl": {
+      "id": "4.2",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "vinyl",
+        "material": "white"
+      }
+    },
+    "rounduv": {
+      "id": "4.2",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "round70": {
+      "id": "4.2",
+      "configuration": {
+        "width": 70,
+        "height": 70,
+        "quantity": 500,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "rectvinyl": {
+      "id": "4.3",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "vinyl",
+        "material": "white"
+      }
+    },
+    "rectuv": {
+      "id": "4.3",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "rect70": {
+      "id": "4.3",
+      "configuration": {
+        "width": 70,
+        "height": 70,
+        "quantity": 500,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "fig3d": {
+      "id": "4.8",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "round3d": {
+      "id": "4.9",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "rect3d": {
+      "id": "4.10",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "dtf100": {
+      "id": "4.6",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "uv",
+        "material": "transfer"
+      }
+    },
+    "dtf70": {
+      "id": "4.6",
+      "configuration": {
+        "width": 70,
+        "height": 70,
+        "quantity": 100,
+        "print": "uv",
+        "material": "transfer"
+      }
+    },
+    "dtf500": {
+      "id": "4.6",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 500,
+        "print": "uv",
+        "material": "transfer"
+      }
+    },
+    "pack50": {
+      "id": "4.4",
+      "configuration": {
+        "width": 100,
+        "height": 150,
+        "quantity": 50,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "pack100": {
+      "id": "4.4",
+      "configuration": {
+        "width": 100,
+        "height": 150,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "packlarge": {
+      "id": "4.4",
+      "configuration": {
+        "width": 150,
+        "height": 200,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      }
+    },
+    "roundunit": {
+      "id": "4.2",
+      "configuration": {
+        "width": 50,
+        "height": 50,
+        "quantity": 100,
+        "print": "vinyl",
+        "material": "white"
+      },
+      "divisor": 100,
+      "digits": 2
+    },
+    "round70unit": {
+      "id": "4.2",
+      "configuration": {
+        "width": 70,
+        "height": 70,
+        "quantity": 500,
+        "print": "uv",
+        "material": "white"
+      },
+      "divisor": 500,
+      "digits": 2
+    },
+    "pack50unit": {
+      "id": "4.4",
+      "configuration": {
+        "width": 100,
+        "height": 150,
+        "quantity": 50,
+        "print": "uv",
+        "material": "white"
+      },
+      "divisor": 50,
+      "digits": 2
+    },
+    "pack100unit": {
+      "id": "4.4",
+      "configuration": {
+        "width": 100,
+        "height": 150,
+        "quantity": 100,
+        "print": "uv",
+        "material": "white"
+      },
+      "divisor": 100,
+      "digits": 2
+    },
+    "pack3d": {
+      "id": "4.11",
+      "configuration": {
+        "width": 110,
+        "height": 110,
+        "stickerWidth": 25,
+        "stickerHeight": 25,
+        "perPack": 9,
+        "quantity": 50
+      }
+    },
+    "pack3dunit": {
+      "id": "4.11",
+      "configuration": {
+        "width": 110,
+        "height": 110,
+        "stickerWidth": 25,
+        "stickerHeight": 25,
+        "perPack": 9,
+        "quantity": 50
+      },
+      "divisor": 50,
+      "digits": 2
+    },
+    "paper500": {
+      "id": "4.7",
+      "configuration": {
+        "width": 50,
+        "height": 40,
+        "quantity": 500,
+        "cut": "yes"
+      }
+    },
+    "mindtf": {
+      "id": "4.6",
+      "kind": "minimum"
+    },
+    "banner1": {
+      "id": "5.1",
+      "configuration": {
+        "width": 1000,
+        "height": 1000,
+        "quantity": 1
+      }
+    },
+    "banner2": {
+      "id": "5.1",
+      "configuration": {
+        "width": 1000,
+        "height": 2000,
+        "quantity": 1
+      }
+    },
+    "banner6": {
+      "id": "5.1",
+      "configuration": {
+        "width": 2000,
+        "height": 3000,
+        "quantity": 1
+      }
+    },
+    "poster2": {
+      "id": "5.2",
+      "configuration": {
+        "width": 420,
+        "height": 594,
+        "quantity": 1
+      }
+    },
+    "poster1": {
+      "id": "5.2",
+      "configuration": {
+        "width": 594,
+        "height": 841,
+        "quantity": 1
+      }
+    },
+    "poster0": {
+      "id": "5.2",
+      "configuration": {
+        "width": 841,
+        "height": 1189,
+        "quantity": 1
+      }
+    },
+    "poster900": {
+      "id": "5.2",
+      "configuration": {
+        "width": 600,
+        "height": 900,
+        "quantity": 1
+      }
+    },
+    "canvas500": {
+      "id": "5.4",
+      "configuration": {
+        "width": 500,
+        "height": 700,
+        "quantity": 1
+      }
+    },
+    "canvas600": {
+      "id": "5.4",
+      "configuration": {
+        "width": 600,
+        "height": 900,
+        "quantity": 1
+      }
+    },
+    "canvas1": {
+      "id": "5.4",
+      "configuration": {
+        "width": 1000,
+        "height": 1000,
+        "quantity": 1
+      }
+    },
+    "film1": {
+      "id": "5.5",
+      "configuration": {
+        "width": 1000,
+        "height": 1000,
+        "quantity": 1
+      }
+    },
+    "film2": {
+      "id": "5.5",
+      "configuration": {
+        "width": 1000,
+        "height": 2000,
+        "quantity": 1
+      }
+    },
+    "film5": {
+      "id": "5.5",
+      "configuration": {
+        "width": 1000,
+        "height": 5000,
+        "quantity": 1
+      }
+    },
+    "pvc": {
+      "id": "5.8",
+      "configuration": {
+        "width": 500,
+        "height": 500,
+        "quantity": 10,
+        "thickness": "3"
+      }
+    },
+    "foam": {
+      "id": "5.9",
+      "configuration": {
+        "width": 500,
+        "height": 500,
+        "quantity": 10,
+        "thickness": "5"
+      }
+    },
+    "cut1": {
+      "id": "5.7",
+      "configuration": {
+        "width": 500,
+        "height": 500,
+        "quantity": 1,
+        "complexity": "complex"
+      }
+    },
+    "cut10": {
+      "id": "5.7",
+      "configuration": {
+        "width": 600,
+        "height": 1000,
+        "quantity": 10,
+        "complexity": "simple"
+      }
+    },
+    "cut50": {
+      "id": "5.7",
+      "configuration": {
+        "width": 600,
+        "height": 2000,
+        "quantity": 50,
+        "complexity": "complex",
+        "material": "color"
+      }
+    },
+    "bannerm2": {
+      "id": "5.1",
+      "configuration": {
+        "width": 2000,
+        "height": 3000,
+        "quantity": 1
+      },
+      "divisor": 6,
+      "digits": 2
+    },
+    "filmm2": {
+      "id": "5.5",
+      "configuration": {
+        "width": 1000,
+        "height": 5000,
+        "quantity": 1
+      },
+      "divisor": 5,
+      "digits": 2
+    },
+    "pvcunit": {
+      "id": "5.8",
+      "configuration": {
+        "width": 500,
+        "height": 500,
+        "quantity": 10,
+        "thickness": "3"
+      },
+      "divisor": 10,
+      "digits": 2
+    },
+    "minbanner": {
+      "id": "5.1",
+      "kind": "minimum"
+    },
+    "minpvc": {
+      "id": "5.8",
+      "kind": "minimum"
+    },
+    "minfoam": {
+      "id": "5.9",
+      "kind": "minimum"
+    },
+    "mincut": {
+      "id": "5.7",
+      "kind": "minimum"
+    },
+    "uv100": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 3,
+        "B7": 100,
+        "B8": 100,
+        "B9": 10,
+        "B10": "Нет"
+      }
+    },
+    "uvA4": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 3,
+        "B7": 210,
+        "B8": 297,
+        "B9": 10,
+        "B10": "Нет"
+      }
+    },
+    "uvlarge": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 3,
+        "B7": 300,
+        "B8": 400,
+        "B9": 20,
+        "B10": "Нет"
+      }
+    },
+    "uv200": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 3,
+        "B7": 200,
+        "B8": 100,
+        "B9": 10,
+        "B10": "Нет"
+      }
+    },
+    "uvglass": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "Оргстекло",
+        "B5": 3,
+        "B7": 200,
+        "B8": 100,
+        "B9": 10,
+        "B10": "Нет"
+      }
+    },
+    "uvwhite": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 5,
+        "B7": 300,
+        "B8": 200,
+        "B9": 10,
+        "B10": "Да"
+      }
+    },
+    "uv100unit": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 3,
+        "B7": 100,
+        "B8": 100,
+        "B9": 10,
+        "B10": "Нет"
+      },
+      "divisor": 10,
+      "digits": 2
+    },
+    "uvA4unit": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 3,
+        "B7": 210,
+        "B8": 297,
+        "B9": 10,
+        "B10": "Нет"
+      },
+      "divisor": 10,
+      "digits": 2
+    },
+    "uvlargeunit": {
+      "id": "6.5",
+      "configuration": {
+        "B4": "ПВХ",
+        "B5": 3,
+        "B7": 300,
+        "B8": 400,
+        "B9": 20,
+        "B10": "Нет"
+      },
+      "divisor": 20,
+      "digits": 2
+    },
+    "minuv": {
+      "id": "6.5",
+      "kind": "minimum"
+    },
+    "metal": {
+      "id": "6.8",
+      "configuration": {
+        "B4": "Нержавейка AISI",
+        "B5": 1,
+        "B6": 90,
+        "B7": 110,
+        "B8": 10
+      }
+    },
+    "metalrate": {
+      "id": "6.8",
+      "configuration": {
+        "B4": "Нержавейка AISI",
+        "B5": 1,
+        "B6": 90,
+        "B7": 110,
+        "B8": 10
+      },
+      "divisor": 990,
+      "digits": 2
+    },
+    "minmetal": {
+      "id": "6.8",
+      "kind": "minimum"
+    },
+    "engrave30": {
+      "id": "6.4",
+      "configuration": {
+        "B4": "Фанера / дерево",
+        "B6": 100,
+        "B7": 100,
+        "B8": 30,
+        "B10": 10
+      }
+    },
+    "engrave60": {
+      "id": "6.4",
+      "configuration": {
+        "B4": "Фанера / дерево",
+        "B6": 100,
+        "B7": 100,
+        "B8": 60,
+        "B10": 10
+      }
+    },
+    "engrave100": {
+      "id": "6.4",
+      "configuration": {
+        "B4": "Фанера / дерево",
+        "B6": 100,
+        "B7": 100,
+        "B8": 100,
+        "B10": 10
+      }
+    },
+    "laser1": {
+      "id": "6.3",
+      "configuration": {
+        "B4": "Фанера",
+        "B5": 3,
+        "B6": 300,
+        "B7": 200,
+        "B9": 10,
+        "B10": "ПРОСТАЯ"
+      }
+    },
+    "laser2": {
+      "id": "6.3",
+      "configuration": {
+        "B4": "Фанера",
+        "B5": 6,
+        "B6": 500,
+        "B7": 500,
+        "B9": 20,
+        "B10": "ПРОСТАЯ"
+      }
+    },
+    "laser3": {
+      "id": "6.3",
+      "configuration": {
+        "B4": "Акрил / оргстекло",
+        "B5": 3,
+        "B6": 600,
+        "B7": 400,
+        "B9": 20,
+        "B10": "СЛОЖНАЯ"
+      }
+    },
+    "key50": {
+      "id": "6.6",
+      "configuration": {
+        "B5": "Акрил прозрачный",
+        "B8": 40,
+        "B9": 60,
+        "B10": 50,
+        "B7": "УФ-ПЕЧАТЬ 1 СТОРОНА",
+        "B11": "ФИГУРНАЯ",
+        "B12": "Кольцо с цепочкой"
+      }
+    },
+    "key100": {
+      "id": "6.6",
+      "configuration": {
+        "B5": "Акрил прозрачный",
+        "B8": 40,
+        "B9": 60,
+        "B10": 100,
+        "B7": "УФ-ПЕЧАТЬ 2 СТОРОНЫ",
+        "B11": "ФИГУРНАЯ",
+        "B12": "Кольцо с цепочкой"
+      }
+    },
+    "keywood": {
+      "id": "6.6",
+      "configuration": {
+        "B5": "Фанера",
+        "B8": 40,
+        "B9": 60,
+        "B10": 100,
+        "B7": "ГРАВИРОВКА 1 СТОРОНА",
+        "B11": "ФИГУРНАЯ",
+        "B12": "Кольцо с цепочкой"
+      }
+    },
+    "number50": {
+      "id": "6.9",
+      "configuration": {
+        "B5": "Акрил прозрачный",
+        "B8": 50,
+        "B9": 70,
+        "B10": 50,
+        "B7": "ГРАВИРОВКА 1 СТОРОНА",
+        "B11": "ПРОСТАЯ",
+        "B12": "Без фурнитуры"
+      }
+    },
+    "number100": {
+      "id": "6.9",
+      "configuration": {
+        "B5": "Акрил прозрачный",
+        "B8": 50,
+        "B9": 70,
+        "B10": 100,
+        "B7": "УФ-ПЕЧАТЬ 1 СТОРОНА",
+        "B11": "ПРОСТАЯ",
+        "B12": "Без фурнитуры"
+      }
+    },
+    "numberwood": {
+      "id": "6.9",
+      "configuration": {
+        "B5": "Фанера",
+        "B8": 50,
+        "B9": 70,
+        "B10": 100,
+        "B7": "ГРАВИРОВКА 1 СТОРОНА",
+        "B11": "ПРОСТАЯ",
+        "B12": "Без фурнитуры"
+      }
+    },
+    "key50unit": {
+      "id": "6.6",
+      "configuration": {
+        "B5": "Акрил прозрачный",
+        "B8": 40,
+        "B9": 60,
+        "B10": 50,
+        "B7": "УФ-ПЕЧАТЬ 1 СТОРОНА",
+        "B11": "ФИГУРНАЯ",
+        "B12": "Кольцо с цепочкой"
+      },
+      "divisor": 50,
+      "digits": 2
+    },
+    "key100unit": {
+      "id": "6.6",
+      "configuration": {
+        "B5": "Акрил прозрачный",
+        "B8": 40,
+        "B9": 60,
+        "B10": 100,
+        "B7": "УФ-ПЕЧАТЬ 2 СТОРОНЫ",
+        "B11": "ФИГУРНАЯ",
+        "B12": "Кольцо с цепочкой"
+      },
+      "divisor": 100,
+      "digits": 2
+    },
+    "keywoodunit": {
+      "id": "6.6",
+      "configuration": {
+        "B5": "Фанера",
+        "B8": 40,
+        "B9": 60,
+        "B10": 100,
+        "B7": "ГРАВИРОВКА 1 СТОРОНА",
+        "B11": "ФИГУРНАЯ",
+        "B12": "Кольцо с цепочкой"
+      },
+      "divisor": 100,
+      "digits": 2
+    },
+    "thermal100": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 100
+      }
+    },
+    "thermalunit100": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 100
+      },
+      "divisor": 100,
+      "digits": 2
+    },
+    "thermal300": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 300
+      }
+    },
+    "thermalunit300": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 300
+      },
+      "divisor": 300,
+      "digits": 2
+    },
+    "thermal1000": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 1000
+      }
+    },
+    "thermalunit1000": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 1000
+      },
+      "divisor": 1000,
+      "digits": 2
+    },
+    "minimum_1_4": {
+      "id": "1.4",
+      "kind": "minimum"
+    },
+    "minimum_3_10": {
+      "id": "3.10",
+      "kind": "minimum"
+    },
+    "minimum_4_1": {
+      "id": "4.1",
+      "kind": "minimum"
+    },
+    "minimum_4_2": {
+      "id": "4.2",
+      "kind": "minimum"
+    },
+    "minimum_4_3": {
+      "id": "4.3",
+      "kind": "minimum"
+    },
+    "minimum_4_4": {
+      "id": "4.4",
+      "kind": "minimum"
+    },
+    "minimum_4_8": {
+      "id": "4.8",
+      "kind": "minimum"
+    },
+    "minimum_4_9": {
+      "id": "4.9",
+      "kind": "minimum"
+    },
+    "minimum_4_10": {
+      "id": "4.10",
+      "kind": "minimum"
+    },
+    "minimum_4_5": {
+      "id": "4.5",
+      "kind": "minimum"
+    },
+    "minimum_4_6": {
+      "id": "4.6",
+      "kind": "minimum"
+    },
+    "minimum_4_7": {
+      "id": "4.7",
+      "kind": "minimum"
+    },
+    "minimum_4_11": {
+      "id": "4.11",
+      "kind": "minimum"
+    },
+    "minimum_5_1": {
+      "id": "5.1",
+      "kind": "minimum"
+    },
+    "minimum_5_2": {
+      "id": "5.2",
+      "kind": "minimum"
+    },
+    "minimum_5_3": {
+      "id": "5.3",
+      "kind": "minimum"
+    },
+    "minimum_5_4": {
+      "id": "5.4",
+      "kind": "minimum"
+    },
+    "minimum_5_5": {
+      "id": "5.5",
+      "kind": "minimum"
+    },
+    "minimum_5_6": {
+      "id": "5.6",
+      "kind": "minimum"
+    },
+    "minimum_5_7": {
+      "id": "5.7",
+      "kind": "minimum"
+    },
+    "minimum_5_8": {
+      "id": "5.8",
+      "kind": "minimum"
+    },
+    "minimum_5_9": {
+      "id": "5.9",
+      "kind": "minimum"
+    },
+    "minimum_6_7": {
+      "id": "6.7",
+      "kind": "minimum"
+    },
+    "lamdiscount": {
+      "kind": "detail",
+      "id": "1.4",
+      "configuration": {
+        "B6": 20
+      },
+      "label": "Скидка",
+      "suffix": " %"
+    },
+    "thermalbare100": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 100
+      },
+      "divisor": 100,
+      "digits": 2,
+      "suffix": ""
+    },
+    "thermalbare300": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 300
+      },
+      "divisor": 300,
+      "digits": 2,
+      "suffix": ""
+    },
+    "thermalbare1000": {
+      "id": "1.8",
+      "configuration": {
+        "B7": 1000
+      },
+      "divisor": 1000,
+      "digits": 2,
+      "suffix": ""
+    },
+    "doc10unit": {
+      "id": "1.1",
+      "configuration": {
+        "B7": 10
+      },
+      "divisor": 10
+    },
+    "doc100unit": {
+      "id": "1.1",
+      "configuration": {
+        "B7": 100
+      },
+      "divisor": 100
+    }
+  },
+  "bindings": [
+    {
+      "file": "company/action/index.html",
+      "selector": "main p",
+      "index": 2,
+      "prefix": "Для пакетного ламинирования калькулятор учитывает скидк",
+      "template": "<p data-price-block=\"text_0\">Для пакетного ламинирования калькулятор учитывает скидку <span data-price-example=\"lamdiscount\">20 %</span> от 20 штук. Минимальная стоимость заказа — <span data-price-example=\"minlam\">0 ₽</span>.</p>",
+      "key": "text_0",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/3d-stikerpak-podarochnyy-nabor/index.html",
+      "selector": "main p",
+      "index": 8,
+      "prefix": "На дату проверки 50 таких паков стоят ",
+      "template": "<p data-price-block=\"text_1\">На дату проверки 50 таких паков стоят <span data-price-example=\"pack3d\">0 ₽</span>, то есть около <span data-price-example=\"pack3dunit\">0 ₽</span> за пак.</p>",
+      "key": "text_1",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/3d-stikery-chem-otlichayutsya/index.html",
+      "selector": "main p",
+      "index": 11,
+      "prefix": "По калькулятору на дату проверки 100 штук размером 50×5",
+      "template": "<p data-price-block=\"text_2\">По калькулятору на дату проверки 100 штук размером 50×50 мм на белой плёнке: фигурные — <span data-price-example=\"fig3d\">0 ₽</span>, круглые — <span data-price-example=\"round3d\">0 ₽</span>, прямоугольные — <span data-price-example=\"rect3d\">0 ₽</span>. 3D-стикеры заметно дороже плоских: 100 круглых плоских UV на белой плёнке стоят <span data-price-example=\"rounduv\">0 ₽</span>.</p>",
+      "key": "text_2",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/afisha-chitaemost-s-rasstoyaniya/index.html",
+      "selector": "main p",
+      "index": 11,
+      "prefix": "По калькулятору на дату проверки: A4, 250 г/м², 1 сторо",
+      "template": "<p data-price-block=\"text_3\">По калькулятору на дату проверки: A4, 250 г/м², 1 сторона, 10 штук — <span data-price-example=\"award\">0 ₽</span>. Малые тиражи считаются сразу.</p>",
+      "key": "text_3",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/afisha-ili-plakat-granica/index.html",
+      "selector": "main p",
+      "index": 5,
+      "prefix": "Афиши считаются по калькулятору листовой полиграфии, гд",
+      "template": "<p data-price-block=\"text_4\">Афиши считаются по калькулятору листовой полиграфии, где важны плотность и количество. Плакаты считаются по площади. Для A2 плакат стоит <span data-price-example=\"poster2\">0 ₽</span>, A1 — <span data-price-example=\"poster1\">0 ₽</span>, A0 — <span data-price-example=\"poster0\">0 ₽</span> на дату проверки.</p>",
+      "key": "text_4",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/avtoreferat-kratnost-4-stranic/index.html",
+      "selector": "main p",
+      "index": 9,
+      "prefix": "По логике калькулятора в стоимость включены предпечатна",
+      "template": "<p data-price-block=\"text_5\">По логике калькулятора в стоимость включены предпечатная подготовка, скобы, обложка и биговка. Формат A5, минимальный тираж 10 экземпляров. На текущих данных 24 страницы A5 (20 чёрно-белых и 4 цветные) тиражом 10 экземпляров стоят <span data-price-example=\"abstract\">0 ₽</span>.</p>",
+      "key": "text_5",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/banner-razmery-i-material/index.html",
+      "selector": "main p",
+      "index": 4,
+      "prefix": "1×1 м, 1 штука — ",
+      "template": "<p data-price-block=\"text_6\">1×1 м, 1 штука — <span data-price-example=\"banner1\">0 ₽</span>;</p>",
+      "key": "text_6",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/banner-razmery-i-material/index.html",
+      "selector": "main p",
+      "index": 5,
+      "prefix": "1×2 м, 1 штука — ",
+      "template": "<p data-price-block=\"text_7\">1×2 м, 1 штука — <span data-price-example=\"banner2\">0 ₽</span>;</p>",
+      "key": "text_7",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/banner-razmery-i-material/index.html",
+      "selector": "main p",
+      "index": 6,
+      "prefix": "2×3 м, 1 штука — ",
+      "template": "<p data-price-block=\"text_8\">2×3 м, 1 штука — <span data-price-example=\"banner6\">0 ₽</span>.</p>",
+      "key": "text_8",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/banner-razmery-i-material/index.html",
+      "selector": "main p",
+      "index": 7,
+      "prefix": "Из этих цифр видно: за квадратный метр цена снижается с",
+      "template": "<p data-price-block=\"text_9\">Из этих цифр видно: за квадратный метр цена снижается с ростом площади. Квадрат 1 м² стоит <span data-price-example=\"banner1\">0 ₽</span>, а в баннере 6 м² метр обходится примерно в <span data-price-example=\"bannerm2\">0 ₽</span>. Минимальный чек — <span data-price-example=\"minbanner\">0 ₽</span>.</p>",
+      "key": "text_9",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/belaya-podlozhka-uv-pechat/index.html",
+      "selector": "main p",
+      "index": 12,
+      "prefix": "Калькулятор имеет параметр «с белой подложкой» или «без",
+      "template": "<p data-price-block=\"text_10\">Калькулятор имеет параметр «с белой подложкой» или «без». На дату проверки ПВХ 5 мм, 300×200 мм, 10 штук, с белой подложкой стоит <span data-price-example=\"uvwhite\">0 ₽</span>. Табличка из ПВХ 3 мм, 200×100 мм, 10 штук, без подложки — <span data-price-example=\"uv200\">0 ₽</span>. Материал и размеры разные, поэтому вывод по цифре подложки сделать нельзя, но сравните в калькуляторе сами.</p>",
+      "key": "text_10",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/birka-dlya-ruchnoy-raboty-i-podarkov/index.html",
+      "selector": "main p",
+      "index": 13,
+      "prefix": "В калькуляторе действует минимальный чек ",
+      "template": "<p data-price-block=\"text_11\">В калькуляторе действует минимальный чек <span data-price-example=\"mintags\">0 ₽</span>: на небольшой партии выгоднее заказать несколько видов бирок сразу, одного размера, чтобы использовать лист SRA3 полностью.</p>",
+      "key": "text_11",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/birki-razmer-otverstie-bumaga/index.html",
+      "selector": "main p",
+      "index": 0,
+      "prefix": "Как выбрать размер бирки от 30×30 до 105×148 мм, бумагу",
+      "template": "<p data-price-block=\"text_12\">Как выбрать размер бирки от 30×30 до 105×148 мм, бумагу 200 или 300 г/м², и что значит минимальный чек <span data-price-example=\"mintags\">0 ₽</span> в калькуляторе.</p>",
+      "key": "text_12",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/birki-razmer-otverstie-bumaga/index.html",
+      "selector": "main p",
+      "index": 5,
+      "prefix": "В калькуляторе установлен минимальный чек ",
+      "template": "<p data-price-block=\"text_13\">В калькуляторе установлен минимальный чек <span data-price-example=\"mintags\">0 ₽</span>. Это значит: если расчёт получился меньше, будет применена эта сумма. На дату проверки бирки 50×90 мм на бумаге 200 г/м² с одной стороны, 100 штук, стоят <span data-price-example=\"tags100\">0 ₽</span> с учётом минимального чека. Поэтому небольшие партии выгоднее объединять: закажите бирки сразу на несколько изделий.</p>",
+      "key": "text_13",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/breloki-dlya-meropriyatiya-tirazh/index.html",
+      "selector": "main p",
+      "index": 2,
+      "prefix": "Прикиньте число гостей и добавьте запас 10–15% на потер",
+      "template": "<p data-price-block=\"text_14\">Прикиньте число гостей и добавьте запас 10–15% на потери и дополнительных участников. Для небольшого мероприятия на 80 человек закажите 90–100 штук. Сравнивайте одинаковые параметры печати: 50 брелоков стоят около <span data-price-example=\"key50unit\">0 ₽</span> за штуку, 100 около <span data-price-example=\"key100unit\">0 ₽</span> в двусторонней печати (на дату проверки калькулятор). Для брелоков в этих примерах выбраны фигурная форма, кольцо с цепочкой и печать без лака.</p>",
+      "key": "text_14",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/breloki-materialy-i-furnitura/index.html",
+      "selector": "main p",
+      "index": 11,
+      "prefix": "На дату проверки брелоки 40×60 мм: прозрачный акрил 3 м",
+      "template": "<p data-price-block=\"text_15\">На дату проверки брелоки 40×60 мм: прозрачный акрил 3 мм, UV с одной стороны, 50 штук — <span data-price-example=\"key50\">0 ₽</span> (<span data-price-example=\"key50unit\">0 ₽</span> за штуку); UV с двух сторон, 100 штук — <span data-price-example=\"key100\">0 ₽</span> (<span data-price-example=\"key100unit\">0 ₽</span>); фанера 3 мм, гравировка, 100 штук — <span data-price-example=\"keywood\">0 ₽</span> (<span data-price-example=\"keywoodunit\">0 ₽</span>). Для брелоков в этих примерах выбраны фигурная форма, кольцо с цепочкой и печать без лака.</p>",
+      "key": "text_15",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/buklet-odin-i-dva-sgiba/index.html",
+      "selector": "main p",
+      "index": 11,
+      "prefix": "На дату проверки: A4, 120 г, двусторонний, 1 сгиб, 100 ",
+      "template": "<p data-price-block=\"text_16\">На дату проверки: A4, 120 г, двусторонний, 1 сгиб, 100 штук — <span data-price-example=\"book1\">0 ₽</span>; A4, 120 г, двусторонний, 2 сгиба, 100 штук — <span data-price-example=\"book2\">0 ₽</span>; A3, 160 г, двусторонний, 2 сгиба, 50 штук — <span data-price-example=\"book3\">0 ₽</span>. Заметно, что второй сгиб прибавляет к цене сравнительно немного: <span data-price-example=\"bookdifference\">0 ₽</span> на сто штук.</p>",
+      "key": "text_16",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/bumazhnye-stikery-raskladka-sra3/index.html",
+      "selector": "main p",
+      "index": 6,
+      "prefix": "Контурная резка уменьшает число стикеров на листе и доб",
+      "template": "<p data-price-block=\"text_17\">Контурная резка уменьшает число стикеров на листе и добавляет операцию. На дату проверки 500 стикеров 50×40 мм с контурной резкой стоят <span data-price-example=\"paper500\">0 ₽</span>.</p>",
+      "key": "text_17",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/chem-plotternaya-rezka-plenki-otlichaetsya-ot-pechati-nakleyki/index.html",
+      "selector": "main p",
+      "index": 9,
+      "prefix": "В «ТЕКСТ» для плоттерной резки доступны белая, цветная ",
+      "template": "<p data-price-block=\"text_18\">В «ТЕКСТ» для плоттерной резки доступны белая, цветная и металлизированная плёнки. В калькуляторе задан диапазон габаритов от 200 × 200 до 600 × 2000 мм и минимальный заказ <span data-price-example=\"mincut\">0 ₽</span>. Небольшой рисунок внутри расчётного поля следует согласовать отдельно, чтобы не путать размер изображения с минимальными условиями заказа.</p>",
+      "key": "text_18",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/chertezhi-dlya-studentov-kursovoy-proekt/index.html",
+      "selector": "main p",
+      "index": 10,
+      "prefix": "Если чертежи большие, их складывают до стандартного раз",
+      "template": "<p data-price-block=\"text_19\">Если чертежи большие, их складывают до стандартного размера и вкладывают в папку. Фальцовка выполняется автоматически, и стоит недорого: 10 листов A2 — <span data-price-example=\"foldA2\">0 ₽</span> по калькулятору на дату проверки.<a href=\"../../../company/article/falcovka-chertezhey-po-gost-zachem/\">Подробности смотрите в статье про фальцовку чертежей</a>.</p>",
+      "key": "text_19",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/chto-takoe-uv-dtf-nakleyki-i-dlya-kakih-poverhnostey-ih-vybirayut/index.html",
+      "selector": "main p",
+      "index": 9,
+      "prefix": "В калькуляторе UV DTF студии «ТЕКСТ» форма сама по себе",
+      "template": "<p data-price-block=\"text_20\">В калькуляторе UV DTF студии «ТЕКСТ» форма сама по себе не меняет цену; используются размеры и тираж, а минимальная стоимость заказа составляет <span data-price-example=\"mindtf\">0 ₽</span>. Это помогает сравнить варианты логотипа, но не отменяет технологической проверки. При передаче макета опишите условия использования и согласуйте инструкцию по нанесению и уходу.</p>",
+      "key": "text_20",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/diametr-pruzhiny-po-kolichestvu-listov/index.html",
+      "selector": "main p",
+      "index": 11,
+      "prefix": "В калькуляторе брошюровки «ТЕКСТ» выбирается формат A4 ",
+      "template": "<p data-price-block=\"text_21\">В калькуляторе брошюровки «ТЕКСТ» выбирается формат A4 или A3, тип пружины, диаметр и количество комплектов. По текущим данным брошюровка 12 комплектов формата A3 на металлическую пружину 10 мм стоит <span data-price-example=\"spring12\">0 ₽</span>. Для проектной документации применяется отдельный коэффициент, поэтому её считают на отдельной странице.</p>",
+      "key": "text_21",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/diplom-cvet-i-chb-ekonomiya/index.html",
+      "selector": "main p",
+      "index": 8,
+      "prefix": "В калькуляторе «ТЕКСТ» печать и твёрдый переплёт считаю",
+      "template": "<p data-price-block=\"text_22\">В калькуляторе «ТЕКСТ» печать и твёрдый переплёт считаются одним заказом: указываются количество чёрно-белых и цветных страниц, и выбирается цвет обложки. Есть интересное наблюдение из текущих расчётов: диплом из 50 чёрно-белых и 10 цветных страниц с переплётом стоит <span data-price-example=\"diploma60\">0 ₽</span>, а диплом из 100 чёрно-белых страниц — <span data-price-example=\"diploma100\">0 ₽</span>. Основную долю цены определяет переплёт и общий объём работы, а не только цвет отдельных страниц. Для 200 чёрно-белых страниц итог <span data-price-example=\"diploma200\">0 ₽</span>. Эти цифры действуют на дату проверки, свой заказ рассчитывайте в калькуляторе.</p>",
+      "key": "text_22",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/dvustoronnyaya-pechat-dlinnaya-korotkaya-storona/index.html",
+      "selector": "main p",
+      "index": 10,
+      "prefix": "Двусторонняя печать не вдвое дешевле односторонней, пот",
+      "template": "<p data-price-block=\"text_23\">Двусторонняя печать не вдвое дешевле односторонней, потому что печатаются обе стороны листа. В калькуляторе «ТЕКСТ» для A4 в чёрно-белом варианте 50 страниц с двух сторон стоят <span data-price-example=\"doc50duplex\">0 ₽</span> на текущих условиях. Это 25 листов бумаги. Для своего объёма проверяйте итог в калькуляторе.</p>",
+      "key": "text_23",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/ekonomiya-na-pechati-dlya-studenta/index.html",
+      "selector": "main p",
+      "index": 2,
+      "prefix": "1. Двусторонняя печать. Если требования кафедры разреша",
+      "template": "<p data-price-block=\"text_24\">1. Двусторонняя печать. Если требования кафедры разрешают, она экономит бумагу и объём. Но цена не вдвое ниже: на дату проверки A4 Ч/Б, 50 страниц с двух сторон стоит <span data-price-example=\"doc50duplex\">0 ₽</span>, а 100 страниц с одной — <span data-price-example=\"doc100\">0 ₽</span>.</p>",
+      "key": "text_24",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/ekonomiya-na-pechati-dlya-studenta/index.html",
+      "selector": "main p",
+      "index": 12,
+      "prefix": "Цена печати и переплёта диплома зависит от объёма: на д",
+      "template": "<p data-price-block=\"text_25\">Цена печати и переплёта диплома зависит от объёма: на дату проверки 1 диплом из 100 Ч/Б страниц — <span data-price-example=\"diploma100\">0 ₽</span>, 200 Ч/Б страниц — <span data-price-example=\"diploma200\">0 ₽</span>.<a href=\"../../../company/article/diplom-cvet-i-chb-ekonomiya/\">Подробнее: цвет и чёрно-белое в дипломе</a>.</p>",
+      "key": "text_25",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/etiketka-na-banku-vybor-plenki/index.html",
+      "selector": "main p",
+      "index": 13,
+      "prefix": "На дату проверки этикетки 50×30 мм, 500 штук: винил бел",
+      "template": "<p data-price-block=\"text_26\">На дату проверки этикетки 50×30 мм, 500 штук: винил белый — <span data-price-example=\"labelvinyl\">0 ₽</span>, UV белый — <span data-price-example=\"labeluv\">0 ₽</span>, UV прозрачный — <span data-price-example=\"labelclear\">0 ₽</span>. Видно, что прозрачная плёнка чуть дороже белой в UV.</p>",
+      "key": "text_26",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/falcovka-chertezhey-po-gost-zachem/index.html",
+      "selector": "main p",
+      "index": 11,
+      "prefix": "Фальцовка считается отдельно для каждого формата. По ка",
+      "template": "<p data-price-block=\"text_27\">Фальцовка считается отдельно для каждого формата. По калькулятору на дату проверки: 10 листов A2 — <span data-price-example=\"foldA2\">0 ₽</span>, 10 листов A1 — <span data-price-example=\"foldA1\">0 ₽</span>, 10 листов A0 (площадь 1 м²) — <span data-price-example=\"foldA0\">0 ₽</span>. Цены ориентировочные: актуальные значения смотрите в калькуляторе.</p>",
+      "key": "text_27",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/figurnye-stikery-kontur-i-melkie-detali/index.html",
+      "selector": "main p",
+      "index": 10,
+      "prefix": "По калькулятору на дату проверки: фигурный 50×50 мм, ви",
+      "template": "<p data-price-block=\"text_28\">По калькулятору на дату проверки: фигурный 50×50 мм, винил белый, 100 штук — <span data-price-example=\"figvinyl\">0 ₽</span>; UV белый — <span data-price-example=\"figuv\">0 ₽</span>; фигурный 70×70 мм, UV белый, 500 штук — <span data-price-example=\"fig70\">0 ₽</span>. Для сравнения: круглый 50×50 мм из винила стоит <span data-price-example=\"roundvinyl\">0 ₽</span>. Фигурная резка дороже, поскольку сложнее контур.</p>",
+      "key": "text_28",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/foto-10x15-15x21-formaty/index.html",
+      "selector": "main p",
+      "index": 8,
+      "prefix": "На текущем калькуляторе A6 сатин до 10 штук стоит ",
+      "template": "<p data-price-block=\"text_29\">На текущем калькуляторе A6 сатин до 10 штук стоит <span data-price-example=\"photo6\">0 ₽</span> за штуку. A4 сатин при тираже 11–50 штук стоит <span data-price-example=\"photo4unit\">0 ₽</span> за штуку. Если нужна большая партия, цена за штуку меняется по ступеням, поэтому уточняйте итог для своего количества.</p>",
+      "key": "text_29",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/foto-na-stenu-a3-a2-a1/index.html",
+      "selector": "main p",
+      "index": 9,
+      "prefix": "На текущих условиях калькулятора A2 на сатине стоит ",
+      "template": "<p data-price-block=\"text_30\">На текущих условиях калькулятора A2 на сатине стоит <span data-price-example=\"photo2\">0 ₽</span> за экземпляр. Цены на другие форматы смотрите в калькуляторе, они могут измениться.</p>",
+      "key": "text_30",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/garderobnye-nomerki-numeraciya-i-tirazh/index.html",
+      "selector": "main p",
+      "index": 12,
+      "prefix": "На дату проверки номерки 50×70 мм: прозрачный акрил 3 м",
+      "template": "<p data-price-block=\"text_31\">На дату проверки номерки 50×70 мм: прозрачный акрил 3 мм, гравировка, 50 штук — <span data-price-example=\"number50\">0 ₽</span>; UV с одной стороны, 100 штук — <span data-price-example=\"number100\">0 ₽</span>; фанера 3 мм, гравировка, 100 штук — <span data-price-example=\"numberwood\">0 ₽</span>. Номерки в примере — простой формы, без фурнитуры и лака.</p>",
+      "key": "text_31",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/golograficheskie-stikery-kogda-vybirat/index.html",
+      "selector": "main p",
+      "index": 15,
+      "prefix": "Точные значения смотрите в калькуляторе: плёнка выбирае",
+      "template": "<p data-price-block=\"text_32\">Точные значения смотрите в калькуляторе: плёнка выбирается в параметрах, и итог пересчитывается сразу. Для сравнения: фигурный стикер 50×50 мм, 100 штук, в UV на белой плёнке стоит <span data-price-example=\"figuv\">0 ₽</span> на дату проверки.</p>",
+      "key": "text_32",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/gramoty-tirazh-imena-proverka/index.html",
+      "selector": "main p",
+      "index": 10,
+      "prefix": "По калькулятору на дату проверки: A4, 250 г/м², печать ",
+      "template": "<p data-price-block=\"text_33\">По калькулятору на дату проверки: A4, 250 г/м², печать с одной стороны, 10 штук — <span data-price-example=\"award\">0 ₽</span>. Для вашего тиража и плотности посчитайте итог онлайн.</p>",
+      "key": "text_33",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/gravirovka-ili-uv-pechat-chto-vybrat/index.html",
+      "selector": "main p",
+      "index": 6,
+      "prefix": "На дату проверки брелоки 40×60 мм: прозрачный акрил 3 м",
+      "template": "<p data-price-block=\"text_34\">На дату проверки брелоки 40×60 мм: прозрачный акрил 3 мм, UV с одной стороны, 50 штук — <span data-price-example=\"key50\">0 ₽</span>; фанера 3 мм, гравировка, 100 штук — <span data-price-example=\"keywood\">0 ₽</span>. Тираж и материал разные, поэтому сравнивайте одинаковые условия в калькуляторе. Для брелоков в этих примерах выбраны фигурная форма, кольцо с цепочкой и печать без лака.</p>",
+      "key": "text_34",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/gravirovka-shkala-zapolneniya/index.html",
+      "selector": "main p",
+      "index": 5,
+      "prefix": "На дату проверки фанера, зона 100×100 мм, 10 штук: запо",
+      "template": "<p data-price-block=\"text_35\">На дату проверки фанера, зона 100×100 мм, 10 штук: заполнение 30% — <span data-price-example=\"engrave30\">0 ₽</span>; 60% — <span data-price-example=\"engrave60\">0 ₽</span>; 100% — <span data-price-example=\"engrave100\">0 ₽</span>. При одинаковых габаритах увеличение заполнения влияет на стоимость.</p>",
+      "key": "text_35",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/index.html",
+      "selector": "main p",
+      "index": 97,
+      "prefix": "Как выбрать размер бирки от 30×30 до 105×148 мм, бумагу",
+      "template": "<p data-price-block=\"text_36\">Как выбрать размер бирки от 30×30 до 105×148 мм, бумагу 200 или 300 г/м², и что значит минимальный чек <span data-price-example=\"mintags\">0 ₽</span> в калькуляторе.</p>",
+      "key": "text_36",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/index.html",
+      "selector": "main p",
+      "index": 144,
+      "prefix": "Что такое минимальный чек в калькуляторе, где он действ",
+      "template": "<p data-price-block=\"text_37\">Что такое минимальный чек в калькуляторе, где он действует: ламинирование <span data-price-example=\"minlam\">0 ₽</span>, баннеры <span data-price-example=\"minbanner\">0 ₽</span>, бирки <span data-price-example=\"mintags\">0 ₽</span>, шильды <span data-price-example=\"minmetal\">0 ₽</span>, UV DTF <span data-price-example=\"mindtf\">0 ₽</span>.</p>",
+      "key": "text_37",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/inzhenernaya-pechat-otlichie-ot-obychnoy/index.html",
+      "selector": "main p",
+      "index": 12,
+      "prefix": "По калькулятору на дату проверки: A2 в чёрно-белом вари",
+      "template": "<p data-price-block=\"text_38\">По калькулятору на дату проверки: A2 в чёрно-белом варианте, 10 листов, с фальцовкой — <span data-price-example=\"eng2\">0 ₽</span>; A3 в цвете, 20 листов — <span data-price-example=\"eng3\">0 ₽</span>; A1 чёрно-белый, 5 листов с фальцовкой — <span data-price-example=\"eng1\">0 ₽</span>. Это примеры, а не прайс: итог зависит от формата, количества и дополнительных операций.</p>",
+      "key": "text_38",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/kakoy-material-vybrat-dlya-bannera-i-kak-podgotovit-maket-k-pechati/index.html",
+      "selector": "main p",
+      "index": 8,
+      "prefix": "Баннер 2 × 1 м имеет площадь 2 м². Три таких полотна да",
+      "template": "<p data-price-block=\"text_39\">Баннер 2 × 1 м имеет площадь 2 м². Три таких полотна дают 6 м². В широкоформатном калькуляторе «ТЕКСТ» тариф зависит от общей площади заказа, минимальная стоимость составляет <span data-price-example=\"minbanner\">0 ₽</span>. Итог с обработкой уточняется по выбранным параметрам.</p>",
+      "key": "text_39",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/kogda-stoit-laminirovat-dokument-i-kakoy-format-vybrat/index.html",
+      "selector": "main p",
+      "index": 7,
+      "prefix": "В калькуляторе «ТЕКСТ» для пакетного ламинирования пред",
+      "template": "<p data-price-block=\"text_40\">В калькуляторе «ТЕКСТ» для пакетного ламинирования предусмотрены минимальная стоимость заказа <span data-price-example=\"minlam\">0 ₽</span> и скидка <span data-price-example=\"lamdiscount\">20 %</span> от 20 штук. Сравнивайте итог в калькуляторе с учётом этих условий: цена одной карточки без минимального заказа может не отражать реальную сумму к оплате.</p>",
+      "key": "text_40",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/kopirovanie-steklo-ili-avtopodatchik/index.html",
+      "selector": "main p",
+      "index": 2,
+      "prefix": "Стопка листов загружается в лоток, а аппарат сам протяг",
+      "template": "<p data-price-block=\"text_41\">Стопка листов загружается в лоток, а аппарат сам протягивает их один за другим. Способ быстрый и подходит для однотипных несшитых оригиналов: договоров, приложений, анкет, распечаток. По калькулятору «ТЕКСТ» копирование 50 прогонов A4 в чёрно-белом варианте через автоподатчик сейчас стоит <span data-price-example=\"copy50\">0 ₽</span>.</p>",
+      "key": "text_41",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/kopirovanie-steklo-ili-avtopodatchik/index.html",
+      "selector": "main p",
+      "index": 13,
+      "prefix": "Цена за такой прогон выше. На текущих условиях копия A3",
+      "template": "<p data-price-block=\"text_42\">Цена за такой прогон выше. На текущих условиях копия A3 в цвете, 10 прогонов со стекла, стоит <span data-price-example=\"copycolor10\">0 ₽</span>. Сравнивать эти две цифры напрямую нельзя: форматы и цветность разные, но видно, что ручная подача и цвет увеличивают стоимость.</p>",
+      "key": "text_42",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/kruglye-stikery-diametr-tirazh/index.html",
+      "selector": "main p",
+      "index": 7,
+      "prefix": "Цена за штуку падает, когда тираж растёт. На дату прове",
+      "template": "<p data-price-block=\"text_43\">Цена за штуку падает, когда тираж растёт. На дату проверки: 50×50 мм, винил белый, 100 штук — <span data-price-example=\"roundvinyl\">0 ₽</span> (<span data-price-example=\"roundunit\">0 ₽</span> за штуку); 50×50 мм, UV белый, 100 штук — <span data-price-example=\"rounduv\">0 ₽</span>; 70×70 мм, UV белый, 500 штук — <span data-price-example=\"round70\">0 ₽</span> (около <span data-price-example=\"round70unit\">0 ₽</span> за штуку при больших размерах).</p>",
+      "key": "text_43",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/laminaciya-i-skruglenie-vizitok/index.html",
+      "selector": "main p",
+      "index": 9,
+      "prefix": "В калькуляторе визиток ламинация и скругление выбираютс",
+      "template": "<p data-price-block=\"text_44\">В калькуляторе визиток ламинация и скругление выбираются как дополнительные параметры. По данным на дату проверки 1000 визиток с двух сторон с ламинацией стоят <span data-price-example=\"cardslam\">0 ₽</span>. Для вашего тиража проверьте итог в калькуляторе.</p>",
+      "key": "text_44",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/laminirovanie-gramot-risunkov/index.html",
+      "selector": "main p",
+      "index": 16,
+      "prefix": "Один лист A4 с плёнкой 100 мкм обходится в минимальный ",
+      "template": "<p data-price-block=\"text_45\">Один лист A4 с плёнкой 100 мкм обходится в минимальный чек <span data-price-example=\"minlam\">0 ₽</span>. Для партии расчёт выгоднее.</p>",
+      "key": "text_45",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/laminirovanie-menyu-cennikov-pamyatok/index.html",
+      "selector": "main p",
+      "index": 9,
+      "prefix": "В калькуляторе пакетного ламинирования указаны минималь",
+      "template": "<p data-price-block=\"text_46\">В калькуляторе пакетного ламинирования указаны минимальный чек <span data-price-example=\"minlam\">0 ₽</span> и скидка <span data-price-example=\"lamdiscount\">20 %</span> при тираже от 20 штук. По текущим данным A4 с плёнкой 100 мкм при одной штуке стоит <span data-price-example=\"lam1\">0 ₽</span> (сработал минимальный чек), а 20 штук обойдутся в <span data-price-example=\"lam20\">0 ₽</span>, то есть по <span data-price-example=\"lamunit\">0 ₽</span> за штуку. Для большой партии меню разница заметна: 20 карточек дешевле, чем 20 отдельных заказов по одной.</p>",
+      "key": "text_46",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/lazernaya-rezka-fanera-akril-maket/index.html",
+      "selector": "main p",
+      "index": 11,
+      "prefix": "На дату проверки: фанера 3 мм, 300×200 мм, 10 штук — ",
+      "template": "<p data-price-block=\"text_47\">На дату проверки: фанера 3 мм, 300×200 мм, 10 штук — <span data-price-example=\"laser1\">0 ₽</span>; фанера 6 мм, 500×500 мм, 20 штук — <span data-price-example=\"laser2\">0 ₽</span>; акрил 3 мм, 600×400 мм, 20 штук, сложный контур — <span data-price-example=\"laser3\">0 ₽</span>.</p>",
+      "key": "text_47",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/lazernaya-rezka-ili-plotternaya-rezka/index.html",
+      "selector": "main p",
+      "index": 9,
+      "prefix": "На дату проверки: плоттер, белая плёнка 500×500 мм, 1 ш",
+      "template": "<p data-price-block=\"text_48\">На дату проверки: плоттер, белая плёнка 500×500 мм, 1 штука, сложная — <span data-price-example=\"cut1\">0 ₽</span>. Лазер, фанера 3 мм, 300×200 мм, 10 штук — <span data-price-example=\"laser1\">0 ₽</span>. Расчёты различаются по логике, поэтому сравнить их напрямую нельзя.</p>",
+      "key": "text_48",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/listovka-ili-flaer/index.html",
+      "selector": "main p",
+      "index": 12,
+      "prefix": "По калькулятору на дату проверки: A6, 120 г, с одной ст",
+      "template": "<p data-price-block=\"text_49\">По калькулятору на дату проверки: A6, 120 г, с одной стороны, 50 штук — <span data-price-example=\"leaf6\">0 ₽</span>; A5, 160 г, с двух сторон, 100 штук — <span data-price-example=\"leaf5\">0 ₽</span>; A4, 250 г, с двух сторон, 50 штук — <span data-price-example=\"leaf4\">0 ₽</span>. Эти значения могут изменяться.</p>",
+      "key": "text_49",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/minimalnyy-chek-chto-eto-takoe/index.html",
+      "selector": "main p",
+      "index": 0,
+      "prefix": "Что такое минимальный чек в калькуляторе, где он действ",
+      "template": "<p data-price-block=\"text_50\">Что такое минимальный чек в калькуляторе, где он действует: ламинирование <span data-price-example=\"minlam\">0 ₽</span>, баннеры <span data-price-example=\"minbanner\">0 ₽</span>, бирки <span data-price-example=\"mintags\">0 ₽</span>, шильды <span data-price-example=\"minmetal\">0 ₽</span>, UV DTF <span data-price-example=\"mindtf\">0 ₽</span>.</p>",
+      "key": "text_50",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/minimalnyy-chek-chto-eto-takoe/index.html",
+      "selector": "main td",
+      "index": 1,
+      "prefix": "",
+      "template": "<td data-price-block=\"text_51\"><span data-price-example=\"minlam\">0 ₽</span></td>",
+      "key": "text_51",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/minimalnyy-chek-chto-eto-takoe/index.html",
+      "selector": "main td",
+      "index": 3,
+      "prefix": "",
+      "template": "<td data-price-block=\"text_52\"><span data-price-example=\"minpvc\">0 ₽</span></td>",
+      "key": "text_52",
+      "occurrence": 1
+    },
+    {
+      "file": "company/article/minimalnyy-chek-chto-eto-takoe/index.html",
+      "selector": "main td",
+      "index": 5,
+      "prefix": "",
+      "template": "<td data-price-block=\"text_53\"><span data-price-example=\"minfoam\">0 ₽</span></td>",
+      "key": "text_53",
+      "occurrence": 2
+    },
+    {
+      "file": "company/article/minimalnyy-chek-chto-eto-takoe/index.html",
+      "selector": "main td",
+      "index": 7,
+      "prefix": "",
+      "template": "<td data-price-block=\"text_54\"><span data-price-example=\"minbanner\">0 ₽</span></td>",
+      "key": "text_54",
+      "occurrence": 3
+    },
+    {
+      "file": "company/article/minimalnyy-chek-chto-eto-takoe/index.html",
+      "selector": "main td",
+      "index": 9,
+      "prefix": "",
+      "template": "<td data-price-block=\"text_55\"><span data-price-example=\"mindtf\">0 ₽</span></td>",
+      "key": "text_55",
+      "occurrence": 4
+    },
+    {
+      "file": "company/article/minimalnyy-chek-chto-eto-takoe/index.html",
+      "selector": "main td",
+      "index": 11,
+      "prefix": "",
+      "template": "<td data-price-block=\"text_56\"><span data-price-example=\"mintags\">0 ₽</span></td>",
+      "key": "text_56",
+      "occurrence": 5
+    },
+    {
+      "file": "company/article/minimalnyy-chek-chto-eto-takoe/index.html",
+      "selector": "main td",
+      "index": 13,
+      "prefix": "",
+      "template": "<td data-price-block=\"text_57\"><span data-price-example=\"minmetal\">0 ₽</span></td>",
+      "key": "text_57",
+      "occurrence": 6
+    },
+    {
+      "file": "company/article/minimalnyy-chek-chto-eto-takoe/index.html",
+      "selector": "main p",
+      "index": 5,
+      "prefix": "Ламинирование одного A4 по расчёту стоило бы меньше, но",
+      "template": "<p data-price-block=\"text_58\">Ламинирование одного A4 по расчёту стоило бы меньше, но применяется минимальный чек <span data-price-example=\"minlam\">0 ₽</span>. А 20 штук обходятся в <span data-price-example=\"lam20\">0 ₽</span> со скидкой <span data-price-example=\"lamdiscount\">20 %</span>, то есть <span data-price-example=\"lamunit\">0 ₽</span> за штуку. Получается, что при большом тираже минимум не мешает.</p>",
+      "key": "text_58",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/minimalnyy-chek-chto-eto-takoe/index.html",
+      "selector": "main p",
+      "index": 7,
+      "prefix": "Берите больше. Если минимум ",
+      "template": "<p data-price-block=\"text_59\">Берите больше. Если минимум <span data-price-example=\"mintags\">0 ₽</span>, лучше напечатать 150 бирок, чем 100, если разница небольшая.</p>",
+      "key": "text_59",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/na-kakom-materiale-zakazat-tablichku-na-pvh-orgstekle-ili-kompozitnoy-paneli/index.html",
+      "selector": "main p",
+      "index": 9,
+      "prefix": "В калькуляторе прямой УФ-печати «ТЕКСТ» предусмотрены П",
+      "template": "<p data-price-block=\"text_60\">В калькуляторе прямой УФ-печати «ТЕКСТ» предусмотрены ПВХ 3 и 5 мм, оргстекло 3 и 5 мм, АКП 3 мм и другие материалы. Диапазон размеров готового расчётного изделия — от 50 × 50 до 400 × 600 мм, минимальная стоимость заказа — <span data-price-example=\"minuv\">0 ₽</span>. Таблички рассчитываются через этот калькулятор.</p>",
+      "key": "text_60",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/nakatka-na-pvh-tolshchina-i-razmer/index.html",
+      "selector": "main p",
+      "index": 5,
+      "prefix": "Минимальный чек — ",
+      "template": "<p data-price-block=\"text_61\">Минимальный чек — <span data-price-example=\"minpvc\">0 ₽</span>. На дату проверки ПВХ 3 мм, 500×500 мм, 10 штук стоит <span data-price-example=\"pvc\">0 ₽</span> (<span data-price-example=\"pvcunit\">0 ₽</span> за штуку). Если нужна единичная панель, ориентируйтесь на минимальный чек и калькулятор.</p>",
+      "key": "text_61",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/nakatka-na-pvh-tolshchina-i-razmer/index.html",
+      "selector": "main p",
+      "index": 15,
+      "prefix": "Для единичных заказов действует минимальный чек ",
+      "template": "<p data-price-block=\"text_62\">Для единичных заказов действует минимальный чек <span data-price-example=\"minpvc\">0 ₽</span>. Остальное считает калькулятор.</p>",
+      "key": "text_62",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/nakatka-pvh-ili-penokarton/index.html",
+      "selector": "main p",
+      "index": 2,
+      "prefix": "Лёгкий, мягкий внутри, обклеен бумагой или картоном. Ра",
+      "template": "<p data-price-block=\"text_63\">Лёгкий, мягкий внутри, обклеен бумагой или картоном. Размер по текущей модели: от 200×200 до 1450×1350 мм. Подходит для временных конструкций: презентации, выставки, фотозоны, макеты. Минимальный чек — <span data-price-example=\"minfoam\">0 ₽</span>. Лист легко режется.</p>",
+      "key": "text_63",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/nakatka-pvh-ili-penokarton/index.html",
+      "selector": "main p",
+      "index": 4,
+      "prefix": "Плотный пластик. Жёстче, устойчивее к влаге, держит фор",
+      "template": "<p data-price-block=\"text_64\">Плотный пластик. Жёстче, устойчивее к влаге, держит форму. Подходит для постоянных табличек, указателей, информационных стендов. Минимальный чек — <span data-price-example=\"minpvc\">0 ₽</span>.</p>",
+      "key": "text_64",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/nakatka-pvh-ili-penokarton/index.html",
+      "selector": "main p",
+      "index": 6,
+      "prefix": "На дату проверки при 500×500 мм, 10 штук: пенокартон 5 ",
+      "template": "<p data-price-block=\"text_65\">На дату проверки при 500×500 мм, 10 штук: пенокартон 5 мм — <span data-price-example=\"foam\">0 ₽</span>, ПВХ 3 мм — <span data-price-example=\"pvc\">0 ₽</span>. Разница невелика, поэтому выбирайте по условиям, а не по цене.</p>",
+      "key": "text_65",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/nakleyka-na-avto-plenka-i-kontur/index.html",
+      "selector": "main p",
+      "index": 7,
+      "prefix": "Простая — крупные буквы, плавные формы. Сложная — мелки",
+      "template": "<p data-price-block=\"text_66\">Простая — крупные буквы, плавные формы. Сложная — мелкие детали, тонкие линии, много элементов. Сложная стоит дороже: на дату проверки белая плёнка 500×500 мм, 1 штука, сложный контур — <span data-price-example=\"cut1\">0 ₽</span>.</p>",
+      "key": "text_66",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/nakleyki-na-vitrinu-chto-uchest/index.html",
+      "selector": "main p",
+      "index": 16,
+      "prefix": "Белая плёнка 500×500 мм, 1 штука, сложный контур — ",
+      "template": "<p data-price-block=\"text_67\">Белая плёнка 500×500 мм, 1 штука, сложный контур — <span data-price-example=\"cut1\">0 ₽</span> на дату проверки. Для простой надписи цена ниже. Размер и сложность считает калькулятор.</p>",
+      "key": "text_67",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/nomerki-ili-breloki-chto-vybrat/index.html",
+      "selector": "main p",
+      "index": 9,
+      "prefix": "Брелок: прозрачный акрил 3 мм, 40×60 мм, UV с одной сто",
+      "template": "<p data-price-block=\"text_68\">Брелок: прозрачный акрил 3 мм, 40×60 мм, UV с одной стороны, 50 штук — <span data-price-example=\"key50\">0 ₽</span>. Номерок: прозрачный акрил 3 мм, 50×70 мм, гравировка, 50 штук — <span data-price-example=\"number50\">0 ₽</span>. Размеры разные, но видно, что порядок цен близкий. Для брелоков в этих примерах выбраны фигурная форма, кольцо с цепочкой и печать без лака. Номерки в примере — простой формы, без фурнитуры и лака.</p>",
+      "key": "text_68",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/oblozhka-i-blok-raznaya-plotnost/index.html",
+      "selector": "main p",
+      "index": 9,
+      "prefix": "Обложка и блок рассчитываются по отдельности. По кальку",
+      "template": "<p data-price-block=\"text_69\">Обложка и блок рассчитываются по отдельности. По калькулятору на дату проверки: A5, 16 страниц (обложка 300 г, блок 160 г), 10 штук — <span data-price-example=\"brochure16\">0 ₽</span>; A5, 24 страницы, 50 штук — <span data-price-example=\"brochure24\">0 ₽</span>. Пара плотностей задаётся в калькуляторе.</p>",
+      "key": "text_69",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/oczifrovka-arhiva-dogovorov-aktov/index.html",
+      "selector": "main p",
+      "index": 10,
+      "prefix": "По калькулятору «ТЕКСТ» сканирование A4 текстовых несши",
+      "template": "<p data-price-block=\"text_70\">По калькулятору «ТЕКСТ» сканирование A4 текстовых несшитых документов, 50 прогонов, стоит <span data-price-example=\"scan50\">0 ₽</span>. Сканирование A3, 10 прогонов сшитых оригиналов, тоже <span data-price-example=\"scan3\">0 ₽</span>. Сопоставлять эти цифры по цене за лист нельзя: форматы и способ подачи разные. Но видно, что у сшитых оригиналов цена за прогон заметно выше.</p>",
+      "key": "text_70",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/oformlenie-ofisa-poligrafiya-i-tablichki/index.html",
+      "selector": "main p",
+      "index": 9,
+      "prefix": "На дату проверки: табличка 200×100 мм из ПВХ 3 мм, 10 ш",
+      "template": "<p data-price-block=\"text_71\">На дату проверки: табличка 200×100 мм из ПВХ 3 мм, 10 штук — <span data-price-example=\"uv200\">0 ₽</span>; накатка на ПВХ 3 мм, 500×500 мм, 10 штук — <span data-price-example=\"pvc\">0 ₽</span>; плакат A1 — <span data-price-example=\"poster1\">0 ₽</span>; надпись из белой плёнки 500×500 мм, сложный контур — <span data-price-example=\"cut1\">0 ₽</span>.</p>",
+      "key": "text_71",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/otkrytki-razmery-i-plotnost/index.html",
+      "selector": "main p",
+      "index": 10,
+      "prefix": "По калькулятору на дату проверки: A6, 250 г/м², двустор",
+      "template": "<p data-price-block=\"text_72\">По калькулятору на дату проверки: A6, 250 г/м², двусторонняя печать, 100 штук — <span data-price-example=\"postcard\">0 ₽</span>. Для других параметров считайте итог в калькуляторе.</p>",
+      "key": "text_72",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/pechat-na-holste-kak-vybrat-foto/index.html",
+      "selector": "main p",
+      "index": 12,
+      "prefix": "На дату проверки: 500×700 мм — ",
+      "template": "<p data-price-block=\"text_73\">На дату проверки: 500×700 мм — <span data-price-example=\"canvas500\">0 ₽</span>; 600×900 мм — <span data-price-example=\"canvas600\">0 ₽</span>; 1000×1000 мм — <span data-price-example=\"canvas1\">0 ₽</span>. Все цифры для одного изделия.</p>",
+      "key": "text_73",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/pechat-na-metalle-gotovaya-plastina/index.html",
+      "selector": "main p",
+      "index": 11,
+      "prefix": "Цена считается в калькуляторе шильдов по площади и тира",
+      "template": "<p data-price-block=\"text_74\">Цена считается в калькуляторе шильдов по площади и тиражу. На дату проверки пример нержавеющей стали AISI 1 мм, 90×110 мм, 10 штук рассчитывается так: 99 см² × <span data-price-example=\"metalrate\">0 ₽</span> × 10 = <span data-price-example=\"metal\">0 ₽</span>. Для вашей пластины подставьте свои размеры.</p>",
+      "key": "text_74",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/plotnost-bumagi-listovki-120-160-250/index.html",
+      "selector": "main p",
+      "index": 8,
+      "prefix": "Плотность влияет на стоимость. По калькулятору на дату ",
+      "template": "<p data-price-block=\"text_75\">Плотность влияет на стоимость. По калькулятору на дату проверки: A6, 120 г, 1 сторона, 50 штук — <span data-price-example=\"leaf6\">0 ₽</span>; A5, 160 г, 2 стороны, 100 штук — <span data-price-example=\"leaf5\">0 ₽</span>; A4, 250 г, 2 стороны, 50 штук — <span data-price-example=\"leaf4\">0 ₽</span>. Параметры разные, так что по этим данным нельзя вывести цену за единицу, но можно оценить порядок цифр.</p>",
+      "key": "text_75",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/plotternaya-rezka-ili-pechat-na-plenke/index.html",
+      "selector": "main p",
+      "index": 8,
+      "prefix": "Печать на плёнке 1×1 м — ",
+      "template": "<p data-price-block=\"text_76\">Печать на плёнке 1×1 м — <span data-price-example=\"film1\">0 ₽</span>. Резка белой плёнки 500×500 мм, 1 штука, сложный контур — <span data-price-example=\"cut1\">0 ₽</span>. Площади разные: нельзя сравнивать напрямую, но по цифрам видно, что вырезанная надпись обходится недорого.</p>",
+      "key": "text_76",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/plotternaya-rezka-vektornyy-kontur/index.html",
+      "selector": "main p",
+      "index": 15,
+      "prefix": "На дату проверки: белая плёнка 500×500 мм, 1 штука, сло",
+      "template": "<p data-price-block=\"text_77\">На дату проверки: белая плёнка 500×500 мм, 1 штука, сложная резка — <span data-price-example=\"cut1\">0 ₽</span>; белая 600×1000 мм, 10 штук, простая — <span data-price-example=\"cut10\">0 ₽</span>; цветная 600×2000 мм, 50 штук, сложная — <span data-price-example=\"cut50\">0 ₽</span>.</p>",
+      "key": "text_77",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/poster-a2-a1-dlya-interera/index.html",
+      "selector": "main p",
+      "index": 6,
+      "prefix": "На дату проверки: A2 — ",
+      "template": "<p data-price-block=\"text_78\">На дату проверки: A2 — <span data-price-example=\"poster2\">0 ₽</span>, A1 — <span data-price-example=\"poster1\">0 ₽</span>, формат 600×900 мм — <span data-price-example=\"poster900\">0 ₽</span>. Сравнивайте итог для нужного формата в калькуляторе.</p>",
+      "key": "text_78",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/poster-ili-plakat-razlichiya/index.html",
+      "selector": "main p",
+      "index": 8,
+      "prefix": "Печатаются на одном оборудовании и считаются по одному ",
+      "template": "<p data-price-block=\"text_79\">Печатаются на одном оборудовании и считаются по одному ценовому движку. Цены одинаковые: A2 — <span data-price-example=\"poster2\">0 ₽</span>, A1 — <span data-price-example=\"poster1\">0 ₽</span> на дату проверки. A0 для плаката — <span data-price-example=\"poster0\">0 ₽</span>.</p>",
+      "key": "text_79",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/proektnyy-tom-pechat-falcovka-broshyurovka/index.html",
+      "selector": "main p",
+      "index": 9,
+      "prefix": "Брошюровка 10 комплектов формата A4 на пластиковую пруж",
+      "template": "<p data-price-block=\"text_80\">Брошюровка 10 комплектов формата A4 на пластиковую пружину 10–12 мм для проектной документации стоит <span data-price-example=\"projectbind\">0 ₽</span> на дату проверки. Если комплектов больше, цена за штуку может меняться по ступеням, поэтому проверяйте итог для своего тиража.</p>",
+      "key": "text_80",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/prozrachnaya-plenka-belyj-sloj-stikery/index.html",
+      "selector": "main p",
+      "index": 15,
+      "prefix": "Для UV на прозрачной плёнке цена чуть выше, чем на бело",
+      "template": "<p data-price-block=\"text_81\">Для UV на прозрачной плёнке цена чуть выше, чем на белой. По калькулятору на дату проверки этикетки 50×30 мм, 500 штук: UV белый — <span data-price-example=\"labeluv\">0 ₽</span>, UV прозрачный — <span data-price-example=\"labelclear\">0 ₽</span>.</p>",
+      "key": "text_81",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/pryamaya-uv-pechat-materialy-i-tolshchiny/index.html",
+      "selector": "main p",
+      "index": 7,
+      "prefix": "На дату проверки ПВХ 3 мм: 100×100 мм, 10 штук — ",
+      "template": "<p data-price-block=\"text_82\">На дату проверки ПВХ 3 мм: 100×100 мм, 10 штук — <span data-price-example=\"uv100\">0 ₽</span>; 210×297 мм, 10 штук — <span data-price-example=\"uvA4\">0 ₽</span>; 300×400 мм, 20 штук — <span data-price-example=\"uvlarge\">0 ₽</span>. Цена за штуку растёт с размером: <span data-price-example=\"uv100unit\">0 ₽</span> за 100×100, <span data-price-example=\"uvA4unit\">0 ₽</span> за A4, около <span data-price-example=\"uvlargeunit\">0 ₽</span> за 300×400.</p>",
+      "key": "text_82",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/pryamougolnye-stikery-markirovka-upakovki/index.html",
+      "selector": "main p",
+      "index": 9,
+      "prefix": "На дату проверки прямоугольные 50×50 мм, 100 штук: вини",
+      "template": "<p data-price-block=\"text_83\">На дату проверки прямоугольные 50×50 мм, 100 штук: винил белый — <span data-price-example=\"rectvinyl\">0 ₽</span>, UV белый — <span data-price-example=\"rectuv\">0 ₽</span>; 70×70 мм, 500 штук, UV белый — <span data-price-example=\"rect70\">0 ₽</span>. Прямоугольник на 50×50 дороже круглого, но дешевле фигурного: это хорошо видно в сравнении.</p>",
+      "key": "text_83",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/razreshenie-izobrazheniya-dlya-bolshogo-postera/index.html",
+      "selector": "main p",
+      "index": 14,
+      "prefix": "Постеры считаются по размеру: A2 — ",
+      "template": "<p data-price-block=\"text_84\">Постеры считаются по размеру: A2 — <span data-price-example=\"poster2\">0 ₽</span>, A1 — <span data-price-example=\"poster1\">0 ₽</span> на дату проверки.</p>",
+      "key": "text_84",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/referat-kursovaya-pechat-chek-list/index.html",
+      "selector": "main p",
+      "index": 9,
+      "prefix": "В калькуляторе «ТЕКСТ» для A4 в чёрно-белом варианте с ",
+      "template": "<p data-price-block=\"text_85\">В калькуляторе «ТЕКСТ» для A4 в чёрно-белом варианте с одной стороны сейчас указаны такие значения: 10 страниц — <span data-price-example=\"doc10\">0 ₽</span>, 100 страниц — <span data-price-example=\"doc100\">0 ₽</span>. Двусторонняя печать 50 страниц стоит <span data-price-example=\"doc50duplex\">0 ₽</span>. Цены могут меняться, поэтому для своего заказа посчитайте итог в калькуляторе.</p>",
+      "key": "text_85",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/samokleyushchayasya-plenka-poverhnost-i-montazh/index.html",
+      "selector": "main p",
+      "index": 11,
+      "prefix": "Цена зависит от размера. На дату проверки плёнка 1×1 м ",
+      "template": "<p data-price-block=\"text_86\">Цена зависит от размера. На дату проверки плёнка 1×1 м стоит <span data-price-example=\"film1\">0 ₽</span>, 1×2 м — <span data-price-example=\"film2\">0 ₽</span>, 1×5 м — <span data-price-example=\"film5\">0 ₽</span>. Для 5 м² метр обходится в <span data-price-example=\"filmm2\">0 ₽</span>, для 1 м² — <span data-price-example=\"film1\">0 ₽</span>: крупный размер выгоднее.</p>",
+      "key": "text_86",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/sertifikat-rekvizity-numeraciya/index.html",
+      "selector": "main p",
+      "index": 16,
+      "prefix": "По калькулятору на дату проверки A4, 250 г/м², 1 сторон",
+      "template": "<p data-price-block=\"text_87\">По калькулятору на дату проверки A4, 250 г/м², 1 сторона, 10 штук — <span data-price-example=\"award\">0 ₽</span>. Для малых и средних тиражей считайте итог онлайн.</p>",
+      "key": "text_87",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/shildy-ili-tablichki-raznica/index.html",
+      "selector": "main td",
+      "index": 11,
+      "prefix": "",
+      "template": "<td data-price-block=\"text_88\"><span data-price-example=\"minmetal\">0 ₽</span></td>",
+      "key": "text_88",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/shildy-ili-tablichki-raznica/index.html",
+      "selector": "main p",
+      "index": 8,
+      "prefix": "На дату проверки табличка 200×100 мм из ПВХ 3 мм, 10 шт",
+      "template": "<p data-price-block=\"text_89\">На дату проверки табличка 200×100 мм из ПВХ 3 мм, 10 штук — <span data-price-example=\"uv200\">0 ₽</span>. Шильд из нержавейки AISI 1 мм, 90×110 мм, 10 штук — <span data-price-example=\"metal\">0 ₽</span> по расчёту калькулятора. Размеры и материалы разные: сравнивать цены нельзя.</p>",
+      "key": "text_89",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/shildy-nerzhaveyka-alyuminiy-vybor/index.html",
+      "selector": "main p",
+      "index": 7,
+      "prefix": "Минимальный заказ шильдов — ",
+      "template": "<p data-price-block=\"text_90\">Минимальный заказ шильдов — <span data-price-example=\"minmetal\">0 ₽</span>. Если расчёт получился меньше, применяется минимальная сумма. Поэтому небольшой тираж лучше объединить с другими шильдами.</p>",
+      "key": "text_90",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/shildy-nerzhaveyka-alyuminiy-vybor/index.html",
+      "selector": "main p",
+      "index": 8,
+      "prefix": "Нержавеющая сталь AISI 1 мм, размер 90×110 мм, 10 штук.",
+      "template": "<p data-price-block=\"text_91\">Нержавеющая сталь AISI 1 мм, размер 90×110 мм, 10 штук. Площадь 99 см², тариф <span data-price-example=\"metalrate\">0 ₽</span> за см²: 99 × тариф калькулятора × 10 = <span data-price-example=\"metal\">0 ₽</span>. Этот пример приведён в проверке калькулятора.</p>",
+      "key": "text_91",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/skanirovanie-chertezhey-ogranicheniya-a3/index.html",
+      "selector": "main p",
+      "index": 11,
+      "prefix": "По логике калькулятора несшитые документы идут через ав",
+      "template": "<p data-price-block=\"text_92\">По логике калькулятора несшитые документы идут через автоподатчик, а сшитые вручную. Ручная подача более трудоёмкая, поэтому она дороже. Примеры: сканирование чертежей A4, 50 прогонов, стоит <span data-price-example=\"scan50\">0 ₽</span>; для A3 в сшитом виде цену показывает калькулятор.</p>",
+      "key": "text_92",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/skolko-stranic-v-broshyure/index.html",
+      "selector": "main p",
+      "index": 10,
+      "prefix": "По калькулятору на дату проверки: A5, 16 страниц, облож",
+      "template": "<p data-price-block=\"text_93\">По калькулятору на дату проверки: A5, 16 страниц, обложка 300 г и блок 160 г, 10 штук — <span data-price-example=\"brochure16\">0 ₽</span>; A5, 24 страницы, 50 штук — <span data-price-example=\"brochure24\">0 ₽</span>; A4, 32 страницы, 50 штук — <span data-price-example=\"brochure32\">0 ₽</span>. Видно, что цена растёт с форматом, количеством страниц и тиражом.</p>",
+      "key": "text_93",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/stikerpak-dlya-brenda-sostav-nabora/index.html",
+      "selector": "main p",
+      "index": 10,
+      "prefix": "По калькулятору на дату проверки: UV стикерпак 100×150 ",
+      "template": "<p data-price-block=\"text_94\">По калькулятору на дату проверки: UV стикерпак 100×150 мм, 50 штук — <span data-price-example=\"pack50\">0 ₽</span>; 100 штук — <span data-price-example=\"pack100\">0 ₽</span>; 150×200 мм, 100 штук — <span data-price-example=\"packlarge\">0 ₽</span>. Цена за один набор падает с тиражом: <span data-price-example=\"pack50unit\">0 ₽</span> при 50 штуках и около <span data-price-example=\"pack100unit\">0 ₽</span> при 100.</p>",
+      "key": "text_94",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/stikery-dlya-malogo-biznesa-idei/index.html",
+      "selector": "main p",
+      "index": 13,
+      "prefix": "Закажите круглые стикеры 50×50 мм, 100 штук. На дату пр",
+      "template": "<p data-price-block=\"text_95\">Закажите круглые стикеры 50×50 мм, 100 штук. На дату проверки в виниле это <span data-price-example=\"roundvinyl\">0 ₽</span>. Приклейте на первые заказы и посмотрите на реакцию покупателей.</p>",
+      "key": "text_95",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/stoimost-pechati-chertezhey-chto-vliyaet/index.html",
+      "selector": "main p",
+      "index": 8,
+      "prefix": "A2 Ч/Б, 10 листов, с фальцовкой под A3 — ",
+      "template": "<p data-price-block=\"text_96\">A2 Ч/Б, 10 листов, с фальцовкой под A3 — <span data-price-example=\"eng2\">0 ₽</span>;</p>",
+      "key": "text_96",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/stoimost-pechati-chertezhey-chto-vliyaet/index.html",
+      "selector": "main p",
+      "index": 9,
+      "prefix": "A3 цвет, 20 листов — ",
+      "template": "<p data-price-block=\"text_97\">A3 цвет, 20 листов — <span data-price-example=\"eng3\">0 ₽</span>;</p>",
+      "key": "text_97",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/stoimost-pechati-chertezhey-chto-vliyaet/index.html",
+      "selector": "main p",
+      "index": 10,
+      "prefix": "A1 Ч/Б, 5 листов, с фальцовкой под A3 — ",
+      "template": "<p data-price-block=\"text_98\">A1 Ч/Б, 5 листов, с фальцовкой под A3 — <span data-price-example=\"eng1\">0 ₽</span>.</p>",
+      "key": "text_98",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/tablichka-dlya-ofisa-maket-i-tekst/index.html",
+      "selector": "main p",
+      "index": 9,
+      "prefix": "На дату проверки: ПВХ 3 мм, 200×100 мм, 10 штук, без по",
+      "template": "<p data-price-block=\"text_99\">На дату проверки: ПВХ 3 мм, 200×100 мм, 10 штук, без подложки — <span data-price-example=\"uv200\">0 ₽</span>. Для конкретного заказа посчитайте онлайн.</p>",
+      "key": "text_99",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/tablichka-pvh-ili-orgsteklo-kompozit/index.html",
+      "selector": "main p",
+      "index": 4,
+      "prefix": "На дату проверки табличка 200×100 мм, 10 штук, без бело",
+      "template": "<p data-price-block=\"text_100\">На дату проверки табличка 200×100 мм, 10 штук, без белой подложки: ПВХ 3 мм — <span data-price-example=\"uv200\">0 ₽</span>, оргстекло 3 мм — <span data-price-example=\"uvglass\">0 ₽</span>. Разница около 10%, поэтому выбор определяется видом, а не ценой.</p>",
+      "key": "text_100",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/tablichka-pvh-ili-orgsteklo-kompozit/index.html",
+      "selector": "main p",
+      "index": 5,
+      "prefix": "Если оргстекло прозрачное, белая подложка делает цвета ",
+      "template": "<p data-price-block=\"text_101\">Если оргстекло прозрачное, белая подложка делает цвета плотнее.<a href=\"../../../company/article/belaya-podlozhka-uv-pechat/\">Подробнее: о подложке</a>. Для ПВХ 5 мм 300×200 мм, 10 штук, с белой подложкой — <span data-price-example=\"uvwhite\">0 ₽</span>.</p>",
+      "key": "text_101",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/termoetiketki-58x40-primenenie/index.html",
+      "selector": "main p",
+      "index": 11,
+      "prefix": "Цена за штуку падает с тиражом. По текущему калькулятор",
+      "template": "<p data-price-block=\"text_102\">Цена за штуку падает с тиражом. По текущему калькулятору: 100 штук стоят <span data-price-example=\"thermal100\">0 ₽</span> (<span data-price-example=\"thermalunit100\">0 ₽</span> за штуку), 300 штук — <span data-price-example=\"thermal300\">0 ₽</span> (<span data-price-example=\"thermalunit300\">0 ₽</span> за штуку), 1 000 штук — <span data-price-example=\"thermal1000\">0 ₽</span> (<span data-price-example=\"thermalunit1000\">0 ₽</span> за штуку). Если вы заказываете этикетки регулярно, выгоднее печатать крупной партией.</p>",
+      "key": "text_102",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/uv-dtf-ili-pryamaya-uv-pechat/index.html",
+      "selector": "main p",
+      "index": 9,
+      "prefix": "Расчёты разные. Для UV DTF 50×50 мм, 100 штук — ",
+      "template": "<p data-price-block=\"text_103\">Расчёты разные. Для UV DTF 50×50 мм, 100 штук — <span data-price-example=\"dtf100\">0 ₽</span>. Для прямой печати ПВХ 3 мм размером 100×100 мм, 10 штук — <span data-price-example=\"uv100\">0 ₽</span>. Прямое сравнение невозможно: изделия разные.</p>",
+      "key": "text_103",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/uv-dtf-nakleyki-poverhnosti-i-nanesenie/index.html",
+      "selector": "main p",
+      "index": 10,
+      "prefix": "По калькулятору на дату проверки: UV DTF 50×50 мм, 100 ",
+      "template": "<p data-price-block=\"text_104\">По калькулятору на дату проверки: UV DTF 50×50 мм, 100 штук — <span data-price-example=\"dtf100\">0 ₽</span>; 70×70 мм, 100 штук — <span data-price-example=\"dtf70\">0 ₽</span>; 50×50 мм, 500 штук — <span data-price-example=\"dtf500\">0 ₽</span>. Минимальный чек — <span data-price-example=\"mindtf\">0 ₽</span> (по данным проверки калькулятора).</p>",
+      "key": "text_104",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/vinil-ili-uv-stikery-chto-vybrat/index.html",
+      "selector": "main p",
+      "index": 5,
+      "prefix": "Круглые стикеры 50×50 мм, 100 штук: винил белый — ",
+      "template": "<p data-price-block=\"text_105\">Круглые стикеры 50×50 мм, 100 штук: винил белый — <span data-price-example=\"roundvinyl\">0 ₽</span>, UV белый — <span data-price-example=\"rounduv\">0 ₽</span>. Круглые 70×70 мм, 500 штук, UV белый — <span data-price-example=\"round70\">0 ₽</span>. Разница в цене заметна, но не двукратная: UV дороже примерно на треть при одинаковом размере и тираже. Данные на дату проверки.</p>",
+      "key": "text_105",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/vizitka-odna-ili-dve-storony/index.html",
+      "selector": "main p",
+      "index": 10,
+      "prefix": "Двусторонняя печать дороже односторонней, но не вдвое. ",
+      "template": "<p data-price-block=\"text_106\">Двусторонняя печать дороже односторонней, но не вдвое. По калькулятору «ТЕКСТ» 100 визиток с одной стороны на бумаге Color Copy 350 стоят <span data-price-example=\"cards100\">0 ₽</span>, а 500 визиток с двух сторон — <span data-price-example=\"cards500\">0 ₽</span>. Сравнить напрямую нельзя: тираж разный. Но видно, что разница между одной и двумя сторонами не катастрофична.</p>",
+      "key": "text_106",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/vizitka-razmer-bezopasnye-polya/index.html",
+      "selector": "main p",
+      "index": 13,
+      "prefix": "На дату проверки: 100 штук с печатью на одной стороне н",
+      "template": "<p data-price-block=\"text_107\">На дату проверки: 100 штук с печатью на одной стороне на бумаге Color Copy 350 стоят <span data-price-example=\"cards100\">0 ₽</span>, 500 штук с двух сторон — <span data-price-example=\"cards500\">0 ₽</span>. Итог для вашего заказа посчитает калькулятор.</p>",
+      "key": "text_107",
+      "occurrence": 0
+    },
+    {
+      "file": "kopitsentr/paketnoe-laminirovanie/index.html",
+      "selector": "main p",
+      "index": 19,
+      "prefix": "От 20 изделий — скидка 20 %. Минимальная стоимость одно",
+      "template": "<p data-price-block=\"text_108\">От 20 изделий — скидка <span data-price-example=\"lamdiscount\">20 %</span>. Минимальная стоимость одной позиции — <span data-price-example=\"minlam\">0 ₽</span>.</p>",
+      "key": "text_108",
+      "occurrence": 0
+    },
+    {
+      "file": "kopitsentr/paketnoe-laminirovanie/index.html",
+      "selector": "main span",
+      "index": 20,
+      "prefix": "Минимальный чек ",
+      "template": "<span data-price-block=\"text_109\">Минимальный чек <span data-price-example=\"minlam\">0 ₽</span></span>",
+      "key": "text_109",
+      "occurrence": 0
+    },
+    {
+      "file": "kopitsentr/paketnoe-laminirovanie/index.html",
+      "selector": "main b",
+      "index": 1,
+      "prefix": "Форматы и толщины пленки из калькулятора; двустороннее ",
+      "template": "<b data-price-block=\"text_110\">Форматы и толщины пленки из калькулятора; двустороннее пакетное ламинирование; скидка <span data-price-example=\"lamdiscount\">20 %</span> от 20 шт.; минимальный чек <span data-price-example=\"minlam\">0 ₽</span>.</b>",
+      "key": "text_110",
+      "occurrence": 0
+    },
+    {
+      "file": "kopitsentr/paketnoe-laminirovanie/index.html",
+      "selector": "main p",
+      "index": 32,
+      "prefix": "Минимальный чек составляет ",
+      "template": "<p data-price-block=\"text_111\">Минимальный чек составляет <span data-price-example=\"minlam\">0 ₽</span>, при количестве от 20 штук применяется скидка <span data-price-example=\"lamdiscount\">20 %</span>. Выберите формат и толщину плёнки до расчёта. Пакет закрывает лист с двух сторон; края покрытия должны оставаться герметичными.</p>",
+      "key": "text_111",
+      "occurrence": 0
+    },
+    {
+      "file": "kopitsentr/paketnoe-laminirovanie/index.html",
+      "selector": "main p",
+      "index": 33,
+      "prefix": "Форматы и толщины пленки из калькулятора; двустороннее ",
+      "template": "<p data-price-block=\"text_112\">Форматы и толщины пленки из калькулятора; двустороннее пакетное ламинирование; скидка <span data-price-example=\"lamdiscount\">20 %</span> от 20 шт.; минимальный чек <span data-price-example=\"minlam\">0 ₽</span>.</p>",
+      "key": "text_112",
+      "occurrence": 0
+    },
+    {
+      "file": "kopitsentr/paketnoe-laminirovanie/index.html",
+      "selector": "main p",
+      "index": 32,
+      "prefix": "Минимальный чек составляет ",
+      "template": "<p data-price-block=\"text_113\">Минимальный чек составляет <span data-price-example=\"minlam\">0 ₽</span>, при количестве от 20 штук применяется скидка <span data-price-example=\"lamdiscount\">20 %</span>. Выберите формат и толщину плёнки до расчёта. Пакет закрывает лист с двух сторон; края покрытия должны оставаться герметичными.</p>",
+      "key": "text_113",
+      "occurrence": 1
+    },
+    {
+      "file": "kopitsentr/termonakleyki/index.html",
+      "selector": "main p",
+      "index": 19,
+      "prefix": "До 200 — ",
+      "template": "<p data-price-block=\"text_114\">До 200 — <span data-price-example=\"thermalunit100\">0 ₽</span>/шт.; 201–500 — <span data-price-example=\"thermalunit300\">0 ₽</span>/шт.; от 501 — <span data-price-example=\"thermalunit1000\">0 ₽</span>/шт.</p>",
+      "key": "text_114",
+      "occurrence": 0
+    },
+    {
+      "file": "uv-pechat-i-rezka/shildy/index.html",
+      "selector": "main span",
+      "index": 9,
+      "prefix": "Минимальный чек ",
+      "template": "<span data-price-block=\"text_115\">Минимальный чек <span data-price-example=\"minmetal\">0 ₽</span></span>",
+      "key": "text_115",
+      "occurrence": 0
+    },
+    {
+      "file": "company/article/album-dizayn-proekta-interera-pechat/index.html",
+      "selector": "main p",
+      "index": 13,
+      "prefix": "По калькулятору на дату проверки",
+      "template": "<p data-price-block=\"text_116\">Стоимость альбома зависит от количества листов каждого формата, бумаги и цветности. Укажите состав альбома в калькуляторе: он рассчитает печать и выбранную брошюровку по отдельности.</p>",
+      "key": "text_116",
+      "occurrence": 0
+    },
+    {
+      "file": "kopitsentr/paketnoe-laminirovanie/index.html",
+      "selector": "main p",
+      "index": 14,
+      "key": "minimum_text_0",
+      "prefix": "A4 · 75 мкм · минимальный заказ ",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_0\">A4 · 75 мкм · минимальный заказ <span data-price-example=\"minimum_1_4\">0 ₽</span></p>"
+    },
+    {
+      "file": "kopitsentr/paketnoe-laminirovanie/index.html",
+      "selector": "main p",
+      "index": 28,
+      "key": "minimum_text_1",
+      "prefix": "Перед расчётом выберите параметры заказа. Доступные вар",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_1\">Перед расчётом выберите параметры заказа. Доступные варианты: Форматы и толщины пленки из калькулятора; двустороннее пакетное ламинирование; скидка <span data-price-example=\"lamdiscount\">20 %</span> от 20 шт.; минимальный чек <span data-price-example=\"minimum_1_4\">0 ₽</span>. Калькулятор на этой странице пересчитывает стоимость по выбранной конфигурации.</p>"
+    },
+    {
+      "file": "listovaya-poligrafiya/birki/index.html",
+      "selector": "main span",
+      "index": 7,
+      "key": "minimum_text_2",
+      "prefix": "Минимальный чек ",
+      "occurrence": 0,
+      "template": "<span data-price-block=\"minimum_text_2\">Минимальный чек <span data-price-example=\"minimum_3_10\">0 ₽</span></span>"
+    },
+    {
+      "file": "listovaya-poligrafiya/birki/index.html",
+      "selector": "main p",
+      "index": 18,
+      "key": "minimum_text_3",
+      "prefix": "200 или 300 г/м²; печать одной или двух сторон. Минимал",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_3\">200 или 300 г/м²; печать одной или двух сторон. Минимальный чек — <span data-price-example=\"minimum_3_10\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "listovaya-poligrafiya/birki/index.html",
+      "selector": "main p",
+      "index": 28,
+      "key": "minimum_text_4",
+      "prefix": "Перед расчётом выберите параметры заказа. Доступные вар",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_4\">Перед расчётом выберите параметры заказа. Доступные варианты: Размер от 30×30 до 105×148 мм; бумага 200/300 г/м²; одна/две стороны; минимальный чек <span data-price-example=\"minimum_3_10\">0 ₽</span>. Калькулятор на этой странице пересчитывает стоимость по выбранной конфигурации.</p>"
+    },
+    {
+      "file": "listovaya-poligrafiya/birki/index.html",
+      "selector": "main b",
+      "index": 1,
+      "key": "minimum_text_5",
+      "prefix": "Размер от 30×30 до 105×148 мм; бумага 200/300 г/м²; одн",
+      "occurrence": 0,
+      "template": "<b data-price-block=\"minimum_text_5\">Размер от 30×30 до 105×148 мм; бумага 200/300 г/м²; одна/две стороны; минимальный чек <span data-price-example=\"minimum_3_10\">0 ₽</span>.</b>"
+    },
+    {
+      "file": "listovaya-poligrafiya/birki/index.html",
+      "selector": "main p",
+      "index": 32,
+      "key": "minimum_text_6",
+      "prefix": "Размеры по калькулятору — от 30×30 до 105×148 мм, бумаг",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_6\">Размеры по калькулятору — от 30×30 до 105×148 мм, бумага — 200 или 300 г/м². Минимальный чек составляет <span data-price-example=\"minimum_3_10\">0 ₽</span>. Отверстие и дополнительную обработку нужно согласовать отдельно: они не подразумеваются одним названием «бирка».</p>"
+    },
+    {
+      "file": "listovaya-poligrafiya/birki/index.html",
+      "selector": "main p",
+      "index": 33,
+      "key": "minimum_text_7",
+      "prefix": "Размер от 30×30 до 105×148 мм; бумага 200/300 г/м²; одн",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_7\">Размер от 30×30 до 105×148 мм; бумага 200/300 г/м²; одна/две стороны; минимальный чек <span data-price-example=\"minimum_3_10\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "listovaya-poligrafiya/birki/index.html",
+      "selector": "main p",
+      "index": 40,
+      "key": "minimum_text_8",
+      "prefix": "Размеры по калькулятору — от 30×30 до 105×148 мм, бумаг",
+      "occurrence": 1,
+      "template": "<p data-price-block=\"minimum_text_8\">Размеры по калькулятору — от 30×30 до 105×148 мм, бумага — 200 или 300 г/м². Минимальный чек составляет <span data-price-example=\"minimum_3_10\">0 ₽</span>. Отверстие и дополнительную обработку нужно согласовать отдельно: они не подразумеваются одним названием «бирка».</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/figurnye-stikery/index.html",
+      "selector": "main p",
+      "index": 7,
+      "key": "minimum_text_9",
+      "prefix": "Печать и контурная резка включены в расчёт. Минимальный",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_9\">Печать и контурная резка включены в расчёт. Минимальный чек наклеек и стикерпаков — <span data-price-example=\"minimum_4_1\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/figurnye-stikery/index.html",
+      "selector": "main p",
+      "index": 31,
+      "key": "minimum_text_10",
+      "prefix": "Стоимость зависит от вида печати, плёнки, размера, форм",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_10\">Стоимость зависит от вида печати, плёнки, размера, формы и тиража наклеек. Минимальный чек — <span data-price-example=\"minimum_4_1\">0 ₽</span>. Калькулятор показывает итог заказа и цену за штуку.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/kruglye-stikery/index.html",
+      "selector": "main p",
+      "index": 7,
+      "key": "minimum_text_11",
+      "prefix": "Печать и контурная резка включены в расчёт. Минимальный",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_11\">Печать и контурная резка включены в расчёт. Минимальный чек наклеек и стикерпаков — <span data-price-example=\"minimum_4_2\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/kruglye-stikery/index.html",
+      "selector": "main p",
+      "index": 31,
+      "key": "minimum_text_12",
+      "prefix": "Стоимость зависит от вида печати, плёнки, размера, форм",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_12\">Стоимость зависит от вида печати, плёнки, размера, формы и тиража наклеек. Минимальный чек — <span data-price-example=\"minimum_4_2\">0 ₽</span>. Калькулятор показывает итог заказа и цену за штуку.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/pryamougolnye-stikery/index.html",
+      "selector": "main p",
+      "index": 7,
+      "key": "minimum_text_13",
+      "prefix": "Печать и контурная резка включены в расчёт. Минимальный",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_13\">Печать и контурная резка включены в расчёт. Минимальный чек наклеек и стикерпаков — <span data-price-example=\"minimum_4_3\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/pryamougolnye-stikery/index.html",
+      "selector": "main p",
+      "index": 31,
+      "key": "minimum_text_14",
+      "prefix": "Стоимость зависит от вида печати, плёнки, размера, форм",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_14\">Стоимость зависит от вида печати, плёнки, размера, формы и тиража наклеек. Минимальный чек — <span data-price-example=\"minimum_4_3\">0 ₽</span>. Калькулятор показывает итог заказа и цену за штуку.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/stikerpaki/index.html",
+      "selector": "main p",
+      "index": 7,
+      "key": "minimum_text_15",
+      "prefix": "Несколько стикеров на одной подложке. Печать и контурна",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_15\">Несколько стикеров на одной подложке. Печать и контурная резка включены в расчёт. Минимальный чек — <span data-price-example=\"minimum_4_4\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/stikerpaki/index.html",
+      "selector": "main p",
+      "index": 31,
+      "key": "minimum_text_16",
+      "prefix": "Стоимость зависит от площади подложки, вида печати, мат",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_16\">Стоимость зависит от площади подложки, вида печати, материала и тиража готовых наборов. Минимальный чек — <span data-price-example=\"minimum_4_4\">0 ₽</span>. Калькулятор показывает итог заказа и цену за набор.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/figurnye-3d-stikery/index.html",
+      "selector": "main p",
+      "index": 7,
+      "key": "minimum_text_17",
+      "prefix": "Печать, резка и прозрачное объёмное покрытие включены в",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_17\">Печать, резка и прозрачное объёмное покрытие включены в расчёт. Минимальный чек 3D-стикеров — <span data-price-example=\"minimum_4_8\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/figurnye-3d-stikery/index.html",
+      "selector": "main p",
+      "index": 31,
+      "key": "minimum_text_18",
+      "prefix": "Стоимость зависит от размера, формы, материала и тиража",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_18\">Стоимость зависит от размера, формы, материала и тиража наклеек. Минимальный чек — <span data-price-example=\"minimum_4_8\">0 ₽</span>. Калькулятор показывает итог заказа и цену за штуку.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/kruglye-3d-stikery/index.html",
+      "selector": "main p",
+      "index": 7,
+      "key": "minimum_text_19",
+      "prefix": "Печать, резка и прозрачное объёмное покрытие включены в",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_19\">Печать, резка и прозрачное объёмное покрытие включены в расчёт. Минимальный чек 3D-стикеров — <span data-price-example=\"minimum_4_9\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/kruglye-3d-stikery/index.html",
+      "selector": "main p",
+      "index": 31,
+      "key": "minimum_text_20",
+      "prefix": "Стоимость зависит от размера, формы, материала и тиража",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_20\">Стоимость зависит от размера, формы, материала и тиража наклеек. Минимальный чек — <span data-price-example=\"minimum_4_9\">0 ₽</span>. Калькулятор показывает итог заказа и цену за штуку.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/pryamougolnye-3d-stikery/index.html",
+      "selector": "main p",
+      "index": 7,
+      "key": "minimum_text_21",
+      "prefix": "Печать, резка и прозрачное объёмное покрытие включены в",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_21\">Печать, резка и прозрачное объёмное покрытие включены в расчёт. Минимальный чек 3D-стикеров — <span data-price-example=\"minimum_4_10\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/pryamougolnye-3d-stikery/index.html",
+      "selector": "main p",
+      "index": 31,
+      "key": "minimum_text_22",
+      "prefix": "Стоимость зависит от размера, формы, материала и тиража",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_22\">Стоимость зависит от размера, формы, материала и тиража наклеек. Минимальный чек — <span data-price-example=\"minimum_4_10\">0 ₽</span>. Калькулятор показывает итог заказа и цену за штуку.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/etiketki/index.html",
+      "selector": "main p",
+      "index": 7,
+      "key": "minimum_text_23",
+      "prefix": "Печать и контурная резка включены в расчёт. Минимальный",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_23\">Печать и контурная резка включены в расчёт. Минимальный чек наклеек и стикерпаков — <span data-price-example=\"minimum_4_5\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/etiketki/index.html",
+      "selector": "main p",
+      "index": 32,
+      "key": "minimum_text_24",
+      "prefix": "Цена зависит от вида печати, плёнки, формы, размера и т",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_24\">Цена зависит от вида печати, плёнки, формы, размера и тиража этикеток. Минимальный чек — <span data-price-example=\"minimum_4_5\">0 ₽</span>. Доставка согласуется отдельно.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/uv-dtf-nakleyki/index.html",
+      "selector": "main p",
+      "index": 7,
+      "key": "minimum_text_25",
+      "prefix": "Расчёт UV-DTF трансферов по размеру и тиражу. Форма не ",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_25\">Расчёт UV-DTF трансферов по размеру и тиражу. Форма не влияет на цену. Минимальный чек — <span data-price-example=\"minimum_4_6\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/uv-dtf-nakleyki/index.html",
+      "selector": "main span",
+      "index": 24,
+      "key": "minimum_text_26",
+      "prefix": "Минимальный чек ",
+      "occurrence": 0,
+      "template": "<span data-price-block=\"minimum_text_26\">Минимальный чек <span data-price-example=\"minimum_4_6\">0 ₽</span></span>"
+    },
+    {
+      "file": "nakleyki-i-stikery/uv-dtf-nakleyki/index.html",
+      "selector": "main p",
+      "index": 32,
+      "key": "minimum_text_27",
+      "prefix": "Стоимость определяется размером изображения и тиражом. ",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_27\">Стоимость определяется размером изображения и тиражом. Для круглой, прямоугольной и фигурной формы применяется одинаковый коэффициент. Минимальный чек — <span data-price-example=\"minimum_4_6\">0 ₽</span>. Доставка согласуется отдельно.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/bumazhnye-stikery/index.html",
+      "selector": "main p",
+      "index": 7,
+      "key": "minimum_text_28",
+      "prefix": "Стоимость зависит от числа листов SRA3 и контурной резк",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_28\">Стоимость зависит от числа листов SRA3 и контурной резки. Раскладка и скидка рассчитываются автоматически. Минимальный чек — <span data-price-example=\"minimum_4_7\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/bumazhnye-stikery/index.html",
+      "selector": "main p",
+      "index": 32,
+      "key": "minimum_text_29",
+      "prefix": "Цена зависит от размера наклейки, тиража и контурной ре",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_29\">Цена зависит от размера наклейки, тиража и контурной резки. Калькулятор выбирает раскладку на SRA3, считает листы и применяет скидку по их количеству. Минимальный чек — <span data-price-example=\"minimum_4_7\">0 ₽</span>. Доставка согласуется отдельно.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/3d-stikerpaki/index.html",
+      "selector": "main p",
+      "index": 8,
+      "key": "minimum_text_30",
+      "prefix": "Печать и прозрачное объёмное покрытие включены в расчёт",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_30\">Печать и прозрачное объёмное покрытие включены в расчёт. Цена учитывает размер и число внутренних стикеров. Минимальный чек 3D-продукции — <span data-price-example=\"minimum_4_11\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "nakleyki-i-stikery/3d-stikerpaki/index.html",
+      "selector": "main p",
+      "index": 33,
+      "key": "minimum_text_31",
+      "prefix": "Стоимость зависит от размеров внутренних 3D-стикеров, ч",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_31\">Стоимость зависит от размеров внутренних 3D-стикеров, числа элементов в наборе и тиража паков. Размер подложки определяет, сколько элементов помещается. Минимальный чек 3D-продукции — <span data-price-example=\"minimum_4_11\">0 ₽</span>. Доставка согласуется отдельно.</p>"
+    },
+    {
+      "file": "shirokiy-format/bannery/index.html",
+      "selector": "main p",
+      "index": 7,
+      "key": "minimum_text_32",
+      "prefix": "Обработка края и люверсы включены только в соответствую",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_32\">Обработка края и люверсы включены только в соответствующий выбранный вариант. Способ крепления и доставку согласуем отдельно. Минимальный чек — <span data-price-example=\"minimum_5_1\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "shirokiy-format/bannery/index.html",
+      "selector": "main span",
+      "index": 26,
+      "key": "minimum_text_33",
+      "prefix": "Минимальный заказ ",
+      "occurrence": 0,
+      "template": "<span data-price-block=\"minimum_text_33\">Минимальный заказ <span data-price-example=\"minimum_5_1\">0 ₽</span></span>"
+    },
+    {
+      "file": "shirokiy-format/bannery/index.html",
+      "selector": "main p",
+      "index": 32,
+      "key": "minimum_text_34",
+      "prefix": "Цена зависит от ширины, высоты, количества и материала ",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_34\">Цена зависит от ширины, высоты, количества и материала и обработки края. Минимальный чек — <span data-price-example=\"minimum_5_1\">0 ₽</span>. Доставка согласуется отдельно.</p>"
+    },
+    {
+      "file": "shirokiy-format/postery/index.html",
+      "selector": "main p",
+      "index": 7,
+      "key": "minimum_text_35",
+      "prefix": "Для фотографии проверьте разрешение в готовом размере. ",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_35\">Для фотографии проверьте разрешение в готовом размере. Кадрирование и поля под раму согласуем перед печатью. Минимальный чек — <span data-price-example=\"minimum_5_2\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "shirokiy-format/postery/index.html",
+      "selector": "main p",
+      "index": 32,
+      "key": "minimum_text_36",
+      "prefix": "Цена зависит от ширины, высоты, количества и выбранного",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_36\">Цена зависит от ширины, высоты, количества и выбранного материала. Минимальный чек — <span data-price-example=\"minimum_5_2\">0 ₽</span>. Доставка согласуется отдельно.</p>"
+    },
+    {
+      "file": "shirokiy-format/plakaty/index.html",
+      "selector": "main p",
+      "index": 7,
+      "key": "minimum_text_37",
+      "prefix": "Цена относится к печати на постерной бумаге. Накатка, к",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_37\">Цена относится к печати на постерной бумаге. Накатка, крепление и наружное применение согласуются отдельно. Минимальный чек — <span data-price-example=\"minimum_5_3\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "shirokiy-format/plakaty/index.html",
+      "selector": "main p",
+      "index": 32,
+      "key": "minimum_text_38",
+      "prefix": "Цена зависит от ширины, высоты, количества и выбранного",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_38\">Цена зависит от ширины, высоты, количества и выбранного материала. Минимальный чек — <span data-price-example=\"minimum_5_3\">0 ₽</span>. Доставка согласуется отдельно.</p>"
+    },
+    {
+      "file": "shirokiy-format/pechat-na-holste/index.html",
+      "selector": "main p",
+      "index": 7,
+      "key": "minimum_text_39",
+      "prefix": "Для варианта с рамкой согласуем её исполнение. Подрамни",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_39\">Для варианта с рамкой согласуем её исполнение. Подрамник, натяжку и поля на загиб нужно уточнить перед запуском. Минимальный чек — <span data-price-example=\"minimum_5_4\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "shirokiy-format/pechat-na-holste/index.html",
+      "selector": "main p",
+      "index": 33,
+      "key": "minimum_text_40",
+      "prefix": "Цена зависит от ширины, высоты, количества и выбранного",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_40\">Цена зависит от ширины, высоты, количества и выбранного материала. Минимальный чек — <span data-price-example=\"minimum_5_4\">0 ₽</span>. Доставка согласуется отдельно.</p>"
+    },
+    {
+      "file": "shirokiy-format/samokleyashchayasya-plenka/index.html",
+      "selector": "main p",
+      "index": 7,
+      "key": "minimum_text_41",
+      "prefix": "Для прозрачной плёнки согласуем белый цвет и сторону на",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_41\">Для прозрачной плёнки согласуем белый цвет и сторону наклеивания. Ламинация и дополнительная обработка согласуются отдельно. Минимальный чек — <span data-price-example=\"minimum_5_5\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "shirokiy-format/samokleyashchayasya-plenka/index.html",
+      "selector": "main p",
+      "index": 32,
+      "key": "minimum_text_42",
+      "prefix": "Цена зависит от ширины, высоты, количества и выбранного",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_42\">Цена зависит от ширины, высоты, количества и выбранного материала. Минимальный чек — <span data-price-example=\"minimum_5_5\">0 ₽</span>. Доставка согласуется отдельно.</p>"
+    },
+    {
+      "file": "shirokiy-format/nakleyki-na-avto/index.html",
+      "selector": "main p",
+      "index": 8,
+      "key": "minimum_text_43",
+      "prefix": "Рассчитывается вырезание элементов из плёнки. Цвет, при",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_43\">Рассчитывается вырезание элементов из плёнки. Цвет, применимость к кузову и монтаж на автомобиль согласуем отдельно. Минимальный чек — <span data-price-example=\"minimum_5_6\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "shirokiy-format/nakleyki-na-avto/index.html",
+      "selector": "main p",
+      "index": 33,
+      "key": "minimum_text_44",
+      "prefix": "Цена зависит от ширины, высоты, количества и плёнки и с",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_44\">Цена зависит от ширины, высоты, количества и плёнки и сложности резки. Монтажная плёнка Oratape учтена в расчёте. Минимальный чек — <span data-price-example=\"minimum_5_6\">0 ₽</span>. Доставка согласуется отдельно.</p>"
+    },
+    {
+      "file": "shirokiy-format/nakleyki-na-steklo/index.html",
+      "selector": "main p",
+      "index": 8,
+      "key": "minimum_text_45",
+      "prefix": "Укажите сторону наклеивания и сторону чтения надписи. М",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_45\">Укажите сторону наклеивания и сторону чтения надписи. Монтаж на стекло согласуется отдельно. Минимальный чек — <span data-price-example=\"minimum_5_7\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "shirokiy-format/nakleyki-na-steklo/index.html",
+      "selector": "main p",
+      "index": 33,
+      "key": "minimum_text_46",
+      "prefix": "Цена зависит от ширины, высоты, количества и плёнки и с",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_46\">Цена зависит от ширины, высоты, количества и плёнки и сложности резки. Монтажная плёнка Oratape учтена в расчёте. Минимальный чек — <span data-price-example=\"minimum_5_7\">0 ₽</span>. Доставка согласуется отдельно.</p>"
+    },
+    {
+      "file": "shirokiy-format/nakatka-na-pvh/index.html",
+      "selector": "main p",
+      "index": 7,
+      "key": "minimum_text_47",
+      "prefix": "В расчёт входят печать на плёнке и накатка. Фигурную ре",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_47\">В расчёт входят печать на плёнке и накатка. Фигурную резку, отверстия, крепление и перевозку панели согласуем отдельно. Минимальный чек — <span data-price-example=\"minimum_5_8\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "shirokiy-format/nakatka-na-pvh/index.html",
+      "selector": "main p",
+      "index": 25,
+      "key": "minimum_text_48",
+      "prefix": "Перед расчётом выберите параметры заказа. Доступные вар",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_48\">Перед расчётом выберите параметры заказа. Доступные варианты: Толщина ПВХ из калькулятора; тип печати; индивидуальный размер; тираж; минимальный чек <span data-price-example=\"minimum_5_8\">0 ₽</span>. Калькулятор на этой странице пересчитывает стоимость по выбранной конфигурации.</p>"
+    },
+    {
+      "file": "shirokiy-format/nakatka-na-pvh/index.html",
+      "selector": "main b",
+      "index": 1,
+      "key": "minimum_text_49",
+      "prefix": "Толщина ПВХ из калькулятора; тип печати; индивидуальный",
+      "occurrence": 0,
+      "template": "<b data-price-block=\"minimum_text_49\">Толщина ПВХ из калькулятора; тип печати; индивидуальный размер; тираж; минимальный чек <span data-price-example=\"minimum_5_8\">0 ₽</span>.</b>"
+    },
+    {
+      "file": "shirokiy-format/nakatka-na-pvh/index.html",
+      "selector": "main p",
+      "index": 29,
+      "key": "minimum_text_50",
+      "prefix": "Накатка превращает отпечаток в жёсткую панель для разме",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_50\">Накатка превращает отпечаток в жёсткую панель для размещения на подготовленном основании. Толщину ПВХ, размер и вид печати выбирают в калькуляторе; минимальный чек — <span data-price-example=\"minimum_5_8\">0 ₽</span>. Способ крепления и перевозку крупной панели согласуют заранее.</p>"
+    },
+    {
+      "file": "shirokiy-format/nakatka-na-pvh/index.html",
+      "selector": "main p",
+      "index": 32,
+      "key": "minimum_text_51",
+      "prefix": "Цена зависит от ширины, высоты, количества и технологии",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_51\">Цена зависит от ширины, высоты, количества и технологии печати и толщины ПВХ. Минимальный чек — <span data-price-example=\"minimum_5_8\">0 ₽</span>. Доставка согласуется отдельно.</p>"
+    },
+    {
+      "file": "shirokiy-format/nakatka-na-pvh/index.html",
+      "selector": "main p",
+      "index": 35,
+      "key": "minimum_text_52",
+      "prefix": "Накатка превращает отпечаток в жёсткую панель для разме",
+      "occurrence": 1,
+      "template": "<p data-price-block=\"minimum_text_52\">Накатка превращает отпечаток в жёсткую панель для размещения на подготовленном основании. Толщину ПВХ, размер и вид печати выбирают в калькуляторе; минимальный чек — <span data-price-example=\"minimum_5_8\">0 ₽</span>. Способ крепления и перевозку крупной панели согласуют заранее.</p>"
+    },
+    {
+      "file": "shirokiy-format/nakatka-na-penokarton/index.html",
+      "selector": "main p",
+      "index": 7,
+      "key": "minimum_text_53",
+      "prefix": "В расчёт входят печать на плёнке и накатка. Условия раз",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_53\">В расчёт входят печать на плёнке и накатка. Условия размещения, крепление и защиту при перевозке согласуем отдельно. Минимальный чек — <span data-price-example=\"minimum_5_9\">0 ₽</span>.</p>"
+    },
+    {
+      "file": "shirokiy-format/nakatka-na-penokarton/index.html",
+      "selector": "main p",
+      "index": 25,
+      "key": "minimum_text_54",
+      "prefix": "Перед расчётом выберите параметры заказа. Доступные вар",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_54\">Перед расчётом выберите параметры заказа. Доступные варианты: Толщина пенокартона из калькулятора; тип печати; размер 200×200–1450×1350 мм по текущей модели; тираж; минимальный чек <span data-price-example=\"minimum_5_9\">0 ₽</span>. Калькулятор на этой странице пересчитывает стоимость по выбранной конфигурации.</p>"
+    },
+    {
+      "file": "shirokiy-format/nakatka-na-penokarton/index.html",
+      "selector": "main b",
+      "index": 1,
+      "key": "minimum_text_55",
+      "prefix": "Толщина пенокартона из калькулятора; тип печати; размер",
+      "occurrence": 0,
+      "template": "<b data-price-block=\"minimum_text_55\">Толщина пенокартона из калькулятора; тип печати; размер 200×200–1450×1350 мм по текущей модели; тираж; минимальный чек <span data-price-example=\"minimum_5_9\">0 ₽</span>.</b>"
+    },
+    {
+      "file": "shirokiy-format/nakatka-na-penokarton/index.html",
+      "selector": "main p",
+      "index": 29,
+      "key": "minimum_text_56",
+      "prefix": "Пенокартон подходит для лёгких интерьерных панелей, фот",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_56\">Пенокартон подходит для лёгких интерьерных панелей, фотографий и презентационных работ. По калькулятору размер — от 200×200 до 1450×1350 мм, минимальный чек — <span data-price-example=\"minimum_5_9\">0 ₽</span>. При перевозке защищайте углы и плоскость: лёгкость не означает устойчивость к ударам.</p>"
+    },
+    {
+      "file": "shirokiy-format/nakatka-na-penokarton/index.html",
+      "selector": "main p",
+      "index": 32,
+      "key": "minimum_text_57",
+      "prefix": "Цена зависит от ширины, высоты, количества и технологии",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"minimum_text_57\">Цена зависит от ширины, высоты, количества и технологии печати. Основа — пенокартон 5 мм. Минимальный чек — <span data-price-example=\"minimum_5_9\">0 ₽</span>. Доставка согласуется отдельно.</p>"
+    },
+    {
+      "file": "shirokiy-format/nakatka-na-penokarton/index.html",
+      "selector": "main p",
+      "index": 35,
+      "key": "minimum_text_58",
+      "prefix": "Пенокартон подходит для лёгких интерьерных панелей, фот",
+      "occurrence": 1,
+      "template": "<p data-price-block=\"minimum_text_58\">Пенокартон подходит для лёгких интерьерных панелей, фотографий и презентационных работ. По калькулятору размер — от 200×200 до 1450×1350 мм, минимальный чек — <span data-price-example=\"minimum_5_9\">0 ₽</span>. При перевозке защищайте углы и плоскость: лёгкость не означает устойчивость к ударам.</p>"
+    },
+    {
+      "file": "uv-pechat-i-rezka/shildy/index.html",
+      "selector": "main span",
+      "index": 26,
+      "key": "minimum_text_59",
+      "prefix": "Минимальный чек ",
+      "occurrence": 1,
+      "template": "<span data-price-block=\"minimum_text_59\">Минимальный чек <span data-price-example=\"minimum_6_7\">0 ₽</span></span>"
+    },
+    {
+      "file": "kopitsentr/termonakleyki/index.html",
+      "key": "thermal_text_0",
+      "selector": "main p",
+      "index": 28,
+      "prefix": "Перед расчётом выберите параметры заказа. Доступные вар",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"thermal_text_0\">Перед расчётом выберите параметры заказа. Доступные варианты: Один формат 58×40 мм; принтер TSC TE200; тарифы <span data-price-example=\"thermalbare100\">0</span>/<span data-price-example=\"thermalbare300\">0</span>/<span data-price-example=\"thermalbare1000\">0</span> ₽ за штуку по тиражным ступеням. Калькулятор на этой странице пересчитывает стоимость по выбранной конфигурации.</p>"
+    },
+    {
+      "file": "kopitsentr/termonakleyki/index.html",
+      "key": "thermal_text_1",
+      "selector": "main b",
+      "index": 1,
+      "prefix": "Один формат 58×40 мм; принтер TSC TE200; тарифы 5/4/3 ₽",
+      "occurrence": 0,
+      "template": "<b data-price-block=\"thermal_text_1\">Один формат 58×40 мм; принтер TSC TE200; тарифы <span data-price-example=\"thermalbare100\">0</span>/<span data-price-example=\"thermalbare300\">0</span>/<span data-price-example=\"thermalbare1000\">0</span> ₽ за штуку по тиражным ступеням.</b>"
+    },
+    {
+      "file": "kopitsentr/termonakleyki/index.html",
+      "key": "thermal_text_2",
+      "selector": "main p",
+      "index": 33,
+      "prefix": "Один формат 58×40 мм; принтер TSC TE200; тарифы 5/4/3 ₽",
+      "occurrence": 0,
+      "template": "<p data-price-block=\"thermal_text_2\">Один формат 58×40 мм; принтер TSC TE200; тарифы <span data-price-example=\"thermalbare100\">0</span>/<span data-price-example=\"thermalbare300\">0</span>/<span data-price-example=\"thermalbare1000\">0</span> ₽ за штуку по тиражным ступеням.</p>"
+    }
+  ],
+  "pages": [
+    "kopitsentr/index.html",
+    "proektnaya-dokumentatsiya/index.html",
+    "listovaya-poligrafiya/index.html",
+    "nakleyki-i-stikery/index.html",
+    "shirokiy-format/index.html",
+    "uv-pechat-i-rezka/index.html",
+    "company/action/index.html"
+  ]
+}

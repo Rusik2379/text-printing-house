@@ -444,7 +444,7 @@ window.TEXT_STICKER_SERVICES = {
       "height": 50,
       "quantity": 100
     },
-    "hero": "sticker-hero-labels.webp"
+    "hero": "sticker-hero-labels-brand.webp"
   },
   "4.6": {
     "shape": "rectangle",

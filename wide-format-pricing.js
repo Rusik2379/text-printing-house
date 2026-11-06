@@ -1,5 +1,6 @@
 // Rates resolved from the active Еговерсия2 workbook cells; no workbook evaluator in production.
 window.TEXT_WIDE_PRICING = {
+  "simpleCutFactor": 0.9,
   "capacityPerDay": 7000,
   "minimums": {
     "wide-banner": 600,

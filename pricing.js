@@ -1,4 +1,19 @@
 window.TEXT_PRICING = {
+  "settings": {
+    "copycenterCapacity": 10000,
+    "projectCapacity": 25000,
+    "leafletCapacity": 15000,
+    "uvCapacity": 7000,
+    "uvMinimums": { "uv-direct": 800, "uv-laser": 800, "uv-engraving": 800, "uv-keychains": 1000, "uv-shields": 1000 },
+    "uvDtfFactor": 2.3562,
+    "uvDtfMinimum": 800,
+    "paperMinimum": 150,
+    "paperPrice": 150,
+    "paperCutPrice": 320,
+    "paperDiscounts": [0, 0.05, 0.1, 0.15, 0.2],
+    "threeDPackFactor": 1.2,
+    "threeDPackMinimum": 1000
+  },
   "cards": {
     "rates": [
       {

@@ -1,0 +1,15 @@
+# The existing Nginx Proxy Manager owns ports 80/443 on work-server.
+# Start only the application: docker compose -f compose.yaml -f compose.work-server.yaml up -d app
+services:
+  app:
+    networks:
+      edge:
+        aliases: [tekst-site-app]
+networks:
+  edge:
+    external: true
+    name: nginx-proxy-manager_default
+volumes:
+  tekst_data:
+    external: true
+    name: tekst-site_tekst_data

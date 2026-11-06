@@ -1,0 +1,1784 @@
+{
+  "assets/equipment/rongda-l-fold4000.png": {
+    "width": 1366,
+    "height": 911,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/equipment/rongda-l-fold4000-93cc7410295f-400.webp",
+        "bytes": 23774
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/equipment/rongda-l-fold4000-0a2b5def1ce9-800.webp",
+        "bytes": 55096
+      },
+      {
+        "width": 1366,
+        "path": "assets/optimized/equipment/rongda-l-fold4000-24a9851eb828-1366.webp",
+        "bytes": 72072
+      }
+    ]
+  },
+  "assets/sibsoft-logo.png": {
+    "width": 848,
+    "height": 1264,
+    "variants": [
+      {
+        "width": 96,
+        "path": "assets/optimized/sibsoft-logo-4bb1bd939a7b-96.webp",
+        "bytes": 2596
+      },
+      {
+        "width": 192,
+        "path": "assets/optimized/sibsoft-logo-fbbe2f635f8f-192.webp",
+        "bytes": 6040
+      },
+      {
+        "width": 848,
+        "path": "assets/optimized/sibsoft-logo-4a558b87b005-848.webp",
+        "bytes": 29530
+      }
+    ]
+  },
+  "assets/equipment/mimaki-cjv200.png": {
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/equipment/mimaki-cjv200-0b17d455ef71-400.webp",
+        "bytes": 21772
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/equipment/mimaki-cjv200-ce60b977bb2f-800.webp",
+        "bytes": 54558
+      },
+      {
+        "width": 1000,
+        "path": "assets/equipment/mimaki-cjv200.png",
+        "bytes": 452199
+      }
+    ]
+  },
+  "assets/wide-hero-postery.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/wide-hero-postery-3794614cd37b-400.webp",
+        "bytes": 54612
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/wide-hero-postery-f6dfd48c40d4-800.webp",
+        "bytes": 174856
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/wide-hero-postery-02f33a1a9a94-1254.webp",
+        "bytes": 318898
+      }
+    ]
+  },
+  "assets/sticker-hero-uv-dtf.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/sticker-hero-uv-dtf-4094a8668117-400.webp",
+        "bytes": 59042
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/sticker-hero-uv-dtf-e64fe05622c9-800.webp",
+        "bytes": 177116
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/sticker-hero-uv-dtf-90ed3aa4720a-1254.webp",
+        "bytes": 317840
+      }
+    ]
+  },
+  "assets/copycenter-tverdyy-pereplet-diplomov.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/copycenter-tverdyy-pereplet-diplomov-92956bbfeb36-400.webp",
+        "bytes": 48762
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/copycenter-tverdyy-pereplet-diplomov-87feae57f9a0-800.webp",
+        "bytes": 164390
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/copycenter-tverdyy-pereplet-diplomov-51548d8e9b56-1254.webp",
+        "bytes": 307388
+      }
+    ]
+  },
+  "assets/wide-hero-pechat-na-holste.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/wide-hero-pechat-na-holste-54a7a7ac0007-400.webp",
+        "bytes": 48282
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/wide-hero-pechat-na-holste-0422ce08011e-800.webp",
+        "bytes": 157622
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/wide-hero-pechat-na-holste-f1c07dc0ec12-1254.webp",
+        "bytes": 307964
+      }
+    ]
+  },
+  "assets/uv-gravirovka-co2.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/uv-gravirovka-co2-8496cec39a07-400.webp",
+        "bytes": 51418
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/uv-gravirovka-co2-161bc482622c-800.webp",
+        "bytes": 164780
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/uv-gravirovka-co2-0620b7413b14-1254.webp",
+        "bytes": 298294
+      }
+    ]
+  },
+  "assets/sticker-hero-flat-rectangle.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/sticker-hero-flat-rectangle-5f160fa7a60b-400.webp",
+        "bytes": 50036
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/sticker-hero-flat-rectangle-c0391791ba77-800.webp",
+        "bytes": 158486
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/sticker-hero-flat-rectangle-d0f2ba0e7104-1254.webp",
+        "bytes": 292466
+      }
+    ]
+  },
+  "assets/sticker-hero-paper.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/sticker-hero-paper-2b3b08286e52-400.webp",
+        "bytes": 56572
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/sticker-hero-paper-ac7e3e25a169-800.webp",
+        "bytes": 169646
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/sticker-hero-paper-e4a703860cc4-1254.webp",
+        "bytes": 296360
+      }
+    ]
+  },
+  "assets/sticker-hero-labels-brand.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/sticker-hero-labels-brand-16518c664385-400.webp",
+        "bytes": 53248
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/sticker-hero-labels-brand-edcc47a9dec1-800.webp",
+        "bytes": 160704
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/sticker-hero-labels-brand-13d26ff15061-1254.webp",
+        "bytes": 286806
+      }
+    ]
+  },
+  "assets/stickerpack-robot-transparent.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/stickerpack-robot-transparent-b7fcaa990076-400.webp",
+        "bytes": 55242
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/stickerpack-robot-transparent-b41b743f86da-800.webp",
+        "bytes": 162780
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/stickerpack-robot-transparent-638b339e652f-1254.webp",
+        "bytes": 283296
+      }
+    ]
+  },
+  "assets/uv-breloki.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/uv-breloki-e300c12145eb-400.webp",
+        "bytes": 54116
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/uv-breloki-4dcb792dfb3a-800.webp",
+        "bytes": 161866
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/uv-breloki-2659f8fd9a8f-1254.webp",
+        "bytes": 276568
+      }
+    ]
+  },
+  "assets/project-pechat-dizayn-proektov.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/project-pechat-dizayn-proektov-0a9f5f47e076-400.webp",
+        "bytes": 49810
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/project-pechat-dizayn-proektov-642ae345fff0-800.webp",
+        "bytes": 150614
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/project-pechat-dizayn-proektov-5bb3c9e9c4e0-1254.webp",
+        "bytes": 270982
+      }
+    ]
+  },
+  "assets/uv-lazernaya-rezka.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/uv-lazernaya-rezka-74d45e7abc86-400.webp",
+        "bytes": 55128
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/uv-lazernaya-rezka-61cdbc4423de-800.webp",
+        "bytes": 159416
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/uv-lazernaya-rezka-e9f89d8188a4-1254.webp",
+        "bytes": 272910
+      }
+    ]
+  },
+  "assets/sticker-hero-3d-figure.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/sticker-hero-3d-figure-13e2b9036148-400.webp",
+        "bytes": 55468
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/sticker-hero-3d-figure-61c5f1f80cb6-800.webp",
+        "bytes": 159776
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/sticker-hero-3d-figure-3b1fc3dc0f3d-1254.webp",
+        "bytes": 269786
+      }
+    ]
+  },
+  "assets/project-falcovka-chertezhey.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/project-falcovka-chertezhey-96c2bd9f5981-400.webp",
+        "bytes": 50058
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/project-falcovka-chertezhey-4b028eb4864b-800.webp",
+        "bytes": 155160
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/project-falcovka-chertezhey-28e5f40f3edf-1254.webp",
+        "bytes": 267300
+      }
+    ]
+  },
+  "assets/sticker-hero-flat-figure.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/sticker-hero-flat-figure-4ffa849d055f-400.webp",
+        "bytes": 49262
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/sticker-hero-flat-figure-9733b907b11c-800.webp",
+        "bytes": 147052
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/sticker-hero-flat-figure-be0ae084a398-1254.webp",
+        "bytes": 258442
+      }
+    ]
+  },
+  "assets/copycenter-paketnoe-laminirovanie.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/copycenter-paketnoe-laminirovanie-7a67097cb31b-400.webp",
+        "bytes": 48862
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/copycenter-paketnoe-laminirovanie-2208961cc161-800.webp",
+        "bytes": 146702
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/copycenter-paketnoe-laminirovanie-2a643eea773c-1254.webp",
+        "bytes": 260526
+      }
+    ]
+  },
+  "assets/copycenter-pechat-fotografiy.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/copycenter-pechat-fotografiy-1103431c447f-400.webp",
+        "bytes": 49502
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/copycenter-pechat-fotografiy-355a6d993bf1-800.webp",
+        "bytes": 149864
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/copycenter-pechat-fotografiy-957fa1747c0a-1254.webp",
+        "bytes": 257168
+      }
+    ]
+  },
+  "assets/category-stickers-banner.webp": {
+    "width": 1672,
+    "height": 941,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/category-stickers-banner-526c5d92e49f-400.webp",
+        "bytes": 33596
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/category-stickers-banner-90fe2b70b51d-800.webp",
+        "bytes": 99776
+      },
+      {
+        "width": 1672,
+        "path": "assets/optimized/category-stickers-banner-fe1f2badd5fa-1672.webp",
+        "bytes": 258480
+      }
+    ]
+  },
+  "assets/company-payment.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/company-payment-dbdc0e3bbec7-400.webp",
+        "bytes": 49886
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/company-payment-690d23604527-800.webp",
+        "bytes": 144540
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/company-payment-4211740b39a6-1254.webp",
+        "bytes": 254296
+      }
+    ]
+  },
+  "assets/category-leaflet-banner.webp": {
+    "width": 1672,
+    "height": 941,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/category-leaflet-banner-6b14a45d2a75-400.webp",
+        "bytes": 33966
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/category-leaflet-banner-2799c58f402a-800.webp",
+        "bytes": 98488
+      },
+      {
+        "width": 1672,
+        "path": "assets/optimized/category-leaflet-banner-5816cf0e8f61-1672.webp",
+        "bytes": 259078
+      }
+    ]
+  },
+  "assets/sticker-hero-3d-pack.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/sticker-hero-3d-pack-542d7bdface7-400.webp",
+        "bytes": 48714
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/sticker-hero-3d-pack-461087bc27e4-800.webp",
+        "bytes": 145458
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/sticker-hero-3d-pack-33990dd96241-1254.webp",
+        "bytes": 252390
+      }
+    ]
+  },
+  "assets/copycenter-termonakleyki.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/copycenter-termonakleyki-b5ff26b39834-400.webp",
+        "bytes": 47212
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/copycenter-termonakleyki-22ee671caa85-800.webp",
+        "bytes": 144052
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/copycenter-termonakleyki-a49a76035662-1254.webp",
+        "bytes": 254906
+      }
+    ]
+  },
+  "assets/category-uv-banner.webp": {
+    "width": 1672,
+    "height": 941,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/category-uv-banner-f46e967ed75e-400.webp",
+        "bytes": 31366
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/category-uv-banner-f38d7ec2bdee-800.webp",
+        "bytes": 93072
+      },
+      {
+        "width": 1672,
+        "path": "assets/optimized/category-uv-banner-0ee4a85d9e6a-1672.webp",
+        "bytes": 247994
+      }
+    ]
+  },
+  "assets/uv-pryamaya-uv-pechat.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/uv-pryamaya-uv-pechat-09f0128fe3af-400.webp",
+        "bytes": 48934
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/uv-pryamaya-uv-pechat-f99ea5757242-800.webp",
+        "bytes": 142748
+      },
+      {
+        "width": 1254,
+        "path": "assets/uv-pryamaya-uv-pechat.webp",
+        "bytes": 276960
+      }
+    ]
+  },
+  "assets/category-wide-banner.webp": {
+    "width": 1672,
+    "height": 941,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/category-wide-banner-b5e136acf343-400.webp",
+        "bytes": 29258
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/category-wide-banner-e2bd69c76b88-800.webp",
+        "bytes": 89124
+      },
+      {
+        "width": 1672,
+        "path": "assets/optimized/category-wide-banner-23380db71ace-1672.webp",
+        "bytes": 244376
+      }
+    ]
+  },
+  "assets/sticker-hero-3d-rectangle.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/sticker-hero-3d-rectangle-d893064dfc22-400.webp",
+        "bytes": 48380
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/sticker-hero-3d-rectangle-31e26c87a229-800.webp",
+        "bytes": 139532
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/sticker-hero-3d-rectangle-5a502eaa6652-1254.webp",
+        "bytes": 244016
+      }
+    ]
+  },
+  "assets/project-scanning-banner.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/project-scanning-banner-312c156c80a8-400.webp",
+        "bytes": 42880
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/project-scanning-banner-fde1d3098dd7-800.webp",
+        "bytes": 134712
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/project-scanning-banner-28ec08c6113f-1254.webp",
+        "bytes": 245590
+      }
+    ]
+  },
+  "assets/uv-pechat-na-metalle.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/uv-pechat-na-metalle-1168b4a87ab6-400.webp",
+        "bytes": 45596
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/uv-pechat-na-metalle-de5c4a2c5709-800.webp",
+        "bytes": 134076
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/uv-pechat-na-metalle-20ac62f6bb94-1254.webp",
+        "bytes": 238016
+      }
+    ]
+  },
+  "assets/copycenter-skanirovanie-dokumentov.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/copycenter-skanirovanie-dokumentov-284c5550e23c-400.webp",
+        "bytes": 44072
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/copycenter-skanirovanie-dokumentov-7183bf4721f8-800.webp",
+        "bytes": 132630
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/copycenter-skanirovanie-dokumentov-058caf7b7666-1254.webp",
+        "bytes": 239888
+      }
+    ]
+  },
+  "assets/wide-hero-plakaty.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/wide-hero-plakaty-52ad87c9d56e-400.webp",
+        "bytes": 47654
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/wide-hero-plakaty-38e054707e31-800.webp",
+        "bytes": 137056
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/wide-hero-plakaty-7c8144a198af-1254.webp",
+        "bytes": 239228
+      }
+    ]
+  },
+  "assets/project-broshyurovka-proektnoy-dokumentatsii.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/project-broshyurovka-proektnoy-dokumentatsii-2bfa346051ea-400.webp",
+        "bytes": 42796
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/project-broshyurovka-proektnoy-dokumentatsii-0fb200df8864-800.webp",
+        "bytes": 132442
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/project-broshyurovka-proektnoy-dokumentatsii-e72324f27eef-1254.webp",
+        "bytes": 241446
+      }
+    ]
+  },
+  "assets/equipment/wattsan-6090-lt.png": {
+    "width": 730,
+    "height": 730,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/equipment/wattsan-6090-lt-376375cbe307-400.webp",
+        "bytes": 22352
+      },
+      {
+        "width": 730,
+        "path": "assets/optimized/equipment/wattsan-6090-lt-02a0652dec9c-730.webp",
+        "bytes": 34768
+      }
+    ]
+  },
+  "assets/wide-hero-samokleyashchayasya-plenka.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/wide-hero-samokleyashchayasya-plenka-c71625334488-400.webp",
+        "bytes": 46528
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/wide-hero-samokleyashchayasya-plenka-24714483d60b-800.webp",
+        "bytes": 132280
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/wide-hero-samokleyashchayasya-plenka-d14980ac9120-1254.webp",
+        "bytes": 225738
+      }
+    ]
+  },
+  "assets/uv-tablichki.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/uv-tablichki-c9077d010d30-400.webp",
+        "bytes": 44048
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/uv-tablichki-cd4fbb98e7cc-800.webp",
+        "bytes": 126948
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/uv-tablichki-41449827e3f4-1254.webp",
+        "bytes": 223892
+      }
+    ]
+  },
+  "assets/leaflet-sertifikaty.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/leaflet-sertifikaty-b576611c9056-400.webp",
+        "bytes": 39776
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/leaflet-sertifikaty-f95d7c9e776c-800.webp",
+        "bytes": 122750
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/leaflet-sertifikaty-ddda15f3214c-1254.webp",
+        "bytes": 217418
+      }
+    ]
+  },
+  "assets/leaflet-birki.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/leaflet-birki-a1863bf3c8da-400.webp",
+        "bytes": 39658
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/leaflet-birki-be92670d2cf4-800.webp",
+        "bytes": 119076
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/leaflet-birki-42fb19248946-1254.webp",
+        "bytes": 216184
+      }
+    ]
+  },
+  "assets/project-kopirovanie-chertezhey.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/project-kopirovanie-chertezhey-bbd5f880a6c6-400.webp",
+        "bytes": 37936
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/project-kopirovanie-chertezhey-766f5e8a80f7-800.webp",
+        "bytes": 119956
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/project-kopirovanie-chertezhey-bf64e642b8cf-1254.webp",
+        "bytes": 214310
+      }
+    ]
+  },
+  "assets/uv-shildy.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/uv-shildy-50ce79a97c08-400.webp",
+        "bytes": 44184
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/uv-shildy-22bc638ffbb7-800.webp",
+        "bytes": 124156
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/uv-shildy-d565ccfd5c3c-1254.webp",
+        "bytes": 217944
+      }
+    ]
+  },
+  "assets/uv-plotternaya-rezka.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/uv-plotternaya-rezka-f3826d28ebd0-400.webp",
+        "bytes": 46694
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/uv-plotternaya-rezka-68075e5f0694-800.webp",
+        "bytes": 127066
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/uv-plotternaya-rezka-5de797b0eee6-1254.webp",
+        "bytes": 213190
+      }
+    ]
+  },
+  "assets/category-copycenter-banner.webp": {
+    "width": 1672,
+    "height": 941,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/category-copycenter-banner-448b6882aaea-400.webp",
+        "bytes": 26034
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/category-copycenter-banner-163db27798b1-800.webp",
+        "bytes": 77404
+      },
+      {
+        "width": 1672,
+        "path": "assets/optimized/category-copycenter-banner-96324b8e8fb1-1672.webp",
+        "bytes": 214844
+      }
+    ]
+  },
+  "assets/leaflet-afishi.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/leaflet-afishi-babdccc30616-400.webp",
+        "bytes": 44088
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/leaflet-afishi-0af39dda1e43-800.webp",
+        "bytes": 124478
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/leaflet-afishi-428a969114d6-1254.webp",
+        "bytes": 209282
+      }
+    ]
+  },
+  "assets/project-inzhenernaya-pechat.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/project-inzhenernaya-pechat-38e36e7fa26d-400.webp",
+        "bytes": 41622
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/project-inzhenernaya-pechat-13e6bca8c262-800.webp",
+        "bytes": 119148
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/project-inzhenernaya-pechat-d4bb666ae3a3-1254.webp",
+        "bytes": 211408
+      }
+    ]
+  },
+  "assets/leaflet-listovki.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/leaflet-listovki-72419c6414d9-400.webp",
+        "bytes": 40044
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/leaflet-listovki-4525fb9847e5-800.webp",
+        "bytes": 118194
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/leaflet-listovki-66c5e839e5f8-1254.webp",
+        "bytes": 204490
+      }
+    ]
+  },
+  "assets/leaflet-katalogi.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/leaflet-katalogi-c430554a5a81-400.webp",
+        "bytes": 38276
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/leaflet-katalogi-0a0632837650-800.webp",
+        "bytes": 113298
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/leaflet-katalogi-31cf50a83cbf-1254.webp",
+        "bytes": 201568
+      }
+    ]
+  },
+  "assets/project-category-banner.webp": {
+    "width": 1672,
+    "height": 941,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/project-category-banner-a4f698a4a154-400.webp",
+        "bytes": 24964
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/project-category-banner-650b9a957c80-800.webp",
+        "bytes": 76192
+      },
+      {
+        "width": 1672,
+        "path": "assets/optimized/project-category-banner-f939cea667bd-1672.webp",
+        "bytes": 203838
+      }
+    ]
+  },
+  "assets/sticker-hero-3d-round.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/sticker-hero-3d-round-54b449bd5b14-400.webp",
+        "bytes": 39728
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/sticker-hero-3d-round-eee6598e6cf1-800.webp",
+        "bytes": 113830
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/sticker-hero-3d-round-0d8197940433-1254.webp",
+        "bytes": 196042
+      }
+    ]
+  },
+  "assets/company-about.webp": {
+    "width": 1672,
+    "height": 941,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/company-about-039c320b1b66-400.webp",
+        "bytes": 29648
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/company-about-b6b56ab14159-800.webp",
+        "bytes": 81552
+      },
+      {
+        "width": 1672,
+        "path": "assets/optimized/company-about-9c27cca9dd64-1672.webp",
+        "bytes": 201498
+      }
+    ]
+  },
+  "assets/leaflet-vizitki.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/leaflet-vizitki-5fc6c4ed121e-400.webp",
+        "bytes": 38522
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/leaflet-vizitki-4ef27eaac361-800.webp",
+        "bytes": 113616
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/leaflet-vizitki-000651639257-1254.webp",
+        "bytes": 195130
+      }
+    ]
+  },
+  "assets/uv-garderobnye-nomerki.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/uv-garderobnye-nomerki-d8b92db293f8-400.webp",
+        "bytes": 44780
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/uv-garderobnye-nomerki-dcbc963f9bc6-800.webp",
+        "bytes": 119460
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/uv-garderobnye-nomerki-45b719a5919d-1254.webp",
+        "bytes": 202174
+      }
+    ]
+  },
+  "assets/wide-hero-nakleyki-na-steklo.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/wide-hero-nakleyki-na-steklo-b970130481ac-400.webp",
+        "bytes": 41030
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/wide-hero-nakleyki-na-steklo-014bbfe47ef8-800.webp",
+        "bytes": 112654
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/wide-hero-nakleyki-na-steklo-713ffd6ba21b-1254.webp",
+        "bytes": 193966
+      }
+    ]
+  },
+  "assets/leaflet-gramoty-i-diplomy.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/leaflet-gramoty-i-diplomy-d89ea7acee4a-400.webp",
+        "bytes": 34790
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/leaflet-gramoty-i-diplomy-1250ff871ccb-800.webp",
+        "bytes": 109174
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/leaflet-gramoty-i-diplomy-436496baef72-1254.webp",
+        "bytes": 193420
+      }
+    ]
+  },
+  "assets/wide-hero-bannery.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/wide-hero-bannery-85a1c8c12b70-400.webp",
+        "bytes": 41136
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/wide-hero-bannery-57837afad34a-800.webp",
+        "bytes": 112628
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/wide-hero-bannery-e480a112f00f-1254.webp",
+        "bytes": 185870
+      }
+    ]
+  },
+  "assets/wide-hero-nakatka-na-penokarton.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/wide-hero-nakatka-na-penokarton-756d8dbd3746-400.webp",
+        "bytes": 37954
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/wide-hero-nakatka-na-penokarton-d26f9b7d85d1-800.webp",
+        "bytes": 108154
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/wide-hero-nakatka-na-penokarton-40629232158b-1254.webp",
+        "bytes": 186068
+      }
+    ]
+  },
+  "assets/wide-hero-nakleyki-na-avto.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/wide-hero-nakleyki-na-avto-724e22a0c46f-400.webp",
+        "bytes": 42526
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/wide-hero-nakleyki-na-avto-61320ed312e0-800.webp",
+        "bytes": 110822
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/wide-hero-nakleyki-na-avto-768911535e6e-1254.webp",
+        "bytes": 187066
+      }
+    ]
+  },
+  "assets/leaflet-otkrytki.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/leaflet-otkrytki-a15faa15ca21-400.webp",
+        "bytes": 37856
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/leaflet-otkrytki-803e0ebaa489-800.webp",
+        "bytes": 107576
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/leaflet-otkrytki-e8f272de381b-1254.webp",
+        "bytes": 183970
+      }
+    ]
+  },
+  "assets/copycenter-pechat-avtoreferatov.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/copycenter-pechat-avtoreferatov-3798b2978eed-400.webp",
+        "bytes": 35244
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/copycenter-pechat-avtoreferatov-97e39b40c998-800.webp",
+        "bytes": 104618
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/copycenter-pechat-avtoreferatov-62c8fc9bd10b-1254.webp",
+        "bytes": 182676
+      }
+    ]
+  },
+  "assets/sticker-hero-flat-round.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/sticker-hero-flat-round-24e30f53eae5-400.webp",
+        "bytes": 35906
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/sticker-hero-flat-round-312ca141619e-800.webp",
+        "bytes": 103774
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/sticker-hero-flat-round-0c673a4d1e46-1254.webp",
+        "bytes": 175962
+      }
+    ]
+  },
+  "assets/copycenter-broshyurovka-na-pruzhinu.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/copycenter-broshyurovka-na-pruzhinu-c59d3caed9b3-400.webp",
+        "bytes": 36804
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/copycenter-broshyurovka-na-pruzhinu-923066f6060e-800.webp",
+        "bytes": 103238
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/copycenter-broshyurovka-na-pruzhinu-f416dfa3536c-1254.webp",
+        "bytes": 174862
+      }
+    ]
+  },
+  "assets/leaflet-buklety.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/leaflet-buklety-56673137e85e-400.webp",
+        "bytes": 34628
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/leaflet-buklety-f929ef61d7f5-800.webp",
+        "bytes": 99816
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/leaflet-buklety-30e4085fe2bb-1254.webp",
+        "bytes": 172428
+      }
+    ]
+  },
+  "assets/project-pechat-lekal-i-vykroek.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/project-pechat-lekal-i-vykroek-4bfeae7d9bb6-400.webp",
+        "bytes": 32792
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/project-pechat-lekal-i-vykroek-412a655f0c51-800.webp",
+        "bytes": 96996
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/project-pechat-lekal-i-vykroek-31d6ddd9701b-1254.webp",
+        "bytes": 166310
+      }
+    ]
+  },
+  "assets/equipment/graphtec-ce7000-60.webp": {
+    "width": 1201,
+    "height": 401,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/equipment/graphtec-ce7000-60-4c989a804b6b-400.webp",
+        "bytes": 25012
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/equipment/graphtec-ce7000-60-e2a15fcd671d-800.webp",
+        "bytes": 65848
+      },
+      {
+        "width": 1201,
+        "path": "assets/equipment/graphtec-ce7000-60.webp",
+        "bytes": 184020
+      }
+    ]
+  },
+  "assets/calculator-original.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/calculator-original-ba410ddc528a-400.webp",
+        "bytes": 36334
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/calculator-original-b26d5ea17fab-800.webp",
+        "bytes": 98658
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/calculator-original-2c4bd35f80ce-1254.webp",
+        "bytes": 164008
+      }
+    ]
+  },
+  "assets/copycenter-pechat-dokumentov.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/copycenter-pechat-dokumentov-b3b1768e3a0a-400.webp",
+        "bytes": 34356
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/copycenter-pechat-dokumentov-ddcb38b08788-800.webp",
+        "bytes": 97034
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/copycenter-pechat-dokumentov-7aaef0f757b4-1254.webp",
+        "bytes": 161278
+      }
+    ]
+  },
+  "assets/wide-hero-nakatka-na-pvh.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/wide-hero-nakatka-na-pvh-63847caf191c-400.webp",
+        "bytes": 36414
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/wide-hero-nakatka-na-pvh-619d02a360a4-800.webp",
+        "bytes": 96098
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/wide-hero-nakatka-na-pvh-2d262a72bde2-1254.webp",
+        "bytes": 158592
+      }
+    ]
+  },
+  "assets/copycenter-kopirovanie-dokumentov.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/copycenter-kopirovanie-dokumentov-d946b4582947-400.webp",
+        "bytes": 29924
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/copycenter-kopirovanie-dokumentov-ac413b59f298-800.webp",
+        "bytes": 89736
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/copycenter-kopirovanie-dokumentov-0920bcc5bc42-1254.webp",
+        "bytes": 160084
+      }
+    ]
+  },
+  "assets/leaflet-broshyury.webp": {
+    "width": 1254,
+    "height": 1254,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/leaflet-broshyury-6f29c7c7e510-400.webp",
+        "bytes": 31988
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/leaflet-broshyury-f2efb67b9c8b-800.webp",
+        "bytes": 88142
+      },
+      {
+        "width": 1254,
+        "path": "assets/optimized/leaflet-broshyury-0b59003a1de5-1254.webp",
+        "bytes": 147874
+      }
+    ]
+  },
+  "assets/hero-screenshot.webp": {
+    "width": 1200,
+    "height": 900,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/hero-screenshot-7100d2506179-400.webp",
+        "bytes": 29880
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/hero-screenshot-e2efd22d4c51-800.webp",
+        "bytes": 80438
+      },
+      {
+        "width": 1200,
+        "path": "assets/optimized/hero-screenshot-9fd7dd056411-1200.webp",
+        "bytes": 126612
+      }
+    ]
+  },
+  "assets/faq-peeking-robot.webp": {
+    "width": 1166,
+    "height": 1349,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/faq-peeking-robot-712f66c70e6d-400.webp",
+        "bytes": 38520
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/faq-peeking-robot-da78a290fd6e-800.webp",
+        "bytes": 99770
+      },
+      {
+        "width": 1166,
+        "path": "assets/faq-peeking-robot.webp",
+        "bytes": 149966
+      }
+    ]
+  },
+  "assets/company-contacts.webp": {
+    "width": 900,
+    "height": 900,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/company-contacts-70dfc4f5863c-400.webp",
+        "bytes": 32366
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/company-contacts-82f3f072fa26-800.webp",
+        "bytes": 82886
+      },
+      {
+        "width": 900,
+        "path": "assets/optimized/company-contacts-1796b795cf7b-900.webp",
+        "bytes": 88024
+      }
+    ]
+  },
+  "assets/popular-art-стикерпаки.webp": {
+    "width": 720,
+    "height": 720,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/popular-art-стикерпаки-acc3b79e4b5d-400.webp",
+        "bytes": 44634
+      },
+      {
+        "width": 720,
+        "path": "assets/optimized/popular-art-стикерпаки-9181889aee68-720.webp",
+        "bytes": 96118
+      }
+    ]
+  },
+  "assets/company-delivery.webp": {
+    "width": 900,
+    "height": 900,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/company-delivery-2f07d02e7ed4-400.webp",
+        "bytes": 29412
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/company-delivery-8be27b4076ef-800.webp",
+        "bytes": 74070
+      },
+      {
+        "width": 900,
+        "path": "assets/optimized/company-delivery-6eb0d7afc40d-900.webp",
+        "bytes": 80646
+      }
+    ]
+  },
+  "assets/popular-art-прямая уф печать.webp": {
+    "width": 720,
+    "height": 720,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/popular-art-прямая уф печать-768c6b80f08e-400.webp",
+        "bytes": 38706
+      },
+      {
+        "width": 720,
+        "path": "assets/popular-art-прямая уф печать.webp",
+        "bytes": 98120
+      }
+    ]
+  },
+  "assets/delivery-russia.png": {
+    "width": 1393,
+    "height": 744,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/delivery-russia-e86dd0522504-400.webp",
+        "bytes": 32530
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/delivery-russia-d531d0c0ef5f-800.webp",
+        "bytes": 90784
+      },
+      {
+        "width": 1393,
+        "path": "assets/delivery-russia.png",
+        "bytes": 93094
+      }
+    ]
+  },
+  "assets/equipment/bulros-450vs-plus.jpg": {
+    "width": 600,
+    "height": 600,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/equipment/bulros-450vs-plus-19aa9a95078b-400.webp",
+        "bytes": 12946
+      },
+      {
+        "width": 600,
+        "path": "assets/optimized/equipment/bulros-450vs-plus-70eb52dc0871-600.webp",
+        "bytes": 21858
+      }
+    ]
+  },
+  "assets/equipment/canon-tm-200.jpg": {
+    "width": 1200,
+    "height": 1200,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/equipment/canon-tm-200-e3ecb392b21a-400.webp",
+        "bytes": 7424
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/equipment/canon-tm-200-c3895152c63c-800.webp",
+        "bytes": 16420
+      },
+      {
+        "width": 1200,
+        "path": "assets/optimized/equipment/canon-tm-200-4f65d719cc09-1200.webp",
+        "bytes": 26888
+      }
+    ]
+  },
+  "assets/popular-art-инженерная печать.webp": {
+    "width": 720,
+    "height": 720,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/popular-art-инженерная печать-9fa0e98ab8aa-400.webp",
+        "bytes": 33800
+      },
+      {
+        "width": 720,
+        "path": "assets/optimized/popular-art-инженерная печать-ca32129f3011-720.webp",
+        "bytes": 74540
+      }
+    ]
+  },
+  "assets/popular-art-накатка на пвх.webp": {
+    "width": 720,
+    "height": 720,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/popular-art-накатка на пвх-a2f92542e9e9-400.webp",
+        "bytes": 34688
+      },
+      {
+        "width": 720,
+        "path": "assets/optimized/popular-art-накатка на пвх-e58c66b3ffa6-720.webp",
+        "bytes": 72426
+      }
+    ]
+  },
+  "assets/popular-art-визитки.webp": {
+    "width": 720,
+    "height": 720,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/popular-art-визитки-2b852d0fe430-400.webp",
+        "bytes": 33312
+      },
+      {
+        "width": 720,
+        "path": "assets/optimized/popular-art-визитки-2cd898af116f-720.webp",
+        "bytes": 74386
+      }
+    ]
+  },
+  "assets/popular-art-печать документов.webp": {
+    "width": 720,
+    "height": 720,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/popular-art-печать документов-b087c7ddd012-400.webp",
+        "bytes": 26998
+      },
+      {
+        "width": 720,
+        "path": "assets/optimized/popular-art-печать документов-01a2c18f2fe9-720.webp",
+        "bytes": 57554
+      }
+    ]
+  },
+  "assets/equipment/canon-tx-3100.jpg": {
+    "width": 1200,
+    "height": 900,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/equipment/canon-tx-3100-7e4347744d89-400.webp",
+        "bytes": 5714
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/equipment/canon-tx-3100-5b1e34c60d4d-800.webp",
+        "bytes": 13326
+      },
+      {
+        "width": 1200,
+        "path": "assets/optimized/equipment/canon-tx-3100-14290a76f869-1200.webp",
+        "bytes": 21430
+      }
+    ]
+  },
+  "assets/equipment/konica-minolta-accuriopress-c7100.webp": {
+    "width": 3840,
+    "height": 1038,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/equipment/konica-minolta-accuriopress-c7100-b3864981410a-400.webp",
+        "bytes": 5030
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/equipment/konica-minolta-accuriopress-c7100-1801bb57b2d1-800.webp",
+        "bytes": 11314
+      },
+      {
+        "width": 3840,
+        "path": "assets/equipment/konica-minolta-accuriopress-c7100.webp",
+        "bytes": 35250
+      }
+    ]
+  },
+  "assets/equipment/canon-imagerunner-advance-dx-c3822.jpg": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/equipment/canon-imagerunner-advance-dx-c3822-b203738fd400-400.webp",
+        "bytes": 8250
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/equipment/canon-imagerunner-advance-dx-c3822-f8abef2942e6-800.webp",
+        "bytes": 20088
+      },
+      {
+        "width": 1024,
+        "path": "assets/optimized/equipment/canon-imagerunner-advance-dx-c3822-9734055b3b0f-1024.webp",
+        "bytes": 22420
+      }
+    ]
+  },
+  "assets/equipment/canon-imagepress-c165.jpg": {
+    "width": 1200,
+    "height": 450,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/equipment/canon-imagepress-c165-a0dca6036c5a-400.webp",
+        "bytes": 2912
+      },
+      {
+        "width": 800,
+        "path": "assets/optimized/equipment/canon-imagepress-c165-17e572d494ca-800.webp",
+        "bytes": 7112
+      },
+      {
+        "width": 1200,
+        "path": "assets/optimized/equipment/canon-imagepress-c165-6ce46bb10792-1200.webp",
+        "bytes": 11872
+      }
+    ]
+  },
+  "assets/brand-mark.webp": {
+    "width": 640,
+    "height": 640,
+    "variants": [
+      {
+        "width": 400,
+        "path": "assets/optimized/brand-mark-26314e48efc9-400.webp",
+        "bytes": 11046
+      },
+      {
+        "width": 640,
+        "path": "assets/brand-mark.webp",
+        "bytes": 14588
+      }
+    ]
+  }
+}

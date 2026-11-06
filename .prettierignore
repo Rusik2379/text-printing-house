@@ -1,0 +1,16 @@
+.build
+.work
+node_modules
+vendor
+assets
+fonts
+preview
+**/*.html
+**/*.json
+**/*-data.js
+**/*-services.js
+catalog.js
+pricing.js
+sticker-pricing.js
+stickerpack-pricing.js
+wide-format-pricing.js
